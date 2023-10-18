@@ -35,7 +35,7 @@ namespace jGL::Vulkan
                 width, 
                 height, 
                 1, 
-                VK_FORMAT_R8_SINT, 
+                VK_FORMAT_R8_UINT, 
                 vPixels
             );
             

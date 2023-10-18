@@ -57,6 +57,8 @@ namespace jGL::Vulkan
         void setBinding(uint32_t b) { binding = b; }
         void setLocation(uint32_t l) { location = l; }
 
+        const VkBuffer & getVkBuffer() const { return buffer->getVkBuffer(); }
+
     protected:
 
         const Device & device;

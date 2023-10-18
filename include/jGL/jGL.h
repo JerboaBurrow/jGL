@@ -21,7 +21,7 @@ namespace jGL
     public:
 
         jGLInstance(const Display & display)
-        : width(display.getResX()), height(display.getResY())
+        : width(display.getResX()), height(display.getResY()), closing(false)
         {}
 
         virtual void text
@@ -32,7 +32,7 @@ namespace jGL
             glm::vec4 colour
         ) = 0;
 
-        void finish(){closing = true;}
+        virtual void finish(){closing = true;}
         virtual void beginFrame(){}
         virtual void endFrame(){}
 
@@ -48,7 +48,9 @@ namespace jGL
         virtual std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) = 0;
         virtual std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint) = 0;
 
-    private:
+        const bool isClosing() const { return closing; } 
+
+    protected:
 
         uint32_t width, height;
         uint8_t msaaSamples = 0;

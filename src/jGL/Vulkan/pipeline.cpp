@@ -263,4 +263,15 @@ namespace jGL::Vulkan
         );
         
     }
+
+    const std::vector<VkDescriptorSet> Pipeline::getVkDescriptorSets(uint32_t currentFrame)
+    {
+        std::vector<VkDescriptorSet> sets;
+
+        sets.push_back(uniformDescriptors.getVkDescriptorSet(currentFrame));
+        sets.push_back(imageDescriptors.getVkDescriptorSet(currentFrame));
+
+        return sets;
+    }
+        
 }

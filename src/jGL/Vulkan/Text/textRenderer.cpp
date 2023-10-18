@@ -14,11 +14,21 @@ namespace jGL::Vulkan
     )
     : shader(device.getVkDevice(), vert, frag)
     {
+
+        font = std::make_unique<Font>
+        (
+            device,
+            command,
+            48
+        );
+
+        vertices = font->getGlyphVertices(0.0f, 0.0f, 1.0f, 'H');
+
         posTex = std::make_shared<VertexBuffer<glm::vec4>>
         (
             device, 
             command,
-            std::vector<glm::vec4> {glm::vec4(0.0)},
+            std::vector<glm::vec4> {vertices.begin(), vertices.end()},
             VK_VERTEX_INPUT_RATE_VERTEX,
             0,
             0
@@ -54,17 +64,18 @@ namespace jGL::Vulkan
             64,
             64,
             1,
-            VK_FORMAT_R8_SINT
+            VK_FORMAT_R8_UINT
         );
 
         fontSampler = std::make_shared<Sampler>
         (
             device,
+            VK_FILTER_NEAREST,
             0
         );
 
         std::vector<std::pair<VkImageView, std::shared_ptr<Sampler> >> textures
-            {std::pair(fontTexture->getVkImageView(), fontSampler)};
+            {std::pair(font->getGlyphView('H'), fontSampler)};
 
 
         VkPipelineColorBlendAttachmentState colourBlendAttachment{};
@@ -106,5 +117,42 @@ namespace jGL::Vulkan
             msaa,
             blending
         );
+    }
+
+    void TextRenderer::renderText
+    (
+        const VkCommandBuffer & commandBuffer,
+        uint32_t currentFrame,
+        std::string text,
+        glm::vec2 position,
+        float scale,
+        glm::vec4 colour,
+        bool centre
+    )
+    {
+
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, textPipeline->getVkPipeline());
+
+        VkBuffer vertexBuffers[] = {posTex->getVkBuffer()};
+        VkDeviceSize offsets[] = {0};
+        vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
+
+        std::vector<VkDescriptorSet> descriptorSets = textPipeline->getVkDescriptorSets(currentFrame);
+        
+        vkCmdBindDescriptorSets
+        (
+            commandBuffer, 
+            VK_PIPELINE_BIND_POINT_GRAPHICS, 
+            textPipeline->getVkPipelineLayout(),
+            0,
+            descriptorSets.size(),
+            &descriptorSets[0],
+            0,
+            nullptr
+        );
+
+        // the draw command is issues
+        // vertexCount, instanceCount, firstVertex, firstInstance
+        vkCmdDraw(commandBuffer, vertices.size(), 1, 0, 0);
     }
 }

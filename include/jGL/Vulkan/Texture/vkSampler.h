@@ -13,14 +13,15 @@ namespace jGL::Vulkan
         Sampler
         (
             const Device & device,
+            VkFilter filter = VK_FILTER_LINEAR,
             uint32_t binding = 0
         )
         : device(device), binding(binding)
         {
             VkSamplerCreateInfo samplerInfo{};
             samplerInfo.sType = VK_STRUCTURE_TYPE_SAMPLER_CREATE_INFO;
-            samplerInfo.magFilter = VK_FILTER_LINEAR;
-            samplerInfo.minFilter = VK_FILTER_LINEAR;
+            samplerInfo.magFilter = filter;
+            samplerInfo.minFilter = filter;
             samplerInfo.addressModeU = VK_SAMPLER_ADDRESS_MODE_REPEAT;
             samplerInfo.addressModeV = VK_SAMPLER_ADDRESS_MODE_REPEAT;
             samplerInfo.addressModeW = VK_SAMPLER_ADDRESS_MODE_REPEAT;

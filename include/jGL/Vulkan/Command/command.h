@@ -23,6 +23,7 @@ namespace jGL::Vulkan
 
         const VkCommandPool & getVkCommandPool() const { return commandPool.getVkCommandPool(); }
         const std::vector<VkCommandBuffer> & getVkCommandBuffers() const { return commandBuffer.getVkCommandBuffers(); }
+        const VkCommandBuffer & getVkCommandBuffer(size_t i) const { return commandBuffer.getVkCommandBuffers()[i]; }
 
         VkCommandBuffer beginCommand(const Device & device)  const
         {

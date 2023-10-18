@@ -30,4 +30,20 @@ std::unique_ptr<jGL::jGLInstance> jGLInstance;
 
 using Particles::Util::fixedLengthNumber;
 
+void keyEventCallback
+(
+    GLFWwindow * window,
+    int key,
+    int scancode,
+    int action,
+    int mods
+)
+{
+    if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+    {
+        jGLInstance->finish();
+        glfwSetWindowShouldClose(window, GLFW_TRUE);
+    }
+}
+
 #endif /* MAIN */

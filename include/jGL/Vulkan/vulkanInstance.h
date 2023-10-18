@@ -22,6 +22,8 @@
 #include <jGL/Vulkan/vkSpriteRenderer.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
 
+#include <jGL/Vulkan/Text/textRenderer.h>
+
 namespace jGL::Vulkan
 {
     class vkTexture;
@@ -35,13 +37,31 @@ namespace jGL::Vulkan
 
         ~VulkanInstance();
 
+        void finish()
+        {
+            closing = true; 
+            vkDeviceWaitIdle(device.getVkDevice());
+        }
+
         void text
         (
             std::string characters, 
             glm::vec2 position,
             float scale,
             glm::vec4 colour
-        ){/*TODO*/}
+        )
+        {
+            textRenderer->renderText
+            (
+                commandBuffer,
+                currentFrame,
+                characters, 
+                position, 
+                scale, 
+                colour, 
+                false
+            );
+        }
 
         void clear() {/*TODO*/}
 
@@ -87,9 +107,26 @@ namespace jGL::Vulkan
         const RenderPass & getRenderPass() const { return renderPass; }
         const unsigned getConcurrentFrames() const { return concurrentFrames; }
 
+        void beginFrame();
+        void endFrame();
+
+        void createSyncObjects();
+
     private:
 
         const unsigned concurrentFrames = 2;
+
+        unsigned currentFrame = 0;
+
+        bool midFrame = false;
+
+        uint32_t resX = 0; 
+        uint32_t resY = 0;
+
+        glm::vec4 clearColour = glm::vec4(1.0,1.0,1.0,1.0);
+
+        std::vector<VkSemaphore> imageAvailableSemaphores, renderFinsihedSemaphores;
+        std::vector<VkFence> framesFinished;
 
         VkInstance instance;
 
@@ -99,10 +136,17 @@ namespace jGL::Vulkan
 
         Surface surface;
         Device device;
+        uint32_t swapchainImageIndex = 0;
         Swapchain swapchain;
         Command command;
         RenderPass renderPass;
+        VkCommandBuffer commandBuffer;
         std::vector<std::unique_ptr<Framebuffer>> framebuffers;
+
+        std::unique_ptr<TextRenderer> textRenderer;
+
+        VkRect2D scissor;
+        VkViewport viewport;
 
         VkImage framebufferImage;
         VkImageView framebufferImageView;

@@ -13,7 +13,7 @@ int main(int argv, char ** argc)
         }
     }
 
-    jGL::Display display(resX, resY, "Particles", vulkan);
+    jGL::Display display(resX, resY, "Particles", &keyEventCallback, vulkan);
 
     glewInit();
     
@@ -146,6 +146,8 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
+
+        jGLInstance->endFrame();
     }
 
     jGLInstance->finish();

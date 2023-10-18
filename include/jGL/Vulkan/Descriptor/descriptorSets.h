@@ -34,16 +34,15 @@ namespace jGL::Vulkan
             allocInfo.pSetLayouts = layouts.data();
 
             descriptorSets.resize(layouts.size());
-            
-            vkError
-            (
-                vkAllocateDescriptorSets(device.getVkDevice(), &allocInfo, descriptorSets.data()),
-                "Allocating buffer descriptor sets"
-            );
+            if (vkAllocateDescriptorSets(device.getVkDevice(), &allocInfo, descriptorSets.data()) != VK_SUCCESS)
+            {
+                throw std::runtime_error("Failed to allocate image descriptor sets");
+            }
+
 
             for (size_t i = 0; i < layouts.size(); i++)
             {
-
+                std::cout << "update set " << descriptorSets[i] << "\n";
                 for (size_t j = 0; j < infos[i].size(); j++)
                 {
                     VkWriteDescriptorSet descriptorWrite{};
@@ -61,6 +60,9 @@ namespace jGL::Vulkan
                 }
             }
         }
+
+        const VkDescriptorSet & getVkDescriptorSet(size_t i) const { return descriptorSets[i]; }
+        const std::vector<VkDescriptorSet> & getVkDescriptorSets() const { return descriptorSets; }
 
     private:
 
@@ -90,7 +92,7 @@ namespace jGL::Vulkan
             allocInfo.descriptorPool = pool.getVkDescriptorPool();
             allocInfo.descriptorSetCount = layouts.size();
             allocInfo.pSetLayouts = layouts.data();
-
+            // number of layouts is number of frames...
             descriptorSets.resize(layouts.size());
             if (vkAllocateDescriptorSets(device.getVkDevice(), &allocInfo, descriptorSets.data()) != VK_SUCCESS)
             {
@@ -99,7 +101,7 @@ namespace jGL::Vulkan
 
             for (size_t i = 0; i < layouts.size(); i++)
             {
-
+                std::cout << "update set " << descriptorSets[i] << "\n";
                 for (size_t j = 0; j < infos[i].size(); j++)
                 {
                     VkWriteDescriptorSet descriptorWrite{};
@@ -117,6 +119,9 @@ namespace jGL::Vulkan
                 }
             }
         }
+        
+        const VkDescriptorSet & getVkDescriptorSet(size_t i) const { return descriptorSets[i]; }
+        const std::vector<VkDescriptorSet> & getVkDescriptorSets() const { return descriptorSets; }
 
     private:
 
