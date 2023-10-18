@@ -23,6 +23,7 @@ VALIDATION=0
 VERBOSE=0
 VK_SDK="include/vendored/VulkanSDK"
 BENCHMARK=0
+EXAMPLES=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -30,15 +31,19 @@ while [[ $# -gt 0 ]]; do
       WINDOWS=0
       shift # past argument
       ;;
+    -e|--examples)
+      EXAMPLES=1
+      shift
+      ;;
     -v|--validation)
       VALIDATION=1
       shift
       ;;
     -vv|--verbose-validation)
-    VALIDATION=1
-    VERBOSE=1
-    shift
-    ;;
+      VALIDATION=1
+      VERBOSE=1
+      shift
+      ;;
     --vk)
       VK_SDK=$2
       shift
@@ -89,7 +94,7 @@ then
   export VULKAN_SDK=$VK_SDK/Windows
   export VULKAN_LIBRARY="$VK_SDK/Windows/Lib"
   export VULKAN_INCLUDE_DIR="$VK_SDK/Windows/Include" 
-  cmake -E chdir build cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D CMAKE_TOOLCHAIN_FILE=./windows.cmake && make -j 4 -C build
+  cmake -E chdir build cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D CMAKE_TOOLCHAIN_FILE=./windows.cmake && make -j 4 -C build
   # now copy dlls
   PREFIX="x86_64-w64-mingw32"
 
@@ -120,10 +125,8 @@ then
 elif [[ $OSX -eq 0 ]];
 then
   cmake -E make_directory build
-  cmake -E chdir build cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D CMAKE_TOOLCHAIN_FILE=./osx.cmake && make -j 4 -C build
+  cmake -E chdir build cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D CMAKE_TOOLCHAIN_FILE=./osx.cmake && make -j 4 -C build
 else
   cmake -E make_directory build
-  cmake -E chdir build cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST .. && make -j 4 -C build
+  cmake -E chdir build cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES .. && make -j 4 -C build
 fi
-
-cp -r resource build

@@ -22,12 +22,12 @@ jobs:
 
     - name: linux-linux
       run: |
-        ./build.sh -t -r
+        ./build.sh -t -r -e
         mkdir linux-x86_64
-        chmod +x build/Particles
-        cp build/Particles linux-x86_64/Particles-linux-x86_64 
+        cp -r build/Examples linux-x86_64-examples
+        cp build/libjGL.a linux-x86_64/libjGL-linux-x86_64.a
+        cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
-        cp -r resource linux-x86_64/
 
     - name: Tests
       working-directory: ${{github.workspace}}/build
@@ -44,6 +44,13 @@ jobs:
       with:
         name: linux-x86_64
         path: linux-x86_64
+
+    - name: buildArtifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: linux-x86_64-examples
+        path: linux-x86_64-examples
+    
     
   linuxXwindows:
     runs-on: ubuntu-22.04
@@ -56,18 +63,24 @@ jobs:
 
     - name: linux-X-windows
       run: |
-        ./build.sh -t -w -r
+        ./build.sh -t -w -r -e
         mkdir windows
-        chmod +x build/Particles.exe
-        cp build/Particles.exe windows/
+        cp -r build/Examples windows-examples
+        cp build/libjGL.a windows/libjGL-windows.a
+        cp LICENSE windows-examples/
         cp LICENSE windows/
-        cp -r resource windows/
     
     - name: buildArtifact
       uses: actions/upload-artifact@v3
       with:
         name: windows
         path: windows
+
+    - name: buildArtifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-examples
+        path: windows-examples
       
   linuxRun:
     needs: linuxXlinux
@@ -80,16 +93,17 @@ jobs:
       - name: get linux build
         uses: actions/download-artifact@v3
         with:
-          name: linux-x86_64
+          name: linux-x86_64-examples
 
       - name: launch and screenshot
         run: |
           ls
-          chmod +x Particles-linux-x86_64
+          cd Particles
+          chmod +x Particles
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 800x600x24 &
           sleep 5
-          MESA_GL_VERSION_OVERRIDE=3.3 ./Particles-linux-x86_64 &
+          MESA_GL_VERSION_OVERRIDE=3.3 ./Particles &
           export PID=$!
           sleep 10
           xwd -root -silent | convert xwd:- png:screenshot.png
@@ -99,7 +113,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: screenshot
-          path: screenshot.png
+          path: Particles/screenshot.png
 
   release:
     needs: [linuxXlinux, linuxXwindows]
@@ -125,8 +139,8 @@ jobs:
           name: "release-${{ github.ref_name }}"
           tag_name: ${{ github.ref }}
           files: |
-            Particles-linux-x86_64
-            Particles.exe
+            libjGL-linux-x86_64.a
+            libjGL-windows.a
       # - name: create release
       #   id: createRelease
       #   uses: actions/create-release@v1
