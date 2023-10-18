@@ -58,29 +58,17 @@ include_directories(include include/vendored ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLU
 
 include_directories(src)
 
-file(GLOB SRC 
-    "src/*.cpp"
-    "src/Display/*.cpp"
-    "src/Util/*.cpp"
-)
-
 file(GLOB_RECURSE jGL_SRC
     "src/jGL/*.cpp"
+    "src/*.cpp"
+    "src/Util/*.cpp"
 )
 
 if (WINDOWS)
     add_compile_definitions(WINDOWS)
-
     set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
-
-    if (RELEASE)
-        # launch as windows, not console app - so cmd does not open as well
-        add_link_options(-mwindows)
-    endif ()
     link_directories(include/vendored/VulkanSDK/Windows/Lib)
 else()
-    # so nautilus etc recognise target as executable rather than .so
-    add_link_options(-no-pie)
     link_directories(include/vendored/VulkanSDK/Linux/Lib)
 endif()
 
@@ -91,14 +79,18 @@ if (VALIDATION)
     endif()
 endif()
 
+add_library(jGL STATIC ${jGL_SRC})
 
+target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
+target_link_libraries(jGL glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
 
-add_executable(Particles ${SRC} ${jGL_SRC})
-
-target_compile_definitions(Particles PUBLIC GLSL_VERSION="330")
-target_link_libraries(Particles glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+If (EXAMPLES)
+    add_subdirectory(examples)
+endif()
 
 IF (TEST_SUITE)
+
+    file(COPY "tests/resource" DESTINATION "${CMAKE_BINARY_DIR}/")
 
     IF (WINDOWS)
         ## ask nicely for big objs (gnu assembler flag)
