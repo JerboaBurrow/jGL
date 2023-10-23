@@ -133,11 +133,15 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: headers
-          path: headers/
 
       - name: pack headers
         run: |
           ls
+          mkdir headers
+          mv *.h headers/
+          mv Display headers
+          mv OpenGL headers
+          mv Vulkan headers
           zip headers.zip headers
 
       - name: get linux build
