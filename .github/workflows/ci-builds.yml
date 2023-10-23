@@ -133,11 +133,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: headers
-
-      - name: pack headers
-        run: |
-          ls
-          mkdir headers && mv !(headers) headers
+          path: headers/
 
       - name: get linux build
         uses: actions/download-artifact@v3
