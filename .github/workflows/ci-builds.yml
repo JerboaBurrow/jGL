@@ -134,6 +134,9 @@ jobs:
         with:
           name: headers
           path: headers/
+          run: |
+            ls
+            zip headers.zip headers
 
       - name: get linux build
         uses: actions/download-artifact@v3
@@ -156,7 +159,7 @@ jobs:
           files: |
             libjGL-linux-x86_64.a
             libjGL-windows.a
-            headers
+            headers.zip
       # - name: create release
       #   id: createRelease
       #   uses: actions/create-release@v1
