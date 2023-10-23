@@ -142,7 +142,7 @@ jobs:
           mv Display headers
           mv OpenGL headers
           mv Vulkan headers
-          zip headers.zip headers
+          zip libJGL-headers.zip headers/*
 
       - name: get linux build
         uses: actions/download-artifact@v3
@@ -165,7 +165,7 @@ jobs:
           files: |
             libjGL-linux-x86_64.a
             libjGL-windows.a
-            headers.zip
+            libJGL-headers.zip
       # - name: create release
       #   id: createRelease
       #   uses: actions/create-release@v1
