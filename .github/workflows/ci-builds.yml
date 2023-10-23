@@ -137,8 +137,7 @@ jobs:
       - name: pack headers
         run: |
           ls
-          mkdir headers
-          cp -r ./* headers
+          mkdir headers && mv !(headers) headers
 
       - name: get linux build
         uses: actions/download-artifact@v3
