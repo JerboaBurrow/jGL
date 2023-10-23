@@ -27,7 +27,7 @@ jobs:
         cp -r build/Examples linux-x86_64-examples
         cp build/libjGL.a linux-x86_64/libjGL-linux-x86_64.a
         mkdir headers
-        cp -r include/jGL/* headers
+        cp -r include/jGL/* headers/
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
 
@@ -129,6 +129,17 @@ jobs:
     runs-on: ubuntu-22.04
     
     steps:
+      - name: get headers
+        uses: actions/download-artifact@v3
+        with:
+          name: headers
+
+      - name: pack headers
+        run: |
+          ls
+          mkdir headers
+          cp -r ./* headers
+
       - name: get linux build
         uses: actions/download-artifact@v3
         with:
@@ -138,11 +149,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: windows
-
-      - name: get headers
-        uses: actions/download-artifact@v3
-        with:
-          name: headers
 
 #     https://github.com/softprops/action-gh-release
       - name: release
