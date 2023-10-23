@@ -26,6 +26,8 @@ jobs:
         mkdir linux-x86_64
         cp -r build/Examples linux-x86_64-examples
         cp build/libjGL.a linux-x86_64/libjGL-linux-x86_64.a
+        mkdir headers
+        cp -r include/jGL/* headers
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
 
@@ -39,17 +41,23 @@ jobs:
         sleep 5
         MESA_GL_VERSION_OVERRIDE=3.3 ctest --exclude-regex Vulkan --extra-verbose --output-on-failure
 
-    - name: buildArtifact
+    - name: build artifact
       uses: actions/upload-artifact@v3
       with:
         name: linux-x86_64
         path: linux-x86_64
 
-    - name: buildArtifact
+    - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
+
+    - name: build header artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: headers
+        path: headers
     
     
   linuxXwindows:
@@ -125,11 +133,17 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: linux-x86_64
-          
+
       - name: get windows build
         uses: actions/download-artifact@v3
         with:
           name: windows
+
+      - name: get headers
+        uses: actions/download-artifact@v3
+        with:
+          name: headers
+
 #     https://github.com/softprops/action-gh-release
       - name: release
         uses: softprops/action-gh-release@v1
@@ -141,6 +155,7 @@ jobs:
           files: |
             libjGL-linux-x86_64.a
             libjGL-windows.a
+            headers
       # - name: create release
       #   id: createRelease
       #   uses: actions/create-release@v1
