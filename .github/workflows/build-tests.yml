@@ -48,7 +48,7 @@ jobs:
           cd /Volumes/vulkansdk-macos-1.2.189.0/
           sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/vulkan --accept-licenses --default-answer --confirm-command install
           ls ~/
-          cd ~/VulkanSDK/1.2.189.0
+          cd ~/vulkan/VulkanSDK/1.2.189.0
           python install_vulkan.py
 
     - name: macos-macos
