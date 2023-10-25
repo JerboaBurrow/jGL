@@ -2,6 +2,7 @@
 #define RENDERPASS
 
 #include <vulkan/vulkan.h>
+#include <array>
 #include <jGL/Vulkan/Device/device.h>
 
 namespace jGL::Vulkan
