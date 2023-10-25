@@ -19,18 +19,18 @@ namespace jGL
 {
 
     template <class T>
-    const std::regex UNIFORM_DATA_REGEX;
+    static const std::regex UNIFORM_DATA_REGEX;
 
     template <>
-    const std::regex UNIFORM_DATA_REGEX<int> = std::regex("uniform int (\\S+);");
+    static const std::regex UNIFORM_DATA_REGEX<int> = std::regex("uniform int (\\S+);");
     template <>
-    const std::regex UNIFORM_DATA_REGEX<float> = std::regex("uniform float (\\S+);");
+    static const std::regex UNIFORM_DATA_REGEX<float> = std::regex("uniform float (\\S+);");
     template <>
-    const std::regex UNIFORM_DATA_REGEX<glm::vec2> = std::regex("uniform vec2 (\\S+);");
+    static const std::regex UNIFORM_DATA_REGEX<glm::vec2> = std::regex("uniform vec2 (\\S+);");
     template <>
-    const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
+    static const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
     template <>
-    const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform lowp sampler2D (\\S+);");
+    static const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform lowp sampler2D (\\S+);");
 
 
     struct Shader 

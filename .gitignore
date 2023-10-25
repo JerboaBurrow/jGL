@@ -9,3 +9,4 @@ build/*
 callgrind*
 perf*
 tests/t.cpp
+**.DS_Store
