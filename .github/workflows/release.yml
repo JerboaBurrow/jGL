@@ -1,4 +1,4 @@
-name: Particles Release
+name: Particles release
 
 on:
   push:

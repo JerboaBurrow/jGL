@@ -1,4 +1,4 @@
-name: ParticlesLinuxUnitTests
+name: Particles unit tests
 
 on:
   push:
