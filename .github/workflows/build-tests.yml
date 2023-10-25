@@ -42,8 +42,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          brew install cmake gcc git wget python
+          brew install cmake wget
           wget https://vulkan.lunarg.com/sdk/download/1.2.189.0/mac/vulkansdk-macos-1.2.189.0.dmg
           hdiutil attach vulkansdk-macos-1.2.189.0.dmg
           cd /Volumes/vulkansdk-macos-1.2.189.0/
