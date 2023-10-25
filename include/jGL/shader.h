@@ -19,18 +19,18 @@ namespace jGL
 {
 
     template <class T>
-    static const std::regex UNIFORM_DATA_REGEX;
+    const std::regex UNIFORM_DATA_REGEX;
 
-    template <>
-    static const std::regex UNIFORM_DATA_REGEX<int> = std::regex("uniform int (\\S+);");
-    template <>
-    static const std::regex UNIFORM_DATA_REGEX<float> = std::regex("uniform float (\\S+);");
-    template <>
-    static const std::regex UNIFORM_DATA_REGEX<glm::vec2> = std::regex("uniform vec2 (\\S+);");
-    template <>
-    static const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
-    template <>
-    static const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform lowp sampler2D (\\S+);");
+    template <> inline
+    const std::regex UNIFORM_DATA_REGEX<int> = std::regex("uniform int (\\S+);");
+    template <> inline
+    const std::regex UNIFORM_DATA_REGEX<float> = std::regex("uniform float (\\S+);");
+    template <> inline
+    const std::regex UNIFORM_DATA_REGEX<glm::vec2> = std::regex("uniform vec2 (\\S+);");
+    template <> inline
+    const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
+    template <> inline
+    const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform lowp sampler2D (\\S+);");
 
 
     struct Shader 
