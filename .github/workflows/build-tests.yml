@@ -44,8 +44,9 @@ jobs:
       run: |
           wget https://vulkan.lunarg.com/sdk/download/1.2.189.0/mac/vulkansdk-macos-1.2.189.0.dmg
           hdiutil attach vulkansdk-macos-1.2.189.0.dmg
+          mkdir ~/vulkan
           cd /Volumes/vulkansdk-macos-1.2.189.0/
-          sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/ --accept-licenses --default-answer --confirm-command install
+          sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/vulkan --accept-licenses --default-answer --confirm-command install
           ls ~/
           cd ~/VulkanSDK/1.2.189.0
           python install_vulkan.py
