@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 
 #include <version.h>
-#include <jGL/Vulkan/debug.h>
+#include <jGL/Vulkan/vkDebug.h>
 
 #include <jGL/Display/display.h>
 #include <jGL/jGL.h>

@@ -1,7 +1,7 @@
 #ifndef LOGICALDEVICE
 #define LOGICALDEVICE
 
-#include <jGL/Vulkan/debug.h>
+#include <jGL/Vulkan/vkDebug.h>
 #include <jGL/Vulkan/Device/physicalDevice.h>
 
 namespace jGL::Vulkan

@@ -1,5 +1,5 @@
-#ifndef DEBUG
-#define DEBUG
+#ifndef VKDEBUG
+#define VKDEBUG
 
 #include <vector>
 #include <iostream>
@@ -7,6 +7,8 @@
 
 #include <vulkan/vulkan.h>
 #include <vulkan/vk_enum_string_helper.h>
+
+#include <jGL/debug.h>
 
 #ifdef VALIDATION
     const bool enableValidationLayers = true;
@@ -80,4 +82,4 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL debugCallback
 
 void vkError(VkResult result, std::string context = "unspecified");
 
-#endif /* DEBUG */
+#endif /* VKDEBUG */

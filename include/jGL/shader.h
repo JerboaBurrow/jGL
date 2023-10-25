@@ -119,6 +119,8 @@ namespace jGL
             return v;
         }
 
+        virtual void use() = 0;
+
     protected:
 
         std::string vertex;
