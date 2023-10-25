@@ -21,7 +21,7 @@ const int resY = 1000;
 
 const float SCALE_PX = 16.0f;
 
-const size_t nParticles = 2;
+const size_t nParticles = 1024;
 
 uint8_t frameId = 0;
 double deltas[60];
