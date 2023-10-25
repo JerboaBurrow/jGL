@@ -7,6 +7,7 @@ if (WINDOWS)
         # launch as windows, not console app - so cmd does not open as well
         add_link_options(-mwindows)
     endif ()
+elseif(OSX)
 else()
     # so nautilus etc recognise target as executable rather than .so
     add_link_options(-no-pie)

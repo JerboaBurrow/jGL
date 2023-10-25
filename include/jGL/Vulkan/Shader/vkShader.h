@@ -28,10 +28,6 @@ namespace jGL::Vulkan
 
     public:
 
-        vkShader()
-        : Shader(), device(VK_NULL_HANDLE)
-        {}
-
         vkShader(const VkDevice & d, const char * vs, const char * fs)
         : Shader(vs, fs), device(d)
         {
