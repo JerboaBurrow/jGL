@@ -18,44 +18,80 @@ namespace jGL::GL
         {
             const Transform & trans = sprites[ids[i]].getTransform();
             const TextureOffset & toff = sprites[ids[i]].getTextureOffset();
+            const Id & texId = sprites[ids[i]].getTextureId();
+            
+            auto is_equal = [texId] (std::shared_ptr<Texture> tex) { return tex->getId() == texId; };
+
+            auto found = std::find_if(textureSlots.begin(), textureSlots.end(), is_equal);
+            size_t index = std::distance(textureSlots.begin(), found);
+            if (index == textureSlots.size())
+            {
+                throw std::runtime_error("sprite texture not found in sprite renderer");
+            }
+
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
             offsets[i*4+2] = trans.theta;
             offsets[i*4+3] = trans.scale;
             textureOffsets[i*3] = toff.tx;
             textureOffsets[i*3+1] = toff.ty;
-            textureOffsets[i*3+2] = float(toff.unit);
+            textureOffsets[i*3+2] = float(index);
         }
 
         shader->use();
 
+        shader->setUniform<glm::mat4>("proj", projection);
+        shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
+        shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
+        shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
+        shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
+
+        for (unsigned i = 0; i < MAX_TEXTURE_SLOTS; i++)
+        {
+            if (i >= usedTextureSlots)
+            {
+                break;
+            }
+            textureSlots[i]->bind(i);
+        }
+
         glBindVertexArray(vao);
 
-        glBindBuffer(GL_ARRAY_BUFFER, a_offset);
-            glBufferSubData
-            (
-                GL_ARRAY_BUFFER,
-                0,
-                4*n*sizeof(float),
-                &offsets[0]
-            );
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        
-        glBindBuffer(GL_ARRAY_BUFFER, a_textureOffset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    4*n*sizeof(float),
+                    &offsets[0]
+                );
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            
+            glBindBuffer(GL_ARRAY_BUFFER, a_textureOffset);
 
-            glBufferSubData
-            (
-                GL_ARRAY_BUFFER,
-                0,
-                3*n*sizeof(float),
-                &textureOffsets[0]
-            );
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    3*n*sizeof(float),
+                    &textureOffsets[0]
+                );
 
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-        glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         glBindVertexArray(0);
+
+        glBindVertexArray(vao);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glDisable(GL_DEPTH_TEST);
+        
+            glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
+
+        glBindVertexArray(0);
+
+        glError("sprite draw");
 
     }
 
@@ -81,7 +117,7 @@ namespace jGL::GL
                 glBufferData
                 (
                     GL_ARRAY_BUFFER,
-                    sizeof(quad),
+                    sizeof(float)*6*4,
                     &quad[0],
                     GL_STATIC_DRAW
                 );

@@ -4,6 +4,7 @@
 #include <jGL/jGL.h>
 #include <jGL/OpenGL/Text/textRenderer.h>
 #include <jGL/OpenGL/glParticles.h>
+#include <jGL/OpenGL/glSpriteRenderer.h>
 #include <jGL/OpenGL/Texture/glTexture.h>
 
 namespace jGL::GL
@@ -55,6 +56,17 @@ namespace jGL::GL
                         return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGB>(imageFile));
                 }   
                 
+            }
+
+            std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint)
+            {
+                return std::static_pointer_cast<SpriteRenderer>
+                (
+                    std::make_shared<glSpriteRenderer>
+                    (
+                        sizeHint
+                    )
+                );
             }
 
         private:

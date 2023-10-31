@@ -36,19 +36,47 @@ int main(int argv, char ** argc)
         jGL::Texture::Type::RGBA
     );
 
-    std::shared_ptr<jGL::Texture> random = jGLInstance->createTexture
+    std::shared_ptr<jGL::SpriteRenderer> sprites = jGLInstance->createSpriteRenderer
     (
-        "resource/texture/random.png",
-        jGL::Texture::Type::RGBA
+        1
+    );
+
+    sprites->setProjection(camera.getVP());
+
+    sprites->add
+    (
+        {
+            jGL::Transform(0.5f, 0.5f, 0.0f, 0.5f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            heart
+        },
+        "sHeart"
+    );
+
+    sprites->add
+    (
+        {
+            jGL::Transform(0.1f, 0.1f, 0.0f, 0.5f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            Pi
+        },
+        "sPi"
     );
 
     double delta = 0.0;
+
+    float theta = 0.0f;
 
     while (display.isOpen())
     {
         tic = high_resolution_clock::now();
 
         jGLInstance->clear();
+
+        theta += 1.0/60.0 * 0.1;
+        sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.5f));
+
+        sprites->draw({"sHeart", "sPi"});
 
         delta = 0.0;
         for (int n = 0; n < 60; n++)

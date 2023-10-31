@@ -45,8 +45,7 @@ namespace jGL::GL
         };
 
         std::vector<float> offsets;         // offset x, y, theta, scale
-        std::vector<float> textureOffsets;  // tx, ty (atlas coords)
-        std::vector<uint8_t> textureUnits;  // texture unit
+        std::vector<float> textureOffsets;  // tx, ty (atlas coords), texture unit
 
         size_t padSprites = 8;
 
@@ -63,6 +62,7 @@ namespace jGL::GL
             "in vec3 a_textureOffset;\n"
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
+            "out vec3 texOffset;\n"
             "void main(void){"
                 "vec2 pos = a_position.xy*a_offset.w;\n"
                 "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
@@ -70,16 +70,27 @@ namespace jGL::GL
                 "pos = rot*pos + a_offset.xy;\n"
                 "gl_Position = proj*vec4(pos,0.0,1.0);\n"
                 "texCoord = a_position.zw;\n"
+                "texOffset = a_textureOffset;\n"
             "}";
 
         const char * fragmentShader = 
             "#version " GLSL_VERSION "\n"
             "precision lowp float;\n"
-            "uniform sampler2D sampler;\n"
+            "uniform sampler2D sampler0;\n"
+            "uniform sampler2D sampler1;\n"
+            "uniform sampler2D sampler2;\n"
+            "uniform sampler2D sampler3;\n"
             "in vec2 texCoord;\n"
+            "in vec3 texOffset;\n"
             "out vec4 colour;\n"
-            "void main(void){\n"
-                "colour = texture(sampler, texCoord);\n"
+            "void main(void){\n" 
+                // is this mental?
+                "if (texOffset.z == 0.0) {colour = texture(sampler0, texCoord);}\n"
+                "else if (texOffset.z == 1.0) {colour = texture(sampler1, texCoord);}\n"
+                "else if (texOffset.z == 2.0) {colour = texture(sampler2, texCoord);}\n"
+                "else if (texOffset.z == 3.0) {colour = texture(sampler3, texCoord);}\n"
+                "else {colour = vec4(0.0,0.0,0.0,1.0);}\n"
+                ";\n"
             "}";
 
     };

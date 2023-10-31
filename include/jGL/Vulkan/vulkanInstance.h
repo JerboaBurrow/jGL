@@ -19,6 +19,7 @@
 #include <jGL/Vulkan/pipeline.h>
 
 #include <jGL/Vulkan/vkParticles.h>
+#include <jGL/Vulkan/vkSpriteRenderer.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
 
 namespace jGL::Vulkan
@@ -64,6 +65,17 @@ namespace jGL::Vulkan
                     type
                 )
             );   
+        }
+
+        std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint)
+        {
+            return std::static_pointer_cast<SpriteRenderer>
+            (
+                std::make_shared<vkSpriteRenderer>
+                (
+                    sizeHint
+                )
+            );
         }
 
         const Device & getDevice() const { return device; }

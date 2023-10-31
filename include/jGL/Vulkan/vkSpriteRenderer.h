@@ -15,6 +15,7 @@ namespace jGL::Vulkan
         {}
         
         void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
+        void draw(std::vector<SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
 
     };
 }
