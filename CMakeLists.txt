@@ -133,6 +133,7 @@ IF (TEST_SUITE)
         "src/jGL/Display/display.cpp"
         "src/log.cpp"
         "src/jGL/shader.cpp"
+        "src/jGL/warning.cpp"
     )
     
 
