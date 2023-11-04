@@ -24,6 +24,7 @@ VERBOSE=0
 VK_SDK="include/vendored/VulkanSDK"
 BENCHMARK=0
 EXAMPLES=0
+CLEAN=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -65,6 +66,10 @@ while [[ $# -gt 0 ]]; do
       TEST=1
       shift
       ;;
+    -c|--clean)
+      CLEAN=1
+      shift
+      ;;
     -*|--*)
       echo "Unknown option $1"
       exit 1
@@ -76,25 +81,30 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-for file in build CMakeFiles cmake_install.cmake CMakeCache.txt Makefile Particles
-do
-  if [ -d $file ];
-  then
-    rm -rf $file
-  fi
-  if [ -f $file ];
-  then
-    rm $file
-  fi
-done
+if [[ $CLEAN -eq 1 ]]; 
+then
+  for file in build CMakeFiles cmake_install.cmake CMakeCache.txt Makefile Particles
+  do
+    if [ -d $file ];
+    then
+      rm -rf $file
+    fi
+    if [ -f $file ];
+    then
+      rm $file
+    fi
+  done
+  cmake -E make_directory build
+fi
 
 if [[ $WINDOWS -eq 0 ]];
 then 
-  cmake -E make_directory build
   export VULKAN_SDK=$VK_SDK/Windows
   export VULKAN_LIBRARY="$VK_SDK/Windows/Lib"
   export VULKAN_INCLUDE_DIR="$VK_SDK/Windows/Include" 
-  cmake -E chdir build cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D CMAKE_TOOLCHAIN_FILE=./windows.cmake && make -j 4 -C build
+  cd build
+  cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D CMAKE_TOOLCHAIN_FILE=./windows.cmake && make -j 4
+  cd ..
   # now copy dlls
   PREFIX="x86_64-w64-mingw32"
 
@@ -124,9 +134,11 @@ then
   done
 elif [[ $OSX -eq 0 ]];
 then
-  cmake -E make_directory build
-  cmake -E chdir build cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D CMAKE_TOOLCHAIN_FILE=./osx.cmake && make -j 4 -C build
+  cd build
+  cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D CMAKE_TOOLCHAIN_FILE=./osx.cmake && make -j 4
+  cd ..
 else
-  cmake -E make_directory build
-  cmake -E chdir build cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES .. && make -j 4 -C build
+  cd build
+  cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES .. && make -j 4 
+  cd ..
 fi

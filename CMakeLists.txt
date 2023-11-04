@@ -13,9 +13,6 @@ else()
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
-string(TIMESTAMP TODAY "%Y-%m-%d:%H:%M:%S")
-add_compile_definitions(TIMESTAMP="${TODAY}")
-
 if (BENCHMARK)
     add_compile_definitions(BUILD_TYPE="RelWithDebInfo")
 elseif (RELEASE)
@@ -55,8 +52,6 @@ target_link_libraries(glew
 )
 
 include_directories(include include/vendored ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE})
-
-include_directories(src)
 
 file(GLOB_RECURSE jGL_SRC
     "src/jGL/*.cpp"
