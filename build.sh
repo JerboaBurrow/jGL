@@ -24,7 +24,7 @@ VERBOSE=0
 VK_SDK="include/vendored/VulkanSDK"
 BENCHMARK=0
 EXAMPLES=0
-CLEAN=0
+CLEAN=1
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -66,8 +66,8 @@ while [[ $# -gt 0 ]]; do
       TEST=1
       shift
       ;;
-    -c|--clean)
-      CLEAN=1
+    -c|--continue)
+      CLEAN=0
       shift
       ;;
     -*|--*)
