@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  linuxXlinux:
+  linuxNative:
     runs-on: ubuntu-22.04
 
     steps:
@@ -29,6 +29,8 @@ jobs:
         cp -r include/jGL/* headers/
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
+        zip linux-x86_64.zip linux-x86_64
+        zip linux-x86_64-examples.zip linux-x86_64-examples
 
     - name: Tests
       working-directory: ${{github.workspace}}/build
@@ -44,13 +46,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: linux-x86_64
-        path: linux-x86_64
+        path: linux-x86_64.zip
 
     - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
         name: linux-x86_64-examples
-        path: linux-x86_64-examples
+        path: linux-x86_64-examples.zip
 
     - name: build header artifact
       uses: actions/upload-artifact@v3
@@ -76,21 +78,63 @@ jobs:
         cp build/libjGL.a windows/libjGL-windows.a
         cp LICENSE windows-examples/
         cp LICENSE windows/
+        zip windows.zip windows
+        zip windows-examples windows-examples.zip
     
-    - name: buildArtifact
+    - name: build artifact
       uses: actions/upload-artifact@v3
       with:
         name: windows
-        path: windows
+        path: windows.zip
 
-    - name: buildArtifact
+    - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
         name: windows-examples
-        path: windows-examples
-      
+        path: windows-examples.zip
+
+  macosNative:
+    runs-on: macos-11
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+          wget https://vulkan.lunarg.com/sdk/download/1.2.189.0/mac/vulkansdk-macos-1.2.189.0.dmg
+          hdiutil attach vulkansdk-macos-1.2.189.0.dmg
+          mkdir ~/vulkan
+          cd /Volumes/vulkansdk-macos-1.2.189.0/
+          sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/vulkan --accept-licenses --default-answer --confirm-command install
+          ls ~/vulkan
+          cd ~/vulkan/
+          python install_vulkan.py
+
+    - name: macos-macos
+      run: |
+        ./build.sh -o -e -r
+        mkdir macos
+        cp -r build/Examples macos-examples
+        cp build/libjGL.a macos/libjGL-macos.a
+        cp LICENSE macos-examples/
+        cp LICENSE macos/
+        zip macos.zip macos
+        zip macos-examples.zip macos-examples
+
+    - name: build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: macos
+        path: macos.zip
+
+    - name: build examples artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: macos-examples
+        path: macos-examples.zip
+
   linuxRun:
-    needs: linuxXlinux
+    needs: linuxNative
     runs-on: ubuntu-22.04
     
     steps:
@@ -123,7 +167,7 @@ jobs:
           path: Particles/screenshot.png
 
   release:
-    needs: [linuxXlinux, linuxXwindows]
+    needs: [linuxNative, linuxXwindows, macosNative]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-22.04
     
@@ -137,11 +181,19 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: linux-x86_64
+        run: unzip linux-x86_64.zip .
 
       - name: get windows build
         uses: actions/download-artifact@v3
         with:
           name: windows
+        run: unzip windows.zip .
+
+      - name: get macos build
+        uses: actions/download-artifact@v3
+        with:
+          name: macos
+        run: unzip macos.zip .
 
       - name: pack headers
         run: |
