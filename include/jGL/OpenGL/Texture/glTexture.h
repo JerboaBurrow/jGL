@@ -32,6 +32,7 @@ namespace jGL::GL
         void bind(unsigned binding) 
         {
             glActiveTexture(GL_TEXTURE0+binding);
+            unbind();
             bind();
             textureUnit = binding;
         }

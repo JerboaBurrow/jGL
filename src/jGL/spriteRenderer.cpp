@@ -10,7 +10,6 @@ namespace jGL
     void SpriteRenderer::add(Sprite s, SpriteId id)
     {
         Id textureId = s.getTextureId();
-
         auto is_equal = [textureId](std::shared_ptr<Texture> t) { return t->getId() == textureId; };
         auto match = std::find_if(textureSlots.begin(), textureSlots.end(), is_equal);
 

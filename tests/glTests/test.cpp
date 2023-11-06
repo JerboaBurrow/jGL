@@ -81,6 +81,7 @@ static const char * TESTFS03 =
         "precision highp int;\n"
         "out vec4 colour;\n"
         "uniform lowp sampler2D texture;\n"
+        "uniform sampler2D noPrecisionTexture;\n"
         "void main(void) {\n"
             "colour = vec4(1.0,1.0,1.0,1.0);\n"
         "}";
@@ -235,9 +236,9 @@ SCENARIO("Shader uniforms", "[shaders]")
         glShader s(TESTVS03, TESTFS03);
         WHEN("A Shader, s, is instantiated")
         {
-            THEN("s has 1 uniform")
+            THEN("s has 2 uniform")
             {
-                REQUIRE(s.getUniformNames().size() == 1);
+                REQUIRE(s.getUniformNames().size() == 2);
             }
 
             THEN("s has a sampler2D uniform texture")
@@ -246,6 +247,15 @@ SCENARIO("Shader uniforms", "[shaders]")
                 AND_THEN("texture has name \"texture\" and value.texture = 0")
                 {
                     REQUIRE(x.name == "texture");
+                    REQUIRE(x.value.texture == 0);
+                }
+            }
+            THEN("s has a sampler2D uniform noPrecisionTexture")
+            {
+                jGLUniform<Sampler2D> x = s.getUniform<Sampler2D>("noPrecisionTexture");
+                AND_THEN("noPrecisionTexture has name \"texture\" and value.texture = 0")
+                {
+                    REQUIRE(x.name == "noPrecisionTexture");
                     REQUIRE(x.value.texture == 0);
                 }
             }

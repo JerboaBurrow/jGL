@@ -30,6 +30,12 @@ int main(int argv, char ** argc)
         jGL::Texture::Type::RGBA
     );
 
+    std::shared_ptr<jGL::Texture> dice = jGLInstance->createTexture
+    (
+        "resource/texture/random.png",
+        jGL::Texture::Type::RGBA
+    );
+
     std::shared_ptr<jGL::Texture> Pi = jGLInstance->createTexture
     (
         "resource/texture/Pi.png",
@@ -38,7 +44,7 @@ int main(int argv, char ** argc)
 
     std::shared_ptr<jGL::SpriteRenderer> sprites = jGLInstance->createSpriteRenderer
     (
-        1
+        2
     );
 
     sprites->setProjection(camera.getVP());
@@ -46,7 +52,17 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.5f, 0.5f, 0.0f, 0.5f),
+            jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            Pi
+        },
+        "sPi"
+    );
+
+    sprites->add
+    (
+        {
+            jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f),
             jGL::TextureOffset(0.0f, 0.0f),
             heart
         },
@@ -56,16 +72,18 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.1f, 0.1f, 0.0f, 0.5f),
+            jGL::Transform(0.6f, 0.2f, 0.5f, 0.15f),
             jGL::TextureOffset(0.0f, 0.0f),
-            Pi
+            dice
         },
-        "sPi"
+        "sDice"
     );
+
 
     double delta = 0.0;
 
     float theta = 0.0f;
+    float scale = 0.0f;
 
     while (display.isOpen())
     {
@@ -74,9 +92,12 @@ int main(int argv, char ** argc)
         jGLInstance->clear();
 
         theta += 1.0/60.0 * 0.1;
-        sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.5f));
+        scale = 0.1*std::abs(std::sin(theta))+0.05;
 
-        sprites->draw({"sHeart", "sPi"});
+        sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.1f));
+        sprites->getSprite("sPi").update(jGL::Transform(0.2f, 0.2f, theta, scale));
+
+        sprites->draw({"sHeart", "sPi", "sDice"});
 
         delta = 0.0;
         for (int n = 0; n < 60; n++)

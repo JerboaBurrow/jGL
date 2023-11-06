@@ -101,6 +101,10 @@ IF (TEST_SUITE)
     file(GLOB_RECURSE TEST_SRC 
         "tests/glTests/*.cpp"
         "src/jGL/OpenGL/*.cpp"
+        "src/jGL/shader.cpp"
+        "src/jGL/warning.cpp"
+        "src/jGL/spriteRenderer.cpp"
+        "src/id.cpp"    
     )
     include_directories(include "tests/")
 
@@ -110,6 +114,7 @@ IF (TEST_SUITE)
         "src/log.cpp"
         "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
+        "src/id.cpp"
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
@@ -137,6 +142,8 @@ IF (TEST_SUITE)
         "src/log.cpp"
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
+        "src/jGL/spriteRenderer.cpp"
+        "src/id.cpp"
     )
     
 

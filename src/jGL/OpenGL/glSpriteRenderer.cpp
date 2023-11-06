@@ -38,14 +38,6 @@ namespace jGL::GL
             textureOffsets[i*3+2] = float(index);
         }
 
-        shader->use();
-
-        shader->setUniform<glm::mat4>("proj", projection);
-        shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
-        shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
-        shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
-        shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
-
         for (unsigned i = 0; i < MAX_TEXTURE_SLOTS; i++)
         {
             if (i >= usedTextureSlots)
@@ -54,6 +46,14 @@ namespace jGL::GL
             }
             textureSlots[i]->bind(i);
         }
+
+        shader->use();
+
+        shader->setUniform<glm::mat4>("proj", projection);
+        shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
+        shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
+        shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
+        shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
 
         glBindVertexArray(vao);
 
