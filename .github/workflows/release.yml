@@ -29,8 +29,8 @@ jobs:
         cp -r include/jGL/* headers/
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
-        zip linux-x86_64.zip linux-x86_64
-        zip linux-x86_64-examples.zip linux-x86_64-examples
+        zip linux-x86_64.zip linux-x86_64/*
+        zip linux-x86_64-examples.zip linux-x86_64-examples/*
 
     - name: Tests
       working-directory: ${{github.workspace}}/build
@@ -78,8 +78,8 @@ jobs:
         cp build/libjGL.a windows/libjGL-windows.a
         cp LICENSE windows-examples/
         cp LICENSE windows/
-        zip windows.zip windows
-        zip windows-examples windows-examples.zip
+        zip windows.zip windows/*
+        zip windows-examples.zip windows-examples/*
     
     - name: build artifact
       uses: actions/upload-artifact@v3
@@ -118,8 +118,8 @@ jobs:
         cp build/libjGL.a macos/libjGL-macos.a
         cp LICENSE macos-examples/
         cp LICENSE macos/
-        zip macos.zip macos
-        zip macos-examples.zip macos-examples
+        zip macos.zip macos/*
+        zip macos-examples.zip macos-examples/*
 
     - name: build artifact
       uses: actions/upload-artifact@v3
