@@ -49,7 +49,7 @@ jobs:
     - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
-        name: linux-x86_64-example
+        name: linux-x86_64-examples
         path: linux-x86_64-examples
 
     - name: build header artifact
