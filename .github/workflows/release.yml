@@ -29,8 +29,6 @@ jobs:
         cp -r include/jGL/* headers/
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
-        zip linux-x86_64.zip linux-x86_64/*
-        zip linux-x86_64-examples.zip linux-x86_64-examples/*
 
     - name: Tests
       working-directory: ${{github.workspace}}/build
@@ -46,13 +44,13 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: linux-x86_64
-        path: linux-x86_64.zip
+        path: linux-x86_64
 
     - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
-        name: linux-x86_64-examples
-        path: linux-x86_64-examples.zip
+        name: linux-x86_64-example
+        path: linux-x86_64-examples
 
     - name: build header artifact
       uses: actions/upload-artifact@v3
@@ -78,20 +76,18 @@ jobs:
         cp build/libjGL.a windows/libjGL-windows.a
         cp LICENSE windows-examples/
         cp LICENSE windows/
-        zip windows.zip windows/*
-        zip windows-examples.zip windows-examples/*
     
     - name: build artifact
       uses: actions/upload-artifact@v3
       with:
         name: windows
-        path: windows.zip
+        path: windows
 
     - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
         name: windows-examples
-        path: windows-examples.zip
+        path: windows-examples
 
   macosNative:
     runs-on: macos-11
@@ -117,21 +113,19 @@ jobs:
         cp -r build/Examples macos-examples
         cp build/libjGL.a macos/libjGL-macos.a
         cp LICENSE macos-examples/
-        cp LICENSE macos/
-        zip macos.zip macos/*
-        zip macos-examples.zip macos-examples/*
+        cp LICENSE macos/*
 
     - name: build artifact
       uses: actions/upload-artifact@v3
       with:
         name: macos
-        path: macos.zip
+        path: macos
 
     - name: build examples artifact
       uses: actions/upload-artifact@v3
       with:
         name: macos-examples
-        path: macos-examples.zip
+        path: macos-examples
 
   linuxRun:
     needs: linuxNative
@@ -191,12 +185,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: macos
-
-      - name: uncompress libs
-        run: |
-          unzip linux-x86_64.zip .
-          unzip macos.zip .
-          unzip windows.zip .
 
       - name: pack headers
         run: |
