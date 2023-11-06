@@ -42,6 +42,8 @@ namespace jGL::Vulkan
         
         std::vector<VkPipelineShaderStageCreateInfo> shaderStage() const;
 
+        void use(){}
+
     private:
 
         const VkDevice & device;

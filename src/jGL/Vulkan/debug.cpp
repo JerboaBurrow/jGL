@@ -1,4 +1,4 @@
-#include <jGL/Vulkan/debug.h>
+#include <jGL/Vulkan/vkDebug.h>
 
 void vkError(VkResult result, std::string context)
 {

@@ -13,11 +13,11 @@ namespace jGL::Vulkan
         : Particles(sizeHint)
         {}
 
-        void update(Particles::UpdateInfo info) {/*TODO*/}
+        void update(Particles::UpdateInfo info) {TODO("jGL::Vulkan::vkParticles::update");}
 
-        void draw(glm::mat4 proj) {/*TODO*/}
+        void draw(glm::mat4 proj) {TODO("jGL::Vulkan::vkParticles::draw");}
 
-        void setTexture(std::shared_ptr<Texture>) {/*TODO*/}
+        void setTexture(std::shared_ptr<Texture>) {TODO("jGL::Vulkan::vkParticles::setTexture");}
     };
 }
 

@@ -30,7 +30,7 @@ namespace jGL
     template <> inline
     const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
     template <> inline
-    const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform lowp sampler2D (\\S+);");
+    const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform(\\slowp\\s|\\shighp\\s|\\smediump\\s|\\s)sampler2D (\\S+);");
 
 
     struct Shader 
@@ -69,7 +69,7 @@ namespace jGL
         { 
             if (uniforms.find(name) == uniforms.end())
             {
-                return;
+                throw std::runtime_error("could not find uniform: " + name);
             }
 
             AbstractjGLUniform * uniform = uniforms[name].get();
@@ -118,6 +118,8 @@ namespace jGL
             }
             return v;
         }
+
+        virtual void use() = 0;
 
     protected:
 

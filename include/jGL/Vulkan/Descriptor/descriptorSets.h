@@ -1,7 +1,7 @@
 #ifndef DESCRIPTORSETS
 #define DESCRIPTORSETS
 
-#include <jGL/Vulkan/debug.h>
+#include <jGL/Vulkan/vkDebug.h>
 #include <jGL/Vulkan/Descriptor/descriptorPool.h>
 
 

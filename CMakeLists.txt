@@ -33,8 +33,11 @@ include_directories(include include/vendored/VulkanSDK/Include)
 
 add_subdirectory(include/vendored/freetype)
 include_directories(include/vendored/freetype/include)
+
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 add_subdirectory(include/vendored/glm)
+
+add_subdirectory(include/vendored/stduuid)
 
 add_subdirectory(include/vendored/glfw)
 include_directories(include/vendored/glfw/include)
@@ -80,7 +83,7 @@ endif()
 add_library(jGL STATIC ${jGL_SRC})
 
 target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
-target_link_libraries(jGL glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+target_link_libraries(jGL stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
 
 If (EXAMPLES)
     add_subdirectory(examples)
@@ -98,6 +101,10 @@ IF (TEST_SUITE)
     file(GLOB_RECURSE TEST_SRC 
         "tests/glTests/*.cpp"
         "src/jGL/OpenGL/*.cpp"
+        "src/jGL/shader.cpp"
+        "src/jGL/warning.cpp"
+        "src/jGL/spriteRenderer.cpp"
+        "src/id.cpp"    
     )
     include_directories(include "tests/")
 
@@ -107,11 +114,12 @@ IF (TEST_SUITE)
         "src/log.cpp"
         "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
+        "src/id.cpp"
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
 
-    target_link_libraries(glTests glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
+    target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
     
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
@@ -133,10 +141,13 @@ IF (TEST_SUITE)
         "src/jGL/Display/display.cpp"
         "src/log.cpp"
         "src/jGL/shader.cpp"
+        "src/jGL/warning.cpp"
+        "src/jGL/spriteRenderer.cpp"
+        "src/id.cpp"
     )
     
 
-    target_link_libraries(vkTests freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
+    target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
     target_compile_definitions(vkTests PUBLIC GLSL_VERSION="330")
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
