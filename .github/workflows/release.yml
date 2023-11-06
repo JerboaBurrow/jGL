@@ -181,19 +181,22 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: linux-x86_64
-        run: unzip linux-x86_64.zip .
 
       - name: get windows build
         uses: actions/download-artifact@v3
         with:
           name: windows
-        run: unzip windows.zip .
 
       - name: get macos build
         uses: actions/download-artifact@v3
         with:
           name: macos
-        run: unzip macos.zip .
+
+      - name: uncompress libs
+        run: |
+          unzip linux-x86_64.zip .
+          unzip macos.zip .
+          unzip windows.zip .
 
       - name: pack headers
         run: |
