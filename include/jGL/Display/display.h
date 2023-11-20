@@ -47,7 +47,9 @@ namespace jGL
             GLFWwindow * getWindow() const { return glfwWindow; }
 
             bool isOpen(){ if (glfwWindow != NULL) { return !glfwWindow ? false : true; } return false; }
-
+            
+            bool closing(){ return glfwWindowShouldClose(glfwWindow); }
+            
             void open(){ 
                 if (glfwWindow == NULL)
                 { 

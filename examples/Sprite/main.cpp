@@ -23,6 +23,7 @@ int main(int argv, char ** argc)
     double rdt = 0.0;
 
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
+    jGLInstance->setMSAA(1);
 
     std::shared_ptr<jGL::Texture> heart = jGLInstance->createTexture
     (
@@ -89,52 +90,56 @@ int main(int argv, char ** argc)
     {
         tic = high_resolution_clock::now();
 
-        jGLInstance->clear();
+        jGLInstance->beginFrame();
 
-        theta += 1.0/60.0 * 0.1;
-        scale = 0.1*std::abs(std::sin(theta))+0.05;
+            jGLInstance->clear();
 
-        sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.1f));
-        sprites->getSprite("sPi").update(jGL::Transform(0.2f, 0.2f, theta, scale));
+            theta += 1.0/60.0 * 0.1;
+            scale = 0.1*std::abs(std::sin(theta))+0.05;
 
-        sprites->draw({"sHeart", "sPi", "sDice"});
+            sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.1f));
+            sprites->getSprite("sPi").update(jGL::Transform(0.2f, 0.2f, theta, scale));
 
-        delta = 0.0;
-        for (int n = 0; n < 60; n++)
-        {
-            delta += deltas[n];
-        }
-        delta /= 60.0;
-        
-        std::stringstream debugText;
+            sprites->draw({"sHeart", "sPi", "sDice"});
 
-        double mouseX, mouseY;
-        display.mousePosition(mouseX,mouseY);
-
-        debugText << "Delta: " << fixedLengthNumber(delta,6)
-                  << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
-                  << ")\n"
-                  << "Render draw time: \n" 
-                  << "   " << fixedLengthNumber(rdt, 6) << "\n"
-                  << "Mouse (" << fixedLengthNumber(mouseX,4) 
-                  << "," 
-                  << fixedLengthNumber(mouseY,4) 
-                  << ")\n";
-
-        jGLInstance->text(
-            debugText.str(),
-            glm::vec2(64.0f, resY-64.0f),
-            0.5f,
-            glm::vec4(0.0f,0.0f,0.0f,1.0f)
-        );
-
-        if (frameId == 30)
-        {
-            if (log.size() > 0)
+            delta = 0.0;
+            for (int n = 0; n < 60; n++)
             {
-                std::cout << log << "\n";
+                delta += deltas[n];
             }
-        }
+            delta /= 60.0;
+            
+            std::stringstream debugText;
+
+            double mouseX, mouseY;
+            display.mousePosition(mouseX,mouseY);
+
+            debugText << "Delta: " << fixedLengthNumber(delta,6)
+                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << ")\n"
+                    << "Render draw time: \n" 
+                    << "   " << fixedLengthNumber(rdt, 6) << "\n"
+                    << "Mouse (" << fixedLengthNumber(mouseX,4) 
+                    << "," 
+                    << fixedLengthNumber(mouseY,4) 
+                    << ")\n";
+
+            jGLInstance->text(
+                debugText.str(),
+                glm::vec2(64.0f, resY-64.0f),
+                0.5f,
+                glm::vec4(0.0f,0.0f,0.0f,1.0f)
+            );
+
+            if (frameId == 30)
+            {
+                if (log.size() > 0)
+                {
+                    std::cout << log << "\n";
+                }
+            }
+
+        jGLInstance->endFrame();
 
         display.loop();
 
@@ -142,7 +147,10 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
+            
     }
+
+    jGLInstance->finish();
 
     return 0;
 }

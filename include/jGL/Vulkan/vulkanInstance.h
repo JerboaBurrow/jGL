@@ -45,6 +45,8 @@ namespace jGL::Vulkan
 
         void clear() {/*TODO*/}
 
+        void setMSAA(uint8_t samples) {/*TODO*/}
+
         void setClear(glm::vec4 colour) {/*TODO*/}
         void setProjection(glm::mat4 proj) {/*TODO*/}
         void setTextProjection(glm::mat4) {/*TODO*/}

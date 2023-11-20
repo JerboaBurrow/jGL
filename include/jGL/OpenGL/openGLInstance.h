@@ -6,6 +6,7 @@
 #include <jGL/OpenGL/glParticles.h>
 #include <jGL/OpenGL/glSpriteRenderer.h>
 #include <jGL/OpenGL/Texture/glTexture.h>
+#include <jGL/OpenGL/glDrawFramebuffer.h>
 
 namespace jGL::GL
 {
@@ -18,8 +19,23 @@ namespace jGL::GL
         public:
 
             OpenGLInstance(const Display & display)
-            : jGLInstance(display)
-            {}
+            : jGLInstance(display), framebuffer(glDrawFramebuffer())
+            {
+                framebuffer.setResolution
+                (
+                    glm::vec2
+                    (
+                        display.getResX(), 
+                        display.getResY()
+                    )
+                );
+                framebuffer.setMSAA(1);
+            }
+
+            ~OpenGLInstance(){framebuffer.destroy();}
+
+            void beginFrame(){framebuffer.bind();}
+            void endFrame(){framebuffer.blit();}
 
             void text
             (
@@ -33,6 +49,17 @@ namespace jGL::GL
             {
                 glClearColor(clearColour.r, clearColour.g, clearColour.b, clearColour.a);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                framebuffer.setClear(clearColour);
+            }
+
+            void setMSAA(uint8_t samples)
+            {
+                GLint maxSamples;
+                glGetIntegerv(GL_MAX_SAMPLES, &maxSamples);
+
+                if (samples > maxSamples){samples = maxSamples;}
+
+                framebuffer.setMSAA(samples);
             }
 
             void setClear(glm::vec4 colour) { clearColour = colour; }
@@ -70,6 +97,8 @@ namespace jGL::GL
             }
 
         private:
+
+            glDrawFramebuffer framebuffer;
 
             Type defaultFont = Type(48);
             TextRenderer textRenderer;
