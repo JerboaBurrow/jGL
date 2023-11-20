@@ -42,13 +42,12 @@ namespace jGL::Vulkan
 
             for (size_t i = 0; i < layouts.size(); i++)
             {
-                std::cout << "update set " << descriptorSets[i] << "\n";
                 for (size_t j = 0; j < infos[i].size(); j++)
                 {
                     VkWriteDescriptorSet descriptorWrite{};
                     descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
                     descriptorWrite.dstSet = descriptorSets[i];
-                    descriptorWrite.dstBinding = 0;
+                    descriptorWrite.dstBinding = j;
                     descriptorWrite.dstArrayElement = 0;
 
                     descriptorWrite.descriptorType = types[i][j];
@@ -101,13 +100,12 @@ namespace jGL::Vulkan
 
             for (size_t i = 0; i < layouts.size(); i++)
             {
-                std::cout << "update set " << descriptorSets[i] << "\n";
                 for (size_t j = 0; j < infos[i].size(); j++)
                 {
                     VkWriteDescriptorSet descriptorWrite{};
                     descriptorWrite.sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
                     descriptorWrite.dstSet = descriptorSets[i];
-                    descriptorWrite.dstBinding = 0;
+                    descriptorWrite.dstBinding = j;
                     descriptorWrite.dstArrayElement = 0;
 
                     descriptorWrite.descriptorType = types[i][j];
