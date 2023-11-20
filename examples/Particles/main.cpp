@@ -42,6 +42,7 @@ int main(int argv, char ** argc)
     double rdt, rut, pt;
 
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
+    jGLInstance->setMSAA(1);
 
     std::shared_ptr<jGL::Particles> jGLParticles = jGLInstance->createParticles(nParticles);
     std::vector<jGL::TexturedParticle> & jGLParticleStates = jGLParticles->getParticles();
@@ -75,65 +76,69 @@ int main(int argv, char ** argc)
     {
         tic = high_resolution_clock::now();
 
-        jGLInstance->clear();
+        jGLInstance->beginFrame();
 
-        pt0 = high_resolution_clock::now();
+            jGLInstance->clear();
 
-        particles.step(jGLParticleStates);
+            pt0 = high_resolution_clock::now();
 
-        pt = duration_cast<duration<double>>(high_resolution_clock::now()-pt0).count();
+            particles.step(jGLParticleStates);
 
-        rut0 = high_resolution_clock::now();
+            pt = duration_cast<duration<double>>(high_resolution_clock::now()-pt0).count();
 
-        jGLParticles->update
-        (
-            jGL::Particles::UpdateInfo {true, false, false}
-        );
+            rut0 = high_resolution_clock::now();
 
-        rut = duration_cast<duration<double>>(high_resolution_clock::now()-rut0).count();
+            jGLParticles->update
+            (
+                jGL::Particles::UpdateInfo {true, false, false}
+            );
 
-        rdt0 = high_resolution_clock::now();
+            rut = duration_cast<duration<double>>(high_resolution_clock::now()-rut0).count();
 
-        jGLParticles->draw(camera.getVP());
+            rdt0 = high_resolution_clock::now();
 
-        rdt = duration_cast<duration<double>>(high_resolution_clock::now()-rdt0).count();
+            jGLParticles->draw(camera.getVP());
 
-        delta = 0.0;
-        for (int n = 0; n < 60; n++)
-        {
-            delta += deltas[n];
-        }
-        delta /= 60.0;
-        
-        std::stringstream debugText;
+            rdt = duration_cast<duration<double>>(high_resolution_clock::now()-rdt0).count();
 
-        double mouseX, mouseY;
-        display.mousePosition(mouseX,mouseY);
-
-        debugText << "Delta: " << fixedLengthNumber(delta,6)
-                  << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
-                  << ")\n"
-                  << "Physics/Render update/ Render draw time: \n" 
-                  << "   " << fixedLengthNumber(pt, 6) << ", " << fixedLengthNumber(rut, 6) << ", " << fixedLengthNumber(rdt, 6) << "\n"
-                  << "Mouse (" << fixedLengthNumber(mouseX,4) 
-                  << "," 
-                  << fixedLengthNumber(mouseY,4) 
-                  << ")\n";
-
-        jGLInstance->text(
-            debugText.str(),
-            glm::vec2(64.0f, resY-64.0f),
-            0.5f,
-            glm::vec4(0.0f,0.0f,0.0f,1.0f)
-        );
-
-        if (frameId == 30)
-        {
-            if (log.size() > 0)
+            delta = 0.0;
+            for (int n = 0; n < 60; n++)
             {
-                std::cout << log << "\n";
+                delta += deltas[n];
             }
-        }
+            delta /= 60.0;
+            
+            std::stringstream debugText;
+
+            double mouseX, mouseY;
+            display.mousePosition(mouseX,mouseY);
+
+            debugText << "Delta: " << fixedLengthNumber(delta,6)
+                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << ")\n"
+                    << "Physics/Render update/ Render draw time: \n" 
+                    << "   " << fixedLengthNumber(pt, 6) << ", " << fixedLengthNumber(rut, 6) << ", " << fixedLengthNumber(rdt, 6) << "\n"
+                    << "Mouse (" << fixedLengthNumber(mouseX,4) 
+                    << "," 
+                    << fixedLengthNumber(mouseY,4) 
+                    << ")\n";
+
+            jGLInstance->text(
+                debugText.str(),
+                glm::vec2(64.0f, resY-64.0f),
+                0.5f,
+                glm::vec4(0.0f,0.0f,0.0f,1.0f)
+            );
+
+            if (frameId == 30)
+            {
+                if (log.size() > 0)
+                {
+                    std::cout << log << "\n";
+                }
+            }
+
+        jGLInstance->endFrame();
 
         display.loop();
 
@@ -142,6 +147,8 @@ int main(int argv, char ** argc)
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
     }
+
+    jGLInstance->finish();
 
     return 0;
 }

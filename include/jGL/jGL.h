@@ -32,11 +32,17 @@ namespace jGL
             glm::vec4 colour
         ) = 0;
 
+        void finish(){closing = true;}
+        virtual void beginFrame(){}
+        virtual void endFrame(){}
+
         virtual void clear() = 0;
 
         virtual void setClear(glm::vec4 colour) = 0;
         virtual void setProjection(glm::mat4 proj) = 0;
         virtual void setTextProjection(glm::mat4 proj) = 0;
+
+        virtual void setMSAA(uint8_t samples) {msaaSamples = samples;}
 
         virtual std::shared_ptr<Particles> createParticles(size_t sizeHint) = 0;
         virtual std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) = 0;
@@ -45,6 +51,8 @@ namespace jGL
     private:
 
         uint32_t width, height;
+        uint8_t msaaSamples = 0;
+        bool closing = false;
 
     };
 }

@@ -4,6 +4,7 @@ namespace jGL::GL
 {
     void glSpriteRenderer::draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids)
     {
+
         uint32_t n = ids.size();
 
         if (offsets.size() < 4*n)
