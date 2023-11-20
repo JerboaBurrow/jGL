@@ -22,7 +22,7 @@ namespace jGL::Vulkan
             48
         );
 
-        vertices = font->getGlyphVertices(0.0f, 0.0f, 1.0f, 'H');
+        vertices = font->getGlyphVertices(0.0f, 0.0f, 8.0f, 'H');
 
         posTex = std::make_shared<VertexBuffer<glm::vec4>>
         (
@@ -39,7 +39,7 @@ namespace jGL::Vulkan
         uboV = std::make_shared<UniformBuffer<vUBO>>
         (
             device,
-            vUBO {glm::mat4(0.0)},
+            vUBO {glm::ortho(0.0,double(viewport.width),0.0,double(viewport.height))},
             0,
             VK_SHADER_STAGE_VERTEX_BIT
         );
@@ -47,7 +47,7 @@ namespace jGL::Vulkan
         uboF = std::make_shared<UniformBuffer<fUBO>>
         (
             device,
-            fUBO {glm::vec4(0.0)},
+            fUBO {glm::vec4(0.0, 0.0, 0.0, 1.0)},
             1,
             VK_SHADER_STAGE_FRAGMENT_BIT
         );
@@ -119,6 +119,13 @@ namespace jGL::Vulkan
         );
     }
 
+    void TextRenderer::setProjection(glm::mat4 p)
+    {
+        auto ubo = std::static_pointer_cast<UniformBuffer<vUBO>>(uboV);
+        vUBO data {p};
+        ubo->set(data);
+    }
+
     void TextRenderer::renderText
     (
         const VkCommandBuffer & commandBuffer,
@@ -138,7 +145,7 @@ namespace jGL::Vulkan
         vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
 
         std::vector<VkDescriptorSet> descriptorSets = textPipeline->getVkDescriptorSets(currentFrame);
-        
+
         vkCmdBindDescriptorSets
         (
             commandBuffer, 

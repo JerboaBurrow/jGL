@@ -91,7 +91,7 @@ namespace jGL::Vulkan
         rasterInfo.polygonMode = polygonMode;
         // 1.0f requires wideLines enabled
         rasterInfo.lineWidth = 1.0f;
-        rasterInfo.cullMode = VK_CULL_MODE_BACK_BIT;
+        rasterInfo.cullMode = VK_CULL_MODE_NONE;
         rasterInfo.frontFace = VK_FRONT_FACE_COUNTER_CLOCKWISE;
         rasterInfo.depthBiasEnable = VK_FALSE;
         rasterInfo.depthBiasConstantFactor = 0.0f;

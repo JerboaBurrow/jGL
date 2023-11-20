@@ -88,16 +88,16 @@ int main(int argv, char ** argc)
 
             rut0 = high_resolution_clock::now();
 
-            jGLParticles->update
-            (
-                jGL::Particles::UpdateInfo {true, false, false}
-            );
+            // jGLParticles->update
+            // (
+            //     jGL::Particles::UpdateInfo {true, false, false}
+            // );
 
             rut = duration_cast<duration<double>>(high_resolution_clock::now()-rut0).count();
 
             rdt0 = high_resolution_clock::now();
 
-            jGLParticles->draw(camera.getVP());
+            // jGLParticles->draw(camera.getVP());
 
             rdt = duration_cast<duration<double>>(high_resolution_clock::now()-rdt0).count();
 
@@ -146,8 +146,7 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
-
-        jGLInstance->endFrame();
+        
     }
 
     jGLInstance->finish();

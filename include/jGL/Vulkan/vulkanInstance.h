@@ -69,7 +69,7 @@ namespace jGL::Vulkan
 
         void setClear(glm::vec4 colour) {/*TODO*/}
         void setProjection(glm::mat4 proj) {/*TODO*/}
-        void setTextProjection(glm::mat4) {/*TODO*/}
+        void setTextProjection(glm::mat4 p) {textRenderer->setProjection(p);}
 
         std::shared_ptr<Particles> createParticles(size_t sizeHint) 
         { 
