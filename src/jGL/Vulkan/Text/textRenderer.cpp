@@ -12,7 +12,10 @@ namespace jGL::Vulkan
         uint32_t concurrentFrames,
         VkSampleCountFlagBits msaa
     )
-    : shader(device.getVkDevice(), vert, frag)
+    : 
+        shader(device.getVkDevice(), vert, frag), 
+        vertices(std::vector<glm::vec4>()),
+        res(glm::ivec2(viewport.width, viewport.height))
     {
 
         font = std::make_unique<Font>
@@ -22,9 +25,9 @@ namespace jGL::Vulkan
             48
         );
 
-        vertices = font->getGlyphVertices(0.0f, 0.0f, 8.0f, 'H');
+        vertices = std::vector<glm::vec4>(256, glm::vec4(0.0));
 
-        posTex = std::make_shared<VertexBuffer<glm::vec4>>
+        pos = std::make_shared<VertexBuffer<glm::vec4>>
         (
             device, 
             command,
@@ -34,7 +37,10 @@ namespace jGL::Vulkan
             0
         );
 
-        auto vertexInputs = {std::static_pointer_cast<VertexBufferObject>(posTex)};
+        auto vertexInputs = 
+        {
+            std::static_pointer_cast<VertexBufferObject>(pos)
+        };
 
         uboV = std::make_shared<UniformBuffer<vUBO>>
         (
@@ -57,16 +63,6 @@ namespace jGL::Vulkan
             std::static_pointer_cast<UniformBufferObject>(uboF)
         };
 
-        fontTexture = std::make_shared<vkTexture>
-        (
-            device,
-            command,
-            64,
-            64,
-            1,
-            VK_FORMAT_R8_UINT
-        );
-
         fontSampler = std::make_shared<Sampler>
         (
             device,
@@ -75,7 +71,7 @@ namespace jGL::Vulkan
         );
 
         std::vector<std::pair<VkImageView, std::shared_ptr<Sampler> >> textures
-            {std::pair(font->getGlyphView('H'), fontSampler)};
+            {std::pair(font->getGlyphView(), fontSampler)};
 
 
         VkPipelineColorBlendAttachmentState colourBlendAttachment{};
@@ -117,6 +113,7 @@ namespace jGL::Vulkan
             msaa,
             blending
         );
+
     }
 
     void TextRenderer::setProjection(glm::mat4 p)
@@ -128,6 +125,8 @@ namespace jGL::Vulkan
 
     void TextRenderer::renderText
     (
+        const Device & device,
+        const Command & command,
         const VkCommandBuffer & commandBuffer,
         uint32_t currentFrame,
         std::string text,
@@ -138,9 +137,45 @@ namespace jGL::Vulkan
     )
     {
 
+        auto ubo = std::static_pointer_cast<UniformBuffer<fUBO>>(uboF);
+        fUBO data {colour};
+        ubo->set(data);
+
+        vertices = std::vector<glm::vec4>(text.size()*6, glm::vec4(0.0));
+
+        float p = position.x;
+        float y = res.y-position.y;
+        unsigned i = 0;
+        for (unsigned char ch : text)
+        {
+            if (ch == 0x20)
+            {
+                p += font->spacing(scale);
+            }
+            else if (ch == 0x0A)
+            {
+                y += font->spacing(scale);
+                p = position.x;
+            }
+            else
+            {
+                for(auto vertex : font->getGlyphVertices(p, y, scale, ch))
+                {
+                    vertices[i] = vertex;
+                    i++;
+                }
+                p += scale*(font->getGlyphSize(ch).x+1);
+            } 
+        }
+
+        // this is bad, lol...
+        vkQueueWaitIdle(device.getLogicalDevice().getGraphicsQueue());
+        std::static_pointer_cast<VertexBuffer<glm::vec4>>(pos)->subData(device, command, vertices);
+        vkQueueWaitIdle(device.getLogicalDevice().getGraphicsQueue());
+
         vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, textPipeline->getVkPipeline());
 
-        VkBuffer vertexBuffers[] = {posTex->getVkBuffer()};
+        VkBuffer vertexBuffers[] = {pos->getVkBuffer()};
         VkDeviceSize offsets[] = {0};
         vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
 
@@ -160,6 +195,6 @@ namespace jGL::Vulkan
 
         // the draw command is issues
         // vertexCount, instanceCount, firstVertex, firstInstance
-        vkCmdDraw(commandBuffer, vertices.size(), 1, 0, 0);
+        vkCmdDraw(commandBuffer, i, 1, 0, 0);
     }
 }

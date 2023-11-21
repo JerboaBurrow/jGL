@@ -33,6 +33,8 @@ namespace jGL::Vulkan
 
         void copy(const Buffer & src, const Command & command);
 
+        const VkDeviceSize & getVkDeviceSize() const { return size; }
+
         void copyMemory
         (
             const VkDeviceSize offset,

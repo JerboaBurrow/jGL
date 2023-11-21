@@ -29,6 +29,8 @@ namespace jGL::Vulkan
 
     void renderText
     (
+      const Device & device,
+      const Command & command,
       const VkCommandBuffer & commandBuffer,
       uint32_t currentFrame,
       std::string text,
@@ -59,15 +61,17 @@ namespace jGL::Vulkan
       "layout(set = 1, binding = 0) uniform usampler2D glyph;\n"
       "void main()\n"
       "{\n"
-      "   vec4 glpyhSample = vec4(1.0,1.0,1.0, texture(glyph,texCoords).r);\n"
+      "   vec4 glpyhSample = vec4(1.0,1.0,1.0, texture(glyph,texCoords.xy).r);\n"
       "   colour = ubo.textColour*glpyhSample;\n"
       "}";
 
     vkShader shader;
 
-    std::shared_ptr<VertexBufferObject> posTex;
+    std::shared_ptr<VertexBufferObject> pos;
     std::shared_ptr<UniformBufferObject> uboV, uboF;
-    std::array<glm::vec4, 6> vertices;
+    std::vector<glm::vec4> vertices;
+
+    VkImageView characterTextureView;
 
     std::shared_ptr<vkTexture> fontTexture;
     std::shared_ptr<Sampler> fontSampler;
@@ -78,6 +82,8 @@ namespace jGL::Vulkan
 
     struct vUBO {glm::mat4 proj;};
     struct fUBO {glm::vec4 colour;};
+
+    glm::ivec2 res;
 
   };
 }

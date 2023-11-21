@@ -6,6 +6,8 @@
 #include <jGL/Vulkan/Command/command.h>
 #include <jGL/Vulkan/buffer.h>
 
+#include <glm/glm.hpp>
+
 #include <stdexcept>
 
 namespace jGL::Vulkan
@@ -72,6 +74,7 @@ namespace jGL::Vulkan
             std::vector<unsigned char> pixels
         );
 
+        const glm::ivec3 size() const { return glm::ivec3(width, height, channels); }
         const VkImageView & getVkImageView() const { return imageView; }
 
         ~vkTexture()

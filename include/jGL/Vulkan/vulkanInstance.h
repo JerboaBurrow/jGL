@@ -53,6 +53,8 @@ namespace jGL::Vulkan
         {
             textRenderer->renderText
             (
+                device,
+                command,
                 commandBuffer,
                 currentFrame,
                 characters, 

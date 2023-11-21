@@ -381,16 +381,47 @@ namespace jGL::Vulkan
             pixels.size() == width*height*channels
         )
         {
+            VkDeviceSize imageSize = width*height*channels;
 
-            uploadImage
+            Buffer stagingBuffer
+            (
+                device,
+                imageSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                imageSize,
+                pixels.data()
+            );
+
+            transitionImageLayout
             (
                 command,
-                pixels,
-                format,
-                width,
-                height,
-                channels
+                format, 
+                VK_IMAGE_LAYOUT_UNDEFINED, 
+                VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
             );
+            
+            copyBufferToImage
+            (
+                command,
+                stagingBuffer, 
+                static_cast<uint32_t>(width), 
+                static_cast<uint32_t>(height)
+            );
+
+            transitionImageLayout
+            (
+                command,
+                format, 
+                VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 
+                VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+            );
+
         }
         else
         {

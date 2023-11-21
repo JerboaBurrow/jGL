@@ -2,7 +2,6 @@
 
 int main(int argv, char ** argc)
 {
-
     bool vulkan = false;
 
     if (argv > 1)
@@ -88,16 +87,16 @@ int main(int argv, char ** argc)
 
             rut0 = high_resolution_clock::now();
 
-            // jGLParticles->update
-            // (
-            //     jGL::Particles::UpdateInfo {true, false, false}
-            // );
+            jGLParticles->update
+            (
+                jGL::Particles::UpdateInfo {true, false, false}
+            );
 
             rut = duration_cast<duration<double>>(high_resolution_clock::now()-rut0).count();
 
             rdt0 = high_resolution_clock::now();
 
-            // jGLParticles->draw(camera.getVP());
+            jGLParticles->draw(camera.getVP());
 
             rdt = duration_cast<duration<double>>(high_resolution_clock::now()-rdt0).count();
 
@@ -114,7 +113,7 @@ int main(int argv, char ** argc)
             display.mousePosition(mouseX,mouseY);
 
             debugText << "Delta: " << fixedLengthNumber(delta,6)
-                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << " (FPS: " << fixedLengthNumber(1.0/delta,4) 
                     << ")\n"
                     << "Physics/Render update/ Render draw time: \n" 
                     << "   " << fixedLengthNumber(pt, 6) << ", " << fixedLengthNumber(rut, 6) << ", " << fixedLengthNumber(rdt, 6) << "\n"
