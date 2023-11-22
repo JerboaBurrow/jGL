@@ -13,6 +13,7 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include <array>
 
 namespace jGL::Vulkan
 {
