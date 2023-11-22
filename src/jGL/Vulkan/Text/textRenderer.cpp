@@ -141,7 +141,10 @@ namespace jGL::Vulkan
         fUBO data {colour};
         ubo->set(data);
 
-        vertices = std::vector<glm::vec4>(text.size()*6, glm::vec4(0.0));
+        if (vertices.size() < text.size()*6)
+        {
+            vertices = std::vector<glm::vec4>(text.size()*6, glm::vec4(0.0));
+        }
 
         float p = position.x;
         float y = res.y-position.y;
