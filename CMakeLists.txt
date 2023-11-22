@@ -80,6 +80,10 @@ if (VALIDATION)
     endif()
 endif()
 
+if (NO_WARN)
+    add_compile_definitions(NO_WARN)
+endif()
+
 add_library(jGL STATIC ${jGL_SRC})
 
 target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")

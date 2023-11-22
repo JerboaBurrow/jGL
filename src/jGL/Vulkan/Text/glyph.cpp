@@ -19,7 +19,6 @@ namespace jGL::Vulkan
 
         bitmap = std::vector<unsigned char>(width*height, 0);
 
-        unsigned j = 0;
         for (unsigned i = 0; i < width*height; i++)
         {
             bitmap[i] = pixels[i];

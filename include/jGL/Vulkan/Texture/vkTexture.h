@@ -50,7 +50,8 @@ namespace jGL::Vulkan
             const Device & device,
             const Command & command,
             std::string imageFile, 
-            Texture::Type type
+            Texture::Type type,
+            VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
 
         vkTexture 
@@ -60,7 +61,8 @@ namespace jGL::Vulkan
             uint32_t width, 
             uint32_t height, 
             uint32_t channels, 
-            VkFormat format
+            VkFormat format,
+            VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
 
         vkTexture 
@@ -71,7 +73,8 @@ namespace jGL::Vulkan
             uint32_t height, 
             uint32_t channels, 
             VkFormat format, 
-            std::vector<unsigned char> pixels
+            std::vector<unsigned char> pixels,
+            VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
 
         const glm::ivec3 size() const { return glm::ivec3(width, height, channels); }
@@ -92,7 +95,7 @@ namespace jGL::Vulkan
             uint32_t width, 
             uint32_t height, 
             uint32_t channels, 
-            VkFormat format, 
+            VkFormat format,
             std::vector<unsigned char> pixels
         );
 
@@ -106,6 +109,7 @@ namespace jGL::Vulkan
 
         VkFormat format;
         uint32_t width, height, channels;
+        VkSampleCountFlagBits msaaSamples;
 
         void transitionImageLayout
         (

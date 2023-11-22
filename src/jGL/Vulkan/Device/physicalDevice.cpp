@@ -50,9 +50,9 @@ namespace jGL::Vulkan
                     );
                 }
 
-                VkSampleCountFlagBits msaa = getMaxUsableSampleCount();
+                msaaSamples = getMaxUsableSampleCount();
                 message << "    Device supports \n" 
-                        << "        " << msaa << " msaa samples\n"
+                        << "        " << msaaSamples << " msaa samples\n"
                         << "        " << deviceProperties.limits.maxSamplerAnisotropy << " anisotropy samples\n";
                 INFO(message.str()) >> log;
             }
