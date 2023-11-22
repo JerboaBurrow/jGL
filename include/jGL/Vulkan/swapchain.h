@@ -32,6 +32,8 @@ namespace jGL::Vulkan
 
         const std::vector<VkImageView> & getVkImageViews() const { return swapchainImageViews; }
 
+        const VkSwapchainKHR & getVkSwapchainKHR() { return swapchain; }
+
     private:
 
         VkSwapchainKHR swapchain;

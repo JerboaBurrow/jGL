@@ -57,6 +57,8 @@ namespace jGL::Vulkan
         void setBinding(uint32_t b) { binding = b; }
         void setLocation(uint32_t l) { location = l; }
 
+        const VkBuffer & getVkBuffer() const { return buffer->getVkBuffer(); }
+
     protected:
 
         const Device & device;
@@ -116,6 +118,45 @@ namespace jGL::Vulkan
                 bufferSize,
                 VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
                 VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+            );
+
+            buffer->copy(stagingBuffer, command);
+        }
+
+        void subData
+        (
+            const Device & device,
+            const Command & command,
+            std::vector<T> data
+        )
+        {
+
+            VkDeviceSize bufferSize = sizeof(T)*data.size();
+
+            if (bufferSize > buffer->getVkDeviceSize())
+            {
+                buffer = std::make_unique<Buffer>
+                (
+                    device,
+                    bufferSize,
+                    VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                    VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+                );
+            }
+
+            Buffer stagingBuffer
+            (
+                device,
+                bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                bufferSize,
+                data.data()
             );
 
             buffer->copy(stagingBuffer, command);
@@ -183,13 +224,52 @@ namespace jGL::Vulkan
 
             buffer->copy(stagingBuffer, command);
         }
+
+        void subData
+        (
+            const Device & device,
+            const Command & command,
+            std::vector<glm::vec4> data
+        )
+        {
+
+            VkDeviceSize bufferSize = sizeof(glm::vec4)*data.size();
+
+            if (bufferSize > buffer->getVkDeviceSize())
+            {
+                buffer = std::make_unique<Buffer>
+                (
+                    device,
+                    bufferSize,
+                    VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                    VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+                );
+            }
+
+            Buffer stagingBuffer
+            (
+                device,
+                bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                bufferSize,
+                data.data()
+            );
+
+            buffer->copy(stagingBuffer, command);
+        }
         
 
         std::vector<VkVertexInputBindingDescription> getBindingDescription()
         {
             std::vector<VkVertexInputBindingDescription> bindingDescription{};
             bindingDescription.resize(1);
-            bindingDescription[0].binding = 0;
+            bindingDescription[0].binding = binding;
             bindingDescription[0].stride = sizeof(glm::vec4);
             bindingDescription[0].inputRate = inputRate;
             return bindingDescription;
@@ -206,6 +286,128 @@ namespace jGL::Vulkan
             // we have a vec4, so rgba
             attributeDescriptions[0].format = VK_FORMAT_R32G32B32A32_SFLOAT;
             // simply a glm::vec4, so no offset here
+            attributeDescriptions[0].offset = 0;
+
+            return attributeDescriptions;
+        }
+
+    };
+
+    template <>
+    class VertexBuffer<glm::vec2> : public VertexBufferObject
+    {
+    
+    public:
+
+        VertexBuffer<glm::vec2>
+        (
+            const Device & device,
+            const Command & command,
+            std::vector<glm::vec2> data,
+            VkVertexInputRate rate,
+            uint32_t binding = 0,
+            uint32_t location = 0
+        )
+        : VertexBufferObject(device)
+        {
+
+            // hate this, take a look to abstract
+
+            this->inputRate = rate; 
+            this->binding = binding; 
+            this->location = location;
+
+            VkDeviceSize bufferSize = sizeof(glm::vec2)*data.size();
+
+            Buffer stagingBuffer
+            (
+                device,
+                bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                bufferSize,
+                data.data()
+            );
+
+            // create normal buffer
+
+            buffer = std::make_unique<Buffer>
+            (
+                device,
+                bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+            );
+
+            buffer->copy(stagingBuffer, command);
+        }
+
+        void subData
+        (
+            const Device & device,
+            const Command & command,
+            std::vector<glm::vec2> data
+        )
+        {
+
+            VkDeviceSize bufferSize = sizeof(glm::vec2)*data.size();
+
+            if (bufferSize > buffer->getVkDeviceSize())
+            {
+                buffer = std::make_unique<Buffer>
+                (
+                    device,
+                    bufferSize,
+                    VK_BUFFER_USAGE_TRANSFER_DST_BIT | VK_BUFFER_USAGE_VERTEX_BUFFER_BIT,
+                    VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+                );
+            }
+
+            Buffer stagingBuffer
+            (
+                device,
+                bufferSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                bufferSize,
+                data.data()
+            );
+
+            buffer->copy(stagingBuffer, command);
+        }
+        
+
+        std::vector<VkVertexInputBindingDescription> getBindingDescription()
+        {
+            std::vector<VkVertexInputBindingDescription> bindingDescription{};
+            bindingDescription.resize(1);
+            bindingDescription[0].binding = binding;
+            bindingDescription[0].stride = sizeof(glm::vec2);
+            bindingDescription[0].inputRate = inputRate;
+            return bindingDescription;
+        }
+
+        std::vector<VkVertexInputAttributeDescription> getArrtibuteDescriptions()
+        {
+            std::vector<VkVertexInputAttributeDescription> attributeDescriptions{};
+            attributeDescriptions.resize(1);
+            // vertex binding, 0
+            attributeDescriptions[0].binding = binding;
+            // layout(location = 0)
+            attributeDescriptions[0].location = location;
+            // we have a vec2, so rg
+            attributeDescriptions[0].format = VK_FORMAT_R32G32_SFLOAT;
+            // simply a glm::vec2, so no offset here
             attributeDescriptions[0].offset = 0;
 
             return attributeDescriptions;

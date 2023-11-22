@@ -4,8 +4,6 @@ namespace jGL::Vulkan
 {
     Glyph::Glyph
     (
-        const Device & device,
-        const Command & command, 
         const FT_Face & face, 
         unsigned char ch
     )
@@ -19,29 +17,15 @@ namespace jGL::Vulkan
         unsigned int height = face->glyph->bitmap.rows;
         unsigned char * pixels = face->glyph->bitmap.buffer;
 
-        std::vector<unsigned char> vPixels(width*height, 0);
+        bitmap = std::vector<unsigned char>(width*height, 0);
 
-        for (unsigned i = 0; i < vPixels.size(); i++)
+        for (unsigned i = 0; i < width*height; i++)
         {
-            vPixels[i] = pixels[i];
+            bitmap[i] = pixels[i];
         }
-
-        if (vPixels.size() > 0)
-        {
-            bitmap = std::make_unique<vkTexture>
-            (
-                device, 
-                command, 
-                width, 
-                height, 
-                1, 
-                VK_FORMAT_R8_SINT, 
-                vPixels
-            );
-            
-            size = glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows);
-            bearing = glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top);
-            offset = face->glyph->advance.x;
-        }
+   
+        size = glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows);
+        bearing = glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top);
+        offset = face->glyph->advance.x;
     }
 }

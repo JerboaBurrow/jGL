@@ -1,5 +1,5 @@
-#ifndef GLYPH
-#define GLYPH
+#ifndef VKGLYPH
+#define VKGLYPH
 
 #include <jGL/OpenGL/gl.h>
 #include <glm/glm.hpp>
@@ -22,4 +22,4 @@ namespace jGL::GL
     
   };
 }
-#endif /* GLYPH */
+#endif /* VKGLYPH */

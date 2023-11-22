@@ -2,7 +2,6 @@
 
 int main(int argv, char ** argc)
 {
-
     bool vulkan = false;
 
     if (argv > 1)
@@ -13,7 +12,7 @@ int main(int argv, char ** argc)
         }
     }
 
-    jGL::Display display(resX, resY, "Particles", vulkan);
+    jGL::Display display(resX, resY, "Particles", &keyEventCallback, vulkan);
 
     glewInit();
     
@@ -114,7 +113,7 @@ int main(int argv, char ** argc)
             display.mousePosition(mouseX,mouseY);
 
             debugText << "Delta: " << fixedLengthNumber(delta,6)
-                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << " (FPS: " << fixedLengthNumber(1.0/delta,4) 
                     << ")\n"
                     << "Physics/Render update/ Render draw time: \n" 
                     << "   " << fixedLengthNumber(pt, 6) << ", " << fixedLengthNumber(rut, 6) << ", " << fixedLengthNumber(rdt, 6) << "\n"
@@ -146,6 +145,7 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
+        
     }
 
     jGLInstance->finish();

@@ -45,6 +45,9 @@ namespace jGL::Vulkan
         );
 
         const VkPipeline & getVkPipeline() const { return pipeline; }
+        const VkPipelineLayout & getVkPipelineLayout() const { return pipelineLayout; }
+
+        const std::vector<VkDescriptorSet> getVkDescriptorSets(uint32_t currentFrame);
 
         ~Pipeline()
         {

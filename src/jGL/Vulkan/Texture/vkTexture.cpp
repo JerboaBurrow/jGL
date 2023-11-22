@@ -4,7 +4,7 @@ namespace jGL::Vulkan
 {
 
     vkTexture::vkTexture(const Device & device)
-    : device(device)
+    : device(device), msaaSamples(VK_SAMPLE_COUNT_1_BIT)
     {}
 
     vkTexture::vkTexture
@@ -12,9 +12,10 @@ namespace jGL::Vulkan
         const Device & device,
         const Command & command,
         std::string imageFile, 
-        Texture::Type type
+        Texture::Type type,
+        VkSampleCountFlagBits msaaSamples
     )
-    : device(device)
+    : device(device), msaaSamples(msaaSamples)
     {
 
         int width, height, channels;
@@ -63,9 +64,10 @@ namespace jGL::Vulkan
         uint32_t height, 
         uint32_t channels, 
         VkFormat format, 
-        std::vector<unsigned char> pixels
+        std::vector<unsigned char> pixels,
+        VkSampleCountFlagBits msaaSamples
     )
-    : device(device)
+    : device(device), msaaSamples(msaaSamples)
     {
         this->format = format;
         this->width = width;
@@ -90,7 +92,8 @@ namespace jGL::Vulkan
         uint32_t width, 
         uint32_t height, 
         uint32_t channels, 
-        VkFormat format
+        VkFormat format,
+        VkSampleCountFlagBits msaaSamples
     )
     : vkTexture
       (
@@ -100,7 +103,8 @@ namespace jGL::Vulkan
         height, 
         channels, 
         format,
-        std::vector<unsigned char>(width*height*channels, 0)
+        std::vector<unsigned char>(width*height*channels, 0),
+        msaaSamples
       )
     {}
 
@@ -325,7 +329,7 @@ namespace jGL::Vulkan
             width, 
             height,
             1,
-            VK_SAMPLE_COUNT_1_BIT,
+            msaaSamples,
             format, 
             VK_IMAGE_TILING_OPTIMAL, 
             VK_IMAGE_USAGE_TRANSFER_DST_BIT | VK_IMAGE_USAGE_SAMPLED_BIT, 
@@ -381,16 +385,47 @@ namespace jGL::Vulkan
             pixels.size() == width*height*channels
         )
         {
+            VkDeviceSize imageSize = width*height*channels;
 
-            uploadImage
+            Buffer stagingBuffer
+            (
+                device,
+                imageSize,
+                VK_BUFFER_USAGE_TRANSFER_SRC_BIT,
+                VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+            );
+
+            stagingBuffer.copyMemory
+            (
+                0,
+                imageSize,
+                pixels.data()
+            );
+
+            transitionImageLayout
             (
                 command,
-                pixels,
-                format,
-                width,
-                height,
-                channels
+                format, 
+                VK_IMAGE_LAYOUT_UNDEFINED, 
+                VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
             );
+            
+            copyBufferToImage
+            (
+                command,
+                stagingBuffer, 
+                static_cast<uint32_t>(width), 
+                static_cast<uint32_t>(height)
+            );
+
+            transitionImageLayout
+            (
+                command,
+                format, 
+                VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL, 
+                VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL
+            );
+
         }
         else
         {

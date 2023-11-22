@@ -12,24 +12,40 @@ namespace jGL::Vulkan
         uint32_t concurrentFrames,
         VkSampleCountFlagBits msaa
     )
-    : shader(device.getVkDevice(), vert, frag)
+    : 
+        shader(device.getVkDevice(), vert, frag), 
+        vertices(std::vector<glm::vec4>()),
+        res(glm::ivec2(viewport.width, viewport.height))
     {
-        posTex = std::make_shared<VertexBuffer<glm::vec4>>
+
+        font = std::make_unique<Font>
+        (
+            device,
+            command,
+            48
+        );
+
+        vertices = std::vector<glm::vec4>(256, glm::vec4(0.0));
+
+        pos = std::make_shared<VertexBuffer<glm::vec4>>
         (
             device, 
             command,
-            std::vector<glm::vec4> {glm::vec4(0.0)},
+            std::vector<glm::vec4> {vertices.begin(), vertices.end()},
             VK_VERTEX_INPUT_RATE_VERTEX,
             0,
             0
         );
 
-        auto vertexInputs = {std::static_pointer_cast<VertexBufferObject>(posTex)};
+        auto vertexInputs = 
+        {
+            std::static_pointer_cast<VertexBufferObject>(pos)
+        };
 
         uboV = std::make_shared<UniformBuffer<vUBO>>
         (
             device,
-            vUBO {glm::mat4(0.0)},
+            vUBO {glm::ortho(0.0,double(viewport.width),0.0,double(viewport.height))},
             0,
             VK_SHADER_STAGE_VERTEX_BIT
         );
@@ -37,7 +53,7 @@ namespace jGL::Vulkan
         uboF = std::make_shared<UniformBuffer<fUBO>>
         (
             device,
-            fUBO {glm::vec4(0.0)},
+            fUBO {glm::vec4(0.0, 0.0, 0.0, 1.0)},
             1,
             VK_SHADER_STAGE_FRAGMENT_BIT
         );
@@ -47,24 +63,15 @@ namespace jGL::Vulkan
             std::static_pointer_cast<UniformBufferObject>(uboF)
         };
 
-        fontTexture = std::make_shared<vkTexture>
-        (
-            device,
-            command,
-            64,
-            64,
-            1,
-            VK_FORMAT_R8_SINT
-        );
-
         fontSampler = std::make_shared<Sampler>
         (
             device,
+            VK_FILTER_NEAREST,
             0
         );
 
         std::vector<std::pair<VkImageView, std::shared_ptr<Sampler> >> textures
-            {std::pair(fontTexture->getVkImageView(), fontSampler)};
+            {std::pair(font->getGlyphView(), fontSampler)};
 
 
         VkPipelineColorBlendAttachmentState colourBlendAttachment{};
@@ -106,5 +113,88 @@ namespace jGL::Vulkan
             msaa,
             blending
         );
+
+    }
+
+    void TextRenderer::setProjection(glm::mat4 p)
+    {
+        auto ubo = std::static_pointer_cast<UniformBuffer<vUBO>>(uboV);
+        vUBO data {p};
+        ubo->set(data);
+    }
+
+    void TextRenderer::renderText
+    (
+        const Device & device,
+        const Command & command,
+        const VkCommandBuffer & commandBuffer,
+        uint32_t currentFrame,
+        std::string text,
+        glm::vec2 position,
+        float scale,
+        glm::vec4 colour,
+        bool centre
+    )
+    {
+
+        auto ubo = std::static_pointer_cast<UniformBuffer<fUBO>>(uboF);
+        fUBO data {colour};
+        ubo->set(data);
+
+        vertices = std::vector<glm::vec4>(text.size()*6, glm::vec4(0.0));
+
+        float p = position.x;
+        float y = res.y-position.y;
+        unsigned i = 0;
+        for (unsigned char ch : text)
+        {
+            if (ch == 0x20)
+            {
+                p += font->spacing(scale);
+            }
+            else if (ch == 0x0A)
+            {
+                y += font->spacing(scale);
+                p = position.x;
+            }
+            else
+            {
+                for(auto vertex : font->getGlyphVertices(p, y, scale, ch))
+                {
+                    vertices[i] = vertex;
+                    i++;
+                }
+                p += scale*(font->getGlyphSize(ch).x+1);
+            } 
+        }
+
+        // this is bad, lol...
+        vkQueueWaitIdle(device.getLogicalDevice().getGraphicsQueue());
+        std::static_pointer_cast<VertexBuffer<glm::vec4>>(pos)->subData(device, command, vertices);
+        vkQueueWaitIdle(device.getLogicalDevice().getGraphicsQueue());
+
+        vkCmdBindPipeline(commandBuffer, VK_PIPELINE_BIND_POINT_GRAPHICS, textPipeline->getVkPipeline());
+
+        VkBuffer vertexBuffers[] = {pos->getVkBuffer()};
+        VkDeviceSize offsets[] = {0};
+        vkCmdBindVertexBuffers(commandBuffer, 0, 1, vertexBuffers, offsets);
+
+        std::vector<VkDescriptorSet> descriptorSets = textPipeline->getVkDescriptorSets(currentFrame);
+
+        vkCmdBindDescriptorSets
+        (
+            commandBuffer, 
+            VK_PIPELINE_BIND_POINT_GRAPHICS, 
+            textPipeline->getVkPipelineLayout(),
+            0,
+            descriptorSets.size(),
+            &descriptorSets[0],
+            0,
+            nullptr
+        );
+
+        // the draw command is issues
+        // vertexCount, instanceCount, firstVertex, firstInstance
+        vkCmdDraw(commandBuffer, i, 1, 0, 0);
     }
 }

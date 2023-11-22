@@ -37,6 +37,8 @@ namespace jGL::GL
             void beginFrame(){framebuffer.bind();}
             void endFrame(){framebuffer.blit();}
 
+            void finish(){closing = true;}
+
             void text
             (
                 std::string characters, 

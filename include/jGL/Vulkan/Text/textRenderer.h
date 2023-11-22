@@ -27,17 +27,20 @@ namespace jGL::Vulkan
 
     ~TextRenderer(){}
 
-    void renderText(
-      const Font & type,
+    void renderText
+    (
+      const Device & device,
+      const Command & command,
+      const VkCommandBuffer & commandBuffer,
+      uint32_t currentFrame,
       std::string text,
-      float x,
-      float y,
+      glm::vec2 position,
       float scale,
-      glm::vec3 colour,
-      float alpha = 1.0,
-      bool centre = false);
+      glm::vec4 colour,
+      bool centre = false
+    );
 
-      void setProjection(glm::mat4 p);
+    void setProjection(glm::mat4 p);
 
   private:
 
@@ -55,25 +58,32 @@ namespace jGL::Vulkan
       "layout(location = 0) in vec2 texCoords;\n"
       "layout(location = 0) out vec4 colour;\n"
       "layout(set = 0, binding = 1) uniform fUBO { vec4 textColour; } ubo;\n"
-      "layout(set = 1, binding = 0) uniform sampler2D glyph;\n"
+      "layout(set = 1, binding = 0) uniform usampler2D glyph;\n"
       "void main()\n"
       "{\n"
-      "   vec4 glpyhSample = vec4(1.0,1.0,1.0,texture(glyph,texCoords).r);\n"
+      "   vec4 glpyhSample = vec4(1.0,1.0,1.0, texture(glyph,texCoords.xy).r);\n"
       "   colour = ubo.textColour*glpyhSample;\n"
       "}";
 
     vkShader shader;
 
-    std::shared_ptr<VertexBufferObject> posTex;
+    std::shared_ptr<VertexBufferObject> pos;
     std::shared_ptr<UniformBufferObject> uboV, uboF;
+    std::vector<glm::vec4> vertices;
+
+    VkImageView characterTextureView;
 
     std::shared_ptr<vkTexture> fontTexture;
     std::shared_ptr<Sampler> fontSampler;
+
+    std::unique_ptr<Font> font;
 
     std::unique_ptr<Pipeline> textPipeline;
 
     struct vUBO {glm::mat4 proj;};
     struct fUBO {glm::vec4 colour;};
+
+    glm::ivec2 res;
 
   };
 }
