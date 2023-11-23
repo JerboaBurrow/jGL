@@ -42,7 +42,7 @@ namespace jGL::GL
         unsigned uploadedParticles;
         unsigned drawingParticles;
 
-        std::shared_ptr<Texture> texture;
+        std::shared_ptr<Texture> texture = nullptr;
 
         void initGL();
         void flatten(Particles::UpdateInfo info);
@@ -70,6 +70,7 @@ namespace jGL::GL
             "#version " GLSL_VERSION "\n"
             "precision lowp float;\n"
             "uniform sampler2D sampler;\n"
+            "uniform int textureless;\n"
             "in vec4 o_colour;\n"
             "in float theta;\n"
             "out vec4 colour;\n"
@@ -78,7 +79,7 @@ namespace jGL::GL
                 "float ct = cos(theta); float st = sin(theta);\n"
                 "mat2 rot = mat2(ct, -st, st, ct);\n"
                 "vec2 pos = rot * coord;\n"
-                "colour = texture(sampler, (pos+1.0)*0.5);\n"
+                "colour = o_colour * texture(sampler, (pos+1.0)*0.5);\n"
             "}";
     };
 }

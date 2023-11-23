@@ -103,20 +103,20 @@ namespace jGL::GL
 
             if (info.colour)
             {
-                glm::vec4 & colour = points[i].colour;
-                colour[i*4] = colour.x;
-                colour[i*4+1] = colour.y;
-                colour[i*4+2] = colour.z;
-                colour[i*4+3] = colour.w;
+                glm::vec4 & state = points[i].colour;
+                colour[i*4] = state.x;
+                colour[i*4+1] = state.y;
+                colour[i*4+2] = state.z;
+                colour[i*4+3] = state.w;
             }
 
             if (info.texCoord)
             {
-                glm::vec4 & texCoord = points[i].texCoord;
-                texCoord[i*4] = texCoord.x;
-                texCoord[i*4+1] = texCoord.y;
-                texCoord[i*4+2] = texCoord.z;
-                texCoord[i*4+3] = texCoord.w;
+                glm::vec4 & state = points[i].texCoord;
+                texCoord[i*4] = state.x;
+                texCoord[i*4+1] = state.y;
+                texCoord[i*4+2] = state.z;
+                texCoord[i*4+3] = state.w;
             }
         }
     }
@@ -197,7 +197,15 @@ namespace jGL::GL
         shader.setUniform<Sampler2D>("sampler", Sampler2D(0));
         shader.setUniform<float>("scale", baseLineScalePixels);
 
-        texture->bind(0);
+        if (texture == nullptr)
+        {
+            shader.setUniform<int>("textureless", 1);
+        }
+        else
+        {
+            shader.setUniform<int>("textureless", 0);
+            texture->bind(0);
+        }
 
         glBindVertexArray(vao);
 
