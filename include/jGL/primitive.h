@@ -12,6 +12,12 @@ namespace jGL
 
     struct TexturedParticle : public Primitive
     {
+        TexturedParticle() = default;
+        
+        TexturedParticle(glm::vec4 p, glm::vec4 c, glm::vec4 t)
+        : state(p), colour(c), texCoord(t)
+        {}
+
         glm::vec4 state;
         glm::vec4 colour;
         glm::vec4 texCoord;

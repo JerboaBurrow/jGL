@@ -3,9 +3,10 @@
 
 #include <jGL/primitive.h>
 #include <jGL/texture.h>
-#include <memory>
 
+#include <memory>
 #include <vector>
+#include <cstdint>
 
 namespace jGL
 {
@@ -43,6 +44,9 @@ namespace jGL
 
         std::vector<TexturedParticle> points;
         std::shared_ptr<Texture> texture;
+
+        uint32_t uploaded = 0;
+        uint32_t drawing = 0;
 
     };
 }

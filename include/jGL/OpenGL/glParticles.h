@@ -39,9 +39,6 @@ namespace jGL::GL
         std::vector<float> colour;
         std::vector<float> texCoord;
 
-        unsigned uploadedParticles;
-        unsigned drawingParticles;
-
         std::shared_ptr<Texture> texture = nullptr;
 
         void initGL();

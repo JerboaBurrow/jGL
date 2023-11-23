@@ -3,10 +3,25 @@
 namespace Particles::Dynamics
 {
 
-    void ParticleSystem::initParticles(std::vector<TexturedParticle> & particles)
+    void ParticleSystem::initParticles(std::vector<TexturedParticle> & particles, bool clean)
     {
-        lastParticleStates = std::vector<float>(particles.size()*4, 0.0f);
+        
+        unsigned beginAt = 0;
+        if (!clean)
+        {
+            beginAt = lastParticleStates.size()/4;
+            bool reduced = particles.size()*4 < lastParticleStates.size();
+            lastParticleStates.resize(particles.size()*4);
 
+            if (reduced)
+            {
+                return;
+            }
+        }
+        else
+        {
+            lastParticleStates = std::vector<float>(particles.size()*4, 0.0f);
+        }
         float x, y, theta, s;
 
         float ax = bounds.lowX+scale;
@@ -17,7 +32,7 @@ namespace Particles::Dynamics
         float mx = (bx-ax)+ax;
         float my = (by-ay)+ay;
 
-        for (unsigned i = 0; i < particles.size(); i++)
+        for (unsigned i = beginAt; i < particles.size(); i++)
         {
             x = rng.nextFloat()*mx;
             y = rng.nextFloat()*my;
@@ -106,7 +121,7 @@ namespace Particles::Dynamics
 
         if (4*particles.size() != lastParticleStates.size())
         {
-            initParticles(particles);
+            initParticles(particles, false);
         }
         // do not block, physics won't go unstable
         workers.queueJob
