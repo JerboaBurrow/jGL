@@ -54,6 +54,8 @@ namespace Particles::Dynamics
 
         void step(std::vector<TexturedParticle> & particles);
 
+        void sync() {workers.wait();}
+
     protected:
 
         Bounds bounds;
@@ -91,7 +93,7 @@ namespace Particles::Dynamics
 
         RNG rng;
 
-        void initParticles(std::vector<TexturedParticle> & particles);
+        void initParticles(std::vector<TexturedParticle> & particles, bool clean = true);
 
         void stepParticles
         (

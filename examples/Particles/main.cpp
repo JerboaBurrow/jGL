@@ -50,9 +50,14 @@ int main(int argv, char ** argc)
     for (unsigned i = 0; i < nParticles; i++)
     {
         jGLParticleStates[i].state = glm::vec4(0.0f);
-        jGLParticleStates[i].colour = glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        jGLParticleStates[i].colour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
         jGLParticleStates[i].texCoord = glm::vec4(0.0f);
     }
+
+    jGLParticles->update
+    (
+        jGL::Particles::UpdateInfo {true, true, true}
+    );
 
     Particles::Dynamics::ParticleSystem particles
     (
@@ -71,6 +76,8 @@ int main(int argv, char ** argc)
 
     double delta = 0.0;
 
+    unsigned lastSpawn = 0;
+
     while (display.isOpen())
     {
         tic = high_resolution_clock::now();
@@ -87,10 +94,33 @@ int main(int argv, char ** argc)
 
             rut0 = high_resolution_clock::now();
 
-            jGLParticles->update
-            (
-                jGL::Particles::UpdateInfo {true, false, false}
-            );
+            if (lastSpawn > 60*0.1 && jGLParticleStates.size() < 1024)
+            {
+                lastSpawn = 0;
+                particles.sync();
+                jGLParticleStates.push_back
+                (
+                    jGL::TexturedParticle
+                    (
+                        glm::vec4(0.5, 0.5, 1.0, 0.0),
+                        glm::vec4(1.0, 1.0, 1.0, 1.0),
+                        glm::vec4(0.0)
+                    )
+                );
+                
+                jGLParticles->update
+                (
+                    jGL::Particles::UpdateInfo {true, true, true}
+                );
+            }
+            else 
+            {
+                lastSpawn++;
+                jGLParticles->update
+                (
+                    jGL::Particles::UpdateInfo {true, false, false}
+                );
+            }
 
             rut = duration_cast<duration<double>>(high_resolution_clock::now()-rut0).count();
 

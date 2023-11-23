@@ -78,8 +78,8 @@ namespace jGL::GL
 
         glBindVertexArray(0);
 
-        uploadedParticles = points.size();
-        drawingParticles = uploadedParticles;
+        uploaded = points.size();
+        drawing = uploaded;
 
         shader = glShader(vertexShader, fragmentShader);
         shader.compile();
@@ -140,6 +140,29 @@ namespace jGL::GL
 
     void glParticles::update(UpdateInfo info)
     {
+
+        if (uploaded < points.size())
+        {
+            position.resize(points.size()*4);
+            colour.resize(points.size()*4);
+            texCoord.resize(points.size()*4);
+
+            glGenVertexArrays(1, &vao);
+            glGenBuffers(1, &a_position);
+            glGenBuffers(1, &a_colour);
+            glGenBuffers(1, &a_texCoord);
+
+            info.colour = true;
+            info.position = true;
+            info.texCoord = true;
+
+            initGL();
+        }
+        else if (uploaded > points.size()) 
+        {
+            drawing = points.size();
+        }
+
         flatten(info);
 
         glBindVertexArray(vao);
@@ -210,7 +233,7 @@ namespace jGL::GL
         glBindVertexArray(vao);
 
             shader.use();
-            glDrawArraysInstanced(GL_POINTS, 0, 1, drawingParticles);
+            glDrawArraysInstanced(GL_POINTS, 0, 1, drawing);
 
         glBindVertexArray(vao);
 
