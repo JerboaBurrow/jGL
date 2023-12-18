@@ -1,6 +1,8 @@
 #ifndef TEXTURE
 #define TEXTURE
 
+#include <glm/glm.hpp>
+
 #include <vendored/stb_image.h>
 
 #include <id.h>
@@ -26,6 +28,8 @@ namespace jGL
         bool operator==(const Texture & rhs) const { return this->id == rhs.id; }
 
         const Id & getId() const { return id; }
+
+        const glm::ivec3 size() const { return glm::ivec3(width, height, channels); }
 
     protected:
 

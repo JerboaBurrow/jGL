@@ -65,6 +65,23 @@ namespace jGL::GL
 
         void upload(float * data);
     };
+
+    class glTexture2DByte : public glTexture
+    {
+
+    public:
+
+        glTexture2DByte(uint16_t width, uint16_t height);
+
+        glTexture2DByte(unsigned char * data, uint16_t width, uint16_t height)
+        : glTexture2DByte(width, height)
+        {
+            upload(data);
+        }
+
+        void upload(unsigned char * data);
+
+    };
 }
 
 #endif /* GLTEXTURE */

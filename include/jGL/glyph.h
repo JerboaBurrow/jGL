@@ -1,5 +1,5 @@
-#ifndef GLYPH
-#define GLYPH
+#ifndef GLYPH_H
+#define GLYPH_H
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
@@ -15,7 +15,7 @@
 #include <iostream>
 #include <array>
 
-namespace jGL::Vulkan
+namespace jGL
 {
     class Glyph
     {
@@ -67,4 +67,4 @@ namespace jGL::Vulkan
     };
 }
 
-#endif /* GLYPH */
+#endif /* GLYPH_H */

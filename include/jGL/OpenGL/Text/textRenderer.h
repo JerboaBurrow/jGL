@@ -1,9 +1,10 @@
-#ifndef TEXTRENDERER_H
-#define TEXTRENDERER_H
+#ifndef GLTEXTRENDERER_H
+#define GLTEXTRENDERER_H
 
-#include <iostream>
 #include <jGL/OpenGL/gl.h>
-#include <jGL/OpenGL/Text/type.h>
+#include <jGL/OpenGL/Text/font.h>
+#include <jGL/OpenGL/Shader/glShader.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
@@ -15,23 +16,21 @@ namespace jGL::GL
 
   public:
 
-    TextRenderer();
+    TextRenderer(glm::vec2 res);
 
     ~TextRenderer()
     {
       glDeleteBuffers(1,&VBO);
       glDeleteVertexArrays(1,&VAO);
-      glDeleteProgram(shader);
     }
 
     void renderText(
-      Type type,
+      glFont font,
       std::string text,
-      float x,
-      float y,
+      glm::vec2 position,
       float scale,
-      glm::vec3 colour,
-      float alpha = 1.0,
+      glm::vec4 colour,
+      glm::vec2 res,
       bool centre = false);
 
       void setProjection(glm::mat4 p)
@@ -39,43 +38,47 @@ namespace jGL::GL
         
         projection = p;
 
-        glUseProgram(shader);
+        shader.use();
+        shader.setUniform<glm::mat4>("proj", projection);
 
-        glUniformMatrix4fv(
-          glGetUniformLocation(shader,"proj"),
-          1,
-          GL_FALSE,
-          &projection[0][0]
-        );
       }
-  private:
 
-    GLuint shader;
+  private:
+  
+    const char * vert = "#version " GLSL_VERSION "\n"
+      "layout(location = 0) in vec4 posTex;\n"
+      "uniform mat4 proj;\n"
+      "out vec2 texCoords;\n"
+      "void main()\n"
+      "{\n"
+      "    gl_Position = proj * vec4(posTex.xy, 0.0, 1.0);\n"
+      "    texCoords = posTex.zw;\n"
+      "}\n";
+
+    const char * frag = "#version " GLSL_VERSION "\n"
+      "in vec2 texCoords;\n"
+      "out vec4 colour;\n"
+      "uniform vec4 textColour;\n"
+      "uniform sampler2D glyph;\n"
+      "void main()\n"
+      "{\n"
+      "   vec4 glpyhSample = vec4(1.0,1.0,1.0, texture(glyph,texCoords.xy).r);\n"
+      "   colour = textColour*glpyhSample;\n"
+      "}";
+
+    glShader shader;
     GLuint VAO;
     GLuint VBO;
 
+    uint16_t charactersUploaded;
+    std::vector<float> vertices;
+
     glm::mat4 projection;
+    glm::vec2 res;
 
-    const char * defaultVertexShader = "#version " GLSL_VERSION "\n"
-      "in vec4 postex;\n"
-      "out vec2 texCoords;\n"
-      "uniform mat4 proj;\n"
-      "void main()\n"
-      "{\n"
-      " gl_Position = proj*vec4(postex.xy,0.0,1.0);\n"
-      " texCoords = postex.zw;\n"
-      "}";
 
-    const char * defaultFragmentShader = "#version " GLSL_VERSION "\n"
-      "in vec2 texCoords; out vec4 colour;\n"
-      "uniform sampler2D glyph;\n"
-      "uniform vec3 textColour;\n"
-      "uniform float alpha;\n"
-      "void main()\n"
-      "{\n"
-      " vec4 glpyhSample = vec4(1.0,1.0,1.0,texture(glyph,texCoords).r);\n"
-      " colour = vec4(textColour,alpha)*glpyhSample;\n"
-      "}";
+    void setBufferSize(uint16_t s);
+
   };
 }
 #endif

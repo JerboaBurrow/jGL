@@ -1,6 +1,6 @@
-#include <jGL/Vulkan/Text/glyph.h>
+#include <jGL/glyph.h>
 
-namespace jGL::Vulkan
+namespace jGL
 {
     Glyph::Glyph
     (

@@ -3,7 +3,8 @@
 namespace jGL::GL
 {
 
-  TextRenderer::TextRenderer()
+  TextRenderer::TextRenderer(glm::vec2 res)
+  : shader(vert, frag), res(res)
   {
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -15,115 +16,115 @@ namespace jGL::GL
     glGenBuffers(1,&VBO);
 
     glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+      
+      glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-    glBufferData(GL_ARRAY_BUFFER,sizeof(float)*6*4,NULL,GL_DYNAMIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,4*sizeof(float),0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+      charactersUploaded = 256;
+      vertices = std::vector<float>(charactersUploaded*6*4, 0.0);
+
+      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*6*charactersUploaded*4,NULL,GL_DYNAMIC_DRAW);
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,4*sizeof(float),0);
+
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+
     glBindVertexArray(0);
-    glError("TextRenderer constructor: ");
 
-    shader = glCreateProgram();
-    compileShader(shader,defaultVertexShader,defaultFragmentShader);
-
-     glError("construct text renderer");
+    shader.compile();
 
   }
 
+  void TextRenderer::setBufferSize(uint16_t s)
+  {
+    glDeleteBuffers(1, &VBO);
+    glGenBuffers(1, &VBO);
+
+    glBindVertexArray(VAO);
+      
+      glBindBuffer(GL_ARRAY_BUFFER, VBO);
+
+      charactersUploaded = s;
+      vertices = std::vector<float>(charactersUploaded*6*4, 0.0);
+
+      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*6*charactersUploaded*4,NULL,GL_DYNAMIC_DRAW);
+      glEnableVertexAttribArray(0);
+      glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,4*sizeof(float),0);
+
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    glBindVertexArray(0);
+  }
+
   void TextRenderer::renderText(
-    Type type,
+    glFont font,
     std::string text,
-    float x,
-    float y,
+    glm::vec2 position,
     float scale,
-    glm::vec3 colour,
-    float alpha,
+    glm::vec4 colour,
+    glm::vec2 res,
     bool centre)
     {
-      // have a look at this https://learnopengl.com/In-Practice/Text-Rendering
-      // Some modifications have been made, e.g to render \n characters as line breaks
 
       glBindBuffer(GL_ARRAY_BUFFER, 0);
       glBindVertexArray(0);
-      glUseProgram(shader);
-      glUniform3f(glGetUniformLocation(shader, "textColour"), colour.x, colour.y, colour.z);
-      glError("Setting textColour uniform for type: ");
-      glUniform1i(glGetUniformLocation(shader, "glyph"), 0);
-      glError("Setting texture id uniform for type: ");
-      glUniform1f(glGetUniformLocation(shader, "alpha"), alpha);
+      
+      shader.use();
+      shader.setUniform<glm::vec4>("textColour", colour);
+      shader.setUniform<int>("glyph", 0);
+      font.bind(0);
       glActiveTexture(GL_TEXTURE0);
+
+      if (charactersUploaded < text.size())
+      {
+        setBufferSize(text.size()+32);
+      }
+
       glBindVertexArray(VAO);
 
-      float initialX = x;
-      float centreX = 0;
-      std::string::const_iterator c;
-      if (centre)
-      {
+        float p = position.x;
+        float y = res.y-position.y;
+        unsigned i = 0;
 
-        // iterate through all characters
-      
-        for (c = text.begin(); c != text.end(); c++/*ayy lmao*/)
+        for (unsigned char ch : text)
         {
-            Glyph ch = type[*c];
-            if (*c == '\n') {
-                break;
+            if (ch == 0x20)
+            {
+                p += font.spacing(scale);
             }
-            float advance = (ch.offset >> 6) * scale;  // bitshift by 6 to get value in pixels (2^6 = 64)
-            x += advance;
+            else if (ch == 0x0A)
+            {
+                y += font.spacing(scale);
+                p = position.x;
+            }
+            else
+            {
+                for(auto vertex : font.getGlyphVertices(p, y, scale, ch))
+                {
+                    vertices[i] = vertex.x;
+                    vertices[i+1] = -vertex.y+res.y;
+                    vertices[i+2] = vertex.z;
+                    vertices[i+3] = vertex.w;
+                    i+=4;
+                }
+                p += scale*(font.getGlyphSize(ch).x+1);
+            } 
         }
 
-        centreX = (x - initialX)/2.0;
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-        initialX -= centreX;
-        x = initialX;
-      }
+          glBufferSubData
+          (
+            GL_ARRAY_BUFFER,
+            0,
+            vertices.size(),
+            vertices.data()
+          );
 
-      // iterate through all characters
-      for (c = text.begin(); c != text.end(); c++/*ayy lmao*/)
-      {
-          Glyph ch = type[*c];
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-          float xpos = x + ch.bearing.x * scale;
-          float ypos = y - (ch.size.y - ch.bearing.y) * scale;
-
-          float w = ch.size.x * scale;
-          float h = ch.size.y * scale;
-
-                  // quick and dirty line break
-          if (*c == '\n')
-          {
-              y -= h*1.1;
-              x = initialX;
-              continue;
-          }
-          
-          // update VBO for each character
-          float vertices[6][4] = {
-              { xpos,     ypos + h,   0.0f, 0.0f },
-              { xpos,     ypos,       0.0f, 1.0f },
-              { xpos + w, ypos,       1.0f, 1.0f },
-
-              { xpos,     ypos + h,   0.0f, 0.0f },
-              { xpos + w, ypos,       1.0f, 1.0f },
-              { xpos + w, ypos + h,   1.0f, 0.0f }
-          };
-
-          // render glyph texture over quad
-          glBindTexture(GL_TEXTURE_2D, ch.textureID);
-          // update content of VBO memory
-          glBindBuffer(GL_ARRAY_BUFFER, VBO);
-          glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-          glError("Setting data for Glyph texture " + std::to_string(*c) + " :");
-          glBufferStatus("Setting data for Glyph texture "+ std::to_string(*c) + " :");
-          // render quad
-          glDrawArrays(GL_TRIANGLES, 0, 6);
-          // now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-          x += (ch.offset >> 6) * scale; // bitshift by 6 to get value in pixels (2^6 = 64)
-      }
+        glDrawArrays(GL_TRIANGLES, 0, i);
 
       glBindVertexArray(0);
-      glBindTexture(GL_TEXTURE_2D, 0);
       
   }
 

@@ -60,6 +60,7 @@ namespace jGL
             detectUniformsAndCreate<int>(code);
             detectUniformsAndCreate<float>(code);
             detectUniformsAndCreate<glm::vec2>(code);
+            detectUniformsAndCreate<glm::vec4>(code);
             detectUniformsAndCreate<glm::mat4>(code);
             detectUniformsAndCreate<Sampler2D>(code);
         }

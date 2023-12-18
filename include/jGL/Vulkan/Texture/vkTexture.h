@@ -77,7 +77,6 @@ namespace jGL::Vulkan
             VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
 
-        const glm::ivec3 size() const { return glm::ivec3(width, height, channels); }
         const VkImageView & getVkImageView() const { return imageView; }
 
         ~vkTexture()

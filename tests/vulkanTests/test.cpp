@@ -49,6 +49,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
         {
             vk = std::move(std::make_unique<jGL::Vulkan::VulkanInstance>(display));
             instantCreated = true;
+            vk->finish();
         }
         catch (const std::exception & e)
         {
@@ -112,7 +113,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
             bool fontLoaded = false;
             try
             {
-                jGL::Vulkan::Font(vk->getDevice(), vk->getCommand(), 48);
+                jGL::Vulkan::vkFont(vk->getDevice(), vk->getCommand(), 48);
                 fontLoaded = true;
             }
             catch (const std::exception & e)
