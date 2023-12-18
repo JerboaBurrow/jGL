@@ -12,7 +12,7 @@ int main(int argv, char ** argc)
         }
     }
 
-    jGL::Display display(resX, resY, "Particles", &keyEventCallback, vulkan);
+    jGL::Display display(resX, resY, "Particles", vulkan);
 
     glewInit();
     
