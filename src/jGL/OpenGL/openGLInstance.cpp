@@ -14,13 +14,11 @@ namespace jGL::GL
         textRenderer.renderText(
             defaultFont,
             characters,
-            position.x,
-            position.y,
+            position,
             scale,
-            glm::vec3(colour.r, colour.g, colour.b),
-            colour.a
+            colour,
+            res
         );
-
     }
 
 }

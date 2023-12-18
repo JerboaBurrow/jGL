@@ -113,6 +113,17 @@ namespace jGL::GL
 
         }
 
+        void setValue(jGLUniform<glm::vec4> * u, glm::vec4 value)
+        {
+            u->value = value;
+            if (isCompiled())
+            {
+                use();
+                glUniform4f(location(u->name.c_str()), u->value.x, u->value.y, u->value.z, u->value.w);
+            }
+
+        }
+
         void setValue(jGLUniform<glm::mat4> * u, glm::mat4 value)
         {
             u->value = value;

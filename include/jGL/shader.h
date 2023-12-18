@@ -28,6 +28,8 @@ namespace jGL
     template <> inline
     const std::regex UNIFORM_DATA_REGEX<glm::vec2> = std::regex("uniform vec2 (\\S+);");
     template <> inline
+    const std::regex UNIFORM_DATA_REGEX<glm::vec4> = std::regex("uniform vec4 (\\S+);");
+    template <> inline
     const std::regex UNIFORM_DATA_REGEX<glm::mat4> = std::regex("uniform mat4 (\\S+);");
     template <> inline
     const std::regex UNIFORM_DATA_REGEX<Sampler2D> = std::regex("uniform(\\slowp\\s|\\shighp\\s|\\smediump\\s|\\s)sampler2D (\\S+);");
@@ -189,6 +191,11 @@ namespace jGL
         }
 
         virtual void setValue(jGLUniform<glm::vec2> * u, glm::vec2 value)
+        {
+            u->value = value;
+        }
+
+        virtual void setValue(jGLUniform<glm::vec4> * u, glm::vec4 value)
         {
             u->value = value;
         }

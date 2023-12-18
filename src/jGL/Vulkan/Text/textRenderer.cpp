@@ -18,7 +18,7 @@ namespace jGL::Vulkan
         res(glm::ivec2(viewport.width, viewport.height))
     {
 
-        font = std::make_unique<Font>
+        font = std::make_unique<vkFont>
         (
             device,
             command,

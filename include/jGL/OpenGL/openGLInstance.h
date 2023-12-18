@@ -1,5 +1,5 @@
-#ifndef OPENGLINSTANCE
-#define OPENGLINSTANCE
+#ifndef OPENGLINSTANCE_H
+#define OPENGLINSTANCE_H
 
 #include <jGL/jGL.h>
 #include <jGL/OpenGL/Text/textRenderer.h>
@@ -19,7 +19,10 @@ namespace jGL::GL
         public:
 
             OpenGLInstance(const Display & display)
-            : jGLInstance(display), framebuffer(glDrawFramebuffer())
+            : jGLInstance(display), 
+              framebuffer(glDrawFramebuffer()), 
+              res(glm::vec2(display.getResX(), display.getResY())), 
+              textRenderer(res)
             {
                 framebuffer.setResolution
                 (
@@ -102,12 +105,14 @@ namespace jGL::GL
 
             glDrawFramebuffer framebuffer;
 
-            Type defaultFont = Type(48);
+            glFont defaultFont = glFont(48);
+
+            glm::vec2 res;
+
             TextRenderer textRenderer;
 
             glm::vec4 clearColour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
     };
 }
 
-#endif /* OPENGLINSTANCE */
+#endif /* OPENGLINSTANCE_H */

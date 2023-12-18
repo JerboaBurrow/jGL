@@ -1,5 +1,5 @@
-#ifndef TEXTRENDERER
-#define TEXTRENDERER
+#ifndef VKTEXTRENDERER_H
+#define VKTEXTRENDERER_H
 
 #include <jGL/Vulkan/pipeline.h>
 #include <jGL/Vulkan/Text/font.h>
@@ -76,7 +76,7 @@ namespace jGL::Vulkan
     std::shared_ptr<vkTexture> fontTexture;
     std::shared_ptr<Sampler> fontSampler;
 
-    std::unique_ptr<Font> font;
+    std::unique_ptr<vkFont> font;
 
     std::unique_ptr<Pipeline> textPipeline;
 

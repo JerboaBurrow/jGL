@@ -1,7 +1,9 @@
-#ifndef FONT
-#define FONT
+#ifndef VKFONT_H
+#define VKFONT_H
 
-#include <jGL/Vulkan/Text/glyph.h>
+#include <jGL/glyph.h>
+#include <jGL/font.h>
+
 #include <jGL/Vulkan/Device/device.h>
 #include <jGL/Vulkan/Command/command.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
@@ -12,32 +14,28 @@
 
 namespace jGL::Vulkan
 {
-    class Font 
+    class vkFont : public Font 
     {
 
     public:
 
-        Font(const Device & device, const Command & command, uint8_t w);
+        vkFont(const Device & device, const Command & command, uint8_t w)
+        : Font(w), device(device), command(command)
+        {
+            upload(bw, bh);
+        }
 
-        const VkImageView & getGlyphView() { return fontBitmap->getVkImageView(); }
-        const glm::ivec2 getBitmapSize() const { return glm::ivec2(fontBitmap->size().x, fontBitmap->size().y); }
+        const VkImageView & getGlyphView() const { return view; }
 
-        std::array<glm::vec4, 6> getGlyphVertices(float x, float y, float scale, unsigned char c);
-        glm::vec4 getGlyphOffset(unsigned char c) { return glyphOffset[c]; }
-        glm::ivec2 getGlyphSize(unsigned char c) { return glyphs[c].getSize(); }
-
-        float spacing(float scale) { return scale * width; }
+        void upload(uint16_t w, uint16_t h);
 
     private:
 
-        uint8_t width;
+        const Device & device;
+        const Command & command;
 
-        std::map<unsigned char, Glyph> glyphs;
-        std::map<unsigned char, glm::vec4> glyphOffset;
-
-        std::unique_ptr<vkTexture> fontBitmap;
-
+        VkImageView view;
     };
 }
 
-#endif /* FONT */
+#endif /* VKFONT_H */
