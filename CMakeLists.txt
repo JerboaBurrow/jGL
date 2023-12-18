@@ -119,6 +119,8 @@ IF (TEST_SUITE)
         "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
         "src/id.cpp"
+        "src/jGL/font.cpp"
+        "src/jGL/glyph.cpp"
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
@@ -148,6 +150,8 @@ IF (TEST_SUITE)
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"
         "src/id.cpp"
+        "src/jGL/font.cpp"
+        "src/jGL/glyph.cpp"
     )
     
 
