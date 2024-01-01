@@ -2,7 +2,7 @@
 #define SWAPCHAIN
 
 #include <jGL/Vulkan/Device/device.h>
-#include <log.h>
+#include <jLog/jLog.h>
 #include <sstream>
 
 #include <limits>

@@ -35,7 +35,7 @@ int main(int argv, char ** argc)
 
     float scale = SCALE_PX / std::max(resX, resY);
 
-    Log log;
+    jLog::Log log;
 
     high_resolution_clock::time_point tic, tock, rdt0, rut0, pt0;
     double rdt, rut, pt;

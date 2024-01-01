@@ -4,7 +4,7 @@ namespace jGL::Vulkan
 {
     void Swapchain::createSwapchain(unsigned width, unsigned height, const Device & device,  const VkSurfaceKHR & surface)
     {
-        Log log;
+        jLog::Log log;
         std::stringstream message;
 
         SwapchainSupportDetails swapchainSupport = device.getPhysicalDevice().getSwapchainSupportDetails();
@@ -16,7 +16,7 @@ namespace jGL::Vulkan
         uint32_t imageCount = swapchainSupport.capabilities.minImageCount + 1;
 
         message << "[VULKAN] creating Swapchain with " << imageCount << " images\n";
-        INFO(message.str()) >> log;
+        jLog::INFO(message.str()) >> log;
 
         if 
         (

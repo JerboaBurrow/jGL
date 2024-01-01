@@ -12,7 +12,7 @@
 #include <iostream>
 #include <fstream>
 #include <memory>
-#include <log.h>
+#include <jLog/jLog.h>
 #include <typeinfo>
 
 namespace jGL

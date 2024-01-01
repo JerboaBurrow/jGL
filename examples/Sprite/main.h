@@ -8,7 +8,7 @@
 #include <jGL/Display/display.h>
 #include <jGL/orthoCam.h>
 
-#include <log.h>
+#include <jLog/jLog.h>
 #include <Util/util.h>
 
 #include <chrono>
