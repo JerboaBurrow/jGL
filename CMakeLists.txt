@@ -50,10 +50,10 @@ if (NOT ANDROID)
     # let sources know glew is static
     add_compile_definitions(GLEW_STATIC)
     set(GLEW_SOURCE include/vendored/glew/src/glew.c)
-    set(GLEW_INCLUDE include/vendored/glew/include/)
+    set(GLEW_INCLUDE include/vendored/glew/include)
 
-    add_library(glew STATIC ${GLEW_SOURCE} ${GLEW_INCLUDE} include/vendored/glew/include/GL)
-    target_link_directories(glew PUBLIC ${GLEW_INCLUDE} ${OPENGL_INCLUDE_DIRS})
+    add_library(glew STATIC ${GLEW_SOURCE})
+    target_include_directories(glew PUBLIC ${GLEW_INCLUDE} ${OPENGL_INCLUDE_DIRS})
 
     target_link_libraries(glew
         ${OPENGL_LIBRARY}
