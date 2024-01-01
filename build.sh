@@ -110,6 +110,7 @@ then
   cd build
   cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
   make -j 4
+  export STATUS=$?
   cd ..
   # now copy dlls
   PREFIX="x86_64-w64-mingw32"
@@ -143,10 +144,13 @@ then
   cd build
   cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./osx.cmake
   make -j 4
+  export STATUS=$?
   cd ..
 else
   cd build
   cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D EXAMPLES=$EXAMPLES ..
-  make -j 4 
+  make -j 4
+  export STATUS=$?
   cd ..
 fi
+echo STATUS
