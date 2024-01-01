@@ -33,13 +33,15 @@ set(CMAKE_BUILD_RPATH ".")
 
 find_package(Vulkan REQUIRED)
 
+add_subdirectory(include/vendored/freetype)
+
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 if (ANDROID)
     find_library(GLES-lib GLESv3 REQUIRED)
 else()
     find_package(OpenGL REQUIRED)
 endif()
 
-add_subdirectory(include/vendored/freetype)
 add_subdirectory(include/vendored/glm)
 add_subdirectory(include/vendored/stduuid)
 
@@ -51,7 +53,7 @@ if (NOT ANDROID)
     set(GLEW_SOURCE include/vendored/glew/src/glew.c)
     set(GLEW_INCLUDE include/vendored/glew/include)
 
-    add_library(glew STATIC ${GLEW_SOURCE})
+    add_library(glew STATIC ${GLEW_SOURCE} ${GLEW_INCLUDE})
     target_include_directories(glew PUBLIC ${GLEW_INCLUDE} ${OPENGL_INCLUDE_DIRS})
 
     target_link_libraries(glew
@@ -97,6 +99,7 @@ target_include_directories(jGL PUBLIC
     include/vendored/freetype/include 
     include/vendored/VulkanSDK/Include
     include/vendored/VulkanSDK/Include/shaderc 
+    include/vendored/VulkanSDK/Include/vulkan
     include/vendored/glfw/include
     include/jLog
     include/jThread
@@ -164,6 +167,7 @@ IF (TEST_SUITE)
         include/vendored/glew/include/GL
         include/vendored/freetype/include 
         include/vendored/glfw/include
+        include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
     )
@@ -207,9 +211,21 @@ IF (TEST_SUITE)
         include/jLog
         include/jThread
     )
+
+    if (WINDOWS)
+        add_compile_definitions(WINDOWS)
+        set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
+        target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/Windows/Lib)
+    elseif(OSX)
+        add_compile_definitions(MACOS)
+        target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/MacOS/Lib)
+    elseif(ANDROID)
+        
+    else()
+        target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/Linux/Lib)
+    endif()
     
     target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
-    target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/Linux/Lib)
     target_compile_definitions(vkTests PUBLIC GLSL_VERSION="330")
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
