@@ -96,7 +96,8 @@ target_include_directories(jGL PUBLIC
     ${GLEW_INCLUDE}
     include/vendored/glew/include/GL
     include/vendored/freetype/include 
-    include/vendored/VulkanSDK/Include 
+    include/vendored/VulkanSDK/Include
+    include/vendored/VulkanSDK/Include/shaderc 
     include/vendored/glfw/include
     include/jLog
     include/jThread
