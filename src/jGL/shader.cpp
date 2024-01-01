@@ -76,10 +76,10 @@ namespace jGL
 
     bool Shader::lint()
     {
-        Log log;
+        jLog::Log log;
         if (vertex == "" || fragment == "")
         {
-            WARN("Attempted to lint an empty shader") >> log;
+            jLog::WARN("Attempted to lint an empty shader") >> log;
             return true;
         }
 
@@ -108,7 +108,7 @@ namespace jGL
 
         if (msg != "")
         {
-            WARN(msg) >> log;
+            jLog::WARN(msg) >> log;
             return true;
         }
         else

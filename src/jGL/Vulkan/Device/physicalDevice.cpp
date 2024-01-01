@@ -9,7 +9,7 @@ namespace jGL::Vulkan
 
     void PhysicalDevice::pick(const VkInstance & instance, const VkSurfaceKHR & surface)
     {
-        Log log;
+        jLog::Log log;
         uint32_t deviceCount = 0;
         vkEnumeratePhysicalDevices(instance, &deviceCount, nullptr);
         if (deviceCount == 0)
@@ -54,7 +54,7 @@ namespace jGL::Vulkan
                 message << "    Device supports \n" 
                         << "        " << msaaSamples << " msaa samples\n"
                         << "        " << deviceProperties.limits.maxSamplerAnisotropy << " anisotropy samples\n";
-                INFO(message.str()) >> log;
+                jLog::INFO(message.str()) >> log;
             }
         }
     }

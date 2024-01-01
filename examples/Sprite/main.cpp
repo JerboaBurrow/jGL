@@ -17,7 +17,7 @@ int main(int argv, char ** argc)
     glm::vec4 minWorld = camera.screenToWorld(0.0f, 0.0f);
     glm::vec4 maxWorld = camera.screenToWorld(res.x, res.y);
 
-    Log log;
+    jLog::Log log;
 
     high_resolution_clock::time_point tic, tock;
     double rdt = 0.0;

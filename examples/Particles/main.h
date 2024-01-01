@@ -10,7 +10,7 @@
 #include <jGL/orthoCam.h>
 
 #include <dynamics.h>
-#include <log.h>
+#include <jLog/jLog.h>
 #include <Util/util.h>
 
 #include <chrono>

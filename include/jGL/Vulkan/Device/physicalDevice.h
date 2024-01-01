@@ -10,7 +10,7 @@
 #include <optional>
 #include <set>
 
-#include <log.h>
+#include <jLog/jLog.h>
 
 namespace jGL::Vulkan
 {

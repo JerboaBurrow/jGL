@@ -115,7 +115,6 @@ IF (TEST_SUITE)
     # GL Enabled
     add_executable(glTests 
         ${TEST_SRC}
-        "src/log.cpp"
         "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
         "src/id.cpp"
@@ -145,7 +144,6 @@ IF (TEST_SUITE)
     add_executable(vkTests
         ${TEST_SRC}
         "src/jGL/Display/display.cpp"
-        "src/log.cpp"
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"

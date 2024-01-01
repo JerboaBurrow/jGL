@@ -3,8 +3,8 @@
 void TODO(std::string context)
 {
 #ifndef NO_WARN
-    Log log;
+    jLog::Log log;
 
-    WARN("Function is unimplemented: "+context) >> log;
+    jLog::WARN("Function is unimplemented: "+context) >> log;
 #endif
 }
