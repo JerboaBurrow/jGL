@@ -86,6 +86,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+export VULKAN_SDK=$VK_SDK
+export VULKAN_LIBRARY="$VK_SDK/Linux/Lib"
+export VULKAN_INCLUDE_DIR="$VK_SDK/Include"
+
 if [[ $CLEAN -eq 1 ]]; 
 then
   for file in build CMakeFiles cmake_install.cmake CMakeCache.txt Makefile Particles

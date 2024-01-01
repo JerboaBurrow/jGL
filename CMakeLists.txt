@@ -157,6 +157,18 @@ IF (TEST_SUITE)
         "src/jGL/glyph.cpp"
     )
 
+    target_include_directories(glTests PUBLIC 
+        include 
+        include/vendored 
+        ${OPENGL_INCLUDE_DIRS} 
+        ${GLEW_INCLUDE}
+        include/vendored/glew/include/GL
+        include/vendored/freetype/include 
+        include/vendored/glfw/include
+        include/jLog
+        include/jThread
+    )
+
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
 
     target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
@@ -174,7 +186,6 @@ IF (TEST_SUITE)
         "tests/vulkanTests/*.cpp"
         "src/jGL/Vulkan/*.cpp"
     )
-    include_directories(include "tests/" ${Vulkan_INCLUDE_DIR})
 
     add_executable(vkTests
         ${TEST_SRC}
@@ -186,9 +197,20 @@ IF (TEST_SUITE)
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
     )
-    
 
+    target_include_directories(vkTests PUBLIC 
+        include 
+        include/vendored 
+        ${Vulkan_INCLUDE_DIR} 
+        tests
+        include/vendored/freetype/include 
+        include/vendored/VulkanSDK/Include
+        include/jLog
+        include/jThread
+    )
+    
     target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
+    target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/Linux/Lib)
     target_compile_definitions(vkTests PUBLIC GLSL_VERSION="330")
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
