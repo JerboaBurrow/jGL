@@ -77,10 +77,31 @@ namespace jGL::GL
             glActiveTexture(GL_TEXTURE0);
 
             glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, texture);
-                glTexImage2DMultisample(GL_TEXTURE_2D_MULTISAMPLE, msaaSamples, GL_RGB, resX, resY, GL_TRUE);
+                // I fucking love cross platform development...
+                #ifdef ANDROID
+                glTexStorage2DMultisample
+                #else
+                glTexImage2DMultisample
+                #endif
+                (
+                    GL_TEXTURE_2D_MULTISAMPLE, 
+                    msaaSamples, 
+                    GL_RGB, 
+                    resX, 
+                    resY, 
+                    GL_TRUE
+                );
             glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0); 
             
-            glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D_MULTISAMPLE, texture, 0); 
+            glFramebufferTexture2D
+            (
+                GL_FRAMEBUFFER, 
+                GL_COLOR_ATTACHMENT0, 
+                GL_TEXTURE_2D_MULTISAMPLE, 
+                texture, 
+                0
+            ); 
+
             setClear(clearColour);
         }
 

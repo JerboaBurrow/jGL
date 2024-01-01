@@ -8,69 +8,71 @@ option(RELEASE On)
 
 set(CMAKE_CXX_STANDARD 17)
 if (RELEASE)
-    set(CMAKE_BUILD_TYPE Release)
+    if (ANDROID)
+        message("ANDROID MinSizeRel!")
+        # GOOGLE!! (Release is not a thing pos ndk 23 apparently..)
+        add_compile_definitions(BUILD_TYPE="MinSizeRel")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-trapping-math -fno-rounding-math -fno-signed-zeros")
+    else()
+        set(CMAKE_BUILD_TYPE Release)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-trapping-math -fno-rounding-math -fno-signaling-nans -fno-signed-zeros")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -Wall")
+    endif()
 else()
-    set(CMAKE_BUILD_TYPE Debug)
+    if (ANDROID)
+        # GOOGLE!!
+        add_compile_definitions(BUILD_TYPE="RelWithDebInfo")
+    else()
+        set(CMAKE_BUILD_TYPE Debug)
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -g -Wall")
+    endif()
 endif()
-
-if (BENCHMARK)
-    add_compile_definitions(BUILD_TYPE="RelWithDebInfo")
-elseif (RELEASE)
-    add_compile_definitions(BUILD_TYPE="Release")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-trapping-math -fno-rounding-math -fno-signaling-nans -fno-signed-zeros")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -Wall")
-else ()
-    add_compile_definitions(BUILD_TYPE="Debug")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -g -Wall")
-endif ()
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 set(CMAKE_BUILD_RPATH ".")
 
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 find_package(Vulkan REQUIRED)
-include_directories(${Vulkan_INCLUDE_DIR})
-include_directories(include include/vendored/VulkanSDK/Include)
+
+if (ANDROID)
+    find_library(GLES-lib GLESv3 REQUIRED)
+else()
+    find_package(OpenGL REQUIRED)
+endif()
 
 add_subdirectory(include/vendored/freetype)
-include_directories(include/vendored/freetype/include)
-
-SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 add_subdirectory(include/vendored/glm)
-
 add_subdirectory(include/vendored/stduuid)
 
-add_subdirectory(include/vendored/glfw)
-include_directories(include/vendored/glfw/include)
+if (NOT ANDROID)
 
-find_package(OpenGL REQUIRED)
-# let sources know glew is static
-add_compile_definitions(GLEW_STATIC)
-set(GLEW_SOURCE include/vendored/glew/src/glew.c)
-set(GLEW_INCLUDE include/vendored/glew/include/)
+    add_subdirectory(include/vendored/glfw)
+    # let sources know glew is static
+    add_compile_definitions(GLEW_STATIC)
+    set(GLEW_SOURCE include/vendored/glew/src/glew.c)
+    set(GLEW_INCLUDE include/vendored/glew/include/)
 
-add_library(glew STATIC ${GLEW_SOURCE} ${GLEW_INCLUDE})
+    add_library(glew STATIC ${GLEW_SOURCE} ${GLEW_INCLUDE})
+    target_link_directories(glew PUBLIC ${GLEW_INCLUDE} ${OPENGL_INCLUDE_DIRS})
 
-target_link_libraries(glew
-    ${OPENGL_LIBRARY}
-)
+    target_link_libraries(glew
+        ${OPENGL_LIBRARY}
+    )
 
-include_directories(include include/vendored ${OPENGL_INCLUDE_DIRS} ${GLEW_INCLUDE})
+endif()
 
-file(GLOB_RECURSE jGL_SRC
-    "src/jGL/*.cpp"
-    "src/*.cpp"
-    "src/Util/*.cpp"
-)
-
-if (WINDOWS)
-    add_compile_definitions(WINDOWS)
-    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
-    link_directories(include/vendored/VulkanSDK/Windows/Lib)
-elseif(OSX)
-    add_compile_definitions(MACOS)
-    link_directories(include/vendored/VulkanSDK/MacOS/Lib)
+if (ANDROID)
+    file(GLOB_RECURSE jGL_SRC
+        "src/jGL/OpenGL/*.cpp"
+        "src/*.cpp"
+        "src/Util/*.cpp"
+    )
 else()
-    link_directories(include/vendored/VulkanSDK/Linux/Lib)
+    file(GLOB_RECURSE jGL_SRC
+        "src/jGL/*.cpp"
+        "src/*.cpp"
+        "src/Util/*.cpp"
+    )
 endif()
 
 if (VALIDATION)
@@ -86,8 +88,39 @@ endif()
 
 add_library(jGL STATIC ${jGL_SRC})
 
+target_include_directories(jGL PUBLIC 
+    include 
+    include/vendored 
+    ${OPENGL_INCLUDE_DIRS} 
+    ${Vulkan_INCLUDE_DIR} 
+    ${GLEW_INCLUDE} 
+    include/vendored/freetype/include 
+    include/vendored/VulkanSDK/Include 
+    include/vendored/glfw/include
+    include/jLog
+    include/jThread
+)
+
+if (WINDOWS)
+    add_compile_definitions(WINDOWS)
+    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
+    target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/Windows/Lib)
+elseif(OSX)
+    add_compile_definitions(MACOS)
+    target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/MacOS/Lib)
+elseif(ANDROID)
+    
+else()
+    target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/Linux/Lib)
+endif()
+
 target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
-target_link_libraries(jGL stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+
+if (ANDROID)
+    target_link_libraries(jGL ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
+else()
+    target_link_libraries(jGL stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+endif()
 
 If (EXAMPLES)
     add_subdirectory(examples)
