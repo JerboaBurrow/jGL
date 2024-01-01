@@ -211,7 +211,9 @@ namespace jGL::GL
 
     void glParticles::draw(glm::mat4 proj)
     {
+        #ifndef ANDROID // IFLCPD
         glEnable(GL_PROGRAM_POINT_SIZE);
+        #endif
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glDisable(GL_DEPTH_TEST);

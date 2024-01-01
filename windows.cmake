@@ -10,3 +10,6 @@ set(CMAKE_RC_COMPILER ${TOOLCHAIN_PREFIX}-windres)
 
 # target environment on the build host system
 set(CMAKE_FIND_ROOT_PATH /usr/${TOOLCHAIN_PREFIX})
+
+set(CMAKE_CROSSCOMPILING On)
+set(CMAKE_CROSSCOMPILING_EMULATOR wine64)

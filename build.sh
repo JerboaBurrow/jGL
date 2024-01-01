@@ -86,6 +86,10 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+export VULKAN_SDK=$VK_SDK
+export VULKAN_LIBRARY="$VK_SDK/Linux/Lib"
+export VULKAN_INCLUDE_DIR="$VK_SDK/Include"
+
 if [[ $CLEAN -eq 1 ]]; 
 then
   for file in build CMakeFiles cmake_install.cmake CMakeCache.txt Makefile Particles
@@ -108,7 +112,9 @@ then
   export VULKAN_LIBRARY="$VK_SDK/Windows/Lib"
   export VULKAN_INCLUDE_DIR="$VK_SDK/Windows/Include" 
   cd build
-  cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake && make -j 4
+  cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
+  make -j 4
+  export STATUS=$?
   cd ..
   # now copy dlls
   PREFIX="x86_64-w64-mingw32"
@@ -140,10 +146,15 @@ then
 elif [[ $OSX -eq 0 ]];
 then
   cd build
-  cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./osx.cmake && make -j 4
+  cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./osx.cmake
+  make -j 4
+  export STATUS=$?
   cd ..
 else
   cd build
-  cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D EXAMPLES=$EXAMPLES .. && make -j 4 
+  cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D EXAMPLES=$EXAMPLES ..
+  make -j 4
+  export STATUS=$?
   cd ..
 fi
+exit $STATUS

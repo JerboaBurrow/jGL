@@ -1,8 +1,10 @@
 #ifndef VULKANINSTANCE
 #define VULKANINSTANCE
 
+#ifndef ANDROID
 #define GLFW_INCLUDE_VULKAN
 #include <GLFW/glfw3.h>
+#endif
 
 #include <version.h>
 #include <jGL/Vulkan/vkDebug.h>
