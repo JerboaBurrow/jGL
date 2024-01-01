@@ -153,4 +153,4 @@ else
   export STATUS=$?
   cd ..
 fi
-echo STATUS
+echo $STATUS
