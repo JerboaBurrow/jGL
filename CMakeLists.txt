@@ -93,7 +93,8 @@ target_include_directories(jGL PUBLIC
     include/vendored 
     ${OPENGL_INCLUDE_DIRS} 
     ${Vulkan_INCLUDE_DIR} 
-    ${GLEW_INCLUDE} 
+    ${GLEW_INCLUDE}
+    include/vendored/glew/include/GL
     include/vendored/freetype/include 
     include/vendored/VulkanSDK/Include 
     include/vendored/glfw/include
