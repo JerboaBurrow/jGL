@@ -1,9 +1,9 @@
-#ifndef COMPUTE_H
-#define COMPUTE_H
+#ifndef DYNAMICS_H
+#define DYNAMICS_H
 
 #include <jGL/particles.h>
 
-#include <threadPool.h>
+#include <jThread/jThread.h>
 
 #include <toy.h>
 #include <rand.h>
@@ -68,7 +68,7 @@ namespace Particles::Dynamics
         Toy repellers;
         Toy spinners;
 
-        ThreadPool workers;
+        jThread::ThreadPool workers;
 
     private:
 
@@ -106,4 +106,4 @@ namespace Particles::Dynamics
 
 }
 
-#endif /* COMPUTE_H */
+#endif /* DYNAMICS_H */
