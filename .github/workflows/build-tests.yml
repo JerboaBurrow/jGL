@@ -1,4 +1,4 @@
-name: Particles build tests
+name: jGL build tests
 
 on:
   push:
