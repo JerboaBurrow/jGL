@@ -1,11 +1,6 @@
 name: jGL run tests
 
 on:
-  push:
-    branches-ignore: 'main'
-    paths-ignore:
-      - 'doc/**'
-      - '.github/**'
   pull_request:
   workflow_dispatch:
 
@@ -52,6 +47,7 @@ jobs:
         sleep 5 && kill $PID
 
   wineRunTest:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-22.04
 
     steps:
