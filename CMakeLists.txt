@@ -121,9 +121,9 @@ endif()
 target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
 
 if (ANDROID)
-    target_link_libraries(jGL ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
+    target_link_libraries(jGL PUBLIC ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
 else()
-    target_link_libraries(jGL stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+    target_link_libraries(jGL PUBLIC stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
 endif()
 
 If (EXAMPLES)
