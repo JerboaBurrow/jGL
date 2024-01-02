@@ -177,8 +177,6 @@ namespace jGL::GL
         this->width = width;
         this->height = height;
         
-        unsigned char * data[width*height];
-        
         bind();
 
         glTexParameteri
@@ -216,18 +214,6 @@ namespace jGL::GL
             GL_RED,
             GL_UNSIGNED_BYTE,
             NULL
-        );
-
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGBA,
-            width,
-            height,
-            0,
-            GL_RGBA,
-            GL_UNSIGNED_BYTE,
-            data
         );
 
         glBindTexture(GL_TEXTURE_2D, 0);

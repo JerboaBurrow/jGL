@@ -22,8 +22,10 @@ https://developer.android.com/ndk/guides/stable_apis
 #else
 
 #ifdef _WIN32
+#ifndef GLEW_STATIC
 #define GLEW_STATIC
 #endif
+#endif 
 
 #include <GL/glew.h>
 
