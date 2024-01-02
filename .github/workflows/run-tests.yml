@@ -1,0 +1,88 @@
+name: jGL run tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  linuxRunTest:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+        
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y build-essential xorg-dev mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev libxinerama-dev libxcursor-dev xvfb x11-apps vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
+
+    - name: linux-linux
+      run: |
+        ./build.sh -t -r -e
+
+    - name: run particles
+      run: |
+        cd build/Examples/Particles
+        chmod +x Particles
+        export DISPLAY=:99
+        sudo Xvfb :99 -screen 0 800x600x24 &
+        sleep 5
+        MESA_GL_VERSION_OVERRIDE=3.3 ./Particles &
+        export PID=$!
+        sleep 10
+        xwd -root -silent | convert xwd:- png:particles.png
+        sleep 5 && kill $PID
+
+    - name: run sprite
+      run: |
+        cd build/Examples/Sprite
+        chmod +x Sprite
+        export DISPLAY=:99
+        sudo Xvfb :99 -screen 0 800x600x24 &
+        sleep 5
+        MESA_GL_VERSION_OVERRIDE=3.3 ./Sprite &
+        export PID=$!
+        sleep 10
+        xwd -root -silent | convert xwd:- png:sprite.png
+        sleep 5 && kill $PID
+
+  wineRunTest:
+    if: ${{ github.event_name == 'workflow_dispatch' }}
+    runs-on: ubuntu-22.04
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'true'
+        
+    - name: Install dependencies
+      run: sudo apt-get update && sudo apt-get install -y xorg-dev build-essential mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libxinerama-dev libxcursor-dev xvfb x11-apps vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools wine64
+    - name: linux-windows
+      run: |
+        ./build.sh -t -r -w -e
+
+    - name: run particles
+      run: |
+        cd build/Examples/Particles
+        chmod +x Particles.exe
+        export DISPLAY=:99
+        sudo Xvfb :99 -screen 0 800x600x24 &
+        sleep 5
+        MESA_GL_VERSION_OVERRIDE=3.3 wine64 Particles.exe &
+        export PID=$!
+        sleep 10
+        xwd -root -silent | convert xwd:- png:particles-wine.png
+        sleep 5 && kill $PID
+
+    - name: run sprite
+      run: |
+        cd build/Examples/Sprite
+        chmod +x Sprite.exe
+        export DISPLAY=:99
+        sudo Xvfb :99 -screen 0 800x600x24 &
+        sleep 5
+        MESA_GL_VERSION_OVERRIDE=3.3 wine64 Sprite.exe &
+        export PID=$!
+        sleep 10
+        xwd -root -silent | convert xwd:- png:sprite-wine.png
+        sleep 5 && kill $PID
