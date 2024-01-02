@@ -30,8 +30,14 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 ./Particles &
         export PID=$!
         sleep 10
-        xwd -root -silent | convert xwd:- png:particles.png
+        xwd -root -silent | convert xwd:- png:screenshot.png
         sleep 5 && kill $PID
+
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: particles
+        path: build/Examples/Particles/screenshot.png
 
     - name: run sprite
       run: |
@@ -43,8 +49,14 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 ./Sprite &
         export PID=$!
         sleep 10
-        xwd -root -silent | convert xwd:- png:sprite.png
+        xwd -root -silent | convert xwd:- png:screenshot.png
         sleep 5 && kill $PID
+
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sprite
+        path: build/Examples/Sprite/screenshot.png
 
   wineRunTest:
     if: ${{ github.event_name == 'workflow_dispatch' }}
@@ -71,8 +83,14 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 wine64 Particles.exe &
         export PID=$!
         sleep 10
-        xwd -root -silent | convert xwd:- png:particles-wine.png
+        xwd -root -silent | convert xwd:- png:screenshot.png
         sleep 5 && kill $PID
+
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: particles-wine
+        path: build/Examples/Particles/screenshot.png
 
     - name: run sprite
       run: |
@@ -84,5 +102,11 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 wine64 Sprite.exe &
         export PID=$!
         sleep 10
-        xwd -root -silent | convert xwd:- png:sprite-wine.png
+        xwd -root -silent | convert xwd:- png:screenshot.png
         sleep 5 && kill $PID
+  
+    - name: upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: sprite-wine
+        path: build/Examples/Sprite/screenshot.png
