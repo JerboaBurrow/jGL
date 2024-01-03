@@ -45,6 +45,26 @@ namespace jGL
         virtual void draw() { draw(ids); }
 
         virtual void add(Sprite s, SpriteId id);
+
+        virtual void remove(SpriteId id)
+        {
+            if (sprites.find(id) != sprites.end())
+            {
+                sprites.erase(id);
+            }
+
+            auto iter = std::find(ids.begin(), ids.end(), id);
+
+            if (iter != ids.end())
+            {
+                ids.erase(iter);
+            }
+        }
+
+        bool hasId(const SpriteId id) const { return sprites.find(id) != sprites.end(); } 
+
+        virtual void clear() { ids.clear(); sprites.clear(); }
+
         virtual void setProjection(glm::mat4 p) {projection = p;}
 
     protected:
