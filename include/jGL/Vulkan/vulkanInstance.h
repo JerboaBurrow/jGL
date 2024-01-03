@@ -22,6 +22,7 @@
 
 #include <jGL/Vulkan/vkParticles.h>
 #include <jGL/Vulkan/vkSpriteRenderer.h>
+#include <jGL/Vulkan/vkShapeRenderer.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
 
 #include <jGL/Vulkan/Text/textRenderer.h>
@@ -98,6 +99,17 @@ namespace jGL::Vulkan
             return std::static_pointer_cast<SpriteRenderer>
             (
                 std::make_shared<vkSpriteRenderer>
+                (
+                    sizeHint
+                )
+            );
+        }
+
+        std::shared_ptr<ShapeRenderer> createShapeRenderer(size_t sizeHint)
+        {
+            return std::static_pointer_cast<ShapeRenderer>
+            (
+                std::make_shared<vkShapeRenderer>
                 (
                     sizeHint
                 )

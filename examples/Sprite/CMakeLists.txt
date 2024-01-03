@@ -1,3 +1,5 @@
+set(OUTPUT_NAME Sprite)
+
 file(GLOB_RECURSE SRC
     "*.cpp"
 )
@@ -14,10 +16,10 @@ endif()
 
 include_directories(.)
 
-add_executable(Sprite ${SRC})
+add_executable(${OUTPUT_NAME} ${SRC})
 
-target_link_libraries(Sprite jGL)
+target_link_libraries(${OUTPUT_NAME} jGL)
 
-set_target_properties(Sprite PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Examples/Sprite")
+set_target_properties(${OUTPUT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/Examples/${OUTPUT_NAME}")
 
-file(COPY resource DESTINATION "${CMAKE_BINARY_DIR}/Examples/Sprite/")
+file(COPY resource DESTINATION "${CMAKE_BINARY_DIR}/Examples/${OUTPUT_NAME}/")

@@ -1,5 +1,5 @@
-#ifndef SPRITE
-#define SPRITE
+#ifndef SPRITE_H
+#define SPRITE_H
 
 #include <jGL/texture.h>
 #include <jGL/primitive.h>
@@ -55,4 +55,4 @@ namespace jGL
     };
 }
 
-#endif /* SPRITE */
+#endif /* SPRITE_H */
