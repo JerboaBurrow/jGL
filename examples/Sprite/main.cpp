@@ -12,11 +12,7 @@ int main(int argv, char ** argc)
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
 
     camera.setPosition(0.0f, 0.0f);
-
-    glm::vec2 res = camera.getResolution();
-    glm::vec4 minWorld = camera.screenToWorld(0.0f, 0.0f);
-    glm::vec4 maxWorld = camera.screenToWorld(res.x, res.y);
-
+    
     jLog::Log log;
 
     high_resolution_clock::time_point tic, tock;

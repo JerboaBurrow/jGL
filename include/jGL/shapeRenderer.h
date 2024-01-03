@@ -43,6 +43,26 @@ namespace jGL
         virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
 
         virtual void add(std::shared_ptr<Shape> s, ShapeId id);
+        
+        virtual void remove(ShapeId id)
+        {
+            if (shapes.find(id) != shapes.end())
+            {
+                shapes.erase(id);
+            }
+
+            auto iter = std::find(ids.begin(), ids.end(), id);
+
+            if (iter != ids.end())
+            {
+                ids.erase(iter);
+            }
+        }
+
+        virtual void clear() { ids.clear(); shapes.clear(); }
+
+        bool hasId(const ShapeId id) const { return shapes.find(id) != shapes.end(); } 
+
         virtual void setProjection(glm::mat4 p) {projection = p;}
 
     protected:
