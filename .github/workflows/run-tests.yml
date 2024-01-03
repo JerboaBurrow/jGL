@@ -8,6 +8,10 @@ jobs:
   linuxRunTest:
     runs-on: ubuntu-22.04
 
+    strategy:
+      matrix:
+        example: [Particles, Sprite, Shape]
+
     steps:
     - uses: actions/checkout@v3
       with:
@@ -20,10 +24,10 @@ jobs:
       run: |
         ./build.sh -t -r -e
 
-    - name: run particles
+    - name: run ${{ matrix.example }}
       run: |
-        cd build/Examples/Particles
-        chmod +x Particles
+        cd build/Examples/${{ matrix.example }}
+        chmod +x ${{ matrix.example }}
         export DISPLAY=:99
         sudo Xvfb :99 -screen 0 800x600x24 &
         sleep 5
@@ -36,31 +40,16 @@ jobs:
     - name: upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: particles
-        path: build/Examples/Particles/screenshot.png
-
-    - name: run sprite
-      run: |
-        cd build/Examples/Sprite
-        chmod +x Sprite
-        export DISPLAY=:99
-        sudo Xvfb :99 -screen 0 800x600x24 &
-        sleep 5
-        MESA_GL_VERSION_OVERRIDE=3.3 ./Sprite &
-        export PID=$!
-        sleep 10
-        xwd -root -silent | convert xwd:- png:screenshot.png
-        sleep 5 && kill $PID
-
-    - name: upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: sprite
-        path: build/Examples/Sprite/screenshot.png
+        name: ${{ matrix.example }}.png
+        path: build/Examples/${{ matrix.example }}/screenshot.png
 
   wineRunTest:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-22.04
+    
+    strategy:
+      matrix:
+        example: [Particles, Sprite, Shape]
 
     steps:
     - uses: actions/checkout@v3
@@ -75,12 +64,12 @@ jobs:
 
     - name: run particles
       run: |
-        cd build/Examples/Particles
-        chmod +x Particles.exe
+        cd build/Examples/${{ matrix.example }}
+        chmod +x ${{ matrix.example }}.exe
         export DISPLAY=:99
         sudo Xvfb :99 -screen 0 800x600x24 &
         sleep 5
-        MESA_GL_VERSION_OVERRIDE=3.3 wine64 Particles.exe &
+        MESA_GL_VERSION_OVERRIDE=3.3 wine64 ${{ matrix.example }}.exe &
         export PID=$!
         sleep 10
         xwd -root -silent | convert xwd:- png:screenshot.png
@@ -89,24 +78,5 @@ jobs:
     - name: upload artifact
       uses: actions/upload-artifact@v3
       with:
-        name: particles-wine
-        path: build/Examples/Particles/screenshot.png
-
-    - name: run sprite
-      run: |
-        cd build/Examples/Sprite
-        chmod +x Sprite.exe
-        export DISPLAY=:99
-        sudo Xvfb :99 -screen 0 800x600x24 &
-        sleep 5
-        MESA_GL_VERSION_OVERRIDE=3.3 wine64 Sprite.exe &
-        export PID=$!
-        sleep 10
-        xwd -root -silent | convert xwd:- png:screenshot.png
-        sleep 5 && kill $PID
-  
-    - name: upload artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: sprite-wine
-        path: build/Examples/Sprite/screenshot.png
+        name: ${{ matrix.example }}-wine.png
+        path: build/Examples/${{ matrix.example }}/screenshot.png
