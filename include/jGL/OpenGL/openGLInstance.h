@@ -5,6 +5,7 @@
 #include <jGL/OpenGL/Text/textRenderer.h>
 #include <jGL/OpenGL/glParticles.h>
 #include <jGL/OpenGL/glSpriteRenderer.h>
+#include <jGL/OpenGL/glShapeRenderer.h>
 #include <jGL/OpenGL/Texture/glTexture.h>
 #include <jGL/OpenGL/glDrawFramebuffer.h>
 
@@ -95,6 +96,17 @@ namespace jGL::GL
                 return std::static_pointer_cast<SpriteRenderer>
                 (
                     std::make_shared<glSpriteRenderer>
+                    (
+                        sizeHint
+                    )
+                );
+            }
+
+            std::shared_ptr<ShapeRenderer> createShapeRenderer(size_t sizeHint)
+            {
+                return std::static_pointer_cast<ShapeRenderer>
+                (
+                    std::make_shared<glShapeRenderer>
                     (
                         sizeHint
                     )

@@ -27,5 +27,6 @@ namespace jGL
         }
 
         sprites[id] = s;
+        ids.push_back(id);
     }
 }

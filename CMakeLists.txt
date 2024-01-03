@@ -145,6 +145,7 @@ IF (TEST_SUITE)
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"
+        "src/jGL/shapeRenderer.cpp"
         "src/id.cpp"    
     )
     include_directories(include "tests/")
@@ -196,6 +197,7 @@ IF (TEST_SUITE)
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"
+        "src/jGL/shapeRenderer.cpp"
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"

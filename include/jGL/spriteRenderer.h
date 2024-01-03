@@ -40,6 +40,10 @@ namespace jGL
 
         virtual void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) = 0;
         virtual void draw(std::vector<SpriteId> ids) = 0;
+        
+        virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
+        virtual void draw() { draw(ids); }
+
         virtual void add(Sprite s, SpriteId id);
         virtual void setProjection(glm::mat4 p) {projection = p;}
 
@@ -51,6 +55,8 @@ namespace jGL
         uint8_t usedTextureSlots = 0;
 
         std::unordered_map<SpriteId, Sprite> sprites;
+
+        std::vector<SpriteId> ids;
 
         glm::mat4 projection = glm::mat4(0.0f);
 
