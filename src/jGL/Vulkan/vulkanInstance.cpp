@@ -4,9 +4,10 @@ namespace jGL::Vulkan
 {
 
     VulkanInstance::VulkanInstance(const Display & display)
-    : jGLInstance(display), resX(display.getResX()), resY(display.getResY())
+    : jGLInstance(display)
     {
-
+        resX = width;
+        resY = height;
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         appInfo.pApplicationName = "jGL::Vulkan";
@@ -196,6 +197,7 @@ namespace jGL::Vulkan
 
     VulkanInstance::~VulkanInstance()
     {
+        textRenderer.reset();
         vkDestroyImageView(device.getVkDevice(), framebufferImageView, nullptr);
         vkDestroyImage(device.getVkDevice(), framebufferImage, nullptr);
         vkFreeMemory(device.getVkDevice(), framebufferDeviceMemory, nullptr);

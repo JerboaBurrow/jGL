@@ -40,16 +40,15 @@ const char * TESTVS01 = "#version 450\n"
 
 SCENARIO("Vulkan instance", "[vulkan]")
 {
-    jGL::Display display(1, 1, "Vulkan Test", true);
-    std::unique_ptr<jGL::Vulkan::VulkanInstance> vk;
     WHEN("A VulkanInstance is created")
     {
+        jGL::Display display(1, 1, "Vulkan Test", true);
+        std::unique_ptr<jGL::Vulkan::VulkanInstance> vkInstance;
         bool instantCreated = false;
         try 
         {
-            vk = std::move(std::make_unique<jGL::Vulkan::VulkanInstance>(display));
+            vkInstance = std::move(std::make_unique<jGL::Vulkan::VulkanInstance>(display));
             instantCreated = true;
-            vk->finish();
         }
         catch (const std::exception & e)
         {
@@ -65,7 +64,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
             bool textureCreated = false;
             try
             {
-                std::shared_ptr<jGL::Texture> saturn = vk->createTexture
+                std::shared_ptr<jGL::Texture> saturn = vkInstance->createTexture
                 (
                     "resource/texture/saturn.png",
                     jGL::Texture::Type::RGBA
@@ -89,8 +88,8 @@ SCENARIO("Vulkan instance", "[vulkan]")
             {
                 auto tex = std::make_shared<jGL::Vulkan::vkTexture>
                 (
-                    vk->getDevice(),
-                    vk->getCommand(),
+                    vkInstance->getDevice(),
+                    vkInstance->getCommand(),
                     64,
                     64,
                     1,
@@ -113,7 +112,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
             bool fontLoaded = false;
             try
             {
-                jGL::Vulkan::vkFont(vk->getDevice(), vk->getCommand(), 48);
+                jGL::Vulkan::vkFont(vkInstance->getDevice(), vkInstance->getCommand(), 48);
                 fontLoaded = true;
             }
             catch (const std::exception & e)
@@ -131,7 +130,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
             bool shaderCompiled = false;
             try
             {
-                jGL::Vulkan::vkShader(vk->getDevice().getVkDevice(), TESTVS01, TESTFS01);
+                jGL::Vulkan::vkShader(vkInstance->getDevice().getVkDevice(), TESTVS01, TESTFS01);
                 shaderCompiled = true;
             }
             catch (const std::exception & e)
@@ -149,7 +148,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
             bool loaded = false;
             try 
             {
-                auto swapChainExtent = vk->getSwapchain().getVkExtend2D();
+                auto swapChainExtent = vkInstance->getSwapchain().getVkExtend2D();
 
                 VkViewport viewport {};
                 VkRect2D scissor {};
@@ -166,13 +165,13 @@ SCENARIO("Vulkan instance", "[vulkan]")
 
                 jGL::Vulkan::TextRenderer
                 (
-                    vk->getDevice(),
-                    vk->getCommand(),
-                    vk->getRenderPass(),
+                    vkInstance->getDevice(),
+                    vkInstance->getCommand(),
+                    vkInstance->getRenderPass(),
                     viewport,
                     scissor,
-                    vk->getConcurrentFrames(),
-                    vk->getDevice().getPhysicalDevice().getMaxMsaa()
+                    vkInstance->getConcurrentFrames(),
+                    vkInstance->getDevice().getPhysicalDevice().getMaxMsaa()
                 );
                 loaded = true;
             }
@@ -185,6 +184,11 @@ SCENARIO("Vulkan instance", "[vulkan]")
                 REQUIRE(loaded);
             }
         }
+
+        glfwSetWindowShouldClose(display.getWindow(), GLFW_TRUE);
+        display.loop();
+        vkInstance->finish();
+        display.close();
     }
 }
 
