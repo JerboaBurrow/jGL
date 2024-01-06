@@ -4,7 +4,7 @@
 #include <utility>
 #include <string>
 
-namespace Particles::Util
+namespace jGL::Util
 {
     typedef std::pair<double,double> tupled;
 

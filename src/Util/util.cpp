@@ -1,6 +1,6 @@
 #include <Util/util.h>
 
-namespace Particles::Util
+namespace jGL::Util
 {
     // forces the number x to be rendered in exactly length characters as a string
     std::string fixedLengthNumber(double x, unsigned length)
