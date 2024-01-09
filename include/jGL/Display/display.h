@@ -9,6 +9,8 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
+#include <jGL/Display/event.h>
+
 namespace jGL
 {
 
@@ -99,23 +101,6 @@ namespace jGL
             handleEvents(); 
             if (glfwWindowShouldClose(glfwWindow)){ close(); }
         }
-
-        enum class EventType {NONE, PRESS, RELEASE, HOLD};
-
-        struct Event
-        {
-            Event(double x, double y, EventType t)
-            : mouseX(x), mouseY(y), type(t)
-            {}
-
-            Event()
-            : mouseX(0.0), mouseY(0.0), type(Display::EventType::NONE)
-            {}
-
-            double mouseX;
-            double mouseY;
-            EventType type;
-        };
 
         std::vector<Event> getEvents(int code) 
         {

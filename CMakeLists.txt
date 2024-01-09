@@ -147,13 +147,13 @@ IF (TEST_SUITE)
         "src/jGL/spriteRenderer.cpp"
         "src/jGL/shapeRenderer.cpp"
         "src/id.cpp"    
+        "src/jGL/Display/*.cpp"
     )
     include_directories(include "tests/")
 
     # GL Enabled
     add_executable(glTests 
         ${TEST_SRC}
-        "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
         "src/id.cpp"
         "src/jGL/font.cpp"
@@ -189,11 +189,11 @@ IF (TEST_SUITE)
     file(GLOB_RECURSE TEST_SRC 
         "tests/vulkanTests/*.cpp"
         "src/jGL/Vulkan/*.cpp"
+        "src/jGL/Display/*.cpp"
     )
 
     add_executable(vkTests
         ${TEST_SRC}
-        "src/jGL/Display/display.cpp"
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"

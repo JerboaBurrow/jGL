@@ -8,24 +8,6 @@
 namespace jGL
 {
 
-    Display::EventType glfwCodeToEvent(int action)
-    {
-        switch (action)
-        {
-            case GLFW_PRESS:
-                return Display::EventType::PRESS;
-
-            case GLFW_RELEASE:
-                return Display::EventType::RELEASE;
-
-            case GLFW_REPEAT:
-                return Display::EventType::HOLD;
-
-            default:
-                return Display::EventType::NONE;
-        }
-    }
-
     void parseAction
     (
         GLFWwindow * window,
@@ -38,7 +20,7 @@ namespace jGL
         double x, y;
         glfwGetCursorPos(window,&x,&y);
 
-        Display::Event e(x, y, glfwCodeToEvent(action));
+        Event e(x, y, glfwCodeToEvent(action));
 
         if (data->events.find(code) == data->events.cend())
         {
