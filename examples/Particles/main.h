@@ -28,7 +28,7 @@ double deltas[60];
 
 std::unique_ptr<jGL::jGLInstance> jGLInstance;
 
-using Particles::Util::fixedLengthNumber;
+using jGL::Util::fixedLengthNumber;
 
 void keyEventCallback
 (

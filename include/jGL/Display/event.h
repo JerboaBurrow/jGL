@@ -6,9 +6,7 @@
 namespace jGL
 {
     
-    enum class EventType {NONE, PRESS, RELEASE, HOLD, PRESS_OR_HOLD};
-
-    bool operator==(const EventType & lhs, const EventType & rhs);
+    enum class EventType {NONE, PRESS, RELEASE, HOLD};
     
     EventType glfwCodeToEvent(int action);
 
