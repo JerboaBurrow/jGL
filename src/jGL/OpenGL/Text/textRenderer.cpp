@@ -1,4 +1,5 @@
 #include <jGL/OpenGL/Text/textRenderer.h>
+#include <iostream>
 
 namespace jGL::GL
 {
@@ -19,10 +20,10 @@ namespace jGL::GL
       
       glBindBuffer(GL_ARRAY_BUFFER, VBO);
 
-      charactersUploaded = 256;
+      charactersUploaded = 512;
       vertices = std::vector<float>(charactersUploaded*6*4, 0.0);
 
-      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*6*charactersUploaded*4,NULL,GL_DYNAMIC_DRAW);
+      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*vertices.size(),vertices.data(),GL_DYNAMIC_DRAW);
       glEnableVertexAttribArray(0);
       glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,4*sizeof(float),0);
 
@@ -46,7 +47,7 @@ namespace jGL::GL
       charactersUploaded = s;
       vertices = std::vector<float>(charactersUploaded*6*4, 0.0);
 
-      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*6*charactersUploaded*4,NULL,GL_DYNAMIC_DRAW);
+      glBufferData(GL_ARRAY_BUFFER,sizeof(float)*vertices.size(),vertices.data(),GL_DYNAMIC_DRAW);
       glEnableVertexAttribArray(0);
       glVertexAttribPointer(0,4,GL_FLOAT,GL_FALSE,4*sizeof(float),0);
 
@@ -116,7 +117,7 @@ namespace jGL::GL
           (
             GL_ARRAY_BUFFER,
             0,
-            vertices.size(),
+            vertices.size()*sizeof(float),
             vertices.data()
           );
 
