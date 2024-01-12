@@ -65,7 +65,12 @@ endif()
 if (ANDROID)
     file(GLOB_RECURSE jGL_SRC
         "src/jGL/OpenGL/*.cpp"
-        "src/*.cpp"
+        "src/font.cpp"
+        "src/glyph.cpp"
+        "src/shader.cpp"
+        "src/shapeRenderer.cpp"
+        "src/spriteRenderer.cpp"
+        "src/warning.cpp"
         "src/Util/*.cpp"
     )
 else()
