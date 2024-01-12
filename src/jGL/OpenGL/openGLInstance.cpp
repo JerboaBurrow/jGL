@@ -17,7 +17,7 @@ namespace jGL::GL
             position,
             scale,
             colour,
-            res
+            resolution
         );
     }
 

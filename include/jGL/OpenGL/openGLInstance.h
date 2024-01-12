@@ -19,19 +19,14 @@ namespace jGL::GL
         
         public:
 
-            OpenGLInstance(const Display & display)
-            : jGLInstance(display), 
-              framebuffer(glDrawFramebuffer()), 
-              res(glm::vec2(display.getResX(), display.getResY())), 
+            OpenGLInstance(glm::ivec2 res)
+            : jGLInstance(res), 
+              framebuffer(glDrawFramebuffer()),
               textRenderer(res)
             {
                 framebuffer.setResolution
                 (
-                    glm::vec2
-                    (
-                        display.getResX(), 
-                        display.getResY()
-                    )
+                    res
                 );
                 framebuffer.setMSAA(1);
             }
@@ -118,8 +113,6 @@ namespace jGL::GL
             glDrawFramebuffer framebuffer;
 
             glFont defaultFont = glFont(48);
-
-            glm::vec2 res;
 
             TextRenderer textRenderer;
 

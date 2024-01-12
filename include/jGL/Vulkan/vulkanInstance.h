@@ -9,7 +9,6 @@
 #include <version.h>
 #include <jGL/Vulkan/vkDebug.h>
 
-#include <jGL/Display/display.h>
 #include <jGL/jGL.h>
 
 #include <jGL/Vulkan/Device/device.h>
@@ -36,7 +35,7 @@ namespace jGL::Vulkan
 
     public:
 
-        VulkanInstance(const Display & display);
+        VulkanInstance(const DesktopDisplay & display);
 
         ~VulkanInstance();
 
@@ -135,9 +134,6 @@ namespace jGL::Vulkan
         unsigned currentFrame = 0;
 
         bool midFrame = false;
-
-        uint32_t resX = 0; 
-        uint32_t resY = 0;
 
         glm::vec4 clearColour = glm::vec4(1.0,1.0,1.0,1.0);
 

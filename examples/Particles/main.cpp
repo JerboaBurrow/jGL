@@ -12,7 +12,7 @@ int main(int argv, char ** argc)
         }
     }
 
-    jGL::Display display(resX, resY, "Particles", vulkan);
+    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Particles", vulkan);
 
     glewInit();
     
@@ -22,7 +22,7 @@ int main(int argv, char ** argc)
     }
     else
     {
-        jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display));
+        jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display.getRes()));
     }
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));

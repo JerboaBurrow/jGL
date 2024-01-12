@@ -4,7 +4,7 @@
 const double tol = 1e-6;
 #include <cmath>
 
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 #include <jGL/Vulkan/vulkanInstance.h>
 #include <jGL/texture.h>
 #include <jGL/Vulkan/Shader/vkShader.h>
@@ -42,7 +42,7 @@ SCENARIO("Vulkan instance", "[vulkan]")
 {
     WHEN("A VulkanInstance is created")
     {
-        jGL::Display display(1, 1, "Vulkan Test", true);
+        jGL::DesktopDisplay display(glm::ivec2(1, 1), "Vulkan Test", true);
         std::unique_ptr<jGL::Vulkan::VulkanInstance> vkInstance;
         bool instantCreated = false;
         try 

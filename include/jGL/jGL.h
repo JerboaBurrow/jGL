@@ -3,7 +3,7 @@
 
 #include <memory>
 
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 
 #include <jGL/texture.h>
 #include <jGL/particles.h>
@@ -21,8 +21,8 @@ namespace jGL
 
     public:
 
-        jGLInstance(const Display & display)
-        : width(display.getResX()), height(display.getResY()), closing(false)
+        jGLInstance(glm::ivec2 res)
+        : resolution(res), closing(false)
         {}
 
         virtual void text
@@ -54,7 +54,7 @@ namespace jGL
 
     protected:
 
-        uint32_t width, height;
+        glm::ivec2 resolution;
         uint8_t msaaSamples = 0;
         bool closing = false;
 

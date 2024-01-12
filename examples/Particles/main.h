@@ -6,7 +6,7 @@
 #include <jGL/Vulkan/vulkanInstance.h>
 
 #include <logo.h>
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 #include <jGL/orthoCam.h>
 
 #include <dynamics.h>

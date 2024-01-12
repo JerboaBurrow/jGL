@@ -1,4 +1,4 @@
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 #include <logo.h>
 #include <iostream>
 
@@ -15,7 +15,7 @@ namespace jGL
         int action
     )
     {
-        auto data = reinterpret_cast<Display::WindowData*>(glfwGetWindowUserPointer(window));
+        auto data = reinterpret_cast<DesktopDisplay::WindowData*>(glfwGetWindowUserPointer(window));
 
         double x, y;
         glfwGetCursorPos(window,&x,&y);
@@ -68,23 +68,22 @@ namespace jGL
         double y
     )
     {
-        auto e = reinterpret_cast<Display::WindowData*>(glfwGetWindowUserPointer(window));
+        auto e = reinterpret_cast<DesktopDisplay::WindowData*>(glfwGetWindowUserPointer(window));
         e->scrolled = true;
         e->scrollX = x;
         e->scrollY = y;
     }
 
-    Display::Display
+    DesktopDisplay::DesktopDisplay
     (
-        unsigned x, 
-        unsigned y, 
+        glm::ivec2 res,
         const char * title,
         GLFWkeyfun keyCallback,
         GLFWmousebuttonfun mouseButtonCallback,
         GLFWscrollfun mouseScrollCallback,
         bool vulkan
     )
-    : x(x), y(y), title(title)
+    : Display(res), title(title)
     {
         if ( !glfwInit() ) { exit(EXIT_FAILURE); }
 
@@ -121,17 +120,15 @@ namespace jGL
         glfwSetWindowUserPointer(glfwWindow, &this->data);
     }
 
-    Display::Display
+    DesktopDisplay::DesktopDisplay
     (
-        unsigned x, 
-        unsigned y, 
+        glm::ivec2 res,
         const char * title,
         bool vulkan
     )
-    : Display
+    : DesktopDisplay
     (
-        x,
-        y,
+        res,
         title,
         defaultKeyEventCallback, 
         defaultMouseButtonCallback, 

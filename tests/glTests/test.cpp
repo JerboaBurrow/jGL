@@ -5,7 +5,7 @@ const double tol = 1e-6;
 #include <cmath>
 
 #include <jGL/OpenGL/Shader/glShader.h>
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 
 std::default_random_engine e;
 std::uniform_int_distribution<uint64_t> U(0,-1);
@@ -17,7 +17,7 @@ using jGL::Sampler2D;
 using jGL::GL::glShader;
 using jGL::jGLUniform;
 using jGL::AbstractjGLUniform;
-using jGL::Display;
+using jGL::DesktopDisplay;
 
 static const char * TESTVS01 =
     "#version 300 es\n"

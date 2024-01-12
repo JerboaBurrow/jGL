@@ -3,11 +3,9 @@
 namespace jGL::Vulkan
 {
 
-    VulkanInstance::VulkanInstance(const Display & display)
-    : jGLInstance(display)
+    VulkanInstance::VulkanInstance(const DesktopDisplay & display)
+    : jGLInstance(display.getRes())
     {
-        resX = width;
-        resY = height;
         VkApplicationInfo appInfo{};
         appInfo.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
         appInfo.pApplicationName = "jGL::Vulkan";
@@ -293,7 +291,7 @@ namespace jGL::Vulkan
 
         if (result == VK_ERROR_OUT_OF_DATE_KHR)
         {
-            swapchain.recreateSwapchain(resX, resY, device, surface.getVkSurfaceKHR());
+            swapchain.recreateSwapchain(resolution.x, resolution.y, device, surface.getVkSurfaceKHR());
         }
         else if (result != VK_SUCCESS && result != VK_SUBOPTIMAL_KHR)
         {
@@ -384,7 +382,7 @@ namespace jGL::Vulkan
 
         if (result == VK_ERROR_OUT_OF_DATE_KHR || result == VK_SUBOPTIMAL_KHR)
         {
-            swapchain.recreateSwapchain(resX, resY, device, surface.getVkSurfaceKHR());
+            swapchain.recreateSwapchain(resolution.x, resolution.y, device, surface.getVkSurfaceKHR());
         }
         else if (result != VK_SUCCESS)
         {

@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <jGL/jGL.h>
 #include <jGL/OpenGL/openGLInstance.h>
@@ -7,7 +7,7 @@
 #include <jGL/shape.h>
 
 #include <logo.h>
-#include <jGL/Display/display.h>
+#include <jGL/Display/desktopDisplay.h>
 #include <jGL/orthoCam.h>
 
 #include <jLog/jLog.h>
@@ -58,4 +58,4 @@ const char * fragmentShader =
         "fragment = colour;\n"
     "}";
 
-#endif /* MAIN */
+#endif /* MAIN_H */
