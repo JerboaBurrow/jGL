@@ -48,10 +48,10 @@ namespace jGL::GL
 
         const char * vertexShader = 
             "#version " GLSL_VERSION "\n"
-            "precision lowp float;\n"
-            "in vec4 a_position;\n"
-            "in vec4 a_colour;\n"
-            "in vec4 a_texCoord;\n"
+            "precision lowp float; precision lowp int;\n"
+            "layout(location=0) in vec4 a_position;\n"
+            "layout(location=1) in vec4 a_colour;\n"
+            "layout(location=2) in vec4 a_texCoord;\n"
             "uniform mat4 proj;\n"
             "uniform float scale;\n"
             "out float theta;\n"
@@ -65,12 +65,12 @@ namespace jGL::GL
 
         const char * fragmentShader = 
             "#version " GLSL_VERSION "\n"
-            "precision lowp float;\n"
+            "precision lowp float; precision lowp int;\n"
             "uniform sampler2D sampler;\n"
             "uniform int textureless;\n"
             "in vec4 o_colour;\n"
             "in float theta;\n"
-            "out vec4 colour;\n"
+            "layout(location=0) out vec4 colour;\n"
             "void main(void){\n"
                 "vec2 coord = 2.0 * gl_PointCoord - 1.0;"
                 "float ct = cos(theta); float st = sin(theta);\n"

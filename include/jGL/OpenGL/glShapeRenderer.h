@@ -57,10 +57,10 @@ namespace jGL::GL
 
         const char * vertexShader = 
             "#version " GLSL_VERSION "\n"
-            "precision lowp float;\n"
-            "in vec4 a_position;\n"
-            "in vec4 a_offset;\n"
-            "in vec4 a_colour;\n"
+            "precision lowp float; precision lowp int;\n"
+            "layout(location=0) in vec4 a_position;\n"
+            "layout(location=1) in vec4 a_offset;\n"
+            "layout(location=2) in vec4 a_colour;\n"
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
             "void main(void){"
@@ -74,10 +74,10 @@ namespace jGL::GL
 
         const char * fragmentShader = 
             "#version " GLSL_VERSION "\n"
-            "precision lowp float;\n"
+            "precision lowp float; precision lowp int;\n"
             "in vec2 texCoord;\n"
             "in vec4 colour;\n"
-            "out vec4 fragment;\n"
+            "layout(location=0) out vec4 fragment;\n"
             "void main(void){\n" 
                 "fragment = colour;\n"
             "}";

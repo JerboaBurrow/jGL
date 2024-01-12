@@ -46,7 +46,8 @@ namespace jGL::GL
   private:
   
     const char * vert = "#version " GLSL_VERSION "\n"
-      "layout(location = 0) in vec4 posTex;\n"
+      "precision lowp float;\n precision lowp int;\n"
+      "layout(location=0) in vec4 posTex;\n"
       "uniform mat4 proj;\n"
       "out vec2 texCoords;\n"
       "void main()\n"
@@ -56,8 +57,9 @@ namespace jGL::GL
       "}\n";
 
     const char * frag = "#version " GLSL_VERSION "\n"
+      "precision lowp float;\n precision lowp int;\n"
       "in vec2 texCoords;\n"
-      "out vec4 colour;\n"
+      "layout(location=0) out vec4 colour;\n"
       "uniform vec4 textColour;\n"
       "uniform sampler2D glyph;\n"
       "void main()\n"

@@ -73,6 +73,7 @@ if (ANDROID)
         "src/warning.cpp"
         "src/Util/*.cpp"
         "src/jGL/common.cpp"
+        "src/id.cpp"
     )
 else()
     file(GLOB_RECURSE jGL_SRC
@@ -124,11 +125,11 @@ else()
     target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/Linux/Lib)
 endif()
 
-target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
-
 if (ANDROID)
+    target_compile_definitions(jGL PUBLIC GLSL_VERSION="300 es")
     target_link_libraries(jGL PUBLIC ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
 else()
+    target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
     target_link_libraries(jGL PUBLIC stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
 endif()
 
