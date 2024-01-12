@@ -6,6 +6,8 @@ const double tol = 1e-6;
 
 #include <jGL/OpenGL/Shader/glShader.h>
 #include <jGL/Display/desktopDisplay.h>
+#include <jGL/common.h>
+#include <stb_image.h>
 
 std::default_random_engine e;
 std::uniform_int_distribution<uint64_t> U(0,-1);

@@ -3,11 +3,12 @@
 
 #include <glm/glm.hpp>
 
-#include <vendored/stb_image.h>
-
 #include <id.h>
 
 #include <string>
+
+#include <jGL/common.h>
+#include <stb_image.h>
 
 namespace jGL
 {

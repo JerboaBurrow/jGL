@@ -1,6 +1,8 @@
 #ifndef DesktopDisplay_H
 #define DesktopDisplay_H
 
+#ifndef ANDROID
+
 #include <cstdlib>
 #include <vector>
 #include <map>
@@ -11,6 +13,9 @@
 
 #include <jGL/Display/event.h>
 #include <jGL/Display/display.h>
+
+#include <jGL/common.h>
+#include <stb_image.h>
 
 namespace jGL
 {
@@ -173,4 +178,5 @@ namespace jGL
     };
 }
 
+#endif /* ANDROID */
 #endif /* DesktopDisplay_H */

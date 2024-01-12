@@ -1,4 +1,3 @@
-
 #include <jGL/OpenGL/gl.h>
 #include <iostream>
 

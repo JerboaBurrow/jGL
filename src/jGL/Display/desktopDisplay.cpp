@@ -1,9 +1,5 @@
 #include <jGL/Display/desktopDisplay.h>
 #include <logo.h>
-#include <iostream>
-
-#define STB_IMAGE_IMPLEMENTATION
-#include <stb_image.h>
 
 namespace jGL
 {

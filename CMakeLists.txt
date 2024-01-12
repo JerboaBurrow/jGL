@@ -72,6 +72,7 @@ if (ANDROID)
         "src/spriteRenderer.cpp"
         "src/warning.cpp"
         "src/Util/*.cpp"
+        "src/jGL/common.cpp"
     )
 else()
     file(GLOB_RECURSE jGL_SRC
@@ -153,6 +154,7 @@ IF (TEST_SUITE)
         "src/jGL/shapeRenderer.cpp"
         "src/id.cpp"    
         "src/jGL/Display/*.cpp"
+        "src/jGL/common.cpp"
     )
     include_directories(include "tests/")
 
@@ -195,6 +197,7 @@ IF (TEST_SUITE)
         "tests/vulkanTests/*.cpp"
         "src/jGL/Vulkan/*.cpp"
         "src/jGL/Display/*.cpp"
+        "src/jGL/common.cpp"
     )
 
     add_executable(vkTests

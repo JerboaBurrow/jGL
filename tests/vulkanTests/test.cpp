@@ -5,6 +5,8 @@ const double tol = 1e-6;
 #include <cmath>
 
 #include <jGL/Display/desktopDisplay.h>
+#include <jGL/common.h>
+#include <stb_image.h>
 #include <jGL/Vulkan/vulkanInstance.h>
 #include <jGL/texture.h>
 #include <jGL/Vulkan/Shader/vkShader.h>
