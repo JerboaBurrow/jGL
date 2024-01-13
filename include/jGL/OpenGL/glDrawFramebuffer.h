@@ -42,12 +42,20 @@ namespace jGL::GL
 
         void bind()
         {
+            if (msaaSamples == 0)
+            {
+                return;
+            }
             glBindFramebuffer(GL_FRAMEBUFFER, buffer);
             glBufferStatus("bind framebuffer");
         }
 
         void blit()
         {
+            if (msaaSamples == 0)
+            {
+                return;
+            }
             glBindFramebuffer(GL_READ_FRAMEBUFFER, buffer);
             glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
             glBlitFramebuffer(0, 0, resX, resY, 0, 0, resX, resY, GL_COLOR_BUFFER_BIT, GL_NEAREST);
@@ -73,24 +81,37 @@ namespace jGL::GL
         {
             msaaSamples = samples;
 
+            if (msaaSamples == 0)
+            {
+                return;
+            }
+
             glBindFramebuffer(GL_FRAMEBUFFER, buffer);
             glActiveTexture(GL_TEXTURE0);
 
             glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, texture);
                 // I fucking love cross platform development...
                 #ifdef ANDROID
-                glTexStorage2DMultisample
+                    glTexStorage2DMultisample
+                    (
+                        GL_TEXTURE_2D_MULTISAMPLE, 
+                        msaaSamples, 
+                        GL_RGB8, 
+                        resX, 
+                        resY, 
+                        GL_TRUE
+                    );
                 #else
-                glTexImage2DMultisample
+                    glTexImage2DMultisample
+                    (
+                        GL_TEXTURE_2D_MULTISAMPLE, 
+                        msaaSamples, 
+                        GL_RGB, 
+                        resX, 
+                        resY, 
+                        GL_TRUE
+                    );
                 #endif
-                (
-                    GL_TEXTURE_2D_MULTISAMPLE, 
-                    msaaSamples, 
-                    GL_RGB, 
-                    resX, 
-                    resY, 
-                    GL_TRUE
-                );
             glBindTexture(GL_TEXTURE_2D_MULTISAMPLE, 0); 
             
             glFramebufferTexture2D

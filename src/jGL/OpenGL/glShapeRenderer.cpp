@@ -69,8 +69,6 @@ namespace jGL::GL
 
         glBindVertexArray(0);
 
-        glError("Shape draw");
-
     }
 
     void glShapeRenderer::freeGL()
@@ -91,7 +89,6 @@ namespace jGL::GL
         glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_position);
-
                 glBufferData
                 (
                     GL_ARRAY_BUFFER,
@@ -110,6 +107,7 @@ namespace jGL::GL
                     0
                 );
                 glVertexAttribDivisor(0,0);
+    
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 

@@ -63,6 +63,7 @@ namespace jGL::GL
             "layout(location=2) in vec4 a_colour;\n"
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
+            "out vec4 colour;\n"
             "void main(void){"
                 "vec2 pos = a_position.xy*a_offset.w;\n"
                 "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
@@ -70,6 +71,7 @@ namespace jGL::GL
                 "pos = rot*pos + a_offset.xy;\n"
                 "gl_Position = proj*vec4(pos,0.0,1.0);\n"
                 "texCoord = a_position.zw;\n"
+                "colour = a_colour;\n"
             "}";
 
         const char * fragmentShader = 

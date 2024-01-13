@@ -19,7 +19,7 @@ namespace jGL::GL
         
         public:
 
-            OpenGLInstance(glm::ivec2 res)
+            OpenGLInstance(glm::ivec2 res, uint8_t msaa = 0)
             : jGLInstance(res), 
               framebuffer(glDrawFramebuffer()),
               textRenderer(res)
@@ -28,7 +28,7 @@ namespace jGL::GL
                 (
                     res
                 );
-                framebuffer.setMSAA(1);
+                framebuffer.setMSAA(msaa);
             }
 
             ~OpenGLInstance(){framebuffer.destroy();}
