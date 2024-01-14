@@ -237,7 +237,7 @@ jobs:
 
       - name: linux-X-windows
         run: |
-          cp -r header/* tests/regression/user/include/
+          cp -r headers/* tests/regression/user/include/
           cd tests/regression/user
           mkdir build && cd build
           cmake .. && make
