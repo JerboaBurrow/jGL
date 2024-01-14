@@ -1,4 +1,4 @@
-#include <jGL/Vulkan/Text/textRenderer.h>
+#include <jGL/Vulkan/Text/vkTextRenderer.h>
 
 namespace jGL::Vulkan
 {

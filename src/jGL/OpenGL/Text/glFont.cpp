@@ -1,4 +1,4 @@
-#include <jGL/OpenGL/Text/font.h>
+#include <jGL/OpenGL/Text/glFont.h>
 
 namespace jGL::GL
 {

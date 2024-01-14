@@ -24,7 +24,7 @@
 #include <jGL/Vulkan/vkShapeRenderer.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
 
-#include <jGL/Vulkan/Text/textRenderer.h>
+#include <jGL/Vulkan/Text/vkTextRenderer.h>
 
 namespace jGL::Vulkan
 {

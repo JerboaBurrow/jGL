@@ -17,7 +17,7 @@ namespace jGL
 
         Font(uint8_t w);
 
-        ~Font() {}
+        virtual ~Font() {}
 
         const glm::ivec2 getBitmapSize() const { return glm::ivec2(fontBitmap->size().x, fontBitmap->size().y); }
 
@@ -39,10 +39,6 @@ namespace jGL
         std::shared_ptr<Texture> fontBitmap;
         std::vector<unsigned char> bitmapPixels;
         uint16_t bw, bh;
-    
-    private:
-
-        virtual void upload(uint16_t w, uint16_t h) = 0;
 
     };
 }

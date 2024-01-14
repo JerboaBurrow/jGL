@@ -2,7 +2,7 @@
 #define VKTEXTRENDERER_H
 
 #include <jGL/Vulkan/pipeline.h>
-#include <jGL/Vulkan/Text/font.h>
+#include <jGL/Vulkan/Text/vkFont.h>
 #include <jGL/Vulkan/Command/command.h>
 #include <memory>
 

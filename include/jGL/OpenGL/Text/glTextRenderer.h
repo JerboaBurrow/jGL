@@ -1,8 +1,8 @@
-#ifndef GLTEXTRENDERER_H
-#define GLTEXTRENDERER_H
+#ifndef TEXTRENDERER_H
+#define TEXTRENDERER_H
 
 #include <jGL/OpenGL/gl.h>
-#include <jGL/OpenGL/Text/font.h>
+#include <jGL/OpenGL/Text/glFont.h>
 #include <jGL/OpenGL/Shader/glShader.h>
 
 #include <glm/glm.hpp>
@@ -83,4 +83,4 @@ namespace jGL::GL
 
   };
 }
-#endif
+#endif /* TEXTRENDERER_H */

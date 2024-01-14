@@ -2,7 +2,7 @@
 #define OPENGLINSTANCE_H
 
 #include <jGL/jGL.h>
-#include <jGL/OpenGL/Text/textRenderer.h>
+#include <jGL/OpenGL/Text/glTextRenderer.h>
 #include <jGL/OpenGL/glParticles.h>
 #include <jGL/OpenGL/glSpriteRenderer.h>
 #include <jGL/OpenGL/glShapeRenderer.h>

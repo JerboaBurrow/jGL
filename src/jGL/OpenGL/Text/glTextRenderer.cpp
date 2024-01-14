@@ -1,4 +1,4 @@
-#include <jGL/OpenGL/Text/textRenderer.h>
+#include <jGL/OpenGL/Text/glTextRenderer.h>
 #include <iostream>
 
 namespace jGL::GL
