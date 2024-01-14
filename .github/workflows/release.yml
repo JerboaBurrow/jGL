@@ -11,7 +11,7 @@ on:
 
 jobs:
   linuxNative:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v3
@@ -79,7 +79,7 @@ jobs:
     
     
   linuxXwindows:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v3
@@ -218,7 +218,7 @@ jobs:
 
   test-release:
     needs: [linuxNative]
-    runs-on:
+    runs-on: ubuntu-22.04
 
     steps:
 
