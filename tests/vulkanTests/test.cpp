@@ -10,7 +10,7 @@ const double tol = 1e-6;
 #include <jGL/Vulkan/vulkanInstance.h>
 #include <jGL/texture.h>
 #include <jGL/Vulkan/Shader/vkShader.h>
-#include <jGL/Vulkan/Text/textRenderer.h>
+#include <jGL/Vulkan/Text/vkTextRenderer.h>
 #include <jGL/Vulkan/Texture/vkTexture.h>
 
 const char *  TESTFS01 = "#version 450\n"

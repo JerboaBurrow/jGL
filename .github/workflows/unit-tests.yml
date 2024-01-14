@@ -2,11 +2,9 @@ name: jGL unit tests
 
 on:
   push:
-    branches-ignore: 'main'
     paths-ignore:
       - 'doc/**'
       - '.github/**'
-  pull_request:
   workflow_dispatch:
 
 jobs:
