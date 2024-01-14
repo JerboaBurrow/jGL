@@ -242,6 +242,8 @@ jobs:
 
       - name: linux lib test
         run: |
+          ls
+          cp libjGL-linux-x86_64.a tests/regression/user/include/libjGL.a
           cp -r headers/* tests/regression/user/include/
           cd tests/regression/user
           mkdir build && cd build
@@ -295,10 +297,9 @@ jobs:
 
       - name: pack
         run: |
+          ls
           mkdir jGL
-          mv linux-x86_64 jGL/
-          mv windows jGL/
-          mv macos jGL/
+          mv *.a jGL/
           mv headers jGL/
           mv LICENSE.md jGL/
           zip -r jGL.zip jGL/*
