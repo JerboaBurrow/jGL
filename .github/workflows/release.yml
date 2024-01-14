@@ -288,7 +288,7 @@ jobs:
           mkdir jGL
           mv *.a jGL/
           mv headers/* jGL/
-          mv LICENSE.md jGL/
+          mv LICENSE jGL/
           zip -r jGL.zip jGL/*
 
 #     https://github.com/softprops/action-gh-release
