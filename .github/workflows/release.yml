@@ -45,7 +45,7 @@ jobs:
         cp -r include/vendored/glm/glm headers/
         cp -r include/vendored/stduuid/include/uuid.h headers/
         cp -r include/vendored/stduuid/gsl headers/
-        cp -r include/vendored/stb_image.h
+        cp -r include/vendored/stb_image.h headers/
         ls headers
 
 
@@ -79,7 +79,7 @@ jobs:
     
     
   linuxXwindows:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v3
