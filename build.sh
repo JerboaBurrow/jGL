@@ -189,9 +189,6 @@ else
   cd ..
 fi
 
-if [[ -z "$ANDROID_NDK" ]]
-then 
-  mergeLibs "build"
-fi
+mergeLibs "build"
 
 exit $STATUS
