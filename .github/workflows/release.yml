@@ -249,21 +249,6 @@ jobs:
           ls
           mkdir build && cd build
           cmake .. && make
-          export DISPLAY=:99
-          sudo Xvfb :99 -screen 0 800x600x24 &
-          sleep 5
-          MESA_GL_VERSION_OVERRIDE=3.3 ./user &
-          export PID=$!
-          sleep 10
-          xwd -root -silent | convert xwd:- png:screenshot.png
-          sleep 5 && kill $PID
-          
-      - name: upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: screenshot-regression
-          path: build/screenshot.png
-
 
   release:
     needs: [linuxNative, linuxXwindows, macosNative]
