@@ -17,6 +17,8 @@ namespace jGL
 
         Font(uint8_t w);
 
+        ~Font() {}
+
         const glm::ivec2 getBitmapSize() const { return glm::ivec2(fontBitmap->size().x, fontBitmap->size().y); }
 
         std::array<glm::vec4, 6> getGlyphVertices(float x, float y, float scale, unsigned char c);
@@ -37,6 +39,8 @@ namespace jGL
         std::shared_ptr<Texture> fontBitmap;
         std::vector<unsigned char> bitmapPixels;
         uint16_t bw, bh;
+    
+    private:
 
         virtual void upload(uint16_t w, uint16_t h) = 0;
 

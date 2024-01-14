@@ -15,6 +15,37 @@ function findAndCopyDLL()
     return 1
 }
 
+function mergeLibs()
+{
+  cd $1
+
+  for lib in *.a
+  do
+      cp $lib $lib.tmp
+      echo -e "\033[1;34mMerging $lib\033[0m"
+      if [[ $WINDOWS -eq 0 ]];
+      then 
+        mkdir "$lib-o"
+        ar -x $lib
+        mv *.obj "$lib-o"
+        ar -r libjGLMerged.a "$lib-o/"*
+        rm -rf "$lib-o"
+      else
+        mkdir "$lib-o"
+        ar -x $lib
+        mv *.o "$lib-o"
+        ar -r libjGLMerged.a "$lib-o/"*
+        rm -rf "$lib-o"
+      fi
+      mv $lib.tmp $lib
+  done
+
+  mv libjGLMerged.a libjGL.a
+
+  cd ..
+}
+
+
 WINDOWS=1
 RELEASE=0
 TEST=0
@@ -157,4 +188,10 @@ else
   export STATUS=$?
   cd ..
 fi
+
+if [[ -z "$ANDROID_NDK" ]]
+then 
+  mergeLibs "build"
+fi
+
 exit $STATUS

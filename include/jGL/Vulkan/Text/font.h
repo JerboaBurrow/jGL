@@ -25,9 +25,9 @@ namespace jGL::Vulkan
             upload(bw, bh);
         }
 
-        const VkImageView & getGlyphView() const { return view; }
+        ~vkFont() {}
 
-        void upload(uint16_t w, uint16_t h);
+        const VkImageView & getGlyphView() const { return view; }
 
     private:
 
@@ -35,6 +35,8 @@ namespace jGL::Vulkan
         const Command & command;
 
         VkImageView view;
+
+        void upload(uint16_t w, uint16_t h);
     };
 }
 

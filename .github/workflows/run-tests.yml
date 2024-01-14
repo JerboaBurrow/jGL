@@ -62,7 +62,7 @@ jobs:
       run: |
         ./build.sh -t -r -w -e
 
-    - name: run particles
+    - name: run ${{ matrix.example }}
       run: |
         cd build/Examples/${{ matrix.example }}
         chmod +x ${{ matrix.example }}.exe

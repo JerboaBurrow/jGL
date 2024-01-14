@@ -205,35 +205,29 @@ jobs:
     runs-on: ubuntu-22.04
     
     steps:
-      - name: get headers
-        uses: actions/download-artifact@v3
-        with:
-          name: headers
 
-      - name: get linux build
-        uses: actions/download-artifact@v3
+      - uses: actions/checkout@v3
         with:
-          name: linux-x86_64
+          submodules: 'true'
+      # - name: get headers
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: headers
 
-      - name: get windows build
-        uses: actions/download-artifact@v3
-        with:
-          name: windows
+      # - name: get linux build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: linux-x86_64
 
-      - name: get macos build
-        uses: actions/download-artifact@v3
-        with:
-          name: macos
+      # - name: get windows build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: windows
 
-      - name: pack headers
-        run: |
-          ls
-          mkdir headers
-          mv *.h headers/
-          mv Display headers
-          mv OpenGL headers
-          mv Vulkan headers
-          zip -r jGL.zip *
+      # - name: get macos build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: macos
 
 #     https://github.com/softprops/action-gh-release
       - name: release
@@ -243,4 +237,4 @@ jobs:
           prerelease: true
           name: "release-${{ github.ref_name }}"
           tag_name: ${{ github.ref }}
-          files: jGL.zip
+          files: LICENSE.md

@@ -20,6 +20,8 @@ namespace jGL::GL
             upload(bw, bh);
         }
 
+        ~glFont() {}
+
     private:
 
         void upload(uint16_t w, uint16_t h);
