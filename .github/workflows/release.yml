@@ -243,9 +243,10 @@ jobs:
       - name: linux lib test
         run: |
           ls
-          cp libjGL-linux-x86_64.a tests/regression/user/include/libjGL.a
+          cp libjGL-linux-x86_64.a tests/regression/user/libjGL.a
           cp -r headers/* tests/regression/user/include/
           cd tests/regression/user
+          ls
           mkdir build && cd build
           cmake .. && make
           export DISPLAY=:99
