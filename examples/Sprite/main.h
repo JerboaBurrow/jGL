@@ -9,7 +9,6 @@
 #include <jGL/orthoCam.h>
 
 #include <jLog/jLog.h>
-#include <Util/util.h>
 
 #include <chrono>
 using namespace std::chrono;
@@ -22,6 +21,23 @@ double deltas[60];
 
 std::unique_ptr<jGL::jGLInstance> jGLInstance;
 
-using jGL::Util::fixedLengthNumber;
+std::string fixedLengthNumber(double x, unsigned length)
+{
+    std::string d = std::to_string(x);
+    std::string dtrunc(length,' ');
+    for (unsigned c = 0; c < dtrunc.length(); c++/*ayy lmao*/)
+    {
+
+        if (c >= d.length())
+        {
+            dtrunc[c] = '0';
+        }
+        else
+        {
+            dtrunc[c] = d[c];
+        }
+    }
+    return dtrunc;
+}
 
 #endif /* MAIN */

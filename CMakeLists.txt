@@ -76,7 +76,6 @@ if (ANDROID)
         "src/shapeRenderer.cpp"
         "src/spriteRenderer.cpp"
         "src/warning.cpp"
-        "src/Util/*.cpp"
         "src/jGL/common.cpp"
         "src/id.cpp"
     )
@@ -84,7 +83,6 @@ else()
     file(GLOB_RECURSE jGL_SRC
         "src/jGL/*.cpp"
         "src/*.cpp"
-        "src/Util/*.cpp"
     )
 endif()
 
@@ -247,22 +245,5 @@ IF (TEST_SUITE)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
     include(Catch)
     catch_discover_tests(vkTests)
-
-    # non gl units
-
-    file(GLOB TEST_SRC "tests/unitTests/*.cpp")
-    include_directories(include "tests/")
-
-    add_executable(unitTests 
-        ${TEST_SRC}
-        "src/Util/util.cpp"
-    )
-
-    target_compile_definitions(unitTests PUBLIC GLSL_VERSION="330")
-    
-    include(CTest)
-    set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
-    include(Catch)
-    catch_discover_tests(unitTests)
   
 ENDIF(TEST_SUITE)
