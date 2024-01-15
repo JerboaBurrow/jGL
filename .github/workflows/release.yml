@@ -242,6 +242,7 @@ jobs:
       - name: linux lib test
         run: |
           ls
+          mkdir tests/regression/user/include/
           cp libjGL-linux-x86_64.a tests/regression/user/libjGL.a
           cp -r headers/* tests/regression/user/include/
           cd tests/regression/user
