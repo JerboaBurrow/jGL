@@ -10,3 +10,7 @@ callgrind*
 perf*
 tests/t.cpp
 **.DS_Store
+tests/regression/user/build
+tests/regression/user/include/*
+tests/regression/user-mingw/build
+tests/regression/user-mingw/include/*

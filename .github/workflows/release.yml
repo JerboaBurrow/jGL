@@ -272,10 +272,10 @@ jobs:
         with:
           name: linux-x86_64
 
-      - name: get windows build
-        uses: actions/download-artifact@v3
-        with:
-          name: windows
+      # - name: get windows build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: windows
 
       - name: get macos build
         uses: actions/download-artifact@v3

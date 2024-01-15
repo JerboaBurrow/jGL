@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(jGL)
+project(Jerboa)
 
 list(APPEND CMAKE_CXX_SOURCE_FILE_EXTENSIONS shader)
 
@@ -33,40 +33,13 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 
-set(PNG_BUILD_ZLIB On CACHE BOOL "")
-set(PNG_STATIC On CACHE BOOL "")
-set(PNG_SHARED Off CACHE BOOL "")
-set(PNG_EXECUTABLES Off CACHE BOOL "")
-
-add_subdirectory(include/vendored/zlib ${CMAKE_CURRENT_BINARY_DIR}/zlib_build)
-include_directories(include/vendored/zlib ${CMAKE_CURRENT_BINARY_DIR}/zlib_build)
-
-add_library(ZLIB ALIAS zlibstatic)
-set(ZLIB_LIBRARY ZLIB)
-set(ZLIB_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include/vendored/zlib)
-
-add_subdirectory(include/vendored/png)
-
-add_library(PNG ALIAS png_static)
-set(PNG_LIBRARY PNG)
-set(PNG_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include/vendored/png)
-
-SET(CMAKE_DISABLE_FIND_PACKAGE_HarfBuzz=TRUE)
-SET(CMAKE_DISABLE_FIND_PACKAGE_BZip2=TRUE)
-# force freetype to use the static zlib build
-set(FT_WITH_HARFBUZZ OFF CACHE BOOL "")
-set(FT_WITH_BZIP2 OFF CACHE BOOL "")
-SET(CMAKE_DISABLE_FIND_PACKAGE_HarfBuzz=TRUE)
-SET(CMAKE_DISABLE_FIND_PACKAGE_BZip2=TRUE)
-
-set(SKIP_INSTALL_ALL On CACHE BOOL "")
-
-add_subdirectory(include/vendored/freetype)
-include_directories(include/vendored/freetype/include)
-
 set(CMAKE_BUILD_RPATH ".")
 
 find_package(Vulkan REQUIRED)
+
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+add_subdirectory(include/vendored/freetype)
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".so")
 
 if (ANDROID)
     find_library(GLES-lib GLESv3 REQUIRED)
@@ -159,10 +132,10 @@ endif()
 
 if (ANDROID)
     target_compile_definitions(jGL PUBLIC GLSL_VERSION="300 es")
-    target_link_libraries(jGL PUBLIC ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid ZLIB PNG freetype glm)
+    target_link_libraries(jGL PUBLIC ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
 else()
     target_compile_definitions(jGL PUBLIC GLSL_VERSION="330")
-    target_link_libraries(jGL PUBLIC stduuid glew ZLIB PNG freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
+    target_link_libraries(jGL PUBLIC stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES} glfw shaderc_combined)
 endif()
 
 If (EXAMPLES)
