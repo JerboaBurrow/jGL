@@ -23,6 +23,7 @@ else()
 endif()
 
 include_directories(include)
+include_directories(.)
 
 find_package(ZLIB REQUIRED)
 find_package(PNG REQUIRED)
