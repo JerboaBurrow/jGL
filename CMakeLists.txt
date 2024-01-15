@@ -35,11 +35,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}")
 
 set(CMAKE_BUILD_RPATH ".")
 
-if (WINDOWS)
-    find_package(Vulkan REQUIRED /include/vendored/VulkanSDK/Windows/Lib)
-else ()
-    find_package(Vulkan REQUIRED)
-endif()
+find_package(Vulkan REQUIRED)
 
 SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
 add_subdirectory(include/vendored/freetype)
