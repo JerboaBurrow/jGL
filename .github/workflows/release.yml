@@ -277,10 +277,10 @@ jobs:
       #   with:
       #     name: windows
 
-      - name: get macos build
-        uses: actions/download-artifact@v3
-        with:
-          name: macos
+      # - name: get macos build
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: macos
 
       - name: pack
         run: |
