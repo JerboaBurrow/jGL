@@ -24,8 +24,6 @@ endif()
 
 include_directories(include)
 
-find_package(ZLIB REQUIRED)
-find_package(PNG REQUIRED)
 find_package(Vulkan REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(X11 REQUIRED)
@@ -36,8 +34,6 @@ target_link_libraries(
 	${OUTPUT_NAME}
 	${CMAKE_SOURCE_DIR}/libjGL.a
 	${X11_LIBRARIES}
-	${PNG_LIBRARIES}
-	${ZLIB_LIBRARIES} 
 	${OPENGL_LIBRARIES} ${Vulkan_LIBRARIES}
 )
 
