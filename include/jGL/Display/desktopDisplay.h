@@ -33,6 +33,20 @@ namespace jGL
     {
     public:
 
+        struct Config
+        {
+            Config()
+            : VULKAN(false), COCOA_RETINA(false)
+            {}
+            
+            Config(bool v, bool c)
+            : VULKAN(v), COCOA_RETINA(c)
+            {}
+
+            bool VULKAN;
+            bool COCOA_RETINA;
+        };
+
         DesktopDisplay
         (
             glm::ivec2 res,
@@ -40,14 +54,14 @@ namespace jGL
             GLFWkeyfun keyCallback,
             GLFWmousebuttonfun mouseButtonCallback,
             GLFWscrollfun mouseScrollCallback,
-            bool vulkan = false
+            const Config conf
         );
 
         DesktopDisplay
         (
             glm::ivec2 res,
             const char * title,
-            bool vulkan = false
+            const Config conf
         );
 
         ~DesktopDisplay(){ glfwTerminate(); free(logo); }
@@ -66,7 +80,9 @@ namespace jGL
                 glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
                 glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, true);
                 glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+                glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, windowConfig.COCOA_RETINA);
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+                
                 glfwWindow = glfwCreateWindow(getResX(), getResY(),title,NULL,NULL); glfwSwapInterval(1); 
             } 
         }
@@ -170,6 +186,8 @@ namespace jGL
         GLFWwindow * glfwWindow;
 
         WindowData data;
+
+        Config windowConfig;
 
         void swap(){ if (glfwWindow != NULL) { glfwSwapBuffers(glfwWindow); } }
 

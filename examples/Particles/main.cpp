@@ -12,7 +12,12 @@ int main(int argv, char ** argc)
         }
     }
 
-    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Particles", vulkan);
+    jGL::DesktopDisplay::Config conf;
+
+    conf.VULKAN = vulkan;
+    conf.COCOA_RETINA = false;
+
+    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Particles", conf);
 
     glewInit();
     

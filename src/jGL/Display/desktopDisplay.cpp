@@ -77,13 +77,13 @@ namespace jGL
         GLFWkeyfun keyCallback,
         GLFWmousebuttonfun mouseButtonCallback,
         GLFWscrollfun mouseScrollCallback,
-        bool vulkan
+        const Config conf
     )
-    : Display(res), title(title)
+    : Display(res), title(title), windowConfig(conf.VULKAN, conf.COCOA_RETINA)
     {
         if ( !glfwInit() ) { exit(EXIT_FAILURE); }
 
-        if (vulkan)
+        if (windowConfig.VULKAN)
         {
             glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         }
@@ -120,7 +120,7 @@ namespace jGL
     (
         glm::ivec2 res,
         const char * title,
-        bool vulkan
+        const Config conf
     )
     : DesktopDisplay
     (
@@ -129,7 +129,7 @@ namespace jGL
         defaultKeyEventCallback, 
         defaultMouseButtonCallback, 
         defaultScrollCallback, 
-        vulkan
+        conf
     )
     {}
 }
