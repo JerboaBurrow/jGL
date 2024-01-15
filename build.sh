@@ -141,7 +141,7 @@ if [[ $WINDOWS -eq 0 ]];
 then 
   export VULKAN_SDK=$VK_SDK/Windows
   export VULKAN_LIBRARY="$VK_SDK/Windows/Lib"
-  export VULKAN_INCLUDE_DIR="$VK_SDK/Windows/Include" 
+  export VULKAN_INCLUDE_DIR="$VK_SDK/Include" 
   cd build
   cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
   make -j 4

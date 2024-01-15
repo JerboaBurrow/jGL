@@ -10,6 +10,56 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  headers:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+
+    - name: pack headers
+      run: |
+        ls
+        mkdir headers
+        for inc in include/jGL \
+          include/jLog \
+          include/jThread \
+          include/*.h \
+          include/vendored/freetype/include/* \
+          include/vendored/glew/include/GL \
+          include/vendored/glfw/include/GLFW \
+          include/vendored/glm/glm \
+          include/vendored/stduuid/include/uuid.h \
+          include/vendored/stduuid/gsl \
+          include/vendored/stb_image.h \
+          do cp -r $inc headers; done
+        
+        ls headers
+
+    - name: pack headers mingw
+      run: |
+        ls
+        mkdir headers-mingw
+        cp -r headers/* headers-mingw
+        mkdir headers-mingw/VulkanSDK
+        cp -r include/vendored/VulkanSDK/Include headers-mingw/VulkanSDK/
+        cp -r include/vendored/VulkanSDK/Windows headers-mingw/VulkanSDK/
+        ls headers-mingw
+
+    - name: build header artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: headers
+        path: headers
+
+    - name: build header-mingw artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: headers-mingw
+        path: headers-mingw
+
   linuxNative:
     runs-on: ubuntu-20.04
 
@@ -29,24 +79,6 @@ jobs:
         cp build/libjGL.a linux-x86_64/libjGL-linux-x86_64.a
         cp LICENSE linux-x86_64-examples/
         cp LICENSE linux-x86_64/
-
-    - name: pack headers
-      run: |
-        ls
-        mkdir headers
-        cp -r include/jGL headers/
-        cp -r include/jLog headers/
-        cp -r include/jThread headers/
-        cp -r include/*.h headers/
-        cp -r include/vendored/freetype/include/* headers/
-        cp -r include/vendored/glew/include/GL headers/
-        cp -r include/vendored/glfw/include/GLFW headers/
-        cp -r include/vendored/glm/glm headers/
-        cp -r include/vendored/stduuid/include/uuid.h headers/
-        cp -r include/vendored/stduuid/gsl headers/
-        cp -r include/vendored/stb_image.h headers/
-        ls headers
-
 
     - name: Tests
       working-directory: ${{github.workspace}}/build
@@ -69,13 +101,6 @@ jobs:
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
-
-    - name: build header artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: headers
-        path: headers
-    
     
   linuxXwindows:
     runs-on: ubuntu-22.04
@@ -216,7 +241,7 @@ jobs:
   #         path: Particles/screenshot.png
 
   test-release:
-    needs: [linuxNative]
+    needs: [linuxNative, headers]
     runs-on: ubuntu-22.04
 
     steps:
@@ -249,6 +274,39 @@ jobs:
           ls
           mkdir build && cd build
           cmake .. && make
+
+  test-release-mingw:
+    needs: [linuxXWindows, headers-mingw]
+    runs-on: ubuntu-22.04
+
+    steps:
+    
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'true'
+
+      - name: get headers
+        uses: actions/download-artifact@v3
+        with:
+          name: headers-mingw
+          path: headers/
+
+      - name: get windows build
+        uses: actions/download-artifact@v3
+        with:
+          name: windows
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y xorg-dev build-essential mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libxinerama-dev libxcursor-dev vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools xvfb x11-apps imagemagick
+
+      - name: mingw lib test
+        run: |
+          ls
+          mkdir tests/regression/user-mingw/include/
+          cp libjGL-windows.a tests/regression/user-mingw/libjGL.a
+          cp -r headers/* tests/regression/user-mingw/include/
+          cd tests/regression/user-mingw
+          ./build.sh
 
   release:
     needs: [linuxNative, linuxXwindows, macosNative]
