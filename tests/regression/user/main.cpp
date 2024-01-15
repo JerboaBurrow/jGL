@@ -3,7 +3,12 @@
 int main(int argv, char ** argc)
 {
 
-    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape");
+    jGL::DesktopDisplay::Config conf;
+
+    conf.VULKAN = false;
+    conf.COCOA_RETINA = false;
+
+    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
 
     glewInit();
     

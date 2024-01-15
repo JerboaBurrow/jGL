@@ -44,7 +44,11 @@ SCENARIO("Vulkan instance", "[vulkan]")
 {
     WHEN("A VulkanInstance is created")
     {
-        jGL::DesktopDisplay display(glm::ivec2(1, 1), "Vulkan Test", true);
+        jGL::DesktopDisplay::Config conf;
+
+        conf.VULKAN = true;
+        conf.COCOA_RETINA = false;
+        jGL::DesktopDisplay display(glm::ivec2(1, 1), "Vulkan Test", conf);
         std::unique_ptr<jGL::Vulkan::VulkanInstance> vkInstance;
         bool instantCreated = false;
         try 
