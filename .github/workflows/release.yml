@@ -37,7 +37,6 @@ jobs:
         cp -r include/jGL headers/
         cp -r include/jLog headers/
         cp -r include/jThread headers/
-        cp -r include/Util headers/
         cp -r include/*.h headers/
         cp -r include/vendored/freetype/include/* headers/
         cp -r include/vendored/glew/include/GL headers/
