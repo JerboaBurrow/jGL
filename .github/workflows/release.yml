@@ -276,7 +276,7 @@ jobs:
           cmake .. && make
 
   test-release-mingw:
-    needs: [linuxXWindows, headers-mingw]
+    needs: [linuxXwindows, headers]
     runs-on: ubuntu-22.04
 
     steps:
