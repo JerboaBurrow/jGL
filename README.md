@@ -5,6 +5,7 @@
 This library aims to provide a simple api for graphics applications in C++, targeting multiple platforms: linux, windows, macOS, and Android 
 
 ### Cross platform status
+linux/macOS/windows: [![jGL release](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml/badge.svg)](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml)
 
 The [release action](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml) builds the lib's for each target platform, including verifying it works as intended in a user project.
 
