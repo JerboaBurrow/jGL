@@ -160,7 +160,7 @@ jobs:
         cp -r build/Examples macos-examples
         cp build/libjGL.a macos/libjGL-macos.a
         cp LICENSE macos-examples/
-        cp LICENSE macos/*
+        cp LICENSE macos/
 
     - name: build artifact
       uses: actions/upload-artifact@v3
