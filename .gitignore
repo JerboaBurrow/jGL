@@ -14,3 +14,7 @@ tests/regression/user/build
 tests/regression/user/include/*
 tests/regression/user-mingw/build
 tests/regression/user-mingw/include/*
+include/vendored/VulkanSDK/Windows/Include
+include/vendored/VulkanSDK/Windows/Include
+include/vendored/VulkanSDK/Windows/lib
+
