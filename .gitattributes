@@ -1,1 +1,3 @@
 include/vendored/** linguist-vendored
+include/logo.h linguist-vendored
+include/jGL/defaultFont.h linguist-vendored
