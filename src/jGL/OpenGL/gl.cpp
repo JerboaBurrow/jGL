@@ -89,12 +89,13 @@ namespace jGL::GL
 
         // check it worked!
         int  success;
-        char infoLog[512];
+        const unsigned logSize = 512*4;
+        char infoLog[logSize];
         glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
 
         if(!success)
         {
-            glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+            glGetShaderInfoLog(vertexShader, logSize, NULL, infoLog);
             throw( GLRuntimeException( std::string("GLSL (VERTEX) ERROR: \n") + infoLog + "\n"+vert+"\n") );
         }
 
@@ -107,7 +108,7 @@ namespace jGL::GL
 
         if(!success)
         {
-            glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+            glGetShaderInfoLog(fragmentShader, logSize, NULL, infoLog);
             throw( GLRuntimeException( std::string("GLSL (FRAGMENT) ERROR: \n") + infoLog +"\n"+frag+"\n") );
         }
 
@@ -119,9 +120,9 @@ namespace jGL::GL
         glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
         if(!success)
         {
-            glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+            glGetProgramInfoLog(shaderProgram, logSize, NULL, infoLog);
             throw( GLRuntimeException( std::string("GLSL (LINK) ERROR: \n") + infoLog + "\n"+vert+"\n"+frag+"\n") );
         }
-        glGetProgramInfoLog(shaderProgram, 512, NULL, infoLog);
+        glGetProgramInfoLog(shaderProgram, logSize, NULL, infoLog);
     }
 }

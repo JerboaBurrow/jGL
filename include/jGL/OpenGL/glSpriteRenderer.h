@@ -63,7 +63,7 @@ namespace jGL::GL
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
             "out vec3 texOffset;\n"
-            "void main(void){"
+            "void main(){"
                 "vec2 pos = a_position.xy*a_offset.w;\n"
                 "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
                 "mat2 rot = mat2(ct, -st, st, ct);\n"
@@ -83,7 +83,7 @@ namespace jGL::GL
             "in vec2 texCoord;\n"
             "in vec3 texOffset;\n"
             "layout(location=0) out vec4 colour;\n"
-            "void main(void){\n" 
+            "void main(){\n" 
                 // is this mental?
                 "if (texOffset.z == 0.0) {colour = texture(sampler0, texCoord);}\n"
                 "else if (texOffset.z == 1.0) {colour = texture(sampler1, texCoord);}\n"

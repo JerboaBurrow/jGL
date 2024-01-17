@@ -32,15 +32,15 @@ namespace jGL::GL
     {
 
         glShader(const char * v, const char * f)
-        : Shader(v, f), compiled(false), used(false)
+        : Shader(v, f), program(0), compiled(false), used(false)
         {}
 
         glShader()
-        : Shader(), compiled(false), used(false)
+        : Shader(), program(0), compiled(false), used(false)
         {}
 
         glShader(std::string path, std::string name)
-        : Shader(path, name)
+        : Shader(path, name), program(0), compiled(false), used(false)
         {}
 
         ~glShader(){if(isProgram()){release();}}
