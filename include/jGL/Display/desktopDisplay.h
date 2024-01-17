@@ -16,6 +16,7 @@
 
 #include <jGL/common.h>
 #include <stb_image.h>
+#include <algorithm>
 
 namespace jGL
 {
@@ -129,6 +130,19 @@ namespace jGL
             else
             {
                 return data.events[code];
+            }
+        }
+
+        bool keyHasEvent(int key, EventType action) 
+        {
+            if (data.events.find(key) == data.events.cend())
+            {
+                return false;
+            }
+            else
+            {
+                auto ts = getEventTypes(key);
+                return std::find(ts.cbegin(), ts.cend(), action) != ts.cend(); 
             }
         }
 
