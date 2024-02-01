@@ -38,13 +38,16 @@ namespace jGL
         const Transform & getTransform(SpriteId id) { return getSprite(id).getTransform(); }
         const TextureOffset & getTextureOffset(SpriteId id) { return getSprite(id).getTextureOffset(); }
 
-        virtual void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) = 0;
-        virtual void draw(std::vector<SpriteId> ids) = 0;
+        virtual void draw(std::shared_ptr<Shader> shader, std::multimap<uint16_t, SpriteId> ids) = 0;
+        virtual void draw(std::multimap<uint16_t, SpriteId> ids) = 0;
         
         virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
         virtual void draw() { draw(ids); }
 
-        virtual void add(Sprite s, SpriteId id);
+        virtual void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) = 0;
+        virtual void draw(std::vector<SpriteId> ids) = 0;
+
+        virtual void add(Sprite s, SpriteId id, uint16_t priority = 0);
 
         virtual void remove(SpriteId id)
         {
@@ -53,11 +56,13 @@ namespace jGL
                 sprites.erase(id);
             }
 
-            auto iter = std::find(ids.begin(), ids.end(), id);
-
-            if (iter != ids.end())
+            for (auto & e : ids)
             {
-                ids.erase(iter);
+                if (e.second == id)
+                {
+                    ids.erase(e.first);
+                    break;
+                }
             }
         }
 
@@ -76,7 +81,7 @@ namespace jGL
 
         std::unordered_map<SpriteId, Sprite> sprites;
 
-        std::vector<SpriteId> ids;
+        std::multimap<uint16_t, SpriteId> ids;
 
         glm::mat4 projection = glm::mat4(0.0f);
 
