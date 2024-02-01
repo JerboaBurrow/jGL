@@ -7,7 +7,7 @@ namespace jGL
         return shapes[id];
     }
 
-    void ShapeRenderer::add(std::shared_ptr<Shape>  s, ShapeId id)
+    void ShapeRenderer::add(std::shared_ptr<Shape>  s, ShapeId id, uint16_t priority)
     {
         
         if (shapes.find(id) != shapes.end())
@@ -16,6 +16,6 @@ namespace jGL
         }
 
         shapes[id] = s;
-        ids.push_back(id);
+        ids.insert(std::pair(priority, id));
     }
 }

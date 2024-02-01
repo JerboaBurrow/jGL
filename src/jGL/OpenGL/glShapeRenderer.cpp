@@ -2,6 +2,79 @@
 
 namespace jGL::GL 
 {
+    void glShapeRenderer::draw(std::shared_ptr<Shader> shader, std::multimap<uint16_t, ShapeId> ids)
+    {
+
+        uint32_t n = ids.size();
+
+        if (offsets.size() < 4*n)
+        {
+            offsets.resize(4*n+padShapes*4);
+            colours.resize(4*n+padShapes*4);
+            freeGL();
+            initGL();
+        }
+
+        uint64_t i = 0;
+        for (auto & sid : ids)
+        {
+            const auto shape = shapes[sid.second];
+            const Transform & trans = shape->getTransform();
+            const glm::vec4 & col = shape->getColour();
+
+            offsets[i*4] = trans.x;
+            offsets[i*4+1] = trans.y;
+            offsets[i*4+2] = trans.theta;
+            offsets[i*4+3] = trans.scale;
+            colours[i*4] = col.r;
+            colours[i*4+1] = col.g;
+            colours[i*4+2] = col.b;
+            colours[i*4+3] = col.a;
+
+            i += 1;
+        }
+
+        shader->use();
+        shader->setUniform<glm::mat4>("proj", projection);
+
+        glBindVertexArray(vao);
+
+            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    4*n*sizeof(float),
+                    &offsets[0]
+                );
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            
+            glBindBuffer(GL_ARRAY_BUFFER, a_colour);
+
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    4*n*sizeof(float),
+                    &colours[0]
+                );
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+        glBindVertexArray(0);
+
+        glBindVertexArray(vao);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glDisable(GL_DEPTH_TEST);
+        
+            glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
+
+        glBindVertexArray(0);
+
+    }
+
     void glShapeRenderer::draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids)
     {
 
@@ -15,10 +88,12 @@ namespace jGL::GL
             initGL();
         }
 
-        for (unsigned i = 0; i < n; i++)
+        uint64_t i = 0;
+        for (auto & sid : ids)
         {
-            const Transform & trans = shapes[ids[i]]->getTransform();
-            const glm::vec4 & col = shapes[ids[i]]->getColour();
+            const auto shape = shapes[sid];
+            const Transform & trans = shape->getTransform();
+            const glm::vec4 & col = shape->getColour();
 
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
@@ -28,6 +103,8 @@ namespace jGL::GL
             colours[i*4+1] = col.g;
             colours[i*4+2] = col.b;
             colours[i*4+3] = col.a;
+
+            i += 1;
         }
 
         shader->use();
