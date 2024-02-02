@@ -14,8 +14,8 @@ namespace jGL::Vulkan
         : SpriteRenderer(sizeHint)
         {}
 
-        void draw(std::shared_ptr<Shader> shader, std::multimap<uint16_t, SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
-        void draw(std::multimap<uint16_t, SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
+        void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
+        void draw(std::multimap<RenderPriority, SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}
 
         
         void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) {TODO("jGL::Vulkan::vkSprite::draw");}

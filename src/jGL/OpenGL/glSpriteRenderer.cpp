@@ -2,7 +2,7 @@
 
 namespace jGL::GL
 {
-    void glSpriteRenderer::draw(std::shared_ptr<Shader> shader, std::multimap<uint16_t, SpriteId> ids)
+    void glSpriteRenderer::draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, SpriteId> ids)
     {
 
         uint32_t n = ids.size();

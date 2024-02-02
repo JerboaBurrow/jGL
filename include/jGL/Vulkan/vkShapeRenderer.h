@@ -14,8 +14,8 @@ namespace jGL::Vulkan
         : ShapeRenderer(sizeHint)
         {}
         
-        void draw(std::shared_ptr<Shader> shader, std::multimap<uint16_t, ShapeId> ids){TODO("jGL::Vulkan::vkShape::draw");}
-        void draw(std::multimap<uint16_t, ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
+        void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids){TODO("jGL::Vulkan::vkShape::draw");}
+        void draw(std::multimap<RenderPriority, ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
 
         void draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
         void draw(std::vector<ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}

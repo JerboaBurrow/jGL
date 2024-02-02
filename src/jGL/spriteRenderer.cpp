@@ -7,7 +7,7 @@ namespace jGL
         return sprites[id];
     }
 
-    void SpriteRenderer::add(Sprite s, SpriteId id, uint16_t priority)
+    void SpriteRenderer::add(Sprite s, SpriteId id, RenderPriority priority)
     {
         Id textureId = s.getTextureId();
         auto is_equal = [textureId](std::shared_ptr<Texture> t) { return t->getId() == textureId; };

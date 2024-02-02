@@ -7,7 +7,7 @@ namespace jGL
         return shapes[id];
     }
 
-    void ShapeRenderer::add(std::shared_ptr<Shape>  s, ShapeId id, uint16_t priority)
+    void ShapeRenderer::add(std::shared_ptr<Shape>  s, ShapeId id, RenderPriority priority)
     {
         
         if (shapes.find(id) != shapes.end())

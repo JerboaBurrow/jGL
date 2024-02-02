@@ -81,6 +81,37 @@ int main(int argv, char ** argc)
         "sDice"
     );
 
+        sprites->add
+    (
+        {
+            jGL::Transform(0.5f, 0.1f, 0.0f, 0.1f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            Pi
+        },
+        "lowest"
+    );
+
+    sprites->add
+    (
+        {
+            jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            heart
+        },
+        "middle",
+        1000
+    );
+
+    sprites->add
+    (
+        {
+            jGL::Transform(0.6f, 0.2f, 0.0f, 0.1f),
+            jGL::TextureOffset(0.0f, 0.0f),
+            dice
+        },
+        "highest",
+        100000
+    );
 
     double delta = 0.0;
 
@@ -101,7 +132,7 @@ int main(int argv, char ** argc)
             sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.1f));
             sprites->getSprite("sPi").update(jGL::Transform(0.2f, 0.2f, theta, scale));
 
-            sprites->draw({"sHeart", "sPi", "sDice"});
+            sprites->draw();
 
             delta = 0.0;
             for (int n = 0; n < 60; n++)
