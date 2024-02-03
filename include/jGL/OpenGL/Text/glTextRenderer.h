@@ -43,6 +43,13 @@ namespace jGL::GL
 
       }
 
+      void clear()
+      {
+        vertices.clear();
+        charactersUploaded = 0;
+        setBufferSize(512);
+      }
+
   private:
   
     const char * vert = "#version " GLSL_VERSION "\n"

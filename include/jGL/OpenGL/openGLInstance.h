@@ -48,6 +48,7 @@ namespace jGL::GL
 
             void clear()
             {
+                textRenderer.clear();
                 glClearColor(clearColour.r, clearColour.g, clearColour.b, clearColour.a);
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                 framebuffer.setClear(clearColour);
