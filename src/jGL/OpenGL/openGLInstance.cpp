@@ -8,7 +8,8 @@ namespace jGL::GL
         std::string characters, 
         glm::vec2 position,
         float scale,
-        glm::vec4 colour
+        glm::vec4 colour,
+        glm::bvec2 centre
     )
     {
         textRenderer.renderText(
@@ -17,7 +18,8 @@ namespace jGL::GL
             position,
             scale,
             colour,
-            resolution
+            resolution,
+            centre
         );
     }
 

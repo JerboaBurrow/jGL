@@ -43,7 +43,8 @@ namespace jGL::GL
                 std::string characters, 
                 glm::vec2 position,
                 float scale,
-                glm::vec4 colour
+                glm::vec4 colour,
+                glm::bvec2 centre = glm::bvec2(false,false)
             );
 
             void clear()
@@ -84,7 +85,7 @@ namespace jGL::GL
                     default:
                         return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGB>(imageFile));
                 }   
-                
+            
             }
 
             std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint)
