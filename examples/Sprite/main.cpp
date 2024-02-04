@@ -158,9 +158,10 @@ int main(int argv, char ** argc)
 
             jGLInstance->text(
                 debugText.str(),
-                glm::vec2(64.0f, resY-64.0f),
+                glm::vec2(resX*0.5f, resY-64.0f),
                 0.5f,
-                glm::vec4(0.0f,0.0f,0.0f,1.0f)
+                glm::vec4(0.0f,0.0f,0.0f,1.0f),
+                glm::bvec2(true,true)
             );
 
             if (frameId == 30)

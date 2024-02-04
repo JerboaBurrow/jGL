@@ -133,7 +133,7 @@ namespace jGL::Vulkan
         glm::vec2 position,
         float scale,
         glm::vec4 colour,
-        bool centre
+        glm::bvec2 centre
     )
     {
 
@@ -146,6 +146,8 @@ namespace jGL::Vulkan
             vertices = std::vector<glm::vec4>(text.size()*6, glm::vec4(0.0));
         }
 
+        glm::vec2 maxWidth = glm::vec2(0.0f);
+        glm::vec2 width = glm::vec2(0.0f);
         float p = position.x;
         float y = res.y-position.y;
         unsigned i = 0;
@@ -154,11 +156,16 @@ namespace jGL::Vulkan
             if (ch == 0x20)
             {
                 p += font->spacing(scale);
+                width.x += font->spacing(scale);
             }
             else if (ch == 0x0A)
             {
                 y += font->spacing(scale);
                 p = position.x;
+
+                maxWidth.y += font->spacing(scale);
+                maxWidth.x = std::max(width.x, maxWidth.x);
+                width.x = 0;
             }
             else
             {
@@ -168,7 +175,28 @@ namespace jGL::Vulkan
                     i++;
                 }
                 p += scale*(font->getGlyphSize(ch).x+1);
+                width.x += scale*(font->getGlyphSize(ch).x+1);
             } 
+        }
+
+        maxWidth.x = std::max(width.x, maxWidth.x);
+
+        if (centre.x || centre.y)
+        {
+          unsigned j = 0;
+          
+          glm::vec2 correction = glm::vec2
+          (
+            centre.x ? maxWidth.x * 0.5f : 0.0f, 
+            centre.y ? maxWidth.y * 0.5f : 0.0f
+          );
+
+          while (j < i)
+          {
+              vertices[j] -= correction.x;
+              vertices[j+1] += correction.y;
+              j+=4;
+          }
         }
 
         // this is bad, lol...
