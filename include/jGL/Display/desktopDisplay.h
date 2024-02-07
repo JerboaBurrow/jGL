@@ -192,7 +192,7 @@ namespace jGL
             }
         };
 
-        void setIcon(unsigned char * pixels, u_int64_t s)
+        void setIcon(unsigned char * pixels, uint64_t s)
         {
             logo = std::make_unique<GLFWimage>();
 
