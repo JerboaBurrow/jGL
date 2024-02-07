@@ -97,19 +97,7 @@ namespace jGL
         glfwSetMouseButtonCallback(glfwWindow, mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, mouseScrollCallback);
         
-        logo = new GLFWimage;
-
-        logo->pixels = stbi_load_from_memory
-        (
-            &LOGO[0], 
-            sizeof(LOGO), 
-            &logo->width, 
-            &logo->height, 
-            0, 
-            4
-        );
-
-        glfwSetWindowIcon(glfwWindow,1,logo);
+        setIcon(&LOGO[0], sizeof(LOGO));
 
         data.clear();
 
