@@ -59,7 +59,7 @@ namespace jGL
 
         Shader(std::string path, std::string name);
 
-        virtual ~Shader(){}
+        virtual ~Shader() = default;
 
         bool operator==(const Shader & s)
         {
