@@ -67,7 +67,12 @@ namespace jGL
 
         ~DesktopDisplay()
         {
-            stbi_image_free(logo->pixels);
+            for (auto icon : logo)
+            {
+                stbi_image_free(icon.pixels);
+            }
+            logo.clear();
+
             glfwTerminate();
         }
 
@@ -196,28 +201,31 @@ namespace jGL
             }
         };
 
-        void setIcon(unsigned char * pixels, uint64_t s)
+        void setIcon(const std::vector<std::vector<unsigned char>> & icons)
         {
-            logo = std::make_unique<GLFWimage>();
+            for (auto icon : icons)
+            {
+                GLFWimage image;
+                image.pixels = stbi_load_from_memory
+                (
+                    icon.data(), 
+                    icon.size(), 
+                    &image.width, 
+                    &image.height, 
+                    0, 
+                    4
+                );
+                logo.push_back(image);
+            }
 
-            logo->pixels = stbi_load_from_memory
-            (
-                &pixels[0], 
-                s, 
-                &logo->width, 
-                &logo->height, 
-                0, 
-                4
-            );
-
-            glfwSetWindowIcon(glfwWindow,1,logo.get());
+            glfwSetWindowIcon(glfwWindow,logo.size(),logo.data());
         }
 
     private:
 
         const char * title;
 
-        std::unique_ptr<GLFWimage> logo;
+        std::vector<GLFWimage> logo;
 
         GLFWwindow * glfwWindow;
 
