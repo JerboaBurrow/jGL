@@ -152,7 +152,7 @@ then
   ln -s "$dir/$VK_SDK/Include" "$dir/$VK_SDK/Windows/Include"
   ln -s "$dir/$VK_SDK/Windows/Include" "$dir/$VK_SDK/Windows/include"
   cd build
-  cmake .. -D WINDOWS=ON -D -D SANITISE=$SANITISE VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
+  cmake .. -D WINDOWS=ON -D SANITISE=$SANITISE -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
   make -j 4
   export STATUS=$?
   cd ..
