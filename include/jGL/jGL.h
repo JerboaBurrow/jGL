@@ -25,6 +25,8 @@ namespace jGL
         : resolution(res), closing(false)
         {}
 
+        virtual ~jGLInstance() = default;
+
         virtual void text
         (
             std::string characters, 

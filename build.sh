@@ -57,6 +57,7 @@ BENCHMARK=0
 EXAMPLES=0
 CLEAN=1
 NO_WARN=0
+SANITISE=0
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -96,6 +97,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     -t|--test)
       TEST=1
+      shift
+      ;;
+    --sanitise)
+      SANITISE=1
       shift
       ;;
     -d|--development)
@@ -147,7 +152,7 @@ then
   ln -s "$dir/$VK_SDK/Include" "$dir/$VK_SDK/Windows/Include"
   ln -s "$dir/$VK_SDK/Windows/Include" "$dir/$VK_SDK/Windows/include"
   cd build
-  cmake .. -D WINDOWS=ON -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
+  cmake .. -D WINDOWS=ON -D SANITISE=$SANITISE -D VERBOSE=$VERBOSE -D EXAMPLES=$EXAMPLES -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./windows.cmake 
   make -j 4
   export STATUS=$?
   cd ..
@@ -181,13 +186,13 @@ then
 elif [[ $OSX -eq 0 ]];
 then
   cd build
-  cmake .. -D OSX=ON -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./osx.cmake
+  cmake .. -D OSX=ON -D RELEASE=$RELEASE -D SANITISE=$SANITISE -D TEST_SUITE=$TEST -D EXAMPLES=$EXAMPLES -D NO_WARN=$NO_WARN -D CMAKE_TOOLCHAIN_FILE=./osx.cmake
   make -j 4
   export STATUS=$?
   cd ..
 else
   cd build
-  cmake -D BENCHMARK=$BENCHMARK -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D EXAMPLES=$EXAMPLES ..
+  cmake -D BENCHMARK=$BENCHMARK -D SANITISE=$SANITISE -D VERBOSE=$VERBOSE -D VALIDATION=$VALIDATION -D RELEASE=$RELEASE -D TEST_SUITE=$TEST -D NO_WARN=$NO_WARN -D EXAMPLES=$EXAMPLES ..
   make -j 4
   export STATUS=$?
   cd ..

@@ -10,7 +10,7 @@ namespace jGL
 
     struct Primitive
     {
-
+        virtual ~Primitive() = default;
     };
 
     struct TexturedParticle : public Primitive

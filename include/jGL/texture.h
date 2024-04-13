@@ -24,6 +24,8 @@ namespace jGL
         : width(0), height(0), channels(0), id(Id::next())
         {}
 
+        virtual ~Texture() = default;
+
         virtual void bind(unsigned unit) = 0;
 
         bool operator==(const Texture & rhs) const { return this->id == rhs.id; }
