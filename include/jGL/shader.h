@@ -59,6 +59,8 @@ namespace jGL
 
         Shader(std::string path, std::string name);
 
+        virtual ~Shader(){}
+
         bool operator==(const Shader & s)
         {
             return this->vertex == s.vertex && this->fragment == s.fragment;

@@ -65,7 +65,11 @@ namespace jGL
             const Config conf
         );
 
-        ~DesktopDisplay(){ glfwTerminate(); }
+        ~DesktopDisplay()
+        {
+            stbi_image_free(logo->pixels);
+            glfwTerminate();
+        }
 
         GLFWwindow * getWindow() const { return glfwWindow; }
 
