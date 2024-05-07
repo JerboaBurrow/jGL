@@ -203,6 +203,8 @@ namespace jGL
 
         void setIcon(const std::vector<std::vector<unsigned char>> & icons)
         {
+            glfwSetWindowIcon(glfwWindow, 0, NULL);
+            logo.clear();
             for (auto icon : icons)
             {
                 GLFWimage image;
