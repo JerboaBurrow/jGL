@@ -11,8 +11,12 @@ int main(int argv, char ** argc)
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
 
     glewInit();
+
+    glm::ivec2 res = display.frameBufferSize();
+    resX = res.x;
+    resY = res.y;
     
-    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display.getRes()));
+    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(res));
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
 
