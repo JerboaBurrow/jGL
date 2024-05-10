@@ -6,8 +6,10 @@ int main(int argv, char ** argc)
     jGL::DesktopDisplay::Config conf;
 
     conf.VULKAN = false;
-    conf.COCOA_RETINA = false;
 
+    #ifdef MACOS
+    conf.COCOA_RETINA = true;
+    #endif
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
 
     glewInit();
