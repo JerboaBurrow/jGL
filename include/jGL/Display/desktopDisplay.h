@@ -119,7 +119,20 @@ namespace jGL
                 // get work area (i.e. without taskbars)
                 int wxpos, wypos, wwidth, wheight;
                 glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &wxpos, &wypos, &wwidth, &wheight);
-                glm::ivec2 pos(wxpos, wypos);
+
+                // hack to obtain decoration size
+                GLFWwindow * temporaryWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
+                int fleft, ftop, fright, fbottom;
+                glfwGetWindowFrameSize(temporaryWindow, &fleft, &ftop, &fright, &fbottom);
+                glfwWindowShouldClose(temporaryWindow);
+                glfwDestroyWindow(temporaryWindow);
+
+                #ifdef WINDOWS
+                    // windows pos includes decoration...
+                    glm::ivec2 pos(wxpos, wypos+ftop);
+                #else
+                    glm::ivec2 pos(wxpos, wypos);
+                #endif
 
                 if (windowConfig.CLIP_TO_MONITOR)
                 {
@@ -130,13 +143,6 @@ namespace jGL
 
                 if (windowConfig.CLIP_TO_WORK_AREA)
                 {
-                    // hack to obtain decoration size
-                    GLFWwindow * temporaryWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
-                    int fleft, ftop, fright, fbottom;
-                    glfwGetWindowFrameSize(temporaryWindow, &fleft, &ftop, &fright, &fbottom);
-                    glfwWindowShouldClose(temporaryWindow);
-                    glfwDestroyWindow(temporaryWindow);
-
                     if (resolution.y+ftop > wheight)
                     {
                         resolution.y = wheight-ftop;
