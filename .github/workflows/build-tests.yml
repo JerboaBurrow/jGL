@@ -27,7 +27,7 @@ jobs:
         cp LICENSE linux-x86_64-examples/
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
@@ -50,7 +50,7 @@ jobs:
         cp LICENSE windows-examples/
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-examples
         path: windows-examples
@@ -81,7 +81,7 @@ jobs:
         cp LICENSE macos-examples/
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos-examples
         path: macos-examples

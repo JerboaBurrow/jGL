@@ -49,13 +49,13 @@ jobs:
         ls headers-mingw
 
     - name: build header artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: headers
         path: headers
 
     - name: build header-mingw artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: headers-mingw
         path: headers-mingw
@@ -91,13 +91,13 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 ctest --exclude-regex Vulkan --extra-verbose --output-on-failure
 
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-x86_64
         path: linux-x86_64
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
@@ -123,13 +123,13 @@ jobs:
         cp LICENSE windows/
     
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows
         path: windows
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-examples
         path: windows-examples
@@ -163,13 +163,13 @@ jobs:
         cp LICENSE macos/
 
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos
         path: macos
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos-examples
         path: macos-examples
@@ -202,7 +202,7 @@ jobs:
           sleep 5 && kill $PID
           
       - name: upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: screenshot
           path: Particles/screenshot.png
@@ -235,7 +235,7 @@ jobs:
   #         sleep 5 && kill $PID
           
   #     - name: upload artifact
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: screenshot-wine
   #         path: Particles/screenshot.png

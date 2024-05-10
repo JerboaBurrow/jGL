@@ -38,7 +38,7 @@ jobs:
         sleep 5 && kill $PID
 
     - name: upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.example }}.png
         path: build/Examples/${{ matrix.example }}/screenshot.png
@@ -76,7 +76,7 @@ jobs:
         sleep 5 && kill $PID
 
     - name: upload artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ matrix.example }}-wine.png
         path: build/Examples/${{ matrix.example }}/screenshot.png
