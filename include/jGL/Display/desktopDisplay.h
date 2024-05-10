@@ -37,15 +37,38 @@ namespace jGL
         struct Config
         {
             Config()
-            : VULKAN(false), COCOA_RETINA(false)
+            : VULKAN(false), 
+              COCOA_RETINA(false), 
+              CLIP_TO_MONITOR(true),
+              CLIP_TO_WORK_AREA(true)
             {}
             
-            Config(bool v, bool c)
-            : VULKAN(v), COCOA_RETINA(c)
+            Config
+            (
+                bool vulkan, 
+                bool cocoa, 
+                bool clipMonitor, 
+                bool clipWorkArea
+            )
+            : VULKAN(vulkan), 
+              COCOA_RETINA(cocoa),
+              CLIP_TO_MONITOR(clipMonitor),
+              CLIP_TO_WORK_AREA(clipWorkArea)
+            {}
+
+            Config (const Config & c)
+            : VULKAN(c.VULKAN), 
+              COCOA_RETINA(c.COCOA_RETINA),
+              CLIP_TO_MONITOR(c.CLIP_TO_MONITOR),
+              CLIP_TO_WORK_AREA(c.CLIP_TO_WORK_AREA)
             {}
 
             bool VULKAN;
             bool COCOA_RETINA;
+            // if screen size bigger than monitor clip
+            bool CLIP_TO_MONITOR;
+            // if screen size too big to fit with taskbars, cip
+            bool CLIP_TO_WORK_AREA;
         };
 
         DesktopDisplay
@@ -92,8 +115,48 @@ namespace jGL
                 glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
                 glfwWindowHint(GLFW_COCOA_RETINA_FRAMEBUFFER, windowConfig.COCOA_RETINA);
                 glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
+
+                // get work area (i.e. without taskbars)
+                int wxpos, wypos, wwidth, wheight;
+                glfwGetMonitorWorkarea(glfwGetPrimaryMonitor(), &wxpos, &wypos, &wwidth, &wheight);
+
+                // hack to obtain decoration size
+                GLFWwindow * temporaryWindow = glfwCreateWindow(1, 1, "", NULL, NULL);
+                int fleft, ftop, fright, fbottom;
+                glfwGetWindowFrameSize(temporaryWindow, &fleft, &ftop, &fright, &fbottom);
+                glfwWindowShouldClose(temporaryWindow);
+                glfwDestroyWindow(temporaryWindow);
+
+                #ifdef WINDOWS
+                    // windows pos includes decoration...
+                    glm::ivec2 pos(wxpos, wypos+ftop);
+                #else
+                    glm::ivec2 pos(wxpos, wypos);
+                #endif
+
+                if (windowConfig.CLIP_TO_MONITOR)
+                {
+                    const GLFWvidmode * mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+                    resolution.x = std::min(resolution.x, mode->width);
+                    resolution.y = std::min(resolution.y, mode->height);
+                }
+
+                if (windowConfig.CLIP_TO_WORK_AREA)
+                {
+                    if (resolution.y+ftop > wheight)
+                    {
+                        resolution.y = wheight-ftop;
+                    }
+
+                    if (resolution.x > wwidth)
+                    {
+                        resolution.x = wwidth;
+                    }
+                }
                 
-                glfwWindow = glfwCreateWindow(getResX(), getResY(),title,NULL,NULL); glfwSwapInterval(1); 
+                glfwWindow = glfwCreateWindow(getResX(), getResY(),title,NULL,NULL); 
+                glfwSwapInterval(1); 
+                setWindowPosition(pos);
             } 
         }
 
@@ -221,6 +284,54 @@ namespace jGL
             }
 
             glfwSetWindowIcon(glfwWindow,logo.size(),logo.data());
+        }
+
+        glm::ivec2 frameBufferSize() const 
+        {
+            glm::ivec2 s;
+            if (glfwWindow != NULL)
+            {
+                glfwGetFramebufferSize(glfwWindow, &s.x, &s.y);
+            }
+            return s;
+        }
+
+        glm::ivec2 windowSize() const 
+        {
+            glm::ivec2 s;
+            if (glfwWindow != NULL)
+            {
+                glfwGetWindowSize(glfwWindow, &s.x, &s.y);
+            }
+            return s;
+        }
+
+        glm::ivec4 windowFrameSize() const 
+        {
+            glm::ivec4 s;
+            if (glfwWindow != NULL)
+            {
+                glfwGetWindowFrameSize(glfwWindow, &s.x, &s.y, &s.z, &s.w);
+            }
+            return s;
+        }
+
+        glm::ivec2 windowPosition() const 
+        {
+            glm::ivec2 s;
+            if (glfwWindow != NULL)
+            {
+                glfwGetWindowPos(glfwWindow, &s.x, &s.y);
+            }
+            return s;
+        }
+
+        void setWindowPosition(glm::ivec2 s) 
+        {
+            if (glfwWindow != NULL)
+            {
+                glfwSetWindowPos(glfwWindow, s.x, s.y);
+            }
         }
 
     private:

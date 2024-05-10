@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'recursive'
 
@@ -49,13 +49,13 @@ jobs:
         ls headers-mingw
 
     - name: build header artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: headers
         path: headers
 
     - name: build header-mingw artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: headers-mingw
         path: headers-mingw
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'true'
     
@@ -91,13 +91,13 @@ jobs:
         MESA_GL_VERSION_OVERRIDE=3.3 ctest --exclude-regex Vulkan --extra-verbose --output-on-failure
 
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-x86_64
         path: linux-x86_64
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'true'
     
@@ -123,13 +123,13 @@ jobs:
         cp LICENSE windows/
     
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows
         path: windows
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: windows-examples
         path: windows-examples
@@ -138,7 +138,7 @@ jobs:
     runs-on: macos-11
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: 'true'
 
@@ -163,13 +163,13 @@ jobs:
         cp LICENSE macos/
 
     - name: build artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos
         path: macos
 
     - name: build examples artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: macos-examples
         path: macos-examples
@@ -183,7 +183,7 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick
 
       - name: get linux build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: linux-x86_64-examples
 
@@ -202,7 +202,7 @@ jobs:
           sleep 5 && kill $PID
           
       - name: upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: screenshot
           path: Particles/screenshot.png
@@ -216,7 +216,7 @@ jobs:
   #       run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick wine32 wine64
 
   #     - name: get linux build
-  #       uses: actions/download-artifact@v3
+  #       uses: actions/download-artifact@v4
   #       with:
   #         name: windows-examples
 
@@ -235,7 +235,7 @@ jobs:
   #         sleep 5 && kill $PID
           
   #     - name: upload artifact
-  #       uses: actions/upload-artifact@v3
+  #       uses: actions/upload-artifact@v4
   #       with:
   #         name: screenshot-wine
   #         path: Particles/screenshot.png
@@ -246,18 +246,18 @@ jobs:
 
     steps:
     
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'true'
 
       - name: get headers
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: headers
           path: headers/
 
       - name: get linux build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: linux-x86_64
 
@@ -281,18 +281,18 @@ jobs:
 
     steps:
     
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'true'
 
       - name: get headers
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: headers-mingw
           path: headers/
 
       - name: get windows build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: windows
 
@@ -314,18 +314,18 @@ jobs:
 
     steps:
     
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'true'
 
       - name: get headers
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: headers
           path: headers/
 
       - name: get macos build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: macos
 
@@ -357,28 +357,28 @@ jobs:
     
     steps:
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: 'true'
 
       - name: get headers
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: headers
           path: headers/
 
       - name: get linux build
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: linux-x86_64
 
       # - name: get windows build
-      #   uses: actions/download-artifact@v3
+      #   uses: actions/download-artifact@v4
       #   with:
       #     name: windows
 
       # - name: get macos build
-      #   uses: actions/download-artifact@v3
+      #   uses: actions/download-artifact@v4
       #   with:
       #     name: macos
 
@@ -393,7 +393,7 @@ jobs:
 
 #     https://github.com/softprops/action-gh-release
       - name: release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           draft: true
           prerelease: true

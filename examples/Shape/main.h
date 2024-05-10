@@ -16,8 +16,9 @@
 #include <chrono>
 using namespace std::chrono;
 
-const int resX = 800;
-const int resY = 1000;
+// to also test clipping
+int resX = 1980;
+int resY = 1100;
 
 uint8_t frameId = 0;
 double deltas[60];

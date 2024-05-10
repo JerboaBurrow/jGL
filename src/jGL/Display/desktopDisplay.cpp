@@ -79,7 +79,7 @@ namespace jGL
         GLFWscrollfun mouseScrollCallback,
         const Config conf
     )
-    : Display(res), title(title), windowConfig(conf.VULKAN, conf.COCOA_RETINA)
+    : Display(res), title(title), windowConfig(conf)
     {
         if ( !glfwInit() ) { exit(EXIT_FAILURE); }
 

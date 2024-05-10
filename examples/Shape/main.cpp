@@ -6,13 +6,19 @@ int main(int argv, char ** argc)
     jGL::DesktopDisplay::Config conf;
 
     conf.VULKAN = false;
-    conf.COCOA_RETINA = false;
 
+    #ifdef MACOS
+    conf.COCOA_RETINA = true;
+    #endif
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
 
     glewInit();
+
+    glm::ivec2 res = display.frameBufferSize();
+    resX = res.x;
+    resY = res.y;
     
-    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display.getRes()));
+    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(res));
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
 
