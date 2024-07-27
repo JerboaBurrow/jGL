@@ -19,7 +19,7 @@ namespace jGL
             unlimited(true), 
             framesPerSecond(-1),
             secondsPerFrame(0.0),
-            lastFrame(std::chrono::high_resolution_clock::now())
+            lastFrame(std::chrono::steady_clock::now())
         {}
 
         unsigned getResX() const { return resolution.x; }
@@ -44,7 +44,7 @@ namespace jGL
         bool unlimited;
         unsigned framesPerSecond;
         double secondsPerFrame;
-        std::chrono::high_resolution_clock::time_point lastFrame;
+        std::chrono::steady_clock::time_point lastFrame;
 
         virtual void throttle()
         {   
@@ -52,15 +52,15 @@ namespace jGL
             {
                 return;
             }
-            std::chrono::high_resolution_clock::time_point t = std::chrono::high_resolution_clock::now();
-            std::chrono::duration<double> elapsed = std::chrono::duration_cast<std::chrono::duration<double>>(t-lastFrame);
-            if (elapsed.count() < secondsPerFrame)
+            std::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();
+            std::chrono::milliseconds elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t-lastFrame);
+            if (double(elapsed.count())/1000.0 < secondsPerFrame)
             {
                 double sleep = secondsPerFrame-elapsed.count();
                 int64_t millis = int64_t(sleep*1000.0);
                 std::this_thread::sleep_for(std::chrono::milliseconds(millis));
             }
-            lastFrame = std::chrono::high_resolution_clock::now();
+            lastFrame = std::chrono::steady_clock::now();
         }
 
     };
