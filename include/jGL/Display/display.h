@@ -18,7 +18,7 @@ namespace jGL
             resolution(res), 
             unlimited(true), 
             framesPerSecond(-1),
-            secondsPerFrame(0.0),
+            microsPerFrame(0),
             lastFrame(std::chrono::steady_clock::now())
         {}
 
@@ -29,7 +29,7 @@ namespace jGL
         virtual void setFrameLimit(unsigned fps)
         {
             framesPerSecond = fps;
-            secondsPerFrame = 1.0 / double(fps);
+            microsPerFrame = std::chrono::microseconds(int(1000000.0 / double(fps)));
             unlimited = false;
         }
 
@@ -43,7 +43,7 @@ namespace jGL
         glm::ivec2 resolution;
         bool unlimited;
         unsigned framesPerSecond;
-        double secondsPerFrame;
+        std::chrono::microseconds microsPerFrame;
         std::chrono::steady_clock::time_point lastFrame;
 
         virtual void throttle()
@@ -53,12 +53,10 @@ namespace jGL
                 return;
             }
             std::chrono::steady_clock::time_point t = std::chrono::steady_clock::now();
-            std::chrono::milliseconds elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(t-lastFrame);
-            if (double(elapsed.count())/1000.0 < secondsPerFrame)
+            std::chrono::microseconds elapsed = std::chrono::duration_cast<std::chrono::microseconds>(t-lastFrame);
+            if (elapsed < microsPerFrame)
             {
-                double sleep = secondsPerFrame-elapsed.count();
-                int64_t millis = int64_t(sleep*1000.0);
-                std::this_thread::sleep_for(std::chrono::milliseconds(millis));
+                std::this_thread::sleep_for(microsPerFrame-elapsed);
             }
             lastFrame = std::chrono::steady_clock::now();
         }
