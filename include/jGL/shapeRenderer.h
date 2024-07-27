@@ -34,8 +34,8 @@ namespace jGL
 
         std::shared_ptr<Shape> getShape(ShapeId id);
 
-        const Transform & getTransform(ShapeId id) { return getShape(id)->getTransform(); }
-        const glm::vec4 & getColour(ShapeId id) { return getShape(id)->getColour(); }
+        const Transform & getTransform(ShapeId id) { return getShape(id)->transform; }
+        const glm::vec4 & getColour(ShapeId id) { return getShape(id)->colour; }
 
         virtual void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids) = 0;
         virtual void draw(std::multimap<RenderPriority, ShapeId> ids) = 0;
