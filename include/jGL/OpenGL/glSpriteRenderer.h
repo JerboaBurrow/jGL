@@ -15,7 +15,7 @@ namespace jGL::GL
         : SpriteRenderer(sizeHint)
         {
             offsets = std::vector<float>(sizeHint*4+padSprites*4,0.0f);
-            textureOffsets = std::vector<float>(sizeHint*3+padSprites*3,0.0f);
+            textureOffsets = std::vector<float>(sizeHint*4+padSprites*4,0.0f);
             initGL();
             defaultShader = std::make_shared<glShader>(vertexShader, fragmentShader);
             defaultShader->use();
@@ -48,7 +48,7 @@ namespace jGL::GL
         };
 
         std::vector<float> offsets;         // offset x, y, theta, scale
-        std::vector<float> textureOffsets;  // tx, ty (atlas coords), texture unit
+        std::vector<float> textureOffsets;  // tx, ty (atlas coords), texture unit, alpha
 
         size_t padSprites = 8;
 
@@ -62,10 +62,10 @@ namespace jGL::GL
             "precision lowp float; precision lowp int;\n"
             "layout(location=0) in vec4 a_position;\n"
             "layout(location=1) in vec4 a_offset;\n"
-            "layout(location=2) in vec3 a_textureOffset;\n"
+            "layout(location=2) in vec4 a_textureOffset;\n"
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
-            "out vec3 texOffset;\n"
+            "out vec4 texOffset;\n"
             "void main(){"
                 "vec2 pos = a_position.xy*a_offset.w;\n"
                 "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
@@ -84,7 +84,7 @@ namespace jGL::GL
             "uniform sampler2D sampler2;\n"
             "uniform sampler2D sampler3;\n"
             "in vec2 texCoord;\n"
-            "in vec3 texOffset;\n"
+            "in vec4 texOffset;\n"
             "layout(location=0) out vec4 colour;\n"
             "void main(){\n" 
                 // is this mental?
@@ -92,7 +92,8 @@ namespace jGL::GL
                 "else if (texOffset.z == 1.0) {colour = texture(sampler1, texCoord);}\n"
                 "else if (texOffset.z == 2.0) {colour = texture(sampler2, texCoord);}\n"
                 "else if (texOffset.z == 3.0) {colour = texture(sampler3, texCoord);}\n"
-                "else {colour = vec4(0.0,0.0,0.0,1.0);}\n"
+                "else {colour = vec4(0.0,0.0,0.0,texOffset.w);}\n"
+                "colour.a = colour.a*texOffset.a;\n"
                 ";\n"
             "}";
 
