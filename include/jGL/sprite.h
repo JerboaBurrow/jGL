@@ -5,6 +5,7 @@
 #include <jGL/primitive.h>
 
 #include <memory>
+#include <algorithm>
 
 /*
 
@@ -31,26 +32,22 @@ namespace jGL
         ( 
             Transform tra,
             TextureOffset to,
-            std::shared_ptr<Texture> tex
+            std::shared_ptr<Texture> tex,
+            float alpha = 1.0f
         )
-        : transform(tra), texOffset(to), texture(tex)
+        : transform(tra), texOffset(to), texture(tex), alpha(std::clamp(alpha, 0.0f, 1.0f))
         {}
 
-        inline virtual void update(Transform tra) { transform = tra; }
-        inline virtual void update(TextureOffset to) { texOffset = to; }
-        inline virtual void update(Transform tra, TextureOffset to) { update(tra); update(to); }
-        inline virtual void update(std::shared_ptr<Texture> tex) { texture = tex; }
-        
-        const Transform & getTransform() const { return transform; }
-        const TextureOffset & getTextureOffset() const { return texOffset; }
-        const Id & getTextureId() const { return texture->getId(); }
-        const std::shared_ptr<Texture> & getTexture() const { return texture; }
-
-    protected:
+        inline virtual void setAlpha(float a) { alpha = std::clamp(a, 0.0f, 1.0f); }
+        const float getAlpha() const { return alpha; }
 
         Transform transform;
         TextureOffset texOffset;
         std::shared_ptr<Texture> texture;
+
+    protected:
+
+        float alpha;
     
     };
 }

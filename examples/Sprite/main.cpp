@@ -98,7 +98,8 @@ int main(int argv, char ** argc)
         {
             jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f),
             jGL::TextureOffset(0.0f, 0.0f),
-            heart
+            heart,
+            0.5f
         },
         "middle",
         1000
@@ -131,8 +132,8 @@ int main(int argv, char ** argc)
             theta += 1.0/60.0 * 0.1;
             scale = 0.1*std::abs(std::sin(theta))+0.05;
 
-            sprites->getSprite("sHeart").update(jGL::Transform(0.5f, 0.5f, theta, 0.1f));
-            sprites->getSprite("sPi").update(jGL::Transform(0.2f, 0.2f, theta, scale));
+            sprites->getSprite("sHeart").transform = jGL::Transform(0.5f, 0.5f, theta, 0.1f);
+            sprites->getSprite("sPi").transform = jGL::Transform(0.2f, 0.2f, theta, scale);
 
             sprites->draw();
 
