@@ -18,6 +18,11 @@
 #include <stb_image.h>
 #include <algorithm>
 
+#ifdef WINDOWS
+#include <windows.h>
+#include <mmsystem.h>
+#endif
+
 namespace jGL
 {
 
@@ -97,6 +102,9 @@ namespace jGL
             logo.clear();
 
             glfwTerminate();
+            #ifdef WINDOWS
+                timeEndPeriod(1);
+            #endif
         }
 
         GLFWwindow * getWindow() const { return glfwWindow; }
@@ -105,6 +113,9 @@ namespace jGL
         bool closing(){ return glfwWindowShouldClose(glfwWindow); }
         
         void open(){ 
+            #ifdef WINDOWS
+                timeBeginPeriod(1);
+            #endif
             if (glfwWindow == NULL)
             { 
                 // required for MacOS
