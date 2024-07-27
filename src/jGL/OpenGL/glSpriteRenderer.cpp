@@ -10,7 +10,7 @@ namespace jGL::GL
         if (offsets.size() < 4*n)
         {
             offsets.resize(4*n+padSprites*4);
-            textureOffsets.resize(3*n+padSprites*3);
+            textureOffsets.resize(4*n+padSprites*4);
             freeGL();
             initGL();
         }
@@ -19,9 +19,10 @@ namespace jGL::GL
         for (auto & sid : ids)
         {
             const Sprite & sprite = sprites[sid.second];
-            const Transform & trans = sprite.getTransform();
-            const TextureOffset & toff = sprite.getTextureOffset();
-            const Id & texId = sprite.getTextureId();
+            const Transform & trans = sprite.transform;
+            const TextureOffset & toff = sprite.texOffset;
+            const Id & texId = sprite.texture->getId();
+            const float alpha = sprite.getAlpha();
             
             auto is_equal = [texId] (std::shared_ptr<Texture> tex) { return tex->getId() == texId; };
 
@@ -36,9 +37,10 @@ namespace jGL::GL
             offsets[i*4+1] = trans.y;
             offsets[i*4+2] = trans.theta;
             offsets[i*4+3] = trans.scale;
-            textureOffsets[i*3] = toff.tx;
-            textureOffsets[i*3+1] = toff.ty;
-            textureOffsets[i*3+2] = float(index);
+            textureOffsets[i*4] = toff.tx;
+            textureOffsets[i*4+1] = toff.ty;
+            textureOffsets[i*4+2] = float(index);
+            textureOffsets[i*4+3] = alpha;
             
             i += 1;
         }
@@ -78,7 +80,7 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    3*n*sizeof(float),
+                    4*n*sizeof(float),
                     &textureOffsets[0]
                 );
 
@@ -108,7 +110,7 @@ namespace jGL::GL
         if (offsets.size() < 4*n)
         {
             offsets.resize(4*n+padSprites*4);
-            textureOffsets.resize(3*n+padSprites*3);
+            textureOffsets.resize(4*n+padSprites*4);
             freeGL();
             initGL();
         }
@@ -117,9 +119,10 @@ namespace jGL::GL
         for (auto & sid : ids)
         {
             const Sprite & sprite = sprites[sid];
-            const Transform & trans = sprite.getTransform();
-            const TextureOffset & toff = sprite.getTextureOffset();
-            const Id & texId = sprite.getTextureId();
+            const Transform & trans = sprite.transform;
+            const TextureOffset & toff = sprite.texOffset;
+            const Id & texId = sprite.texture->getId();
+            const float alpha = sprite.getAlpha();
             
             auto is_equal = [texId] (std::shared_ptr<Texture> tex) { return tex->getId() == texId; };
 
@@ -134,9 +137,10 @@ namespace jGL::GL
             offsets[i*4+1] = trans.y;
             offsets[i*4+2] = trans.theta;
             offsets[i*4+3] = trans.scale;
-            textureOffsets[i*3] = toff.tx;
-            textureOffsets[i*3+1] = toff.ty;
-            textureOffsets[i*3+2] = float(index);
+            textureOffsets[i*4] = toff.tx;
+            textureOffsets[i*4+1] = toff.ty;
+            textureOffsets[i*4+2] = float(index);
+            textureOffsets[i*4+3] = alpha;
             
             i += 1;
         }
@@ -176,7 +180,7 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    3*n*sizeof(float),
+                    4*n*sizeof(float),
                     &textureOffsets[0]
                 );
 
@@ -276,10 +280,10 @@ namespace jGL::GL
                 glVertexAttribPointer
                 (
                     2,
-                    3,
+                    4,
                     GL_FLOAT,
                     false,
-                    3*sizeof(float),
+                    4*sizeof(float),
                     0
                 );
                 glVertexAttribDivisor(2, 1);
