@@ -135,7 +135,7 @@ jobs:
         path: windows-examples
 
   macosNative:
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
     - uses: actions/checkout@v4
@@ -310,7 +310,7 @@ jobs:
 
   test-release-macos:
     needs: [macosNative, headers]
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
     
