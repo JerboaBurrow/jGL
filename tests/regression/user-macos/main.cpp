@@ -69,7 +69,7 @@ int main(int argv, char ** argc)
             for (unsigned i = 0; i <shapes.size(); i++)
             {
                 auto tr = circles->getTransform(std::to_string(i));
-                circles->getShape(std::to_string(i))->update
+                circles->getShape(std::to_string(i))->transform =
                 (
                     jGL::Transform(tr.x+dt*(rng.nextFloat()-0.5), tr.y+dt*(rng.nextFloat()-0.5), tr.theta, tr.scale)
                 );
