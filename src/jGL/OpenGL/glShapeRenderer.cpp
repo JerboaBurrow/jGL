@@ -19,8 +19,8 @@ namespace jGL::GL
         for (auto & sid : ids)
         {
             const auto shape = shapes[sid.second];
-            const Transform & trans = shape->getTransform();
-            const glm::vec4 & col = shape->getColour();
+            const Transform & trans = shape->transform;
+            const glm::vec4 & col = shape->colour;
 
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
@@ -92,8 +92,8 @@ namespace jGL::GL
         for (auto & sid : ids)
         {
             const auto shape = shapes[sid];
-            const Transform & trans = shape->getTransform();
-            const glm::vec4 & col = shape->getColour();
+            const Transform & trans = shape->transform;
+            const glm::vec4 & col = shape->colour;
 
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
