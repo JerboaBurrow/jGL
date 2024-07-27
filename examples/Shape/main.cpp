@@ -11,6 +11,7 @@ int main(int argv, char ** argc)
     conf.COCOA_RETINA = true;
     #endif
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
+    display.setFrameLimit(30);
 
     glewInit();
 
