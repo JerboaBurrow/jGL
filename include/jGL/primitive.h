@@ -29,7 +29,7 @@ namespace jGL
     struct Transform : public Primitive
     {
 
-        Transform(float x, float y, float t, float s)
+        Transform(double x, double y, double t, double s)
         : x(x), y(y), theta(t), scale(s)
         {}
 
@@ -37,10 +37,10 @@ namespace jGL
         : x(0.0f), y(0.0f), theta(0.0f), scale(0.0f)
         {}
 
-        float x;
-        float y;
-        float theta;
-        float scale;
+        double x;
+        double y;
+        double theta;
+        double scale;
     };
 
     struct TextureOffset : public Primitive

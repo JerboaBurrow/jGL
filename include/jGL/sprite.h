@@ -9,13 +9,17 @@
 
 /*
 
-    A sprite holds a transform (position, rotation, scale)
-     and texture offsets (tx, ty, unit)
+    A sprite holds a constant transform reference (position, rotation, scale),
+     texture offsets (tx, ty, unit), a shared texture pointer, and an alpha
+     value.
 
-    The position rotation and scale define where a sprite is drawn
+    The position, rotation and scale define where a sprite is drawn as observed
+     by the constant reference. The intention is to store e.g. in Hop's ECS.
 
     The texture offsets can be used for atlasing, and selecting a texture
-     unit in the shader
+     unit in the shader. Shaders are applied from the SpriteRenderer.
+
+    void setAlpha(float) - controls setting of alpha, with clamp(a, 0, 1)
 
 */
 
@@ -25,12 +29,9 @@ namespace jGL
     {
     public:
 
-        Sprite()
-        {}
-
         Sprite
         ( 
-            Transform tra,
+            const Transform & tra,
             TextureOffset to,
             std::shared_ptr<Texture> tex,
             float alpha = 1.0f
@@ -41,7 +42,7 @@ namespace jGL
         inline virtual void setAlpha(float a) { alpha = std::clamp(a, 0.0f, 1.0f); }
         const float getAlpha() const { return alpha; }
 
-        Transform transform;
+        const Transform & transform;
         TextureOffset texOffset;
         std::shared_ptr<Texture> texture;
 

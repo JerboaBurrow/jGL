@@ -4,7 +4,7 @@ namespace jGL
 {
     Sprite & SpriteRenderer::getSprite(SpriteId id)
     {
-        return sprites[id];
+        return sprites.at(id);
     }
 
     void SpriteRenderer::add(Sprite s, SpriteId id, RenderPriority priority)
@@ -26,7 +26,7 @@ namespace jGL
             }
         }
 
-        sprites[id] = s;
+        sprites.insert(std::pair(id, s));
         ids.insert(std::pair(priority, id));
     }
 }

@@ -51,12 +51,22 @@ int main(int argv, char ** argc)
         2
     );
 
+    std::map<std::string, jGL::Transform> trans =
+    {
+        {"sPi", jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f)},
+        {"sHeart", jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f)},
+        {"sDice", jGL::Transform(0.6f, 0.2f, 0.5f, 0.15f)},
+        {"lowest", jGL::Transform(0.5f, 0.1f, 0.0f, 0.1f)},
+        {"middle", jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f)},
+        {"highest", jGL::Transform(0.6f, 0.2f, 0.0f, 0.1f)}
+    };
+
     sprites->setProjection(camera.getVP());
 
     sprites->add
     (
         {
-            jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f),
+            trans["sPi"],
             jGL::TextureOffset(0.0f, 0.0f),
             Pi
         },
@@ -66,7 +76,7 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f),
+            trans["sHeart"],
             jGL::TextureOffset(0.0f, 0.0f),
             heart
         },
@@ -76,7 +86,7 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.6f, 0.2f, 0.5f, 0.15f),
+            trans["sDice"],
             jGL::TextureOffset(0.0f, 0.0f),
             dice
         },
@@ -86,7 +96,7 @@ int main(int argv, char ** argc)
         sprites->add
     (
         {
-            jGL::Transform(0.5f, 0.1f, 0.0f, 0.1f),
+            trans["lowest"],
             jGL::TextureOffset(0.0f, 0.0f),
             Pi
         },
@@ -96,7 +106,7 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f),
+            trans["middle"],
             jGL::TextureOffset(0.0f, 0.0f),
             heart,
             0.5f
@@ -108,7 +118,7 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            jGL::Transform(0.6f, 0.2f, 0.0f, 0.1f),
+            trans["highest"],
             jGL::TextureOffset(0.0f, 0.0f),
             dice
         },
@@ -132,8 +142,8 @@ int main(int argv, char ** argc)
             theta += 1.0/60.0 * 0.1;
             scale = 0.1*std::abs(std::sin(theta))+0.05;
 
-            sprites->getSprite("sHeart").transform = jGL::Transform(0.5f, 0.5f, theta, 0.1f);
-            sprites->getSprite("sPi").transform = jGL::Transform(0.2f, 0.2f, theta, scale);
+            trans["sHeart"] = jGL::Transform(0.5f, 0.5f, theta, 0.1f);
+            trans["sPi"] = jGL::Transform(0.2f, 0.2f, theta, scale);
 
             sprites->draw();
 

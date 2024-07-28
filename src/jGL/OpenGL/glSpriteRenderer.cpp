@@ -18,7 +18,7 @@ namespace jGL::GL
         uint64_t i = 0;
         for (auto & sid : ids)
         {
-            const Sprite & sprite = sprites[sid.second];
+            const Sprite & sprite = sprites.at(sid.second);
             const Transform & trans = sprite.transform;
             const TextureOffset & toff = sprite.texOffset;
             const Id & texId = sprite.texture->getId();
@@ -118,7 +118,7 @@ namespace jGL::GL
         uint64_t i = 0;
         for (auto & sid : ids)
         {
-            const Sprite & sprite = sprites[sid];
+            const Sprite & sprite = sprites.at(sid);
             const Transform & trans = sprite.transform;
             const TextureOffset & toff = sprite.texOffset;
             const Id & texId = sprite.texture->getId();
