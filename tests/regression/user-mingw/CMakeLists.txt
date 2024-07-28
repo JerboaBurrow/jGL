@@ -31,6 +31,7 @@ target_link_libraries(
 	${X11_LIBRARIES}
 	${OPENGL_LIBRARIES} 
     ${Vulkan_LIBRARIES}
+	"winmm"
 )
 
 target_include_directories(
