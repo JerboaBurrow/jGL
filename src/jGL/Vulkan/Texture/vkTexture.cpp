@@ -23,13 +23,13 @@ namespace jGL::Vulkan
 
         if (type == Texture::Type::RGB)
         {
-            pixels = stbi_load(imageFile.c_str(), &width, &height, &channels, STBI_rgb);
+            pixels = stbi_load(imageFile.generic_string().c_str(), &width, &height, &channels, STBI_rgb);
             this->channels = 3;
             format = VK_FORMAT_R8G8B8_SRGB;
         }
         else if (type == Texture::Type::RGBA)
         {
-            pixels = stbi_load(imageFile.c_str(), &width, &height, &channels, STBI_rgb_alpha);
+            pixels = stbi_load(imageFile.generic_string().c_str(), &width, &height, &channels, STBI_rgb_alpha);
             this->channels = 4;
             format = VK_FORMAT_R8G8B8A8_SRGB;         
         }

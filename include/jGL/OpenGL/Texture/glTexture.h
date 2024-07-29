@@ -48,7 +48,7 @@ namespace jGL::GL
 
         std::vector<unsigned char> load_image(std::filesystem::path imageFilePath)
         {
-            unsigned char * pixels = stbi_load(imageFilePath.c_str(), &width, &height, &channels, 0);
+            unsigned char * pixels = stbi_load(imageFilePath.generic_string().c_str(), &width, &height, &channels, 0);
         
             if (!pixels)
             {
