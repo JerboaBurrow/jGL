@@ -2,17 +2,11 @@
 
 namespace jGL::GL
 {
-
-    glTexture2DRGB::glTexture2DRGB(std::string imageFile)
-    : glTexture()
+    void glTexture2DRGB::create(int width, int height, int channels)
     {
-        unsigned char * data = stbi_load(imageFile.c_str(), &width, &height, &channels, 0);
-        
-        if (!data)
-        {
-            throw std::runtime_error("Failed to load texture: "+imageFile);
-        }
-        
+        this->width = width;
+        this->height = height;
+        this->channels = channels;
         bind();
 
         glTexParameteri
@@ -52,25 +46,11 @@ namespace jGL::GL
             NULL
         );
 
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGB,
-            width,
-            height,
-            0,
-            GL_RGB,
-            GL_UNSIGNED_BYTE,
-            data
-        );
-
         glBindTexture(GL_TEXTURE_2D, 0);
-
-        stbi_image_free(data);
 
     }
 
-    void glTexture2DRGB::upload(float * data)
+    void glTexture2DRGB::upload(std::vector<unsigned char> pixels)
     {
         bind();
 
@@ -83,20 +63,15 @@ namespace jGL::GL
             0,
             GL_RGB,
             GL_UNSIGNED_BYTE,
-            data
+            pixels.data()
         );
     }
 
-    glTexture2DRGBA::glTexture2DRGBA(std::string imageFile)
-    : glTexture()
+    void glTexture2DRGBA::create(int width, int height, int channels)
     {
-        unsigned char * data = stbi_load(imageFile.c_str(), &width, &height, &channels, 0);
-        
-        if (!data)
-        {
-            throw std::runtime_error("Failed to load texture: "+imageFile);
-        }
-        
+        this->width = width;
+        this->height = height;
+        this->channels = channels;
         bind();
 
         glTexParameteri
@@ -136,28 +111,12 @@ namespace jGL::GL
             NULL
         );
 
-        glTexImage2D(
-            GL_TEXTURE_2D,
-            0,
-            GL_RGBA,
-            width,
-            height,
-            0,
-            GL_RGBA,
-            GL_UNSIGNED_BYTE,
-            data
-        );
-
         glBindTexture(GL_TEXTURE_2D, 0);
-
-        stbi_image_free(data);
-
     }
 
-    void glTexture2DRGBA::upload(float * data)
+    void glTexture2DRGBA::upload(std::vector<unsigned char> pixels)
     {
         bind();
-
         glTexImage2D(
             GL_TEXTURE_2D,
             0,
@@ -167,12 +126,11 @@ namespace jGL::GL
             0,
             GL_RGBA,
             GL_UNSIGNED_BYTE,
-            data
+            pixels.data()
         );
     }
 
-    glTexture2DByte::glTexture2DByte(uint16_t width, uint16_t height)
-    : glTexture()
+    void glTexture2DByte::create(int width, int height)
     {
         this->width = width;
         this->height = height;
@@ -220,7 +178,7 @@ namespace jGL::GL
 
     }
 
-    void glTexture2DByte::upload(unsigned char * data)
+    void glTexture2DByte::upload(std::vector<unsigned char> pixels)
     {
         bind();
 
@@ -233,7 +191,7 @@ namespace jGL::GL
             0,
             GL_RED,
             GL_UNSIGNED_BYTE,
-            data
+            pixels.data()
         );
     }
 

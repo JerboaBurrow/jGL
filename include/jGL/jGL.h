@@ -50,6 +50,7 @@ namespace jGL
 
         virtual std::shared_ptr<Particles> createParticles(size_t sizeHint) = 0;
         virtual std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) = 0;
+        virtual std::shared_ptr<Texture> createTexture(std::vector<unsigned char> data, Texture::Type type) = 0;
         virtual std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint) = 0;
         virtual std::shared_ptr<ShapeRenderer> createShapeRenderer(size_t sizeHint) = 0;
 
