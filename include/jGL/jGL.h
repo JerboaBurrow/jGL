@@ -46,6 +46,7 @@ namespace jGL
         virtual void setClear(glm::vec4 colour) = 0;
         virtual void setProjection(glm::mat4 proj) = 0;
         virtual void setTextProjection(glm::mat4 proj) = 0;
+        virtual void setViewport(glm::vec4 view) = 0;
 
         virtual void setMSAA(uint8_t samples) {msaaSamples = samples;}
 

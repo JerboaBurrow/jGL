@@ -317,6 +317,16 @@ namespace jGL
             return s;
         }
 
+        glm::vec2 contentScale() const
+        {
+            glm::vec2 s;
+            if (glfwWindow != NULL)
+            {
+                glfwGetWindowContentScale(glfwWindow, &s.x, &s.y);
+            }
+            return s;
+        }
+
         glm::ivec4 windowFrameSize() const 
         {
             glm::ivec4 s;
