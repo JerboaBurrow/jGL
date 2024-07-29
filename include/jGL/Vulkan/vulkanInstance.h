@@ -80,7 +80,7 @@ namespace jGL::Vulkan
         { 
             return std::static_pointer_cast<Particles>(std::make_shared<vkParticles>(sizeHint)); 
         }
-        std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) 
+        std::shared_ptr<Texture> createTexture(std::filesystem::path imageFile, Texture::Type type) 
         { 
             return std::static_pointer_cast<Texture>
             (
@@ -90,6 +90,17 @@ namespace jGL::Vulkan
                     command,
                     imageFile, 
                     type
+                )
+            );   
+        }
+        std::shared_ptr<Texture> createTexture(std::vector<unsigned char> data, Texture::Type type) 
+        { 
+            TODO("VulkanInstance::createTexture from bytes undefined");
+            return std::static_pointer_cast<Texture>
+            (
+                std::make_shared<vkTexture>
+                (
+                    device
                 )
             );   
         }

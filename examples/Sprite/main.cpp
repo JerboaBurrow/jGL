@@ -28,6 +28,12 @@ int main(int argv, char ** argc)
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
     jGLInstance->setMSAA(1);
 
+    std::shared_ptr<jGL::Texture> jerboa = jGLInstance->createTexture
+    (
+        std::vector<unsigned char>(LOGO32,LOGO32+sizeof(LOGO32)),
+        jGL::Texture::Type::RGBA
+    );
+
     std::shared_ptr<jGL::Texture> heart = jGLInstance->createTexture
     (
         "resource/texture/HEART.png",
@@ -53,6 +59,7 @@ int main(int argv, char ** argc)
 
     std::map<std::string, jGL::Transform> trans =
     {
+        {"jerboa", jGL::Transform(0.1f, 0.9f, 0.0f, 0.1f)},
         {"sPi", jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f)},
         {"sHeart", jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f)},
         {"sDice", jGL::Transform(0.6f, 0.2f, 0.5f, 0.15f)},
@@ -62,6 +69,16 @@ int main(int argv, char ** argc)
     };
 
     sprites->setProjection(camera.getVP());
+
+    sprites->add
+    (
+        {
+            trans["jerboa"],
+            jGL::TextureOffset(0.0f, 0.0f),
+            jerboa
+        },
+        "sJerboa"
+    );
 
     sprites->add
     (

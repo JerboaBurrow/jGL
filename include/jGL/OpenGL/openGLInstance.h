@@ -74,7 +74,7 @@ namespace jGL::GL
                 return std::static_pointer_cast<Particles>(std::make_shared<glParticles>(sizeHint)); 
             }
 
-            std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) 
+            std::shared_ptr<Texture> createTexture(std::filesystem::path imageFile, Texture::Type type) 
             { 
                 switch (type)
                 {
@@ -85,7 +85,19 @@ namespace jGL::GL
                     default:
                         return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGB>(imageFile));
                 }   
-            
+            }
+
+            std::shared_ptr<Texture> createTexture(std::vector<unsigned char> data, Texture::Type type)
+            { 
+                switch (type)
+                {
+                    case Texture::Type::RGB:
+                        return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGB>(data));
+                    case Texture::Type::RGBA:
+                        return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGBA>(data));
+                    default:
+                        return std::static_pointer_cast<Texture>(std::make_shared<glTexture2DRGB>(data));
+                }   
             }
 
             std::shared_ptr<SpriteRenderer> createSpriteRenderer(size_t sizeHint)

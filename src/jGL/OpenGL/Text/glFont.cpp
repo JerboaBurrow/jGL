@@ -6,7 +6,7 @@ namespace jGL::GL
     {
         fontBitmap = std::make_shared<glTexture2DByte>
         (
-            bitmapPixels.data(),
+            bitmapPixels,
             w,
             h
         );
