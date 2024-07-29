@@ -11,7 +11,7 @@ namespace jGL::Vulkan
     (
         const Device & device,
         const Command & command,
-        std::string imageFile, 
+        std::filesystem::path imageFile, 
         Texture::Type type,
         VkSampleCountFlagBits msaaSamples
     )
@@ -49,7 +49,7 @@ namespace jGL::Vulkan
 
         if (!pixels)
         {
-            throw std::runtime_error("Failed to load image "+imageFile);
+            throw std::runtime_error("Failed to load image "+imageFile.generic_string());
         }
 
         stbi_image_free(pixels);

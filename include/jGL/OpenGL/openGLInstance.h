@@ -74,7 +74,7 @@ namespace jGL::GL
                 return std::static_pointer_cast<Particles>(std::make_shared<glParticles>(sizeHint)); 
             }
 
-            std::shared_ptr<Texture> createTexture(std::string imageFile, Texture::Type type) 
+            std::shared_ptr<Texture> createTexture(std::filesystem::path imageFile, Texture::Type type) 
             { 
                 switch (type)
                 {

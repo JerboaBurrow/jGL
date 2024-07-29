@@ -5,6 +5,7 @@
 #include <jGL/texture.h>
 
 #include <stdexcept>
+#include <filesystem>
 
 namespace jGL::GL
 {
@@ -45,13 +46,13 @@ namespace jGL::GL
         GLuint id;
         unsigned textureUnit;
 
-        std::vector<unsigned char> load_image(std::string path)
+        std::vector<unsigned char> load_image(std::filesystem::path imageFilePath)
         {
-            unsigned char * pixels = stbi_load(path.c_str(), &width, &height, &channels, 0);
+            unsigned char * pixels = stbi_load(imageFilePath.c_str(), &width, &height, &channels, 0);
         
             if (!pixels)
             {
-                throw std::runtime_error("Failed to load texture: "+path);
+                throw std::runtime_error("Failed to load texture: "+imageFilePath.generic_string());
             }
 
             size_t dim = width*height;
@@ -61,9 +62,9 @@ namespace jGL::GL
             return vdata;
         }
 
-        std::vector<unsigned char> load_image(std::vector<unsigned char> memory)
+        std::vector<unsigned char> load_image(std::vector<unsigned char> imageFile)
         {
-            unsigned char * pixels = stbi_load_from_memory(memory.data(), memory.size(), &width, &height, &channels, 4);
+            unsigned char * pixels = stbi_load_from_memory(imageFile.data(), imageFile.size(), &width, &height, &channels, 4);
             if (!pixels)
             {
                 throw std::runtime_error("Failed to load texture from memory");
@@ -83,7 +84,7 @@ namespace jGL::GL
 
     public:
 
-        glTexture2DRGB(std::string imageFile)
+        glTexture2DRGB(std::filesystem::path imageFile)
         : glTexture()
         {
             std::vector<unsigned char> pixels = load_image(imageFile);
@@ -108,7 +109,7 @@ namespace jGL::GL
 
     public:
 
-        glTexture2DRGBA(std::string imageFile)
+        glTexture2DRGBA(std::filesystem::path imageFile)
         : glTexture()
         {
             std::vector<unsigned char> pixels = load_image(imageFile);
@@ -133,7 +134,7 @@ namespace jGL::GL
 
     public:
 
-        glTexture2DByte(std::string imageFile)
+        glTexture2DByte(std::filesystem::path imageFile)
         : glTexture()
         {
             std::vector<unsigned char> pixels = load_image(imageFile);

@@ -1,5 +1,5 @@
-#ifndef VKTEXTURE
-#define VKTEXTURE
+#ifndef VKTEXTURE_H
+#define VKTEXTURE_H
 
 #include <jGL/texture.h>
 #include <jGL/Vulkan/Device/device.h>
@@ -9,6 +9,7 @@
 #include <glm/glm.hpp>
 
 #include <stdexcept>
+#include <filesystem>
 
 namespace jGL::Vulkan
 {
@@ -49,7 +50,7 @@ namespace jGL::Vulkan
         (
             const Device & device,
             const Command & command,
-            std::string imageFile, 
+            std::filesystem::path imageFile, 
             Texture::Type type,
             VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
@@ -140,4 +141,4 @@ namespace jGL::Vulkan
 
 }
 
-#endif /* VKTEXTURE */
+#endif /* VKTEXTURE_H */
