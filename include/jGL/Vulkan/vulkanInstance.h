@@ -1,5 +1,5 @@
-#ifndef VULKANINSTANCE
-#define VULKANINSTANCE
+#ifndef VULKANINSTANCE_H
+#define VULKANINSTANCE_H
 
 #ifndef ANDROID
 #define GLFW_INCLUDE_VULKAN
@@ -75,6 +75,13 @@ namespace jGL::Vulkan
         void setClear(glm::vec4 colour) {/*TODO*/}
         void setProjection(glm::mat4 proj) {/*TODO*/}
         void setTextProjection(glm::mat4 p) {textRenderer->setProjection(p);}
+        void setViewport(glm::vec4 view)
+        {
+            viewport.x = view.x;
+            viewport.y = view.y;
+            viewport.width = view.z;
+            viewport.height = view.w;
+        }
 
         std::shared_ptr<Particles> createParticles(size_t sizeHint) 
         { 
@@ -182,4 +189,4 @@ namespace jGL::Vulkan
     };
 }
 
-#endif /* VULKANINSTANCE */
+#endif /* VULKANINSTANCE_H */
