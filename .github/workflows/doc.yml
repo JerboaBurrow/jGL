@@ -32,4 +32,4 @@ jobs:
         git rebase main
         git add docs/
         git commit -m "docs automatic update"
-        git push
+        git push origin doc
