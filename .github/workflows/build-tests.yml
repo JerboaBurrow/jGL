@@ -2,7 +2,9 @@ name: jGL build tests
 
 on:
   push:
-    branches-ignore: 'main'
+    branches-ignore: 
+      - 'main'
+      - 'doc'
     paths-ignore:
       - 'doc/**'
       - '.github/**'
