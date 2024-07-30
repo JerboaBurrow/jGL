@@ -18,3 +18,25 @@ IOS depends on how easy Vulkan is to integrate with an IOS app, we may opt for h
 linux/macOS/windows: [![jGL release](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml/badge.svg)](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml)
 
 ### Features
+
+- [ ] Window managent and I/O
+    - [x] Single window creation
+    - [x] Mouse and keyboard events
+    - [x] Frame locking
+    - [ ] Snapping/resizing
+    - [ ] Multi-windowing
+    - [ ] Basic ui (dearimgui?)   
+- [ ] Sprites
+    - [x] Texture atlasing/texture region support.
+    - [x] Texture management
+    - [ ] Animations
+- [ ] Particles
+    - [x] Textured/untextured
+    - [ ] Dynamics API  
+- [ ] Text
+    - [x] FreeType font rendering
+    - [ ] Automatic alignment/wrapping     
+- [ ] Shapes
+    - [ ] Circles
+    - [ ] Polygon
+    - [ ] Lines 
