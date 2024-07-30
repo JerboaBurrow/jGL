@@ -3,7 +3,7 @@ on:
   push:
       branches: [ "main" ]
       paths-ignore:
-        - 'doc/**'
+        - 'docs/**'
         - '.github/**'
   workflow_dispatch:
 
@@ -21,7 +21,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y doxygen
 
     - name: build
-      run: doxygen doc/doxygen.config
+      run: doxygen docs/doxygen.config
     
     - name: push
       run: |
