@@ -25,7 +25,7 @@ jobs:
         git config --global user.name 'BurrowBot'
         git config --global user.email 'BurrowBot@users.noreply.github.com'
         git remote set-url origin https://x-access-token:${{ secrets.BURROW_BOT }}@github.com/$GITHUB_REPOSITORY
-        git checkout --track origin/doc
+        git checkout -b doc origin/doc
         git rebase main
 
     - name: build
