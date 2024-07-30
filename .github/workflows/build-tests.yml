@@ -4,9 +4,9 @@ on:
   push:
     branches-ignore: 
       - 'main'
-      - 'doc'
+      - 'docs'
     paths-ignore:
-      - 'doc/**'
+      - 'docs/**'
       - '.github/**'
   workflow_dispatch:
 
