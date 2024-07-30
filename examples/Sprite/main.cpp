@@ -28,6 +28,12 @@ int main(int argv, char ** argc)
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
     jGLInstance->setMSAA(1);
 
+    std::shared_ptr<jGL::Texture> atlas = jGLInstance->createTexture
+    (
+        "resource/texture/atlas.png",
+        jGL::Texture::Type::RGBA
+    );
+
     std::shared_ptr<jGL::Texture> jerboa = jGLInstance->createTexture
     (
         std::vector<unsigned char>(LOGO32,LOGO32+sizeof(LOGO32)),
@@ -37,12 +43,6 @@ int main(int argv, char ** argc)
     std::shared_ptr<jGL::Texture> heart = jGLInstance->createTexture
     (
         "resource/texture/HEART.png",
-        jGL::Texture::Type::RGBA
-    );
-
-    std::shared_ptr<jGL::Texture> dice = jGLInstance->createTexture
-    (
-        "resource/texture/random.png",
         jGL::Texture::Type::RGBA
     );
 
@@ -57,12 +57,21 @@ int main(int argv, char ** argc)
         2
     );
 
+    float scale32Pixels = camera.screenToWorld(32.0f, 0.0f).x;
+    float ax = 0.25f;
+    float ay = 0.75f;
+    float as = scale32Pixels;
+
     std::map<std::string, jGL::Transform> trans =
     {
-        {"jerboa", jGL::Transform(0.1f, 0.9f, 0.0f, 0.1f)},
+        {"sAtlas1", jGL::Transform(ax, ay, 0.0f, scale32Pixels*0.5f)},
+        {"sAtlas2", jGL::Transform(ax+as, ay, 0.0f, scale32Pixels*0.5f)},
+        {"sAtlas3", jGL::Transform(ax, ay+as, 0.0f, scale32Pixels*0.5f)},
+        {"sAtlas4", jGL::Transform(ax+as, ay+as, 0.0f, scale32Pixels*0.5f)},
+        {"sAtlasFull", jGL::Transform(ax, ay+as+scale32Pixels, 0.0f, scale32Pixels)},
+        {"sJerboa", jGL::Transform(0.1f, 0.9f, 0.0f, 0.1f)},
         {"sPi", jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f)},
         {"sHeart", jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f)},
-        {"sDice", jGL::Transform(0.6f, 0.2f, 0.5f, 0.15f)},
         {"lowest", jGL::Transform(0.5f, 0.1f, 0.0f, 0.1f)},
         {"middle", jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f)},
         {"highest", jGL::Transform(0.6f, 0.2f, 0.0f, 0.1f)}
@@ -73,8 +82,8 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
-            trans["jerboa"],
-            jGL::TextureOffset(0.0f, 0.0f),
+            trans["sJerboa"],
+            jGL::TextureOffset(),
             jerboa
         },
         "sJerboa"
@@ -83,8 +92,58 @@ int main(int argv, char ** argc)
     sprites->add
     (
         {
+            trans["sAtlas1"],
+            jGL::TextureOffset(0.0, 0.0, 16.0, 16.0),
+            atlas
+        },
+        "sAtlas1"
+    );
+
+    sprites->add
+    (
+        {
+            trans["sAtlas2"],
+            jGL::TextureOffset(16.0, 0.0, 16.0, 16.0),
+            atlas
+        },
+        "sAtlas2"
+    );
+
+    sprites->add
+    (
+        {
+            trans["sAtlas3"],
+            jGL::TextureOffset(0.0, 16.0, 16.0, 16.0),
+            atlas
+        },
+        "sAtlas3"
+    );
+
+    sprites->add
+    (
+        {
+            trans["sAtlas4"],
+            jGL::TextureOffset(16.0, 16.0, 16.0, 16.0),
+            atlas
+        },
+        "sAtlas4"
+    );
+
+    sprites->add
+    (
+        {
+            trans["sAtlasFull"],
+            jGL::TextureOffset(),
+            atlas
+        },
+        "sAtlasFull"
+    );
+
+    sprites->add
+    (
+        {
             trans["sPi"],
-            jGL::TextureOffset(0.0f, 0.0f),
+            jGL::TextureOffset(),
             Pi
         },
         "sPi"
@@ -94,27 +153,17 @@ int main(int argv, char ** argc)
     (
         {
             trans["sHeart"],
-            jGL::TextureOffset(0.0f, 0.0f),
+            jGL::TextureOffset(),
             heart
         },
         "sHeart"
-    );
-
-    sprites->add
-    (
-        {
-            trans["sDice"],
-            jGL::TextureOffset(0.0f, 0.0f),
-            dice
-        },
-        "sDice"
     );
 
         sprites->add
     (
         {
             trans["lowest"],
-            jGL::TextureOffset(0.0f, 0.0f),
+            jGL::TextureOffset(),
             Pi
         },
         "lowest"
@@ -124,7 +173,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["middle"],
-            jGL::TextureOffset(0.0f, 0.0f),
+            jGL::TextureOffset(),
             heart,
             0.5f
         },
@@ -136,8 +185,8 @@ int main(int argv, char ** argc)
     (
         {
             trans["highest"],
-            jGL::TextureOffset(0.0f, 0.0f),
-            dice
+            jGL::TextureOffset(),
+            jerboa
         },
         "highest",
         100000
