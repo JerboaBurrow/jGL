@@ -1,0 +1,26 @@
+<map id="include/jGL/Vulkan/buffer.h" name="include/jGL/Vulkan/buffer.h">
+<area shape="rect" id="node1" title=" " alt="" coords="272,5,414,47"/>
+<area shape="rect" id="node2" href="$command_8h.html" title=" " alt="" coords="85,95,246,136"/>
+<area shape="rect" id="node4" href="$device_8h.html" title=" " alt="" coords="176,363,374,389"/>
+<area shape="rect" id="node24" title=" " alt="" coords="380,102,447,129"/>
+<area shape="rect" id="node3" href="$commandBuffer_8h.html" title=" " alt="" coords="25,184,186,225"/>
+<area shape="rect" id="node23" href="$commandPool_8h.html" title=" " alt="" coords="144,273,305,315"/>
+<area shape="rect" id="node7" title=" " alt="" coords="178,855,241,881"/>
+<area shape="rect" id="node5" href="$logicalDevice_8h.html" title=" " alt="" coords="232,437,419,479"/>
+<area shape="rect" id="node19" href="$physicalDevice_8h.html" title=" " alt="" coords="628,691,826,732"/>
+<area shape="rect" id="node6" href="$vkDebug_8h.html" title=" " alt="" coords="244,527,408,553"/>
+<area shape="rect" id="node8" title=" " alt="" coords="323,855,403,881"/>
+<area shape="rect" id="node9" title=" " alt="" coords="455,855,514,881"/>
+<area shape="rect" id="node10" title=" " alt="" coords="430,780,554,807"/>
+<area shape="rect" id="node11" title=" " alt="" coords="176,601,350,643"/>
+<area shape="rect" id="node12" href="$debug_8h.html" title=" " alt="" coords="424,609,523,635"/>
+<area shape="rect" id="node13" href="$warning_8h.html" title=" " alt="" coords="412,698,522,725"/>
+<area shape="rect" id="node14" href="$jLog_8h.html" title=" " alt="" coords="681,780,773,807"/>
+<area shape="rect" id="node15" title=" " alt="" coords="630,855,704,881"/>
+<area shape="rect" id="node16" title=" " alt="" coords="1070,855,1144,881"/>
+<area shape="rect" id="node17" title=" " alt="" coords="934,855,984,881"/>
+<area shape="rect" id="node18" title=" " alt="" coords="728,855,787,881"/>
+<area shape="rect" id="node20" title=" " alt="" coords="797,780,884,807"/>
+<area shape="rect" id="node21" title=" " alt="" coords="908,780,983,807"/>
+<area shape="rect" id="node22" title=" " alt="" coords="1007,780,1050,807"/>
+</map>

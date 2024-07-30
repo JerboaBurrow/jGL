@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['texcoord_392',['texCoord',['../structjGL_1_1TexturedParticle.html#ae137b4eb8924cc7a55b0f9f955f98739',1,'jGL::TexturedParticle::texCoord()'],['../structjGL_1_1Particles_1_1UpdateInfo.html#a61efda04e29c552a2fcd4d021fdee389',1,'jGL::Particles::UpdateInfo::texCoord()']]],
+  ['texoffset_393',['texOffset',['../classjGL_1_1Sprite.html#a8156e62f0fdbffef7390ae33a4652504',1,'jGL::Sprite']]],
+  ['text_394',['text',['../classjGL_1_1Vulkan_1_1VulkanInstance.html#a054f00934f72e14a26f7d80771bb400a',1,'jGL::Vulkan::VulkanInstance::text()'],['../classjGL_1_1GL_1_1OpenGLInstance.html#acfdd55071cdc43efcb523c252651d01d',1,'jGL::GL::OpenGLInstance::text()'],['../classjGL_1_1jGLInstance.html#a06719831130e8a45e53b2ddbffb35467',1,'jGL::jGLInstance::text()']]],
+  ['textrenderer_395',['TextRenderer',['../classjGL_1_1GL_1_1TextRenderer.html',1,'jGL::GL::TextRenderer'],['../classjGL_1_1Vulkan_1_1TextRenderer.html',1,'jGL::Vulkan::TextRenderer'],['../classjGL_1_1GL_1_1TextRenderer.html#a39a507b1c3d118612bff79a616624d88',1,'jGL::GL::TextRenderer::TextRenderer()'],['../classjGL_1_1Vulkan_1_1TextRenderer.html#abca7ebea949d6b55509223f8842faefd',1,'jGL::Vulkan::TextRenderer::TextRenderer()']]],
+  ['texture_396',['Texture',['../classjGL_1_1Texture.html',1,'jGL']]],
+  ['texture_397',['texture',['../structjGL_1_1Sampler2D.html#accab262f5b0996b49032116e86165840',1,'jGL::Sampler2D']]],
+  ['texture_398',['Texture',['../classjGL_1_1Texture.html#a5e4216bd4fba77a592de73fad488fcbc',1,'jGL::Texture']]],
+  ['texture_399',['texture',['../classjGL_1_1Particles.html#a3989f34c7dbdd20e05ece9956e17f308',1,'jGL::Particles::texture()'],['../classjGL_1_1Sprite.html#ad38733711bbf0d5bc6bfa389b1457efa',1,'jGL::Sprite::texture()']]],
+  ['texture_2eh_400',['texture.h',['../texture_8h.html',1,'']]],
+  ['texturedparticle_401',['TexturedParticle',['../structjGL_1_1TexturedParticle.html',1,'jGL::TexturedParticle'],['../structjGL_1_1TexturedParticle.html#af5465be113f963890f5d3186c02ef70f',1,'jGL::TexturedParticle::TexturedParticle(glm::vec4 p, glm::vec4 c, glm::vec4 t)'],['../structjGL_1_1TexturedParticle.html#afdd277c80105aca28e224d079e0e4399',1,'jGL::TexturedParticle::TexturedParticle()=default']]],
+  ['textureoffset_402',['TextureOffset',['../structjGL_1_1TextureOffset.html',1,'jGL::TextureOffset'],['../structjGL_1_1TextureOffset.html#a2b4eeacac15eb16a3374f8523990d965',1,'jGL::TextureOffset::TextureOffset(float x, float y)'],['../structjGL_1_1TextureOffset.html#a03cf5ce21e53973a89cb4e3b89c2f989',1,'jGL::TextureOffset::TextureOffset()']]],
+  ['textureslots_403',['textureSlots',['../classjGL_1_1SpriteRenderer.html#adfe597ecb5e288b385d44f6242d95200',1,'jGL::SpriteRenderer']]],
+  ['textureunit_404',['textureUnit',['../classjGL_1_1GL_1_1glTexture.html#a68f6625d4937e5b3495c54d37ac650b2',1,'jGL::GL::glTexture']]],
+  ['theta_405',['theta',['../structjGL_1_1Transform.html#a82c42f683d2a20b8c535dac89c20254e',1,'jGL::Transform']]],
+  ['threadpool_406',['ThreadPool',['../classjThread_1_1ThreadPool.html',1,'jThread::ThreadPool'],['../classjThread_1_1ThreadPool.html#a72fcb36ed5d07b6acc67993d56b39b5e',1,'jThread::ThreadPool::ThreadPool()']]],
+  ['throttle_407',['throttle',['../classjGL_1_1Display.html#a59863fe628205a5644f2246ec28efde6',1,'jGL::Display']]],
+  ['to_5fstring_408',['to_string',['../namespacejGL.html#ad4dfa8fee84eaab953c2f969bd11aa3f',1,'jGL']]],
+  ['todo_409',['TODO',['../warning_8cpp.html#aa85ed2a18fbfdfed6cb9a05cfc9d6aa5',1,'TODO(std::string context):&#160;warning.cpp'],['../warning_8h.html#aa85ed2a18fbfdfed6cb9a05cfc9d6aa5',1,'TODO(std::string context):&#160;warning.cpp']]],
+  ['transform_410',['Transform',['../structjGL_1_1Transform.html',1,'jGL::Transform'],['../structjGL_1_1Transform.html#a2e9f00abc6224a09190d3f5fd3ef1539',1,'jGL::Transform::Transform(double x, double y, double t, double s)'],['../structjGL_1_1Transform.html#a83007fb21dc4762973be5dcec9cd2951',1,'jGL::Transform::Transform()']]],
+  ['transform_411',['transform',['../classjGL_1_1Sprite.html#aaee8d6d47bd694dfbc8221834d19dfbe',1,'jGL::Sprite::transform()'],['../classjGL_1_1Shape.html#af07c4f2a07d2c5aca0861aada213dbe5',1,'jGL::Shape::transform()']]],
+  ['transitionimagelayout_412',['transitionImageLayout',['../classjGL_1_1Vulkan_1_1vkTexture.html#abb2e19dac5784049852252190a1a9b97',1,'jGL::Vulkan::vkTexture']]],
+  ['tx_413',['tx',['../structjGL_1_1TextureOffset.html#aa88d545fb2bfe576c76cae31a6d8dee8',1,'jGL::TextureOffset']]],
+  ['ty_414',['ty',['../structjGL_1_1TextureOffset.html#a079e30b9cceaa249035a6b388a8562e3',1,'jGL::TextureOffset']]],
+  ['type_415',['Type',['../classjGL_1_1Texture.html#affc519c2808c69320d6de35a84b945f0',1,'jGL::Texture']]],
+  ['type_416',['type',['../structjGL_1_1Event.html#a1adad2812f03f725ce66934c7fcb2398',1,'jGL::Event']]]
+];
