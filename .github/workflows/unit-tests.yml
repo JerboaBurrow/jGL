@@ -2,7 +2,7 @@ name: jGL unit tests
 
 on:
   push:
-    branches-ignore: 'doc'
+    branches-ignore: 'docs'
     paths-ignore:
       - 'doc/**'
       - '.github/**'
