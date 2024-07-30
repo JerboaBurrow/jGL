@@ -29,6 +29,7 @@ jobs:
         git config --global user.email 'BurrowBot@users.noreply.github.com'
         git remote set-url origin https://x-access-token:${{ secrets.BURROW_BOT }}@github.com/$GITHUB_REPOSITORY
         git checkout -b doc
+        git pull origin doc
         git rebase main
         git add docs/
         git commit -m "docs automatic update"
