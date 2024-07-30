@@ -4,6 +4,10 @@
 
 This library aims to provide a simple api for graphics applications in C++, targeting multiple platforms: linux, windows, macOS, and Android 
 
+### Docs
+
+[Doxygen docs](https://jerboaburrow.github.io/jGL/)
+
 ### Cross platform status
 linux/macOS/windows: [![jGL release](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml/badge.svg)](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml)
 
