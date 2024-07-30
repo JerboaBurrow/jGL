@@ -20,10 +20,7 @@ jobs:
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y doxygen
 
-    - name: build
-      run: doxygen docs/doxygen.config
-    
-    - name: push
+    - name: checkout
       run: |
         git config --global user.name 'BurrowBot'
         git config --global user.email 'BurrowBot@users.noreply.github.com'
@@ -32,6 +29,15 @@ jobs:
         git config pull.rebase true
         git pull origin doc
         git rebase main
+
+    - name: build
+      run: doxygen docs/doxygen.config
+    
+    - name: push
+      run: |
+        git config --global user.name 'BurrowBot'
+        git config --global user.email 'BurrowBot@users.noreply.github.com'
+        git remote set-url origin https://x-access-token:${{ secrets.BURROW_BOT }}@github.com/$GITHUB_REPOSITORY
         git add docs/
         git commit -m "docs automatic update"
         git push origin doc
