@@ -2,29 +2,19 @@
 
 ### cross-platform graphics, abtracting OpenGL and Vulkan for 2D graphics/gamedev
 
-This library aims to provide a simple api for graphics applications in C++, targeting multiple platforms: linux, windows, macOS, and Android 
+This library aims to provide a simple API for 2D graphics applications in C++, targeting multiple platforms: linux, windows, macOS, and Android (and maybe IOS).
 
-### Docs
+Versions 0.0.X will progressively define an API.
 
-[Doxygen docs](https://jerboaburrow.github.io/jGL/)
+Currently OpenGL is the main vehicle for functionality, the Vulkan backend is a shell. Once the API is reasonably solid the Vulkan side will be brought up to date for 0.1.0.
+
+IOS depends on how easy Vulkan is to integrate with an IOS app, we may opt for https://developer.apple.com/metal/cpp/ 
+
+### Documentation
+
+[Doxygen docs are hosted here, in step with main](https://jerboaburrow.github.io/jGL/)
 
 ### Cross platform status
 linux/macOS/windows: [![jGL release](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml/badge.svg)](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml)
 
-The [release action](https://github.com/JerboaBurrow/jGL/actions/workflows/release.yml) builds the lib's for each target platform, including verifying it works as intended in a user project.
-
-- Linux x86_64
-    - native build
-    - tested in ubuntu 22.04 LTS
-       
-- Windows
-  - cross-compiled from linux, via mingw-w64-x86_64
-  - tested with wine32/64
-
-- macOS
-  - native build
-  - tested with MacBook Pro (a1990 emc 3215), macOS 14.0
- 
-- Android
-  - ndk cross-compile from linux
-  - currently untested
+### Features
