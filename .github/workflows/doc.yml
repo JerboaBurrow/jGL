@@ -30,6 +30,6 @@ jobs:
         git remote set-url origin https://x-access-token:${{ secrets.BURROW_BOT }}@github.com/$GITHUB_REPOSITORY
         git checkout -b doc
         git rebase main
-        git add doc/
+        git add docs/
         git commit -m "docs automatic update"
         git push
