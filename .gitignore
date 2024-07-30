@@ -19,3 +19,4 @@ tests/regression/user-macos/include/*
 include/vendored/VulkanSDK/Windows/Include
 include/vendored/VulkanSDK/Windows/Include
 include/vendored/VulkanSDK/Windows/lib
+docs/html

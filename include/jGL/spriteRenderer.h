@@ -36,16 +36,13 @@ namespace jGL
         Sprite & getSprite(SpriteId id);
 
         const Transform & getTransform(SpriteId id) { return getSprite(id).transform; }
-        const TextureOffset & getTextureOffset(SpriteId id) { return getSprite(id).texOffset; }
+        const TextureOffset getTextureOffset(SpriteId id) { return getSprite(id).getTextureOffset(); }
 
         virtual void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, SpriteId> ids) = 0;
         virtual void draw(std::multimap<RenderPriority, SpriteId> ids) = 0;
         
         virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
         virtual void draw() { draw(ids); }
-
-        virtual void draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids) = 0;
-        virtual void draw(std::vector<SpriteId> ids) = 0;
 
         virtual void add(Sprite s, SpriteId id, RenderPriority priority = 0);
 

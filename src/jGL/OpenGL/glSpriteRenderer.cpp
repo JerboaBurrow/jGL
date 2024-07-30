@@ -7,10 +7,11 @@ namespace jGL::GL
 
         uint32_t n = ids.size();
 
-        if (offsets.size() < 4*n)
+        if (offsets.size() < offsetDim*n)
         {
-            offsets.resize(4*n+padSprites*4);
-            textureOffsets.resize(4*n+padSprites*4);
+            offsets.resize(offsetDim*n+padSprites*offsetDim);
+            textureRegion.resize(textureRegionDim*n+padSprites*textureRegionDim);
+            textureOptions.resize(textureOptionsDim*n+padSprites*textureOptionsDim);
             freeGL();
             initGL();
         }
@@ -20,7 +21,7 @@ namespace jGL::GL
         {
             const Sprite & sprite = sprites.at(sid.second);
             const Transform & trans = sprite.transform;
-            const TextureOffset & toff = sprite.texOffset;
+            const TextureOffset toff = sprite.getTextureOffset(true);
             const Id & texId = sprite.texture->getId();
             const float alpha = sprite.getAlpha();
             
@@ -33,15 +34,17 @@ namespace jGL::GL
                 throw std::runtime_error("sprite texture not found in sprite renderer");
             }
 
-            offsets[i*4] = trans.x;
-            offsets[i*4+1] = trans.y;
-            offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scale;
-            textureOffsets[i*4] = toff.tx;
-            textureOffsets[i*4+1] = toff.ty;
-            textureOffsets[i*4+2] = float(index);
-            textureOffsets[i*4+3] = alpha;
-            
+            offsets[i*offsetDim] = trans.x;
+            offsets[i*offsetDim+1] = trans.y;
+            offsets[i*offsetDim+2] = trans.theta;
+            offsets[i*offsetDim+3] = trans.scale;
+            textureRegion[i*textureRegionDim] = toff.tx;
+            textureRegion[i*textureRegionDim+1] = toff.ty;
+            textureRegion[i*textureRegionDim+2] = toff.lx;
+            textureRegion[i*textureRegionDim+3] = toff.ly;
+            textureOptions[i*textureOptionsDim] = float(index);
+            textureOptions[i*textureOptionsDim+1] = alpha;
+
             i += 1;
         }
 
@@ -69,119 +72,31 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    4*n*sizeof(float),
+                    offsetDim*n*sizeof(float),
                     &offsets[0]
                 );
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             
-            glBindBuffer(GL_ARRAY_BUFFER, a_textureOffset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_textureRegion);
 
                 glBufferSubData
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    4*n*sizeof(float),
-                    &textureOffsets[0]
+                    textureRegionDim*n*sizeof(float),
+                    &textureRegion[0]
                 );
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        glBindVertexArray(0);
-
-        glBindVertexArray(vao);
-
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glDisable(GL_DEPTH_TEST);
-        
-            glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
-
-        glBindVertexArray(0);
-
-        glError("sprite draw");
-
-    }
-
-    void glSpriteRenderer::draw(std::shared_ptr<Shader> shader, std::vector<SpriteId> ids)
-    {
-
-        uint32_t n = ids.size();
-
-        if (offsets.size() < 4*n)
-        {
-            offsets.resize(4*n+padSprites*4);
-            textureOffsets.resize(4*n+padSprites*4);
-            freeGL();
-            initGL();
-        }
-
-        uint64_t i = 0;
-        for (auto & sid : ids)
-        {
-            const Sprite & sprite = sprites.at(sid);
-            const Transform & trans = sprite.transform;
-            const TextureOffset & toff = sprite.texOffset;
-            const Id & texId = sprite.texture->getId();
-            const float alpha = sprite.getAlpha();
-            
-            auto is_equal = [texId] (std::shared_ptr<Texture> tex) { return tex->getId() == texId; };
-
-            auto found = std::find_if(textureSlots.begin(), textureSlots.end(), is_equal);
-            size_t index = std::distance(textureSlots.begin(), found);
-            if (index == textureSlots.size())
-            {
-                throw std::runtime_error("sprite texture not found in sprite renderer");
-            }
-
-            offsets[i*4] = trans.x;
-            offsets[i*4+1] = trans.y;
-            offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scale;
-            textureOffsets[i*4] = toff.tx;
-            textureOffsets[i*4+1] = toff.ty;
-            textureOffsets[i*4+2] = float(index);
-            textureOffsets[i*4+3] = alpha;
-            
-            i += 1;
-        }
-
-        for (unsigned i = 0; i < MAX_TEXTURE_SLOTS; i++)
-        {
-            if (i >= usedTextureSlots)
-            {
-                break;
-            }
-            textureSlots[i]->bind(i);
-        }
-
-        shader->use();
-
-        shader->setUniform<glm::mat4>("proj", projection);
-        shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
-        shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
-        shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
-        shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
-
-        glBindVertexArray(vao);
-
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    4*n*sizeof(float),
-                    &offsets[0]
-                );
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            
-            glBindBuffer(GL_ARRAY_BUFFER, a_textureOffset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_textureOption);
 
                 glBufferSubData
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    4*n*sizeof(float),
-                    &textureOffsets[0]
+                    textureOptionsDim*n*sizeof(float),
+                    &textureOptions[0]
                 );
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -206,7 +121,8 @@ namespace jGL::GL
     {
         glDeleteBuffers(1, &a_position);
         glDeleteBuffers(1, &a_offset);
-        glDeleteBuffers(1, &a_textureOffset);
+        glDeleteBuffers(1, &a_textureRegion);
+        glDeleteBuffers(1, &a_textureOption);
         glDeleteVertexArrays(1, &vao);
     }
 
@@ -215,7 +131,8 @@ namespace jGL::GL
         glGenVertexArrays(1, &vao);
         glGenBuffers(1, &a_position);
         glGenBuffers(1, &a_offset);
-        glGenBuffers(1, &a_textureOffset);
+        glGenBuffers(1, &a_textureRegion);
+        glGenBuffers(1, &a_textureOption);
 
         glBindVertexArray(vao);
 
@@ -256,23 +173,23 @@ namespace jGL::GL
                 glVertexAttribPointer
                 (
                     1,
-                    4,
+                    offsetDim,
                     GL_FLOAT,
                     false,
-                    4*sizeof(float),
+                    offsetDim*sizeof(float),
                     0
                 );
                 glVertexAttribDivisor(1, 1);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_textureOffset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_textureRegion);
 
                 glBufferData
                 (
                     GL_ARRAY_BUFFER,
-                    sizeof(float)*textureOffsets.size(),
-                    textureOffsets.data(),
+                    sizeof(float)*textureRegion.size(),
+                    textureRegion.data(),
                     GL_DYNAMIC_DRAW
                 );
 
@@ -280,15 +197,37 @@ namespace jGL::GL
                 glVertexAttribPointer
                 (
                     2,
-                    4,
+                    textureRegionDim,
                     GL_FLOAT,
                     false,
-                    4*sizeof(float),
+                    textureRegionDim*sizeof(float),
                     0
                 );
                 glVertexAttribDivisor(2, 1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+            glBindBuffer(GL_ARRAY_BUFFER, a_textureOption);
+
+                glBufferData
+                (
+                    GL_ARRAY_BUFFER,
+                    sizeof(float)*textureOptions.size(),
+                    textureOptions.data(),
+                    GL_DYNAMIC_DRAW
+                );
+
+                glEnableVertexAttribArray(3);
+                glVertexAttribPointer
+                (
+                    3,
+                    textureOptionsDim,
+                    GL_FLOAT,
+                    false,
+                    textureOptionsDim*sizeof(float),
+                    0
+                );
+                glVertexAttribDivisor(3, 1);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         glBindVertexArray(0);
     }

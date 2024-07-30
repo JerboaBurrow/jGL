@@ -6,6 +6,10 @@
 namespace jGL
 {
 
+    /** 
+     * @brief Higher priority is drawn last.
+     * @typedef RenderPriority 
+     * */
     typedef uint64_t RenderPriority;
 
     struct Primitive
@@ -13,6 +17,10 @@ namespace jGL
         virtual ~Primitive() = default;
     };
 
+    /**
+     * @brief Particle with a texture, with a position, orientation, and scale, colour, and texture region.
+     * 
+     */
     struct TexturedParticle : public Primitive
     {
         TexturedParticle() = default;
@@ -26,6 +34,10 @@ namespace jGL
         glm::vec4 texCoord;
     };
 
+    /**
+     * @brief Position, rotation, and scale.
+     * 
+     */
     struct Transform : public Primitive
     {
 
@@ -43,19 +55,32 @@ namespace jGL
         double scale;
     };
 
+    /**
+     * @brief Rectangular region of a texture.
+     * 
+     * @param tx Lower left corner of region, along width.
+     * @param ty Lower left corner of region, along height.
+     * @param lx Length of region along width.
+     * @param ly Length of region along height.
+     * 
+     * @remark Negative lx and ly will be handled as the maximum lengths in e.g.
+     * SpriteRenderer.
+     */
     struct TextureOffset : public Primitive
     {
 
-        TextureOffset(float x, float y)
-        : tx(x), ty(y)
+        TextureOffset(float x, float y, float w, float h)
+        : tx(x), ty(y), lx(w), ly(h)
         {}
 
         TextureOffset()
-        : tx(0.0f), ty(0.0f)
+        : tx(0.0f), ty(0.0f), lx(-1.0), ly(-1.0)
         {}
         
         float tx; 
         float ty;
+        float lx;
+        float ly;
     };
 
 }
