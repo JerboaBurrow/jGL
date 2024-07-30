@@ -6,33 +6,54 @@
 
 namespace jGL
 {
-  /*
-    An orthographic camera.
-
-    Assumes world coordinates: [0,1]x[0,1]
-  */
+  /**
+   * @brief An orthographic camera for 2D.
+   * 
+   * World coordinates are scaled to the size of the 
+   * longest screen dimension in pixels. So [1, 1] is the
+   * top right of the screen always.
+   * 
+   * Position is the bottom left of corner. Increasing y in world
+   * space goes up the screen.
+   * 
+   */
   class OrthoCam 
   {
 
   public:
 
+    /**
+     * @brief Construct a new Ortho Cam object.
+     * 
+     * @param resx pixel resolution in x
+     * @param resy pixel resolution in y
+     */
     OrthoCam(int resx, int resy)
     : resolution(resx,resy), zoomLevel(1.0f), position(glm::vec2(0.0,0.0)) 
     {
-      viewPort = glm::vec4(0,resx,0,resy);
       update();
-      glViewport(0,0,resx,resy);
     }
 
+    /**
+     * @brief Construct a new Ortho Cam object.
+     * 
+     * @param resx pixel resolution in x.
+     * @param resy pixel resolution in y.
+     * @param pos position in world coordinates.
+     */
     OrthoCam(int resx, int resy, glm::vec2 pos)
     : resolution(resx,resy), zoomLevel(1.0f), position(pos) 
     {
-      viewPort = glm::vec4(0,resx,0,resy);
       update();
-      glViewport(0,0,resx,resy);
     }
 
-    // assumes pos.y is inverted in screen coordinates
+    /**
+     * @brief Convert screen position to world position.
+     * 
+     * @param x screen x coordinate.
+     * @param y screen y coordinate.
+     * @return glm::vec4 world coordinates (wx, wy, _, 1.0)
+     */
     glm::vec4 screenToWorld(float x, float y) const
     {
       glm::vec4 ndc(
@@ -45,6 +66,13 @@ namespace jGL
       return invProjection*ndc;
     }
 
+    /**
+     * @brief Convert world position to screen coordinate.
+     * 
+     * @param x world x coordinate.
+     * @param y world y coordinate.
+     * @return glm::vec2 screen coordinate.
+     */
     glm::vec2 worldToScreen(float x, float y)
     {
       glm::vec4 pos = vp*glm::vec4(x, y, 0.0, 1.0);
@@ -52,18 +80,14 @@ namespace jGL
     }
 
     const glm::mat4 & getVP() const {return vp;}
-
+    
     const glm::mat4 getProjection() const {return projection;}
-    void setProjection(glm::mat4 newProjection){projection=newProjection; update();}
-
-    float getZoomLevel() const {return zoomLevel;}
 
     glm::vec2 getResolution() const {return resolution;}
 
     glm::vec2 getPosition() const {return position;}
 
-    void setView(glm::mat4 newView){modelView=newView; update();}
-
+    float getZoomLevel() const {return zoomLevel;}
     void incrementZoom(float dz)
     {
       if (zoomLevel >= 1.0)
@@ -119,8 +143,6 @@ namespace jGL
     glm::mat4 projection;
     glm::mat4 invProjection;
     glm::mat4 vp;
-
-    glm::vec4 viewPort;
 
     float zoomLevel;
 
