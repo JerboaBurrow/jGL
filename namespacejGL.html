@@ -72,6 +72,9 @@ $(function() {
 <div class="title">jGL Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A drawable graphic.  
+<a href="namespacejGL.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -104,10 +107,13 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjGL_1_1Primitive.html">Primitive</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjGL_1_1TexturedParticle.html">TexturedParticle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Particle with a texture, with a position, orientation, and scale, colour, and texture region.  <a href="structjGL_1_1TexturedParticle.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjGL_1_1Transform.html">Transform</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Position, rotation, and scale.  <a href="structjGL_1_1Transform.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rectangular region of a texture.  <a href="structjGL_1_1TextureOffset.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structjGL_1_1Shader.html">Shader</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,8 +136,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aff6dce0237a5f587ae267dae722bebba"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejGL.html#aff6dce0237a5f587ae267dae722bebba">RenderPriority</a></td></tr>
-<tr class="separator:aff6dce0237a5f587ae267dae722bebba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2531196185d5cc80fc3318775a236a63"><td class="memItemLeft" align="right" valign="top">typedef uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a></td></tr>
+<tr class="memdesc:a2531196185d5cc80fc3318775a236a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Higher priority is drawn last.  <a href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">More...</a><br /></td></tr>
+<tr class="separator:a2531196185d5cc80fc3318775a236a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fe89a2b3bcb5eb840923ee39f29ff17"><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a></td></tr>
 <tr class="separator:a7fe89a2b3bcb5eb840923ee39f29ff17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62e3aed44419492b8b045305b14e125d"><td class="memItemLeft" align="right" valign="top">typedef std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a></td></tr>
@@ -185,18 +192,24 @@ Variables</h2></td></tr>
 <tr class="memitem:afe38e847f55098d6ffe5835be4d44ca0"><td class="memTemplItemLeft" align="right" valign="top">const std::regex&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacejGL.html#afe38e847f55098d6ffe5835be4d44ca0">UNIFORM_DATA_REGEX&lt; Sampler2D &gt;</a> = std::regex(&quot;uniform(\\slowp\\s|\\shighp\\s|\\smediump\\s|\\s)sampler2D (\\S+);&quot;)</td></tr>
 <tr class="separator:afe38e847f55098d6ffe5835be4d44ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="aff6dce0237a5f587ae267dae722bebba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aff6dce0237a5f587ae267dae722bebba">&#9670;&nbsp;</a></span>RenderPriority</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A drawable graphic. </p>
+<p>Observes a <a class="el" href="structjGL_1_1Transform.html" title="Position, rotation, and scale.">Transform</a> (position, orientation, scale), and a <a class="el" href="classjGL_1_1Texture.html">Texture</a>.</p>
+<p>Rendered using the <a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a> (pixel units) region of the <a class="el" href="classjGL_1_1Texture.html">Texture</a>, at the alpha value. </p>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a2531196185d5cc80fc3318775a236a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2531196185d5cc80fc3318775a236a63">&#9670;&nbsp;</a></span>RenderPriority</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef uint64_t <a class="el" href="namespacejGL.html#aff6dce0237a5f587ae267dae722bebba">jGL::RenderPriority</a></td>
+          <td class="memname"><a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">jGL::RenderPriority</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Higher priority is drawn last. </p>
 
 </div>
 </div>

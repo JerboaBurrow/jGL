@@ -13,5 +13,6 @@ var searchData=
   ['framebuffer_2ecpp_100',['framebuffer.cpp',['../framebuffer_8cpp.html',1,'']]],
   ['framebuffer_2eh_101',['framebuffer.h',['../framebuffer_8h.html',1,'']]],
   ['framebuffersize_102',['frameBufferSize',['../classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631',1,'jGL::DesktopDisplay']]],
-  ['framespersecond_103',['framesPerSecond',['../classjGL_1_1Display.html#a29f1839428316aaf4ddf043ff90b490a',1,'jGL::Display']]]
+  ['framespersecond_103',['framesPerSecond',['../classjGL_1_1Display.html#a29f1839428316aaf4ddf043ff90b490a',1,'jGL::Display']]],
+  ['fromnormalised_104',['fromNormalised',['../classjGL_1_1Sprite.html#a8f0def65735b3153ea97a1436e65a440',1,'jGL::Sprite']]]
 ];

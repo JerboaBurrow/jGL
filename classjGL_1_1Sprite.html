@@ -68,6 +68,7 @@ $(function() {
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classjGL_1_1Sprite-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -82,9 +83,9 @@ Collaboration diagram for jGL::Sprite:</div>
 <div class="center"><img src="classjGL_1_1Sprite__coll__graph.png" border="0" usemap="#ajGL_1_1Sprite_coll__map" alt="Collaboration graph"/></div>
 <map name="ajGL_1_1Sprite_coll__map" id="ajGL_1_1Sprite_coll__map">
 <area shape="rect" title=" " alt="" coords="93,171,183,197"/>
-<area shape="rect" href="structjGL_1_1Transform.html" title=" " alt="" coords="5,81,121,108"/>
+<area shape="rect" href="structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="5,81,121,108"/>
 <area shape="rect" href="structjGL_1_1Primitive.html" title=" " alt="" coords="83,5,193,32"/>
-<area shape="rect" href="structjGL_1_1TextureOffset.html" title=" " alt="" coords="146,81,285,108"/>
+<area shape="rect" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture." alt="" coords="146,81,285,108"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -93,23 +94,38 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a9286b568d37d66470be05eaca950d5d6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#a9286b568d37d66470be05eaca950d5d6">Sprite</a> (const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;tra, <a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> to, std::shared_ptr&lt; <a class="el" href="classjGL_1_1Texture.html">Texture</a> &gt; tex, float <a class="el" href="classjGL_1_1Sprite.html#ad9750fc1a744e569a1ab6e05c64431ec">alpha</a>=1.0f)</td></tr>
 <tr class="separator:a9286b568d37d66470be05eaca950d5d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbd1e9fc36df40c14e9ceab60ca14389"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#acbd1e9fc36df40c14e9ceab60ca14389">setAlpha</a> (float a)</td></tr>
+<tr class="memdesc:acbd1e9fc36df40c14e9ceab60ca14389"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the sprite alpha modifier.  <a href="classjGL_1_1Sprite.html#acbd1e9fc36df40c14e9ceab60ca14389">More...</a><br /></td></tr>
 <tr class="separator:acbd1e9fc36df40c14e9ceab60ca14389"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe1352f5fb26f6add4a224b83b148503"><td class="memItemLeft" align="right" valign="top">const float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#abe1352f5fb26f6add4a224b83b148503">getAlpha</a> () const</td></tr>
+<tr class="memdesc:abe1352f5fb26f6add4a224b83b148503"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the alpha modifer.  <a href="classjGL_1_1Sprite.html#abe1352f5fb26f6add4a224b83b148503">More...</a><br /></td></tr>
 <tr class="separator:abe1352f5fb26f6add4a224b83b148503"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadaf2e81f33bf7207e52ed17fb329b55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#aadaf2e81f33bf7207e52ed17fb329b55">getTextureOffset</a> (bool normalised=false) const</td></tr>
+<tr class="memdesc:aadaf2e81f33bf7207e52ed17fb329b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="classjGL_1_1Texture.html">Texture</a> Offset in pixel units.  <a href="classjGL_1_1Sprite.html#aadaf2e81f33bf7207e52ed17fb329b55">More...</a><br /></td></tr>
+<tr class="separator:aadaf2e81f33bf7207e52ed17fb329b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab877760a5c86c1db40678732e51aa529"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#ab877760a5c86c1db40678732e51aa529">setTextureOffset</a> (<a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> to)</td></tr>
+<tr class="memdesc:ab877760a5c86c1db40678732e51aa529"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the <a class="el" href="classjGL_1_1Texture.html">Texture</a> Offset from a pixel region.  <a href="classjGL_1_1Sprite.html#ab877760a5c86c1db40678732e51aa529">More...</a><br /></td></tr>
+<tr class="separator:ab877760a5c86c1db40678732e51aa529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:aaee8d6d47bd694dfbc8221834d19dfbe"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#aaee8d6d47bd694dfbc8221834d19dfbe">transform</a></td></tr>
 <tr class="separator:aaee8d6d47bd694dfbc8221834d19dfbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8156e62f0fdbffef7390ae33a4652504"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#a8156e62f0fdbffef7390ae33a4652504">texOffset</a></td></tr>
-<tr class="separator:a8156e62f0fdbffef7390ae33a4652504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad38733711bbf0d5bc6bfa389b1457efa"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classjGL_1_1Texture.html">Texture</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#ad38733711bbf0d5bc6bfa389b1457efa">texture</a></td></tr>
 <tr class="separator:ad38733711bbf0d5bc6bfa389b1457efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a431961e9794203c4090678efa7a7060b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#a431961e9794203c4090678efa7a7060b">toNormalised</a> (<a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> to)</td></tr>
+<tr class="separator:a431961e9794203c4090678efa7a7060b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0def65735b3153ea97a1436e65a440"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#a8f0def65735b3153ea97a1436e65a440">fromNormalised</a> (<a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> to) const</td></tr>
+<tr class="separator:a8f0def65735b3153ea97a1436e65a440"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:ad9750fc1a744e569a1ab6e05c64431ec"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#ad9750fc1a744e569a1ab6e05c64431ec">alpha</a></td></tr>
 <tr class="separator:ad9750fc1a744e569a1ab6e05c64431ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8156e62f0fdbffef7390ae33a4652504"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Sprite.html#a8156e62f0fdbffef7390ae33a4652504">texOffset</a></td></tr>
+<tr class="separator:a8156e62f0fdbffef7390ae33a4652504"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9286b568d37d66470be05eaca950d5d6"></a>
@@ -161,6 +177,32 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8f0def65735b3153ea97a1436e65a440"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f0def65735b3153ea97a1436e65a440">&#9670;&nbsp;</a></span>fromNormalised()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> jGL::Sprite::fromNormalised </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td>
+          <td class="paramname"><em>to</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="abe1352f5fb26f6add4a224b83b148503"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abe1352f5fb26f6add4a224b83b148503">&#9670;&nbsp;</a></span>getAlpha()</h2>
 
@@ -184,6 +226,44 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Get the alpha modifer. </p>
+<dl class="section return"><dt>Returns</dt><dd>const float, which is in [0.0, 1.0]. </dd></dl>
+
+</div>
+</div>
+<a id="aadaf2e81f33bf7207e52ed17fb329b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aadaf2e81f33bf7207e52ed17fb329b55">&#9670;&nbsp;</a></span>getTextureOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> jGL::Sprite::getTextureOffset </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>normalised</em> = <code>false</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the <a class="el" href="classjGL_1_1Texture.html">Texture</a> Offset in pixel units. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">normalised</td><td>return the texture region in normalised units.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a> (pixel by default). </dd></dl>
+
 </div>
 </div>
 <a id="acbd1e9fc36df40c14e9ceab60ca14389"></a>
@@ -206,6 +286,71 @@ Protected Attributes</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the sprite alpha modifier. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td>alpha value, clamping is applied: std::clamp(a, 0.0f, 1.0f). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab877760a5c86c1db40678732e51aa529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab877760a5c86c1db40678732e51aa529">&#9670;&nbsp;</a></span>setTextureOffset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void jGL::Sprite::setTextureOffset </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td>
+          <td class="paramname"><em>to</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the <a class="el" href="classjGL_1_1Texture.html">Texture</a> Offset from a pixel region. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Values outside of the textures pixel range will be clamped. </dd>
+<dd>
+Lengths lx or ly &lt; 0 will be set to maximum. </dd></dl>
+
+</div>
+</div>
+<a id="a431961e9794203c4090678efa7a7060b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a431961e9794203c4090678efa7a7060b">&#9670;&nbsp;</a></span>toNormalised()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> jGL::Sprite::toNormalised </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td>
+          <td class="paramname"><em>to</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -240,11 +385,19 @@ Protected Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> jGL::Sprite::texOffset</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
