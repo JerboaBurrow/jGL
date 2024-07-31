@@ -131,6 +131,8 @@ else()
     target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/Linux/Lib)
 endif()
 
+target_compile_definitions(jGL PUBLIC MAX_SPRITE_BATCH_BOUND_TEXTURES=4)
+
 if (ANDROID)
     target_compile_definitions(jGL PUBLIC GLSL_VERSION="300 es")
     target_link_libraries(jGL PUBLIC ${GLES-lib} ${Vulkan_LIBRARIES} shaderc_combined stduuid freetype glm)
@@ -191,6 +193,7 @@ IF (TEST_SUITE)
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
+    target_compile_definitions(glTests PUBLIC MAX_SPRITE_BATCH_BOUND_TEXTURES=4)
 
     if (WINDOWS)
         target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw "winmm")
@@ -256,6 +259,7 @@ IF (TEST_SUITE)
     endif()
 
     target_compile_definitions(vkTests PUBLIC GLSL_VERSION="330")
+    target_compile_definitions(vkTests PUBLIC MAX_SPRITE_BATCH_BOUND_TEXTURES=4)
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
     include(Catch)
