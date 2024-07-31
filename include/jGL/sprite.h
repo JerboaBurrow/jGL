@@ -12,7 +12,7 @@
  * 
  * Observes a Transform (position, orientation, scale), and a Texture.
  * 
- * Rendered using the TextureOffset (pixel units) region of the Texture, at the alpha value.
+ * Rendered using the TextureRegion (pixel units) region of the Texture, at the alpha value.
  * 
  */
 
@@ -23,10 +23,18 @@ namespace jGL
 
     public:
 
+        /**
+         * @brief Construct a Sprite
+         *
+         * @param tra x, y, theta, scale Transform
+         * @param to Region of texture to draw
+         * @param tex Texture to draw
+         * @param alpha Transparency modifier (alpha * texture alpha)
+         */
         Sprite
         ( 
             const Transform & tra,
-            TextureOffset to,
+            TextureRegion to,
             const std::shared_ptr<Texture> tex,
             float alpha = 1.0f
         )
@@ -48,15 +56,22 @@ namespace jGL
         const float getAlpha() const { return alpha; }
 
         /**
-         * @brief Get the Texture Offset in pixel units.
+         * @brief Get the TextureRegion in pixel units.
          * 
-         * @param normalised return the texture region in normalised units.
-         * 
-         * @return TextureOffset (pixel by default).
+         * @return TextureRegion
          */
-        TextureOffset getTextureOffset(bool normalised = false) const
+        TextureRegion getTextureRegion() const
         { 
-            if (!normalised) {return fromNormalised(texOffset); }
+            return fromNormalised(texOffset);
+        }
+
+        /**
+         * @brief Get the NormalisedTextureRegion in normalised units.
+         *
+         * @return TextureRegion
+         */
+        NormalisedTextureRegion getNormalisedTextureRegion() const
+        {
             return texOffset;
         }
 
@@ -67,39 +82,39 @@ namespace jGL
          * @remark Lengths lx or ly < 0 will be set to maximum.
          * 
          */
-        void setTextureOffset(TextureOffset to) { texOffset = toNormalised(texOffset); }
+        void setTextureRegion(TextureRegion to) { texOffset = toNormalised(to); }
 
         const Transform & transform;
         const std::shared_ptr<Texture> texture;
 
     protected:
 
-        TextureOffset toNormalised(TextureOffset to)
+        NormalisedTextureRegion toNormalised(TextureRegion to)
         {
             glm::vec3 whc = texture->size(); 
-            if (to.lx < 0.0){ to.lx = whc.x; }
-            if (to.ly < 0.0){ to.ly = whc.y; }
-            return TextureOffset(
-                std::clamp(to.tx / whc.x, 0.0f, 1.0f),
-                std::clamp(to.ty / whc.y, 0.0f, 1.0f),
-                std::clamp(to.lx / whc.x, 0.0f, 1.0f),
-                std::clamp(to.ly / whc.y, 0.0f, 1.0f)
+            if (to.lx == 0){ to.lx = whc.x; }
+            if (to.ly == 0){ to.ly = whc.y; }
+            return NormalisedTextureRegion(
+                std::clamp(float(to.tx) / float(whc.x), 0.0f, 1.0f),
+                std::clamp(float(to.ty) / float(whc.y), 0.0f, 1.0f),
+                std::clamp(float(to.lx) / float(whc.x), 0.0f, 1.0f),
+                std::clamp(float(to.ly) / float(whc.y), 0.0f, 1.0f)
             );
         }
 
-        TextureOffset fromNormalised(TextureOffset to) const
+        TextureRegion fromNormalised(NormalisedTextureRegion to) const
         {
             glm::vec3 whc = texture->size();
-            return TextureOffset(
-                to.tx * whc.x,
-                to.ty * whc.y,
-                to.lx * whc.x,
-                to.ly * whc.y
+            return TextureRegion(
+                uint16_t(to.tx * whc.x),
+                uint16_t(to.ty * whc.y),
+                uint16_t(to.lx * whc.x),
+                uint16_t(to.ly * whc.y)
             );
         }
 
         float alpha;
-        TextureOffset texOffset;
+        NormalisedTextureRegion texOffset;
     
     };
 }

@@ -39,7 +39,7 @@ namespace jGL::GL
 
             const Sprite & sprite = sprites.at(sid.second);
             const Transform & trans = sprite.transform;
-            const TextureOffset toff = sprite.getTextureOffset(true);
+            const NormalisedTextureRegion toff = sprite.getNormalisedTextureRegion();
             const float alpha = sprite.getAlpha();
 
             offsets[i*offsetDim] = trans.x;
