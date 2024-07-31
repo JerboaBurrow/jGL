@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['renderpass_565',['RenderPass',['../classjGL_1_1Vulkan_1_1RenderPass.html',1,'jGL::Vulkan']]]
+  ['queuefamilyindices_565',['QueueFamilyIndices',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html',1,'jGL::Vulkan']]]
 ];

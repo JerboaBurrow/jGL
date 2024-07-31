@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['lastframe_1029',['lastFrame',['../classjGL_1_1Display.html#a0a4d625121a984d3d47569acab71a385',1,'jGL::Display']]],
-  ['location_1030',['location',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab568520868475b395c9e9a020a0f8852',1,'jGL::Vulkan::VertexBufferObject']]],
-  ['lx_1031',['lx',['../structjGL_1_1TextureOffset.html#aaa6287587bd4efe518faf82a311cddc1',1,'jGL::TextureOffset']]],
-  ['ly_1032',['ly',['../structjGL_1_1TextureOffset.html#a00acb624a07105c43feb7860da1250f0',1,'jGL::TextureOffset']]]
+  ['lastframe_1032',['lastFrame',['../classjGL_1_1Display.html#a0a4d625121a984d3d47569acab71a385',1,'jGL::Display']]],
+  ['location_1033',['location',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab568520868475b395c9e9a020a0f8852',1,'jGL::Vulkan::VertexBufferObject']]],
+  ['lx_1034',['lx',['../structjGL_1_1TextureRegion.html#a929957e39251776074aedfd05a76d1c7',1,'jGL::TextureRegion::lx()'],['../structjGL_1_1NormalisedTextureRegion.html#a0125cec07557d98d6dbf618844a26b99',1,'jGL::NormalisedTextureRegion::lx()']]],
+  ['ly_1035',['ly',['../structjGL_1_1TextureRegion.html#a2246b0fdcaac67bc24743fe7272b8727',1,'jGL::TextureRegion::ly()'],['../structjGL_1_1NormalisedTextureRegion.html#acc0856a014b50c23147a604351dc8f55',1,'jGL::NormalisedTextureRegion::ly()']]]
 ];

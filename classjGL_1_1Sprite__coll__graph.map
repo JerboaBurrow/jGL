@@ -1,6 +1,6 @@
 <map id="jGL::Sprite" name="jGL::Sprite">
-<area shape="rect" id="node1" title=" " alt="" coords="93,171,183,197"/>
-<area shape="rect" id="node2" href="$structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="5,81,121,108"/>
-<area shape="rect" id="node3" href="$structjGL_1_1Primitive.html" title=" " alt="" coords="83,5,193,32"/>
-<area shape="rect" id="node4" href="$structjGL_1_1TextureOffset.html" title="Rectangular region of a texture." alt="" coords="146,81,285,108"/>
+<area shape="rect" id="node1" title=" " alt="" coords="166,171,255,197"/>
+<area shape="rect" id="node2" href="$structjGL_1_1NormalisedTextureRegion.html" title="Rectangular region of a texture, normalised by the textures dimensions." alt="" coords="5,81,224,108"/>
+<area shape="rect" id="node3" href="$structjGL_1_1Primitive.html" title=" " alt="" coords="154,5,265,32"/>
+<area shape="rect" id="node4" href="$structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="249,81,365,108"/>
 </map>

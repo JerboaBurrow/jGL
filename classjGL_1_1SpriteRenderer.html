@@ -99,9 +99,9 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae363a44edab9a990d142cc61f65ddaaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae02f4c7a49684b371dbf4bd2060b47f9"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ae02f4c7a49684b371dbf4bd2060b47f9">getTransform</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id)</td></tr>
 <tr class="separator:ae02f4c7a49684b371dbf4bd2060b47f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c24c0d8e673832c0304ed5319ec2073"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a1c24c0d8e673832c0304ed5319ec2073">getTextureOffset</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id, bool normalised=false)</td></tr>
-<tr class="memdesc:a1c24c0d8e673832c0304ed5319ec2073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a Sprites <a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a>.  <a href="classjGL_1_1SpriteRenderer.html#a1c24c0d8e673832c0304ed5319ec2073">More...</a><br /></td></tr>
-<tr class="separator:a1c24c0d8e673832c0304ed5319ec2073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02d22d1c650ea66a4e4cca75dff519e3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1TextureRegion.html">TextureRegion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a02d22d1c650ea66a4e4cca75dff519e3">getTextureRegion</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id)</td></tr>
+<tr class="memdesc:a02d22d1c650ea66a4e4cca75dff519e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a Sprites <a class="el" href="structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels.">TextureRegion</a>.  <a href="classjGL_1_1SpriteRenderer.html#a02d22d1c650ea66a4e4cca75dff519e3">More...</a><br /></td></tr>
+<tr class="separator:a02d22d1c650ea66a4e4cca75dff519e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeadb18aa80ea0b04cec199429e4a9654"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aeadb18aa80ea0b04cec199429e4a9654">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)=0</td></tr>
 <tr class="memdesc:aeadb18aa80ea0b04cec199429e4a9654"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding render priority and shader.  <a href="classjGL_1_1SpriteRenderer.html#aeadb18aa80ea0b04cec199429e4a9654">More...</a><br /></td></tr>
 <tr class="separator:aeadb18aa80ea0b04cec199429e4a9654"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -418,8 +418,8 @@ RenderPriority of Sprites may lead to inefficient batching across textures. Try 
 
 </div>
 </div>
-<a id="a1c24c0d8e673832c0304ed5319ec2073"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c24c0d8e673832c0304ed5319ec2073">&#9670;&nbsp;</a></span>getTextureOffset()</h2>
+<a id="a02d22d1c650ea66a4e4cca75dff519e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02d22d1c650ea66a4e4cca75dff519e3">&#9670;&nbsp;</a></span>getTextureRegion()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -428,21 +428,11 @@ RenderPriority of Sprites may lead to inefficient batching across textures. Try 
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a> jGL::SpriteRenderer::getTextureOffset </td>
+          <td class="memname">const <a class="el" href="structjGL_1_1TextureRegion.html">TextureRegion</a> jGL::SpriteRenderer::getTextureRegion </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a>&#160;</td>
-          <td class="paramname"><em>id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>id</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>normalised</em> = <code>false</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -452,16 +442,15 @@ RenderPriority of Sprites may lead to inefficient batching across textures. Try 
 </table>
 </div><div class="memdoc">
 
-<p>Get a Sprites <a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a>. </p>
-<dl class="section remark"><dt>Remarks</dt><dd>In pixel units, see TextureOffset::getTextureOffset()</dd></dl>
+<p>Get a Sprites <a class="el" href="structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels.">TextureRegion</a>. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>In pixel units, see TextureRegion::getTextureRegion()</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">id</td><td></td></tr>
-    <tr><td class="paramname">normalised</td><td>Return in normalised units. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>const <a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>const <a class="el" href="structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels.">TextureRegion</a> </dd></dl>
 
 </div>
 </div>
