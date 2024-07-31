@@ -7,6 +7,7 @@ var searchData=
   ['shapes_1052',['shapes',['../classjGL_1_1ShapeRenderer.html#af1375fa896226adbc60537aba3c94794',1,'jGL::ShapeRenderer']]],
   ['size_1053',['size',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#afa067d2dce4b3fc2ea5d7b1768ed7500',1,'jGL::Vulkan::UniformBufferObject']]],
   ['sprites_1054',['sprites',['../classjGL_1_1SpriteRenderer.html#acbd7009e754bb4b962e3a693b29adb43',1,'jGL::SpriteRenderer']]],
-  ['stage_1055',['stage',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#a014857e50fa326c3ee391bff7bebd1ad',1,'jGL::Vulkan::UniformBufferObject']]],
-  ['state_1056',['state',['../structjGL_1_1TexturedParticle.html#a70656ea60652dd0846067f4069f32138',1,'jGL::TexturedParticle']]]
+  ['spritetotexture_1055',['spriteToTexture',['../classjGL_1_1SpriteRenderer.html#a2c5a1005bb1bd80e737cf265cf28ce31',1,'jGL::SpriteRenderer']]],
+  ['stage_1056',['stage',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#a014857e50fa326c3ee391bff7bebd1ad',1,'jGL::Vulkan::UniformBufferObject']]],
+  ['state_1057',['state',['../structjGL_1_1TexturedParticle.html#a70656ea60652dd0846067f4069f32138',1,'jGL::TexturedParticle']]]
 ];

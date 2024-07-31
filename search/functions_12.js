@@ -30,7 +30,7 @@ var searchData=
   ['shaperenderer_923',['ShapeRenderer',['../classjGL_1_1ShapeRenderer.html#adb9c39ff18fd4af2d1ef9893cf281d29',1,'jGL::ShapeRenderer']]],
   ['size_924',['size',['../classjGL_1_1Texture.html#ad59c34334e56d2c382d3a338885e359d',1,'jGL::Texture::size()'],['../classjLog_1_1Log.html#a8cd70db0800110046b68b47340ead7d4',1,'jLog::Log::size()'],['../classjThread_1_1ThreadPool.html#a877ca8e85408fcc800b386e135045cd2',1,'jThread::ThreadPool::size()']]],
   ['spacing_925',['spacing',['../classjGL_1_1Font.html#a78a3968d66332a97e1e26cecb44bba3e',1,'jGL::Font']]],
-  ['sprite_926',['Sprite',['../classjGL_1_1Sprite.html#a9286b568d37d66470be05eaca950d5d6',1,'jGL::Sprite']]],
+  ['sprite_926',['Sprite',['../classjGL_1_1Sprite.html#a828bf24470fad3d571a58ef7d1297cab',1,'jGL::Sprite']]],
   ['spriterenderer_927',['SpriteRenderer',['../classjGL_1_1SpriteRenderer.html#a26a2f0e35dfa56ce0a84b9e902128286',1,'jGL::SpriteRenderer']]],
   ['stop_928',['stop',['../classjThread_1_1ThreadPool.html#a517d61304ff5cdd14ca0f563e534e67f',1,'jThread::ThreadPool']]],
   ['subdata_929',['subData',['../classjGL_1_1Vulkan_1_1VertexBuffer.html#ab4f8a5bfd2cd5a38a36dbddc598d3ed6',1,'jGL::Vulkan::VertexBuffer::subData()'],['../classjGL_1_1Vulkan_1_1VertexBuffer_3_01glm_1_1vec4_01_4.html#ab098fa848f9c25c5b3f8befb4885d976',1,'jGL::Vulkan::VertexBuffer&lt; glm::vec4 &gt;::subData()'],['../classjGL_1_1Vulkan_1_1VertexBuffer_3_01glm_1_1vec2_01_4.html#a88b9df2f495b8c875cfca32c278d0264',1,'jGL::Vulkan::VertexBuffer&lt; glm::vec2 &gt;::subData()']]],

@@ -46,7 +46,7 @@ var searchData=
   ['getsprite_149',['getSprite',['../classjGL_1_1SpriteRenderer.html#ae363a44edab9a990d142cc61f65ddaaa',1,'jGL::SpriteRenderer']]],
   ['getswapchain_150',['getSwapchain',['../classjGL_1_1Vulkan_1_1VulkanInstance.html#aac6164775c8d9c7c0acdf46a0f22a639',1,'jGL::Vulkan::VulkanInstance']]],
   ['getswapchainsupportdetails_151',['getSwapchainSupportDetails',['../classjGL_1_1Vulkan_1_1PhysicalDevice.html#aef94ff3bd5578e71b36f9310c8920728',1,'jGL::Vulkan::PhysicalDevice']]],
-  ['gettextureoffset_152',['getTextureOffset',['../classjGL_1_1Sprite.html#aadaf2e81f33bf7207e52ed17fb329b55',1,'jGL::Sprite::getTextureOffset()'],['../classjGL_1_1SpriteRenderer.html#a67ad793657e31974c7d480b0122c8a7c',1,'jGL::SpriteRenderer::getTextureOffset(SpriteId id)']]],
+  ['gettextureoffset_152',['getTextureOffset',['../classjGL_1_1Sprite.html#aadaf2e81f33bf7207e52ed17fb329b55',1,'jGL::Sprite::getTextureOffset()'],['../classjGL_1_1SpriteRenderer.html#a1c24c0d8e673832c0304ed5319ec2073',1,'jGL::SpriteRenderer::getTextureOffset(SpriteId id, bool normalised=false)']]],
   ['gettransform_153',['getTransform',['../classjGL_1_1SpriteRenderer.html#ae02f4c7a49684b371dbf4bd2060b47f9',1,'jGL::SpriteRenderer::getTransform()'],['../classjGL_1_1ShapeRenderer.html#a2cb03f5ff24a18980134d04b9353018d',1,'jGL::ShapeRenderer::getTransform()']]],
   ['getuniform_154',['getUniform',['../structjGL_1_1Shader.html#a0f82364bb0977eabb21c75fe8ecb4c31',1,'jGL::Shader']]],
   ['getuniformnames_155',['getUniformNames',['../structjGL_1_1Shader.html#a893f1559816e81e6d673e839ba6ab246',1,'jGL::Shader']]],

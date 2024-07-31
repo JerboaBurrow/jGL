@@ -80,7 +80,7 @@ Inheritance diagram for jGL::Vulkan::vkSpriteRenderer:</div>
 <div class="center"><img src="classjGL_1_1Vulkan_1_1vkSpriteRenderer__inherit__graph.png" border="0" usemap="#ajGL_1_1Vulkan_1_1vkSpriteRenderer_inherit__map" alt="Inheritance graph"/></div>
 <map name="ajGL_1_1Vulkan_1_1vkSpriteRenderer_inherit__map" id="ajGL_1_1Vulkan_1_1vkSpriteRenderer_inherit__map">
 <area shape="rect" title=" " alt="" coords="5,80,220,107"/>
-<area shape="rect" href="classjGL_1_1SpriteRenderer.html" title=" " alt="" coords="39,5,187,32"/>
+<area shape="rect" href="classjGL_1_1SpriteRenderer.html" title="Renders sprites in batches, with optional render priority." alt="" coords="39,5,187,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
@@ -89,7 +89,7 @@ Collaboration diagram for jGL::Vulkan::vkSpriteRenderer:</div>
 <div class="center"><img src="classjGL_1_1Vulkan_1_1vkSpriteRenderer__coll__graph.png" border="0" usemap="#ajGL_1_1Vulkan_1_1vkSpriteRenderer_coll__map" alt="Collaboration graph"/></div>
 <map name="ajGL_1_1Vulkan_1_1vkSpriteRenderer_coll__map" id="ajGL_1_1Vulkan_1_1vkSpriteRenderer_coll__map">
 <area shape="rect" title=" " alt="" coords="5,80,220,107"/>
-<area shape="rect" href="classjGL_1_1SpriteRenderer.html" title=" " alt="" coords="39,5,187,32"/>
+<area shape="rect" href="classjGL_1_1SpriteRenderer.html" title="Renders sprites in batches, with optional render priority." alt="" coords="39,5,187,32"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
@@ -97,56 +97,63 @@ Collaboration diagram for jGL::Vulkan::vkSpriteRenderer:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3dc51a27b7a6d2cd09dfdba3316bfc60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a3dc51a27b7a6d2cd09dfdba3316bfc60">vkSpriteRenderer</a> (size_t sizeHint)</td></tr>
 <tr class="separator:a3dc51a27b7a6d2cd09dfdba3316bfc60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37344a0682584b985f5d51ad35bad823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a37344a0682584b985f5d51ad35bad823">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memitem:a37344a0682584b985f5d51ad35bad823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a37344a0682584b985f5d51ad35bad823">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memdesc:a37344a0682584b985f5d51ad35bad823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding render priority and shader.  <a href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a37344a0682584b985f5d51ad35bad823">More...</a><br /></td></tr>
 <tr class="separator:a37344a0682584b985f5d51ad35bad823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a470c2b89109790d5967bc2a6f5d5f6df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a470c2b89109790d5967bc2a6f5d5f6df">draw</a> (std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memitem:a470c2b89109790d5967bc2a6f5d5f6df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a470c2b89109790d5967bc2a6f5d5f6df">draw</a> (std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memdesc:a470c2b89109790d5967bc2a6f5d5f6df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding render priority.  <a href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a470c2b89109790d5967bc2a6f5d5f6df">More...</a><br /></td></tr>
 <tr class="separator:a470c2b89109790d5967bc2a6f5d5f6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa7ecebb60f57d6cf35059755d4295c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#aaa7ecebb60f57d6cf35059755d4295c9">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::vector&lt; <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memitem:aaa7ecebb60f57d6cf35059755d4295c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#aaa7ecebb60f57d6cf35059755d4295c9">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::vector&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
 <tr class="separator:aaa7ecebb60f57d6cf35059755d4295c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32b48b977f6b910a3807a3aa75c81ee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a32b48b977f6b910a3807a3aa75c81ee0">draw</a> (std::vector&lt; <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
+<tr class="memitem:a32b48b977f6b910a3807a3aa75c81ee0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Vulkan_1_1vkSpriteRenderer.html#a32b48b977f6b910a3807a3aa75c81ee0">draw</a> (std::vector&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt; <a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a>)</td></tr>
 <tr class="separator:a32b48b977f6b910a3807a3aa75c81ee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classjGL_1_1SpriteRenderer"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classjGL_1_1SpriteRenderer')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classjGL_1_1SpriteRenderer.html">jGL::SpriteRenderer</a></td></tr>
 <tr class="memitem:a26a2f0e35dfa56ce0a84b9e902128286 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a26a2f0e35dfa56ce0a84b9e902128286">SpriteRenderer</a> (size_t sizeHint=8)</td></tr>
+<tr class="memdesc:a26a2f0e35dfa56ce0a84b9e902128286 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classjGL_1_1SpriteRenderer.html" title="Renders sprites in batches, with optional render priority.">SpriteRenderer</a>.  <a href="classjGL_1_1SpriteRenderer.html#a26a2f0e35dfa56ce0a84b9e902128286">More...</a><br /></td></tr>
 <tr class="separator:a26a2f0e35dfa56ce0a84b9e902128286 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae363a44edab9a990d142cc61f65ddaaa inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjGL_1_1Sprite.html">Sprite</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ae363a44edab9a990d142cc61f65ddaaa">getSprite</a> (<a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id)</td></tr>
+<tr class="memitem:ae363a44edab9a990d142cc61f65ddaaa inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjGL_1_1Sprite.html">Sprite</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ae363a44edab9a990d142cc61f65ddaaa">getSprite</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id)</td></tr>
 <tr class="separator:ae363a44edab9a990d142cc61f65ddaaa inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae02f4c7a49684b371dbf4bd2060b47f9 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ae02f4c7a49684b371dbf4bd2060b47f9">getTransform</a> (<a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id)</td></tr>
+<tr class="memitem:ae02f4c7a49684b371dbf4bd2060b47f9 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ae02f4c7a49684b371dbf4bd2060b47f9">getTransform</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id)</td></tr>
 <tr class="separator:ae02f4c7a49684b371dbf4bd2060b47f9 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67ad793657e31974c7d480b0122c8a7c inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a67ad793657e31974c7d480b0122c8a7c">getTextureOffset</a> (<a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id)</td></tr>
-<tr class="separator:a67ad793657e31974c7d480b0122c8a7c inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c24c0d8e673832c0304ed5319ec2073 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1TextureOffset.html">TextureOffset</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a1c24c0d8e673832c0304ed5319ec2073">getTextureOffset</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id, bool normalised=false)</td></tr>
+<tr class="memdesc:a1c24c0d8e673832c0304ed5319ec2073 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a Sprites <a class="el" href="structjGL_1_1TextureOffset.html" title="Rectangular region of a texture.">TextureOffset</a>.  <a href="classjGL_1_1SpriteRenderer.html#a1c24c0d8e673832c0304ed5319ec2073">More...</a><br /></td></tr>
+<tr class="separator:a1c24c0d8e673832c0304ed5319ec2073 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6e38ec491f9b13a04c2af04cc4b85c1 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#ac6e38ec491f9b13a04c2af04cc4b85c1">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader)</td></tr>
+<tr class="memdesc:ac6e38ec491f9b13a04c2af04cc4b85c1 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding shader.  <a href="classjGL_1_1SpriteRenderer.html#ac6e38ec491f9b13a04c2af04cc4b85c1">More...</a><br /></td></tr>
 <tr class="separator:ac6e38ec491f9b13a04c2af04cc4b85c1 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a915d56ada72d7bd6310da7f45c2fa4a0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a915d56ada72d7bd6310da7f45c2fa4a0">draw</a> ()</td></tr>
+<tr class="memdesc:a915d56ada72d7bd6310da7f45c2fa4a0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with default shader and priority.  <a href="classjGL_1_1SpriteRenderer.html#a915d56ada72d7bd6310da7f45c2fa4a0">More...</a><br /></td></tr>
 <tr class="separator:a915d56ada72d7bd6310da7f45c2fa4a0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9741a1dfc97f734a24eb76e1a11987e inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aa9741a1dfc97f734a24eb76e1a11987e">add</a> (<a class="el" href="classjGL_1_1Sprite.html">Sprite</a> s, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id, <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a> priority=0)</td></tr>
+<tr class="memitem:aa9741a1dfc97f734a24eb76e1a11987e inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aa9741a1dfc97f734a24eb76e1a11987e">add</a> (<a class="el" href="classjGL_1_1Sprite.html">Sprite</a> s, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id, <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a> priority=0)</td></tr>
 <tr class="separator:aa9741a1dfc97f734a24eb76e1a11987e inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77dda9b19753f301cbf5631f60cc2096 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a77dda9b19753f301cbf5631f60cc2096">remove</a> (<a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id)</td></tr>
+<tr class="memitem:a77dda9b19753f301cbf5631f60cc2096 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a77dda9b19753f301cbf5631f60cc2096">remove</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id)</td></tr>
 <tr class="separator:a77dda9b19753f301cbf5631f60cc2096 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac23a68acf6323d2a057dc227d40d094 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aac23a68acf6323d2a057dc227d40d094">hasId</a> (const <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id) const</td></tr>
+<tr class="memitem:aac23a68acf6323d2a057dc227d40d094 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aac23a68acf6323d2a057dc227d40d094">hasId</a> (const <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id) const</td></tr>
 <tr class="separator:aac23a68acf6323d2a057dc227d40d094 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46d7989b0beaae43ae0dcb4c454c1b5f inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a46d7989b0beaae43ae0dcb4c454c1b5f">clear</a> ()</td></tr>
 <tr class="separator:a46d7989b0beaae43ae0dcb4c454c1b5f inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa8d0208d6dc69d8fa07f143a7652cbbf inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#aa8d0208d6dc69d8fa07f143a7652cbbf">setProjection</a> (glm::mat4 p)</td></tr>
 <tr class="separator:aa8d0208d6dc69d8fa07f143a7652cbbf inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afeac73b62baf98131900ed96410ff2e0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#afeac73b62baf98131900ed96410ff2e0">updatePriority</a> (<a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> id, <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a> newPriority)</td></tr>
+<tr class="memitem:afeac73b62baf98131900ed96410ff2e0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#afeac73b62baf98131900ed96410ff2e0">updatePriority</a> (<a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> id, <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a> newPriority)</td></tr>
 <tr class="separator:afeac73b62baf98131900ed96410ff2e0 inherit pub_methods_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pub_static_attribs_classjGL_1_1SpriteRenderer"><td colspan="2" onclick="javascript:toggleInherit('pub_static_attribs_classjGL_1_1SpriteRenderer')"><img src="closed.png" alt="-"/>&#160;Static Public Attributes inherited from <a class="el" href="classjGL_1_1SpriteRenderer.html">jGL::SpriteRenderer</a></td></tr>
+<tr class="memitem:a1c727dcdfde3d5df533a336893efd93e inherit pub_static_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a1c727dcdfde3d5df533a336893efd93e">MAX_BATCH_BOUND_TEXTURES</a> = MAX_SPRITE_BATCH_BOUND_TEXTURES</td></tr>
+<tr class="memdesc:a1c727dcdfde3d5df533a336893efd93e inherit pub_static_attribs_classjGL_1_1SpriteRenderer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Largest number of concurrent textures bound for one batch.  <a href="classjGL_1_1SpriteRenderer.html#a1c727dcdfde3d5df533a336893efd93e">More...</a><br /></td></tr>
+<tr class="separator:a1c727dcdfde3d5df533a336893efd93e inherit pub_static_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classjGL_1_1SpriteRenderer"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classjGL_1_1SpriteRenderer')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classjGL_1_1SpriteRenderer.html">jGL::SpriteRenderer</a></td></tr>
-<tr class="memitem:adfe597ecb5e288b385d44f6242d95200 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classjGL_1_1Texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#adfe597ecb5e288b385d44f6242d95200">textureSlots</a></td></tr>
-<tr class="separator:adfe597ecb5e288b385d44f6242d95200 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68b181356c46481d2ffcf4e8a79d384b inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a68b181356c46481d2ffcf4e8a79d384b">usedTextureSlots</a> = 0</td></tr>
-<tr class="separator:a68b181356c46481d2ffcf4e8a79d384b inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acbd7009e754bb4b962e3a693b29adb43 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a>, <a class="el" href="classjGL_1_1Sprite.html">Sprite</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#acbd7009e754bb4b962e3a693b29adb43">sprites</a></td></tr>
+<tr class="memitem:a2b3ffd31593a32d418bf334d1fc3f8f8 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::shared_ptr&lt; <a class="el" href="classjGL_1_1Texture.html">Texture</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a2b3ffd31593a32d418bf334d1fc3f8f8">textures</a></td></tr>
+<tr class="separator:a2b3ffd31593a32d418bf334d1fc3f8f8 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbd7009e754bb4b962e3a693b29adb43 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a>, <a class="el" href="classjGL_1_1Sprite.html">Sprite</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#acbd7009e754bb4b962e3a693b29adb43">sprites</a></td></tr>
 <tr class="separator:acbd7009e754bb4b962e3a693b29adb43 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84d231898567a26b352755d2165f1f0e inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a></td></tr>
+<tr class="memitem:a2c5a1005bb1bd80e737cf265cf28ce31 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a>, size_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a2c5a1005bb1bd80e737cf265cf28ce31">spriteToTexture</a></td></tr>
+<tr class="separator:a2c5a1005bb1bd80e737cf265cf28ce31 inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d231898567a26b352755d2165f1f0e inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e">ids</a></td></tr>
 <tr class="separator:a84d231898567a26b352755d2165f1f0e inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53bea362c67cf22c83d46926e3b1470d inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#a53bea362c67cf22c83d46926e3b1470d">projection</a> = glm::mat4(0.0f)</td></tr>
 <tr class="separator:a53bea362c67cf22c83d46926e3b1470d inherit pro_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_static_attribs_classjGL_1_1SpriteRenderer"><td colspan="2" onclick="javascript:toggleInherit('pro_static_attribs_classjGL_1_1SpriteRenderer')"><img src="closed.png" alt="-"/>&#160;Static Protected Attributes inherited from <a class="el" href="classjGL_1_1SpriteRenderer.html">jGL::SpriteRenderer</a></td></tr>
-<tr class="memitem:af5db2a87afcef2dd528582d16a7d752e inherit pro_static_attribs_classjGL_1_1SpriteRenderer"><td class="memItemLeft" align="right" valign="top">static const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1SpriteRenderer.html#af5db2a87afcef2dd528582d16a7d752e">MAX_TEXTURE_SLOTS</a> = 4</td></tr>
-<tr class="separator:af5db2a87afcef2dd528582d16a7d752e inherit pro_static_attribs_classjGL_1_1SpriteRenderer"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3dc51a27b7a6d2cd09dfdba3316bfc60"></a>
@@ -188,7 +195,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void jGL::Vulkan::vkSpriteRenderer::draw </td>
           <td>(</td>
-          <td class="paramtype">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt;&#160;</td>
+          <td class="paramtype">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt;&#160;</td>
           <td class="paramname"><em>ids</em></td><td>)</td>
           <td></td>
         </tr>
@@ -199,6 +206,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Draw with overriding render priority. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>Render priorities for the Sprites. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classjGL_1_1SpriteRenderer.html#a7beb730dc097be81e0d2a87ac5526728">jGL::SpriteRenderer</a>.</p>
 
@@ -222,7 +237,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt;&#160;</td>
+          <td class="paramtype">std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt;&#160;</td>
           <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
@@ -237,6 +252,15 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Draw with overriding render priority and shader. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shader</td><td>An OpenGL <a class="el" href="structjGL_1_1Shader.html">Shader</a> to draw all the Sprites with. </td></tr>
+    <tr><td class="paramname">ids</td><td>Render priorities for the Sprites. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implements <a class="el" href="classjGL_1_1SpriteRenderer.html#aeadb18aa80ea0b04cec199429e4a9654">jGL::SpriteRenderer</a>.</p>
 
@@ -260,7 +284,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt;&#160;</td>
           <td class="paramname"><em>ids</em>&#160;</td>
         </tr>
         <tr>
@@ -290,7 +314,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">void jGL::Vulkan::vkSpriteRenderer::draw </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a62e3aed44419492b8b045305b14e125d">SpriteId</a> &gt;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a1fbfaa6cb68554bbad510c87428878fe">SpriteId</a> &gt;&#160;</td>
           <td class="paramname"><em>ids</em></td><td>)</td>
           <td></td>
         </tr>

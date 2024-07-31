@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['max_5ftexture_5fslots_275',['MAX_TEXTURE_SLOTS',['../classjGL_1_1SpriteRenderer.html#af5db2a87afcef2dd528582d16a7d752e',1,'jGL::SpriteRenderer']]],
+  ['max_5fbatch_5fbound_5ftextures_275',['MAX_BATCH_BOUND_TEXTURES',['../classjGL_1_1SpriteRenderer.html#a1c727dcdfde3d5df533a336893efd93e',1,'jGL::SpriteRenderer']]],
   ['microsperframe_276',['microsPerFrame',['../classjGL_1_1Display.html#aadbe807d0fa0ba6cabe386d9833a40ab',1,'jGL::Display']]],
   ['mouseposition_277',['mousePosition',['../classjGL_1_1DesktopDisplay.html#a5b917faaf02192df922452af24e6fce1',1,'jGL::DesktopDisplay']]],
   ['mousex_278',['mouseX',['../structjGL_1_1Event.html#a934c269a6974d572b264cbe72e9064e1',1,'jGL::Event']]],
