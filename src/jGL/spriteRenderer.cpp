@@ -11,19 +11,16 @@ namespace jGL
     {
         Id textureId = s.texture->getId();
         auto is_equal = [textureId](std::shared_ptr<Texture> t) { return t->getId() == textureId; };
-        auto match = std::find_if(textureSlots.begin(), textureSlots.end(), is_equal);
+        auto match = std::find_if(textures.begin(), textures.end(), is_equal);
 
-        if (match == textureSlots.end())
+        if (match == textures.end())
         {
-            if (usedTextureSlots < MAX_TEXTURE_SLOTS)
-            {
-                textureSlots.push_back(s.texture);
-                usedTextureSlots += 1;
-            }
-            else
-            {
-                throw std::runtime_error("Sprite renderer hit maximum texture slots");
-            }
+            textures.push_back(s.texture);
+            spriteToTexture[id] = textures.size()-1;
+        }
+        else
+        {
+            spriteToTexture[id] = std::distance(textures.begin(), match);
         }
 
         sprites.insert(std::pair(id, s));

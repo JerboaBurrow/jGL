@@ -30,7 +30,7 @@ namespace jGL
         SpriteRenderer(size_t sizeHint = 8)
         {
             sprites.reserve(sizeHint); 
-            textureSlots.reserve(MAX_TEXTURE_SLOTS);
+            textures.reserve(MAX_TEXTURE_SLOTS);
         }
 
         Sprite & getSprite(SpriteId id);
@@ -87,11 +87,10 @@ namespace jGL
     protected:
 
         static const uint8_t MAX_TEXTURE_SLOTS = 4;
-        std::vector<std::shared_ptr<Texture>> textureSlots;
-
-        uint8_t usedTextureSlots = 0;
+        std::vector<std::shared_ptr<Texture>> textures;
 
         std::unordered_map<SpriteId, Sprite> sprites;
+        std::unordered_map<SpriteId, size_t> spriteToTexture;
 
         std::multimap<RenderPriority, SpriteId> ids;
 

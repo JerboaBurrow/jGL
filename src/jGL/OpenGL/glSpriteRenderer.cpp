@@ -16,23 +16,31 @@ namespace jGL::GL
             initGL();
         }
 
+        std::vector<size_t> textureIndices(ids.size(), 0);
+        std::vector<std::pair<size_t, std::vector<size_t>>> batches;
+        batches.reserve(n);
+
         uint64_t i = 0;
+        std::vector<size_t> batch;
+
         for (auto & sid : ids)
         {
+            size_t textureIndex = spriteToTexture[sid.second];
+            bool newTexture = std::find(batch.begin(), batch.end(), textureIndex) == batch.end();
+            if (newTexture)
+            {
+                if (batch.size() == MAX_TEXTURE_SLOTS)
+                {
+                    batches.push_back(std::pair(i, batch));
+                    batch.clear();
+                }
+                batch.push_back(textureIndex);
+            }
+
             const Sprite & sprite = sprites.at(sid.second);
             const Transform & trans = sprite.transform;
             const TextureOffset toff = sprite.getTextureOffset(true);
-            const Id & texId = sprite.texture->getId();
             const float alpha = sprite.getAlpha();
-            
-            auto is_equal = [texId] (std::shared_ptr<Texture> tex) { return tex->getId() == texId; };
-
-            auto found = std::find_if(textureSlots.begin(), textureSlots.end(), is_equal);
-            size_t index = std::distance(textureSlots.begin(), found);
-            if (index == textureSlots.size())
-            {
-                throw std::runtime_error("sprite texture not found in sprite renderer");
-            }
 
             offsets[i*offsetDim] = trans.x;
             offsets[i*offsetDim+1] = trans.y;
@@ -42,38 +50,47 @@ namespace jGL::GL
             textureRegion[i*textureRegionDim+1] = toff.ty;
             textureRegion[i*textureRegionDim+2] = toff.lx;
             textureRegion[i*textureRegionDim+3] = toff.ly;
-            textureOptions[i*textureOptionsDim] = float(index);
+            textureOptions[i*textureOptionsDim] = float(std::distance(batch.begin(), std::find(batch.begin(), batch.end(), textureIndex)));
             textureOptions[i*textureOptionsDim+1] = alpha;
 
-            i += 1;
+            i++;
         }
+        batches.push_back(std::pair(i, batch));
 
-        for (unsigned i = 0; i < MAX_TEXTURE_SLOTS; i++)
+        uint64_t b = 0;
+        uint64_t current = 0;
+        uint64_t next = batches[b].first-1;
+        std::vector<size_t>::const_iterator biter;
+
+        while (b < batches.size())
         {
-            if (i >= usedTextureSlots)
+            biter = batches[b].second.cbegin();
+            for (unsigned slot = 0; slot < MAX_TEXTURE_SLOTS; slot++)
             {
-                break;
+                if (biter == batches[b].second.cend()) { break; }
+                textures[*biter]->bind(slot);
+                biter++;
             }
-            textureSlots[i]->bind(i);
-        }
 
-        shader->use();
+            shader->use();
 
-        shader->setUniform<glm::mat4>("proj", projection);
-        shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
-        shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
-        shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
-        shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
+            shader->setUniform<glm::mat4>("proj", projection);
+            shader->setUniform<Sampler2D>("sampler0", Sampler2D(0));
+            shader->setUniform<Sampler2D>("sampler1", Sampler2D(1));
+            shader->setUniform<Sampler2D>("sampler2", Sampler2D(2));
+            shader->setUniform<Sampler2D>("sampler3", Sampler2D(3));
 
-        glBindVertexArray(vao);
+            size_t batchSize = next-current+1;
+
+            glBindVertexArray(vao);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_offset);
                 glBufferSubData
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    offsetDim*n*sizeof(float),
-                    &offsets[0]
+                    offsetDim*batchSize*sizeof(float),
+                    &offsets[current*offsetDim]
                 );
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             
@@ -83,8 +100,8 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    textureRegionDim*n*sizeof(float),
-                    &textureRegion[0]
+                    textureRegionDim*batchSize*sizeof(float),
+                    &textureRegion[current*textureRegionDim]
                 );
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -95,25 +112,32 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    textureOptionsDim*n*sizeof(float),
-                    &textureOptions[0]
+                    textureOptionsDim*batchSize*sizeof(float),
+                    &textureOptions[current*textureOptionsDim]
                 );
 
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-        glBindVertexArray(0);
+            glBindVertexArray(0);
 
-        glBindVertexArray(vao);
+            glBindVertexArray(vao);
 
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glDisable(GL_DEPTH_TEST);
-        
-            glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
+                glEnable(GL_BLEND);
+                glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+                glDisable(GL_DEPTH_TEST);
 
-        glBindVertexArray(0);
+                glDrawArraysInstanced(GL_TRIANGLES, 0, 6, batchSize);
 
-        glError("sprite draw");
+            glBindVertexArray(0);
+
+            glError("sprite draw");
+
+            if (b+1 == batches.size()){ break; }
+
+            current = batches[b].first;
+            b++;
+            next = batches[b].first-1;
+        }
 
     }
 
