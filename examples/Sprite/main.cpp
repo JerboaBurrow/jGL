@@ -52,6 +52,12 @@ int main(int argv, char ** argc)
         jGL::Texture::Type::RGBA
     );
 
+    std::shared_ptr<jGL::Texture> random = jGLInstance->createTexture
+    (
+        "resource/texture/random.png",
+        jGL::Texture::Type::RGBA
+    );
+
     std::shared_ptr<jGL::SpriteRenderer> sprites = jGLInstance->createSpriteRenderer
     (
         2
@@ -72,6 +78,7 @@ int main(int argv, char ** argc)
         {"sJerboa", jGL::Transform(0.1f, 0.9f, 0.0f, 0.1f)},
         {"sPi", jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f)},
         {"sHeart", jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f)},
+        {"sRandom", jGL::Transform(0.5f, 0.25f, 0.0f, 0.1f)},
         {"lowest", jGL::Transform(0.5f, 0.1f, 0.0f, 0.1f)},
         {"middle", jGL::Transform(0.55f, 0.15f, 0.0f, 0.1f)},
         {"highest", jGL::Transform(0.6f, 0.2f, 0.0f, 0.1f)}
@@ -157,6 +164,16 @@ int main(int argv, char ** argc)
             heart
         },
         "sHeart"
+    );
+
+    sprites->add
+    (
+        {
+            trans["sRandom"],
+            jGL::TextureOffset(),
+            random
+        },
+        "sRandom"
     );
 
         sprites->add

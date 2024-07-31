@@ -27,7 +27,7 @@ namespace jGL
         ( 
             const Transform & tra,
             TextureOffset to,
-            std::shared_ptr<Texture> tex,
+            const std::shared_ptr<Texture> tex,
             float alpha = 1.0f
         )
         : transform(tra), texture(tex), alpha(std::clamp(alpha, 0.0f, 1.0f)), texOffset(toNormalised(to))
@@ -70,7 +70,7 @@ namespace jGL
         void setTextureOffset(TextureOffset to) { texOffset = toNormalised(texOffset); }
 
         const Transform & transform;
-        std::shared_ptr<Texture> texture;
+        const std::shared_ptr<Texture> texture;
 
     protected:
 
