@@ -75,6 +75,7 @@ int main(int argv, char ** argc)
         {"sAtlas3", jGL::Transform(ax, ay+as, 0.0f, scale32Pixels*0.5f)},
         {"sAtlas4", jGL::Transform(ax+as, ay+as, 0.0f, scale32Pixels*0.5f)},
         {"sAtlasFull", jGL::Transform(ax, ay+as+scale32Pixels, 0.0f, scale32Pixels)},
+        {"sAtlasAnimated", jGL::Transform(ax+as, ay-scale32Pixels, 0.0f, scale32Pixels*0.5f)},
         {"sJerboa", jGL::Transform(0.1f, 0.9f, 0.0f, 0.1f)},
         {"sPi", jGL::Transform(0.1f, 0.1f, 0.0f, 0.1f)},
         {"sHeart", jGL::Transform(0.5f, 0.5f, 0.0f, 0.1f)},
@@ -90,7 +91,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sJerboa"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             jerboa
         },
         "sJerboa"
@@ -100,7 +101,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sAtlas1"],
-            jGL::TextureOffset(0.0, 0.0, 16.0, 16.0),
+            jGL::TextureRegion(0, 0, 16, 16),
             atlas
         },
         "sAtlas1"
@@ -110,7 +111,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sAtlas2"],
-            jGL::TextureOffset(16.0, 0.0, 16.0, 16.0),
+            jGL::TextureRegion(16, 0, 16, 16),
             atlas
         },
         "sAtlas2"
@@ -120,7 +121,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sAtlas3"],
-            jGL::TextureOffset(0.0, 16.0, 16.0, 16.0),
+            jGL::TextureRegion(0, 16, 16, 16),
             atlas
         },
         "sAtlas3"
@@ -130,7 +131,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sAtlas4"],
-            jGL::TextureOffset(16.0, 16.0, 16.0, 16.0),
+            jGL::TextureRegion(16, 16, 16, 16),
             atlas
         },
         "sAtlas4"
@@ -140,17 +141,37 @@ int main(int argv, char ** argc)
     (
         {
             trans["sAtlasFull"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             atlas
         },
         "sAtlasFull"
     );
 
+    std::vector<jGL::TextureRegion> animationFrames
+    {
+        jGL::TextureRegion(0, 0, 16, 16),
+        jGL::TextureRegion(16, 0, 16, 16),
+        jGL::TextureRegion(0, 16, 16, 16),
+        jGL::TextureRegion(16, 16, 16, 16)
+    };
+    uint8_t animationFrame = 0;
+
+    sprites->add
+    (
+        {
+            trans["sAtlasAnimated"],
+            animationFrames[animationFrame],
+            atlas
+        },
+        "sAtlasAnimated"
+    );
+
+
     sprites->add
     (
         {
             trans["sPi"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             Pi
         },
         "sPi"
@@ -160,7 +181,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sHeart"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             heart
         },
         "sHeart"
@@ -170,7 +191,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["sRandom"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             random
         },
         "sRandom"
@@ -180,7 +201,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["lowest"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             Pi
         },
         "lowest"
@@ -190,7 +211,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["middle"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             heart,
             0.5f
         },
@@ -202,7 +223,7 @@ int main(int argv, char ** argc)
     (
         {
             trans["highest"],
-            jGL::TextureOffset(),
+            jGL::TextureRegion(),
             jerboa
         },
         "highest",
@@ -227,6 +248,12 @@ int main(int argv, char ** argc)
 
             trans["sHeart"] = jGL::Transform(0.5f, 0.5f, theta, 0.1f);
             trans["sPi"] = jGL::Transform(0.2f, 0.2f, theta, scale);
+
+            sprites->getSprite("sAtlasAnimated").setTextureRegion(animationFrames[animationFrame]);
+            if (frameId % 15 == 0)
+            {
+                animationFrame = (animationFrame+1)%animationFrames.size();
+            }
 
             sprites->draw();
 

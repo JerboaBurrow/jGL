@@ -53,14 +53,13 @@ namespace jGL
         const Transform & getTransform(SpriteId id) { return getSprite(id).transform; }
 
         /**
-         * @brief Get a Sprites TextureOffset
-         * @remark In pixel units, see TextureOffset::getTextureOffset()
+         * @brief Get a Sprites TextureRegion
+         * @remark In pixel units, see TextureRegion::getTextureRegion()
          * 
          * @param id 
-         * @param normalised Return in normalised units.
-         * @return const TextureOffset 
+         * @return const TextureRegion
          */
-        const TextureOffset getTextureOffset(SpriteId id, bool normalised = false) { return getSprite(id).getTextureOffset(normalised); }
+        const TextureRegion getTextureRegion(SpriteId id) { return getSprite(id).getTextureRegion(); }
 
         /**
          * @brief Draw with overriding render priority and shader.

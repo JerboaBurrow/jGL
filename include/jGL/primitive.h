@@ -56,25 +56,54 @@ namespace jGL
     };
 
     /**
-     * @brief Rectangular region of a texture.
+     * @brief Rectangular region of a texture in pixels.
      * 
      * @param tx Lower left corner of region, along width.
      * @param ty Lower left corner of region, along height.
      * @param lx Length of region along width.
      * @param ly Length of region along height.
      * 
-     * @remark Negative lx and ly will be handled as the maximum lengths in e.g.
+     * @remark 0 lx and ly will be handled as the maximum lengths in e.g.
      * SpriteRenderer.
      */
-    struct TextureOffset : public Primitive
+    struct TextureRegion : public Primitive
     {
 
-        TextureOffset(float x, float y, float w, float h)
+        TextureRegion(uint16_t x, uint16_t y, uint16_t w, uint16_t h)
         : tx(x), ty(y), lx(w), ly(h)
         {}
 
-        TextureOffset()
-        : tx(0.0f), ty(0.0f), lx(-1.0), ly(-1.0)
+        TextureRegion()
+        : tx(0), ty(0), lx(0), ly(0)
+        {}
+
+        uint16_t tx;
+        uint16_t ty;
+        uint16_t lx;
+        uint16_t ly;
+    };
+
+     /**
+     * @brief Rectangular region of a texture, normalised by the textures dimensions.
+     *
+     * @param tx Lower left corner of region, along width, in [0, 1].
+     * @param ty Lower left corner of region, along height, in [0, 1].
+     * @param lx Length of region along width, in [0, 1].
+     * @param ly Length of region along height, in [0, 1].
+     *
+     * @remark Values are normalised to a texture width and height.
+     * @remark 0 lx and ly will be handled as the maximum lengths in e.g.
+     * SpriteRenderer.
+     */
+    struct NormalisedTextureRegion : public Primitive
+    {
+
+        NormalisedTextureRegion(float x, float y, float w, float h)
+        : tx(x), ty(y), lx(w), ly(h)
+        {}
+
+        NormalisedTextureRegion()
+        : tx(0), ty(0), lx(0), ly(0)
         {}
         
         float tx; 
