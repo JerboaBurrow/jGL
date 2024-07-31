@@ -6,7 +6,11 @@
 #include <jGL/spriteRenderer.h>
 
 namespace jGL::GL
-{
+{   
+    /**
+     * @brief Opengl implementation of SpriteRenderer
+     * 
+     */
     class glSpriteRenderer : public SpriteRenderer
     {
     public:

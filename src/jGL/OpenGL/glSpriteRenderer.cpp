@@ -29,7 +29,7 @@ namespace jGL::GL
             bool newTexture = std::find(batch.begin(), batch.end(), textureIndex) == batch.end();
             if (newTexture)
             {
-                if (batch.size() == MAX_TEXTURE_SLOTS)
+                if (batch.size() == MAX_BATCH_BOUND_TEXTURES)
                 {
                     batches.push_back(std::pair(i, batch));
                     batch.clear();
@@ -65,7 +65,7 @@ namespace jGL::GL
         while (b < batches.size())
         {
             biter = batches[b].second.cbegin();
-            for (unsigned slot = 0; slot < MAX_TEXTURE_SLOTS; slot++)
+            for (unsigned slot = 0; slot < MAX_BATCH_BOUND_TEXTURES; slot++)
             {
                 if (biter == batches[b].second.cend()) { break; }
                 textures[*biter]->bind(slot);
