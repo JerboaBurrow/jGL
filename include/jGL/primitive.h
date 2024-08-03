@@ -44,17 +44,22 @@ namespace jGL
     {
 
         Transform(double x, double y, double t, double s)
-        : x(x), y(y), theta(t), scale(s)
+        : x(x), y(y), theta(t), scaleX(s), scaleY(s)
+        {}
+
+        Transform(double x, double y, double t, double sx, double sy)
+        : x(x), y(y), theta(t), scaleX(sx), scaleY(sy)
         {}
 
         Transform()
-        : x(0.0f), y(0.0f), theta(0.0f), scale(0.0f)
+        : x(0.0), y(0.0), theta(0.0), scaleX(0.0), scaleY(0.0)
         {}
 
         double x;
         double y;
         double theta;
-        double scale;
+        double scaleX;
+        double scaleY;
     };
 
     /**

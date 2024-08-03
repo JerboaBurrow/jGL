@@ -7,9 +7,10 @@ namespace jGL::GL
 
         uint32_t n = ids.size();
 
-        if (offsets.size() < offsetDim*n)
+        if (xytheta.size() < xythetaDim*n)
         {
-            offsets.resize(offsetDim*n+padSprites*offsetDim);
+            xytheta.resize(xythetaDim*n+padSprites*xythetaDim);
+            scale.resize(scaleDim*n+padSprites*scaleDim);
             textureRegion.resize(textureRegionDim*n+padSprites*textureRegionDim);
             textureOptions.resize(textureOptionsDim*n+padSprites*textureOptionsDim);
             freeGL();
@@ -42,14 +43,18 @@ namespace jGL::GL
             const NormalisedTextureRegion toff = sprite.getNormalisedTextureRegion();
             const float alpha = sprite.getAlpha();
 
-            offsets[i*offsetDim] = trans.x;
-            offsets[i*offsetDim+1] = trans.y;
-            offsets[i*offsetDim+2] = trans.theta;
-            offsets[i*offsetDim+3] = trans.scale;
+            xytheta[i*xythetaDim] = trans.x;
+            xytheta[i*xythetaDim+1] = trans.y;
+            xytheta[i*xythetaDim+2] = trans.theta;
+
+            scale[i*scaleDim] = trans.scaleX;
+            scale[i*scaleDim+1] = trans.scaleY;
+
             textureRegion[i*textureRegionDim] = toff.tx;
             textureRegion[i*textureRegionDim+1] = toff.ty;
             textureRegion[i*textureRegionDim+2] = toff.lx;
             textureRegion[i*textureRegionDim+3] = toff.ly;
+
             textureOptions[i*textureOptionsDim] = float(std::distance(batch.begin(), std::find(batch.begin(), batch.end(), textureIndex)));
             textureOptions[i*textureOptionsDim+1] = alpha;
 
@@ -84,16 +89,28 @@ namespace jGL::GL
 
             glBindVertexArray(vao);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
                 glBufferSubData
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    offsetDim*batchSize*sizeof(float),
-                    &offsets[current*offsetDim]
+                    xythetaDim*batchSize*sizeof(float),
+                    &xytheta[current*xythetaDim]
                 );
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             
+            glBindBuffer(GL_ARRAY_BUFFER, a_scale);
+
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    scaleDim*batchSize*sizeof(float),
+                    &scale[current*scaleDim]
+                );
+
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
             glBindBuffer(GL_ARRAY_BUFFER, a_textureRegion);
 
                 glBufferSubData
@@ -144,7 +161,8 @@ namespace jGL::GL
     void glSpriteRenderer::freeGL()
     {
         glDeleteBuffers(1, &a_position);
-        glDeleteBuffers(1, &a_offset);
+        glDeleteBuffers(1, &a_xytheta);
+        glDeleteBuffers(1, &a_scale);
         glDeleteBuffers(1, &a_textureRegion);
         glDeleteBuffers(1, &a_textureOption);
         glDeleteVertexArrays(1, &vao);
@@ -154,7 +172,8 @@ namespace jGL::GL
     {
         glGenVertexArrays(1, &vao);
         glGenBuffers(1, &a_position);
-        glGenBuffers(1, &a_offset);
+        glGenBuffers(1, &a_xytheta);
+        glGenBuffers(1, &a_scale);
         glGenBuffers(1, &a_textureRegion);
         glGenBuffers(1, &a_textureOption);
 
@@ -183,27 +202,51 @@ namespace jGL::GL
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
 
                 glBufferData
                 (
                     GL_ARRAY_BUFFER,
-                    sizeof(float)*offsets.size(),
-                    offsets.data(),
+                    sizeof(float)*xytheta.size(),
+                    xytheta.data(),
                     GL_DYNAMIC_DRAW
                 );
 
-                glEnableVertexAttribArray(1);
+                glEnableVertexAttribArray(xythetaAttribute);
                 glVertexAttribPointer
                 (
-                    1,
-                    offsetDim,
+                    xythetaAttribute,
+                    xythetaDim,
                     GL_FLOAT,
                     false,
-                    offsetDim*sizeof(float),
+                    xythetaDim*sizeof(float),
                     0
                 );
-                glVertexAttribDivisor(1, 1);
+                glVertexAttribDivisor(xythetaAttribute, 1);
+            
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, a_scale);
+
+                glBufferData
+                (
+                    GL_ARRAY_BUFFER,
+                    sizeof(float)*scale.size(),
+                    scale.data(),
+                    GL_DYNAMIC_DRAW
+                );
+
+                glEnableVertexAttribArray(scaleAttribute);
+                glVertexAttribPointer
+                (
+                    scaleAttribute,
+                    scaleDim,
+                    GL_FLOAT,
+                    false,
+                    scaleDim*sizeof(float),
+                    0
+                );
+                glVertexAttribDivisor(scaleAttribute, 1);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -217,17 +260,17 @@ namespace jGL::GL
                     GL_DYNAMIC_DRAW
                 );
 
-                glEnableVertexAttribArray(2);
+                glEnableVertexAttribArray(textureRegionAttribute);
                 glVertexAttribPointer
                 (
-                    2,
+                    textureRegionAttribute,
                     textureRegionDim,
                     GL_FLOAT,
                     false,
                     textureRegionDim*sizeof(float),
                     0
                 );
-                glVertexAttribDivisor(2, 1);
+                glVertexAttribDivisor(textureRegionAttribute, 1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_textureOption);
@@ -240,17 +283,17 @@ namespace jGL::GL
                     GL_DYNAMIC_DRAW
                 );
 
-                glEnableVertexAttribArray(3);
+                glEnableVertexAttribArray(textureOptionsAttribute);
                 glVertexAttribPointer
                 (
-                    3,
+                    textureOptionsAttribute,
                     textureOptionsDim,
                     GL_FLOAT,
                     false,
                     textureOptionsDim*sizeof(float),
                     0
                 );
-                glVertexAttribDivisor(3, 1);
+                glVertexAttribDivisor(textureOptionsAttribute, 1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
         glBindVertexArray(0);

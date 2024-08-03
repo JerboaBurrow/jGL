@@ -25,7 +25,7 @@ namespace jGL::GL
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
             offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scale;
+            offsets[i*4+3] = trans.scaleX;
             colours[i*4] = col.r;
             colours[i*4+1] = col.g;
             colours[i*4+2] = col.b;
@@ -98,7 +98,7 @@ namespace jGL::GL
             offsets[i*4] = trans.x;
             offsets[i*4+1] = trans.y;
             offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scale;
+            offsets[i*4+3] = trans.scaleX;
             colours[i*4] = col.r;
             colours[i*4+1] = col.g;
             colours[i*4+2] = col.b;
