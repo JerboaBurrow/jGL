@@ -13,20 +13,27 @@
 
 namespace jGL
 {
+
+    /** 
+     * @brief User name for a Shape.
+     * @typedef SpriteId 
+     * */
     typedef std::string ShapeId;
 
-    /*
-    
-        Looks after shapes, and groups for batch rendering
-
-            Shapes of the same type are instance rendered together
-    
-    */
+    /**
+     * @brief Renders shapes with optional rendering priority.
+     * @remark Currently Circle and Rectangle are defined as shaders.
+     */
     class ShapeRenderer
     {
 
     public:
     
+        /**
+         * @brief Construct a new ShapeRenderer
+         * 
+         * @param sizeHint Hint at the number of shapes
+         */
         ShapeRenderer(size_t sizeHint = 8)
         {
             shapes.reserve(sizeHint); 
@@ -37,15 +44,34 @@ namespace jGL
         const Transform & getTransform(ShapeId id) { return getShape(id)->transform; }
         const glm::vec4 & getColour(ShapeId id) { return getShape(id)->colour; }
 
+        /**
+         * @brief Draw with overriding render priority and shader.
+         * 
+         * @param shader A Shader to draw all the Sprites with.
+         * @param ids Render priorities for the Sprites.
+         */
         virtual void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids) = 0;
-        virtual void draw(std::multimap<RenderPriority, ShapeId> ids) = 0;
 
-        virtual void draw() { draw(ids); }
+        /**
+         * @brief Draw with overriding render priority.
+         * 
+         * @param ids Render priorities for the Sprites.
+         */
+        virtual void draw(std::multimap<RenderPriority, ShapeId> ids) = 0;
+        
+        /**
+         * @brief Draw with overriding shader.
+         * 
+         * @param shader An Shader to draw all the Sprites with.
+         */
         virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
 
-        virtual void draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids) = 0;
-        virtual void draw(std::vector<ShapeId> ids) = 0;
-
+        /**
+         * @brief Draw with default shader and priority.
+         * 
+         */
+        virtual void draw() { draw(ids); }
+        
         virtual void add(std::shared_ptr<Shape> s, ShapeId id, RenderPriority priority = 0);
         
         virtual void remove(ShapeId id)

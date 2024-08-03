@@ -16,10 +16,7 @@ namespace jGL::Vulkan
         
         void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids){TODO("jGL::Vulkan::vkShape::draw");}
         void draw(std::multimap<RenderPriority, ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
-
-        void draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
-        void draw(std::vector<ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
-
+        
     };
 }
 
