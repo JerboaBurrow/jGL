@@ -35,13 +35,16 @@ int main(int argv, char ** argc)
 
     RNG rng;
 
+    std::vector<jGL::Transform> trans;
+
     for (unsigned i = 0; i < 64; i++)
     {
+        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f));
         shapes.push_back
         (
             std::make_shared<jGL::Shape>
             (
-                jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f),
+                trans[i],
                 glm::vec4(rng.nextFloat(), rng.nextFloat(), rng.nextFloat(), 1.0)
             )
         );
@@ -69,9 +72,12 @@ int main(int argv, char ** argc)
             for (unsigned i = 0; i <shapes.size(); i++)
             {
                 auto tr = circles->getTransform(std::to_string(i));
-                circles->getShape(std::to_string(i))->transform =
+                trans[i] = jGL::Transform
                 (
-                    jGL::Transform(tr.x+dt*(rng.nextFloat()-0.5), tr.y+dt*(rng.nextFloat()-0.5), tr.theta, tr.scale)
+                    tr.x+dt*(rng.nextFloat()-0.5), 
+                    tr.y+dt*(rng.nextFloat()-0.5), 
+                    tr.theta, 
+                    tr.scaleX
                 );
             }
 
