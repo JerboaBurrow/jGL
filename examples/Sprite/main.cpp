@@ -281,17 +281,8 @@ int main(int argv, char ** argc)
                 animationFrame = (animationFrame+1)%animationFrames.size();
             }
 
-            jGL::WorldBoundingBox wbbPi = sprites->getSprite("sPi").getWorldBoundingBox();
-            float x = 0.0; float y = 0.0;
-            for (auto p : wbbPi.vertices) { x += p.x; y += p.y;}
-            float s = std::sqrt((wbbPi.vertices[1].x-wbbPi.vertices[0].x)*(wbbPi.vertices[1].x-wbbPi.vertices[0].x) + (wbbPi.vertices[1].y-wbbPi.vertices[0].y)*(wbbPi.vertices[1].y-wbbPi.vertices[0].y));
-            shapeTrans[0] = jGL::Transform(x*0.25f, y*0.25f, trans["sPi"].theta ,s);
-
-            jGL::WorldBoundingBox wbbHeart = sprites->getSprite("sHeart").getWorldBoundingBox();
-            x = 0.0; y = 0.0;
-            for (auto p : wbbHeart.vertices) { x += p.x; y += p.y;}
-            s = std::sqrt((wbbHeart.vertices[1].x-wbbHeart.vertices[0].x)*(wbbHeart.vertices[1].x-wbbHeart.vertices[0].x) + (wbbHeart.vertices[1].y-wbbHeart.vertices[0].y)*(wbbHeart.vertices[1].y-wbbHeart.vertices[0].y));
-            shapeTrans[1] = jGL::Transform(x*0.25f, y*0.25f, trans["sHeart"].theta ,s);
+            shapeTrans[0] = sprites->getSprite("sPi").getWorldBoundingBox().toTransform();
+            shapeTrans[1] =  sprites->getSprite("sHeart").getWorldBoundingBox().toTransform();
 
             sprites->draw();
             shapes->draw();
