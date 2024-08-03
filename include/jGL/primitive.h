@@ -136,7 +136,7 @@ namespace jGL
         
         /**
          * @brief Vertices of bounding box.
-         * @remark Assumed in clockwise order, e.g. Sprite::getWorldBoundingBox
+         * @remark Assumed in anti-clockwise order, e.g. Sprite::getWorldBoundingBox
          */
         std::array<glm::tvec2<T>, 4> vertices;
 
@@ -165,11 +165,52 @@ namespace jGL
         }
     };
 
-    /** 
+    /**
      * @brief A world space bounding box.
      * 
      */
-    typedef BoundingBox<float> WorldBoundingBox;
+    class WorldBoundingBox : public BoundingBox<float>
+    {
+    public:
+        WorldBoundingBox()
+        : BoundingBox<float>({glm::tvec2<float>(0),glm::tvec2<float>(0),glm::tvec2<float>(0),glm::tvec2<float>(0)})
+        {}
+
+        WorldBoundingBox(const std::array<glm::tvec2<float>, 4> & v)
+        : BoundingBox<float>(v)
+        {}
+
+        /**
+         * @brief Returns a Transform for ShapeRenderer.
+         * 
+         * @return Transform 
+         */
+        Transform toTransform()
+        {
+            float lowest = vertices[0].y; uint8_t lowestVertex = 0;
+            glm::vec2 centre = vertices[0];
+            for (uint8_t i = 1; i < vertices.size(); i++)
+            {
+                if (vertices[i].y < lowest) { lowestVertex = i; lowest = vertices[i].y; }
+                centre += vertices[i];
+            }
+            centre *= 0.25;
+
+            uint8_t next = (lowestVertex + 1) % vertices.size();
+            glm::vec2 r = vertices[next] - vertices[lowestVertex];
+            float d = std::sqrt(r.x*r.x+r.y*r.y);
+            glm::vec2 n = r / d;
+            float theta = 0.0;
+            if (n.y != 0.0)
+            {
+                theta = std::atan2(n.y, n.x);
+            }
+
+            r = vertices[(lowestVertex - 1) % vertices.size()] - vertices[lowestVertex];
+
+            return Transform(centre.x, centre.y, -theta, d, std::sqrt(r.x*r.x+r.y*r.y));
+        }
+    };
 
     /**
      * @brief A screen space bounding box.
