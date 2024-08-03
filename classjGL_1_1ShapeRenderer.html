@@ -74,14 +74,17 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Renders shapes with optional rendering priority.  
+ <a href="classjGL_1_1ShapeRenderer.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="shapeRenderer_8h_source.html">shapeRenderer.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for jGL::ShapeRenderer:</div>
 <div class="dyncontent">
 <div class="center"><img src="classjGL_1_1ShapeRenderer__inherit__graph.png" border="0" usemap="#ajGL_1_1ShapeRenderer_inherit__map" alt="Inheritance graph"/></div>
 <map name="ajGL_1_1ShapeRenderer_inherit__map" id="ajGL_1_1ShapeRenderer_inherit__map">
-<area shape="rect" title=" " alt="" coords="137,5,287,32"/>
-<area shape="rect" href="classjGL_1_1GL_1_1glShapeRenderer.html" title=" " alt="" coords="5,80,192,107"/>
+<area shape="rect" title="Renders shapes with optional rendering priority." alt="" coords="137,5,287,32"/>
+<area shape="rect" href="classjGL_1_1GL_1_1glShapeRenderer.html" title="OpenGL implementation of ShapeRenderer." alt="" coords="5,80,192,107"/>
 <area shape="rect" href="classjGL_1_1Vulkan_1_1vkShapeRenderer.html" title=" " alt="" coords="217,80,434,107"/>
 </map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
@@ -89,6 +92,7 @@ Inheritance diagram for jGL::ShapeRenderer:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adb9c39ff18fd4af2d1ef9893cf281d29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#adb9c39ff18fd4af2d1ef9893cf281d29">ShapeRenderer</a> (size_t sizeHint=8)</td></tr>
+<tr class="memdesc:adb9c39ff18fd4af2d1ef9893cf281d29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new <a class="el" href="classjGL_1_1ShapeRenderer.html" title="Renders shapes with optional rendering priority.">ShapeRenderer</a>.  <a href="classjGL_1_1ShapeRenderer.html#adb9c39ff18fd4af2d1ef9893cf281d29">More...</a><br /></td></tr>
 <tr class="separator:adb9c39ff18fd4af2d1ef9893cf281d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abda8d9a88d09b213bc94d7ab631e466c"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="classjGL_1_1Shape.html">Shape</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#abda8d9a88d09b213bc94d7ab631e466c">getShape</a> (<a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> id)</td></tr>
 <tr class="separator:abda8d9a88d09b213bc94d7ab631e466c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -97,17 +101,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad7dd326874e3182b64744dfe226115dd"><td class="memItemLeft" align="right" valign="top">const glm::vec4 &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#ad7dd326874e3182b64744dfe226115dd">getColour</a> (<a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> id)</td></tr>
 <tr class="separator:ad7dd326874e3182b64744dfe226115dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7fb9514156dd00a2b0a051cdb5bd719c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a7fb9514156dd00a2b0a051cdb5bd719c">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt; <a class="el" href="classjGL_1_1ShapeRenderer.html#a2212be4d295a9785680ecbbc59bf9dee">ids</a>)=0</td></tr>
+<tr class="memdesc:a7fb9514156dd00a2b0a051cdb5bd719c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding render priority and shader.  <a href="classjGL_1_1ShapeRenderer.html#a7fb9514156dd00a2b0a051cdb5bd719c">More...</a><br /></td></tr>
 <tr class="separator:a7fb9514156dd00a2b0a051cdb5bd719c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add0e8fdedf20ea9cf813829293a7a115"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#add0e8fdedf20ea9cf813829293a7a115">draw</a> (std::multimap&lt; <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a>, <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt; <a class="el" href="classjGL_1_1ShapeRenderer.html#a2212be4d295a9785680ecbbc59bf9dee">ids</a>)=0</td></tr>
+<tr class="memdesc:add0e8fdedf20ea9cf813829293a7a115"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding render priority.  <a href="classjGL_1_1ShapeRenderer.html#add0e8fdedf20ea9cf813829293a7a115">More...</a><br /></td></tr>
 <tr class="separator:add0e8fdedf20ea9cf813829293a7a115"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cd8a16a11b7087bc589f1a47387fd55"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a5cd8a16a11b7087bc589f1a47387fd55">draw</a> ()</td></tr>
-<tr class="separator:a5cd8a16a11b7087bc589f1a47387fd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae65740fad06ea4513fe00131690d0e77"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#ae65740fad06ea4513fe00131690d0e77">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader)</td></tr>
+<tr class="memdesc:ae65740fad06ea4513fe00131690d0e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with overriding shader.  <a href="classjGL_1_1ShapeRenderer.html#ae65740fad06ea4513fe00131690d0e77">More...</a><br /></td></tr>
 <tr class="separator:ae65740fad06ea4513fe00131690d0e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a070e5f1eff157687637fb5d627713700"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a070e5f1eff157687637fb5d627713700">draw</a> (std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt; shader, std::vector&lt; <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt; <a class="el" href="classjGL_1_1ShapeRenderer.html#a2212be4d295a9785680ecbbc59bf9dee">ids</a>)=0</td></tr>
-<tr class="separator:a070e5f1eff157687637fb5d627713700"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affe22960a741372a81cc85c07336d4ab"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#affe22960a741372a81cc85c07336d4ab">draw</a> (std::vector&lt; <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt; <a class="el" href="classjGL_1_1ShapeRenderer.html#a2212be4d295a9785680ecbbc59bf9dee">ids</a>)=0</td></tr>
-<tr class="separator:affe22960a741372a81cc85c07336d4ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cd8a16a11b7087bc589f1a47387fd55"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a5cd8a16a11b7087bc589f1a47387fd55">draw</a> ()</td></tr>
+<tr class="memdesc:a5cd8a16a11b7087bc589f1a47387fd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw with default shader and priority.  <a href="classjGL_1_1ShapeRenderer.html#a5cd8a16a11b7087bc589f1a47387fd55">More...</a><br /></td></tr>
+<tr class="separator:a5cd8a16a11b7087bc589f1a47387fd55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ced5f99e2b05a42656173e1982d4de3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a4ced5f99e2b05a42656173e1982d4de3">add</a> (std::shared_ptr&lt; <a class="el" href="classjGL_1_1Shape.html">Shape</a> &gt; s, <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> id, <a class="el" href="namespacejGL.html#a2531196185d5cc80fc3318775a236a63">RenderPriority</a> priority=0)</td></tr>
 <tr class="separator:a4ced5f99e2b05a42656173e1982d4de3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a271580962c4d5c2e12a05fa4895d0e4e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a271580962c4d5c2e12a05fa4895d0e4e">remove</a> (<a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> id)</td></tr>
@@ -130,7 +134,10 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a0c45dd7fe062c6b4bf9ec37211bc3971"><td class="memItemLeft" align="right" valign="top">glm::mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1ShapeRenderer.html#a0c45dd7fe062c6b4bf9ec37211bc3971">projection</a> = glm::mat4(0.0f)</td></tr>
 <tr class="separator:a0c45dd7fe062c6b4bf9ec37211bc3971"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Renders shapes with optional rendering priority. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>Currently Circle and Rectangle are defined as shaders. </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adb9c39ff18fd4af2d1ef9893cf281d29"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adb9c39ff18fd4af2d1ef9893cf281d29">&#9670;&nbsp;</a></span>ShapeRenderer()</h2>
 
@@ -154,6 +161,14 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Construct a new <a class="el" href="classjGL_1_1ShapeRenderer.html" title="Renders shapes with optional rendering priority.">ShapeRenderer</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sizeHint</td><td>Hint at the number of shapes </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -226,7 +241,7 @@ Protected Attributes</h2></td></tr>
 </div>
 </div>
 <a id="a5cd8a16a11b7087bc589f1a47387fd55"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cd8a16a11b7087bc589f1a47387fd55">&#9670;&nbsp;</a></span>draw() <span class="overload">[1/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cd8a16a11b7087bc589f1a47387fd55">&#9670;&nbsp;</a></span>draw() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -248,10 +263,12 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Draw with default shader and priority. </p>
+
 </div>
 </div>
 <a id="add0e8fdedf20ea9cf813829293a7a115"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add0e8fdedf20ea9cf813829293a7a115">&#9670;&nbsp;</a></span>draw() <span class="overload">[2/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#add0e8fdedf20ea9cf813829293a7a115">&#9670;&nbsp;</a></span>draw() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -274,12 +291,20 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Draw with overriding render priority. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ids</td><td>Render priorities for the Sprites. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="classjGL_1_1Vulkan_1_1vkShapeRenderer.html#a1f2bdbcfdf19c6c829bf2a3f3a635d4c">jGL::Vulkan::vkShapeRenderer</a>, and <a class="el" href="classjGL_1_1GL_1_1glShapeRenderer.html#aecfb2828b871defa1dc8c9275b6d20fb">jGL::GL::glShapeRenderer</a>.</p>
 
 </div>
 </div>
 <a id="ae65740fad06ea4513fe00131690d0e77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae65740fad06ea4513fe00131690d0e77">&#9670;&nbsp;</a></span>draw() <span class="overload">[3/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae65740fad06ea4513fe00131690d0e77">&#9670;&nbsp;</a></span>draw() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -302,10 +327,18 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Draw with overriding shader. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shader</td><td>An <a class="el" href="structjGL_1_1Shader.html">Shader</a> to draw all the Sprites with. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a id="a7fb9514156dd00a2b0a051cdb5bd719c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7fb9514156dd00a2b0a051cdb5bd719c">&#9670;&nbsp;</a></span>draw() <span class="overload">[4/6]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a7fb9514156dd00a2b0a051cdb5bd719c">&#9670;&nbsp;</a></span>draw() <span class="overload">[4/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -338,73 +371,16 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Draw with overriding render priority and shader. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">shader</td><td>A <a class="el" href="structjGL_1_1Shader.html">Shader</a> to draw all the Sprites with. </td></tr>
+    <tr><td class="paramname">ids</td><td>Render priorities for the Sprites. </td></tr>
+  </table>
+  </dd>
+</dl>
+
 <p>Implemented in <a class="el" href="classjGL_1_1Vulkan_1_1vkShapeRenderer.html#a3cd4e96535b6378f48127387af77a75f">jGL::Vulkan::vkShapeRenderer</a>, and <a class="el" href="classjGL_1_1GL_1_1glShapeRenderer.html#a58e5b11516ccd9d0f8428aca3a67d340">jGL::GL::glShapeRenderer</a>.</p>
-
-</div>
-</div>
-<a id="a070e5f1eff157687637fb5d627713700"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a070e5f1eff157687637fb5d627713700">&#9670;&nbsp;</a></span>draw() <span class="overload">[5/6]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void jGL::ShapeRenderer::draw </td>
-          <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structjGL_1_1Shader.html">Shader</a> &gt;&#160;</td>
-          <td class="paramname"><em>shader</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt;&#160;</td>
-          <td class="paramname"><em>ids</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classjGL_1_1Vulkan_1_1vkShapeRenderer.html#a3e405560c0f8fcd9940b558c0f0cd18f">jGL::Vulkan::vkShapeRenderer</a>, and <a class="el" href="classjGL_1_1GL_1_1glShapeRenderer.html#aec2e2740cddd955adfb068141ba6e3ec">jGL::GL::glShapeRenderer</a>.</p>
-
-</div>
-</div>
-<a id="affe22960a741372a81cc85c07336d4ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#affe22960a741372a81cc85c07336d4ab">&#9670;&nbsp;</a></span>draw() <span class="overload">[6/6]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual void jGL::ShapeRenderer::draw </td>
-          <td>(</td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="namespacejGL.html#a7fe89a2b3bcb5eb840923ee39f29ff17">ShapeId</a> &gt;&#160;</td>
-          <td class="paramname"><em>ids</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Implemented in <a class="el" href="classjGL_1_1Vulkan_1_1vkShapeRenderer.html#afff5f077b1dfd2456b5dd16b4267b144">jGL::Vulkan::vkShapeRenderer</a>, and <a class="el" href="classjGL_1_1GL_1_1glShapeRenderer.html#a94be3c4578ee01243f759a81ee96ec9d">jGL::GL::glShapeRenderer</a>.</p>
 
 </div>
 </div>
