@@ -81,7 +81,7 @@ int main(int argv, char ** argc)
                         tr.x+dt*(rng.nextFloat()-0.5), 
                         tr.y+dt*(rng.nextFloat()-0.5), 
                         tr.theta, 
-                        tr.scale
+                        tr.scaleX
                     );
             }
 

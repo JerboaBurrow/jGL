@@ -108,7 +108,7 @@ namespace jGL
             float ct = std::cos(transform.theta); float st = std::sin(transform.theta);
             glm::mat2 rot(ct, -st, st, ct);
             glm::vec2 pos(transform.x, transform.y);
-            glm::vec2 scale(transform.scale, transform.scale);
+            glm::vec2 scale(transform.scaleX, transform.scaleY);
             
 
             for (uint8_t i = 0; i < wbb.vertices.size(); i++)

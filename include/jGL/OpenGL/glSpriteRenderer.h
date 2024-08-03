@@ -1,5 +1,5 @@
-#ifndef GLSPRITERENDERER
-#define GLSPRITERENDERER
+#ifndef GLSPRITERENDERER_H
+#define GLSPRITERENDERER_H
 
 #include <jGL/OpenGL/Shader/glShader.h>
 #include <jGL/OpenGL/gl.h>
@@ -18,7 +18,8 @@ namespace jGL::GL
         glSpriteRenderer(size_t sizeHint)
         : SpriteRenderer(sizeHint)
         {
-            offsets = std::vector<float>(sizeHint*offsetDim+padSprites*offsetDim,0.0f);
+            xytheta = std::vector<float>(sizeHint*xythetaDim+padSprites*xythetaDim,0.0f);
+            scale = std::vector<float>(sizeHint*scaleDim+padSprites*scaleDim,0.0f);
             textureRegion = std::vector<float>(sizeHint*textureRegionDim+padSprites*textureRegionDim,0.0f);
             textureOptions = std::vector<float>(sizeHint*textureOptionsDim+padSprites*textureOptionsDim,0.0f);
             initGL();
@@ -36,7 +37,7 @@ namespace jGL::GL
         
     private:
 
-        GLuint vao, a_position, a_offset, a_textureRegion, a_textureOption;
+        GLuint vao, a_position, a_xytheta, a_scale, a_textureRegion, a_textureOption;
 
         float quad[6*4] = 
         {
@@ -49,14 +50,21 @@ namespace jGL::GL
             0.5f,  0.5f, 1.0f, 1.0f     // top right
         };
 
-        std::vector<float> offsets;         // offset x, y, theta, scale
-        size_t offsetDim = 4;
+        std::vector<float> xytheta; 
+        size_t xythetaDim = 3;
+        size_t xythetaAttribute = 1;
 
-        std::vector<float> textureRegion;  // tx, ty (region coords), lx, ly (region scale)
+        std::vector<float> scale;
+        size_t scaleDim = 2;
+        size_t scaleAttribute = 2;
+
+        std::vector<float> textureRegion;
         size_t textureRegionDim = 4;
-        
+        size_t textureRegionAttribute = 3;
+
         std::vector<float> textureOptions;  // texture unit, alpha
         size_t textureOptionsDim = 2;
+        size_t textureOptionsAttribute = 4;
 
         size_t padSprites = 8;
 
@@ -69,18 +77,19 @@ namespace jGL::GL
             "#version " GLSL_VERSION "\n"
             "precision lowp float; precision lowp int;\n"
             "layout(location=0) in vec4 a_position;\n"
-            "layout(location=1) in vec4 a_offset;\n"
-            "layout(location=2) in vec4 a_textureOffset;\n"
-            "layout(location=3) in vec2 a_textureOptions;\n"
+            "layout(location=1) in vec3 a_xytheta;\n"
+            "layout(location=2) in vec2 a_scale;\n"
+            "layout(location=3) in vec4 a_textureOffset;\n"
+            "layout(location=4) in vec2 a_textureOptions;\n"
             "uniform mat4 proj;\n"
             "out vec2 texCoord;\n"
             "flat out float alpha;\n"
             "flat out int tex;\n"
             "void main(){"
-                "vec2 pos = a_position.xy*a_offset.w;\n"
-                "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
+                "vec2 pos = a_position.xy*a_scale;\n"
+                "float ct = cos(a_xytheta.z); float st = sin(a_xytheta.z);\n"
                 "mat2 rot = mat2(ct, -st, st, ct);\n"
-                "pos = rot*pos + a_offset.xy;\n"
+                "pos = rot*pos + a_xytheta.xy;\n"
                 "gl_Position = proj*vec4(pos,0.0,1.0);\n"
                 "texCoord.x = (a_position.z * a_textureOffset.z)+a_textureOffset.x;\n"
                 "texCoord.y = (a_position.w * a_textureOffset.w)+a_textureOffset.y;\n"
@@ -113,4 +122,4 @@ namespace jGL::GL
     };
 }
 
-#endif /* GLSPRITERENDERER */
+#endif /* GLSPRITERENDERER_H */
