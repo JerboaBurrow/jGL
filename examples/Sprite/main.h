@@ -1,5 +1,5 @@
-#ifndef MAIN
-#define MAIN
+#ifndef MAIN_H
+#define MAIN_H
 
 #include <jGL/jGL.h>
 #include <jGL/OpenGL/openGLInstance.h>
@@ -40,4 +40,4 @@ std::string fixedLengthNumber(double x, unsigned length)
     return dtrunc;
 }
 
-#endif /* MAIN */
+#endif /* MAIN_H */

@@ -73,7 +73,7 @@ namespace jGL
      * @param y world y coordinate.
      * @return glm::vec2 screen coordinate.
      */
-    glm::vec2 worldToScreen(float x, float y)
+    glm::vec2 worldToScreen(float x, float y) const
     {
       glm::vec4 pos = vp*glm::vec4(x, y, 0.0, 1.0);
       return glm::vec2( (pos.x+1.0)*resolution.x*0.5, -1.0*((pos.y+1.0)*resolution.y*0.5-resolution.y) );

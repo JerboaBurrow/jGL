@@ -3,6 +3,7 @@
 
 #include <jGL/texture.h>
 #include <jGL/primitive.h>
+#include <jGL/orthoCam.h>
 
 #include <memory>
 #include <algorithm>
@@ -86,6 +87,57 @@ namespace jGL
 
         const Transform & transform;
         const std::shared_ptr<Texture> texture;
+
+        /**
+         * @brief Get the WorldBoundingBox of the Sprite.
+         * 
+         * @return WorldBoundingBox 
+         */
+        WorldBoundingBox getWorldBoundingBox() const
+        {
+            WorldBoundingBox wbb = 
+            {
+                {
+                    glm::vec2(-0.5, -0.5),
+                    glm::vec2(-0.5, 0.5),
+                    glm::vec2(0.5, 0.5),
+                    glm::vec2(0.5, -0.5)
+                }
+            };
+
+            float ct = std::cos(transform.theta); float st = std::sin(transform.theta);
+            glm::mat2 rot(ct, -st, st, ct);
+            glm::vec2 pos(transform.x, transform.y);
+            glm::vec2 scale(transform.scale, transform.scale);
+            
+
+            for (uint8_t i = 0; i < wbb.vertices.size(); i++)
+            {
+                wbb.vertices[i] = rot*(wbb.vertices[i]*scale)+pos;
+            }
+
+            return wbb;
+        }
+
+        /**
+         * @brief Get the ScreenBoundingBox of the Sprite.
+         * 
+         * @param camera for projection to the screen.
+         * @return ScreenBoundingBox 
+         */
+        ScreenBoundingBox getScreenBoundingBox(const OrthoCam & camera)
+        {
+            WorldBoundingBox wbb = getWorldBoundingBox();
+            ScreenBoundingBox sbb;
+            glm::vec2 pos;
+            for (uint8_t i = 0; i < wbb.vertices.size(); i++)
+            {
+                pos = camera.worldToScreen(wbb.vertices[i].x, wbb.vertices[i].y);
+                sbb.vertices[i].x = uint16_t(pos.x);
+                sbb.vertices[i].y = uint16_t(pos.y);
+            }
+            return sbb;
+        }
 
     protected:
 

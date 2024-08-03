@@ -230,6 +230,26 @@ int main(int argv, char ** argc)
         100000
     );
 
+    std::shared_ptr<jGL::ShapeRenderer> shapes = jGLInstance->createShapeRenderer
+    (
+        2
+    );
+
+    auto bbPi = std::make_shared<jGL::Shape>
+    (
+        jGL::Transform(0.0, 0.0, 0.0, 1.0),
+        glm::vec4(1.0, 0.0, 0.0, 0.3)
+    );
+    auto bbHeart = std::make_shared<jGL::Shape>
+    (
+        jGL::Transform(0.0, 0.0, 0.0, 1.0),
+        glm::vec4(1.0, 0.0, 0.0, 0.3)
+    );
+
+    shapes->add(bbPi, "pi");
+    shapes->add(bbHeart, "heart");
+    shapes->setProjection(camera.getVP());
+
     double delta = 0.0;
 
     float theta = 0.0f;
@@ -255,7 +275,20 @@ int main(int argv, char ** argc)
                 animationFrame = (animationFrame+1)%animationFrames.size();
             }
 
+            jGL::WorldBoundingBox wbbPi = sprites->getSprite("sPi").getWorldBoundingBox();
+            float x = 0.0; float y = 0.0;
+            for (auto p : wbbPi.vertices) { x += p.x; y += p.y;}
+            float s = std::sqrt((wbbPi.vertices[1].x-wbbPi.vertices[0].x)*(wbbPi.vertices[1].x-wbbPi.vertices[0].x) + (wbbPi.vertices[1].y-wbbPi.vertices[0].y)*(wbbPi.vertices[1].y-wbbPi.vertices[0].y));
+            shapes->getShape("pi")->transform = jGL::Transform(x*0.25f, y*0.25f, trans["sPi"].theta ,s);
+
+            jGL::WorldBoundingBox wbbHeart = sprites->getSprite("sHeart").getWorldBoundingBox();
+            x = 0.0; y = 0.0;
+            for (auto p : wbbHeart.vertices) { x += p.x; y += p.y;}
+            s = std::sqrt((wbbHeart.vertices[1].x-wbbHeart.vertices[0].x)*(wbbHeart.vertices[1].x-wbbHeart.vertices[0].x) + (wbbHeart.vertices[1].y-wbbHeart.vertices[0].y)*(wbbHeart.vertices[1].y-wbbHeart.vertices[0].y));
+            shapes->getShape("heart")->transform = jGL::Transform(x*0.25f, y*0.25f, trans["sHeart"].theta ,s);
+
             sprites->draw();
+            shapes->draw();
 
             delta = 0.0;
             for (int n = 0; n < 60; n++)
@@ -277,7 +310,8 @@ int main(int argv, char ** argc)
                     << "Mouse (" << fixedLengthNumber(mouseX,4) 
                     << "," 
                     << fixedLengthNumber(mouseY,4) 
-                    << ")\n";
+                    << ")\n"
+                    << "Mouse in Pi's BB? " << sprites->getSprite("sPi").getScreenBoundingBox(camera).in(mouseX, mouseY);
 
             jGLInstance->text(
                 debugText.str(),
