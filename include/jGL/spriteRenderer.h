@@ -79,7 +79,7 @@ namespace jGL
         /**
          * @brief Draw with overriding shader.
          * 
-         * @param shader An OpenGL Shader to draw all the Sprites with.
+         * @param shader An Shader to draw all the Sprites with.
          */
         virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
 

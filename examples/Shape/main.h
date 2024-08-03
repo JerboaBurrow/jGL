@@ -44,35 +44,4 @@ std::string fixedLengthNumber(double x, unsigned length)
     return dtrunc;
 }
 
-const char * vertexShader = 
-    "#version 330\n"
-    "precision lowp float;\n"
-    "in vec4 a_position;\n"
-    "in vec4 a_offset;\n"
-    "in vec4 a_colour;\n"
-    "uniform mat4 proj;\n"
-    "out vec2 texCoord;\n"
-    "out vec4 colour;\n"
-    "void main(void){"
-        "vec2 pos = a_position.xy*a_offset.w;\n"
-        "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
-        "mat2 rot = mat2(ct, -st, st, ct);\n"
-        "pos = rot*pos + a_offset.xy;\n"
-        "gl_Position = proj*vec4(pos,0.0,1.0);\n"
-        "texCoord = a_position.zw;\n"
-        "colour = a_colour;\n"
-    "}";
-
-const char * fragmentShader = 
-    "#version 330\n"
-    "precision lowp float;\n"
-    "in vec2 texCoord;\n"
-    "in vec4 colour;\n"
-    "out vec4 fragment;\n"
-    "void main(void){\n" 
-        "vec2 c = texCoord-vec2(0.5,0.5);\n"
-        "if (dot(c,c) > 0.5*0.5) {discard;}\n"
-        "fragment = colour;\n"
-    "}";
-
 #endif /* MAIN_H */
