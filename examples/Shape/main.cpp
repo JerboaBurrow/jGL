@@ -39,16 +39,18 @@ int main(int argv, char ** argc)
     );
 
     std::vector<std::shared_ptr<jGL::Shape>> shapes;
+    std::vector<jGL::Transform> trans;
 
     RNG rng;
 
     for (unsigned i = 0; i < 64; i++)
     {
+        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f));
         shapes.push_back
         (
             std::make_shared<jGL::Shape>
             (
-                jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f),
+                trans[i],
                 glm::vec4(rng.nextFloat(), rng.nextFloat(), rng.nextFloat(), 1.0)
             )
         );
@@ -58,7 +60,11 @@ int main(int argv, char ** argc)
 
     circles->setProjection(camera.getVP());
 
-    std::shared_ptr<jGL::Shader> shader = std::make_shared<jGL::GL::glShader>(vertexShader, fragmentShader);
+    std::shared_ptr<jGL::Shader> shader = std::make_shared<jGL::GL::glShader>
+    (
+        jGL::GL::glShapeRenderer::shapeVertexShader,
+        jGL::GL::glShapeRenderer::ellipseFragmentShader
+    );
 
     shader->use();
 
@@ -76,13 +82,13 @@ int main(int argv, char ** argc)
             for (unsigned i = 0; i <shapes.size(); i++)
             {
                 auto tr = circles->getTransform(std::to_string(i));
-                circles->getShape(std::to_string(i))->transform = jGL::Transform
-                    (
-                        tr.x+dt*(rng.nextFloat()-0.5), 
-                        tr.y+dt*(rng.nextFloat()-0.5), 
-                        tr.theta, 
-                        tr.scaleX
-                    );
+                trans[i] = jGL::Transform
+                (
+                    tr.x+dt*(rng.nextFloat()-0.5), 
+                    tr.y+dt*(rng.nextFloat()-0.5), 
+                    tr.theta, 
+                    tr.scaleX
+                );
             }
 
             circles->draw(shader);

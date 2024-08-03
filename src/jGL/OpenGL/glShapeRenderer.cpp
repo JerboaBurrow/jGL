@@ -2,15 +2,59 @@
 
 namespace jGL::GL 
 {
+
+    const char * glShapeRenderer::shapeVertexShader = 
+        "#version " GLSL_VERSION "\n"
+        "precision lowp float; precision lowp int;\n"
+        "layout(location=0) in vec4 a_position;\n"
+        "layout(location=1) in vec3 a_xytheta;\n"
+        "layout(location=2) in vec2 a_scale;\n"
+        "layout(location=3) in vec4 a_colour;\n"
+        "uniform mat4 proj;\n"
+        "out vec2 texCoord;\n"
+        "out vec4 colour;\n"
+        "void main(){"
+            "vec2 pos = a_position.xy*a_scale;\n"
+            "float ct = cos(a_xytheta.z); float st = sin(a_xytheta.z);\n"
+            "mat2 rot = mat2(ct, -st, st, ct);\n"
+            "pos = rot*pos + a_xytheta.xy;\n"
+            "gl_Position = proj*vec4(pos,0.0,1.0);\n"
+            "texCoord = a_position.zw;\n"
+            "colour = a_colour;\n"
+        "}";
+
+    const char * glShapeRenderer::rectangleFragmentShader = 
+        "#version " GLSL_VERSION "\n"
+        "precision lowp float; precision lowp int;\n"
+        "in vec2 texCoord;\n"
+        "in vec4 colour;\n"
+        "layout(location=0) out vec4 fragment;\n"
+        "void main(){\n" 
+            "fragment = colour;\n"
+        "}";
+
+    const char * glShapeRenderer::ellipseFragmentShader = 
+        "#version " GLSL_VERSION "\n"
+        "precision lowp float; precision lowp int;\n"
+        "in vec2 texCoord;\n"
+        "in vec4 colour;\n"
+        "out vec4 fragment;\n"
+        "void main(void){\n" 
+            "vec2 c = texCoord-vec2(0.5,0.5);\n"
+            "if (dot(c,c) > 0.5*0.5) {discard;}\n"
+            "fragment = colour;\n"
+        "}";
+
     void glShapeRenderer::draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids)
     {
 
         uint32_t n = ids.size();
 
-        if (offsets.size() < 4*n)
+        if (xytheta.size() < 4*n)
         {
-            offsets.resize(4*n+padShapes*4);
-            colours.resize(4*n+padShapes*4);
+            xytheta.resize(xythetaDim*n+padShapes*xythetaDim);
+            scale.resize(2*n+padShapes*2);
+            colours.resize(coloursDim*n+padShapes*coloursDim);
             freeGL();
             initGL();
         }
@@ -22,14 +66,17 @@ namespace jGL::GL
             const Transform & trans = shape->transform;
             const glm::vec4 & col = shape->colour;
 
-            offsets[i*4] = trans.x;
-            offsets[i*4+1] = trans.y;
-            offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scaleX;
-            colours[i*4] = col.r;
-            colours[i*4+1] = col.g;
-            colours[i*4+2] = col.b;
-            colours[i*4+3] = col.a;
+            xytheta[i*xythetaDim] = trans.x;
+            xytheta[i*xythetaDim+1] = trans.y;
+            xytheta[i*xythetaDim+2] = trans.theta;
+
+            scale[i*scaleDim] = trans.scaleX;
+            scale[i*scaleDim+1] = trans.scaleY;
+
+            colours[i*coloursDim] = col.r;
+            colours[i*coloursDim+1] = col.g;
+            colours[i*coloursDim+2] = col.b;
+            colours[i*coloursDim+3] = col.a;
 
             i += 1;
         }
@@ -39,13 +86,23 @@ namespace jGL::GL
 
         glBindVertexArray(vao);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
                 glBufferSubData
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    4*n*sizeof(float),
-                    &offsets[0]
+                    xythetaDim*n*sizeof(float),
+                    &xytheta[0]
+                );
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, a_scale);
+                glBufferSubData
+                (
+                    GL_ARRAY_BUFFER,
+                    0,
+                    scaleDim*n*sizeof(float),
+                    &scale[0]
                 );
             glBindBuffer(GL_ARRAY_BUFFER, 0);
             
@@ -55,80 +112,7 @@ namespace jGL::GL
                 (
                     GL_ARRAY_BUFFER,
                     0,
-                    4*n*sizeof(float),
-                    &colours[0]
-                );
-
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-        glBindVertexArray(0);
-
-        glBindVertexArray(vao);
-
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-            glDisable(GL_DEPTH_TEST);
-        
-            glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
-
-        glBindVertexArray(0);
-
-    }
-
-    void glShapeRenderer::draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids)
-    {
-
-        uint32_t n = ids.size();
-
-        if (offsets.size() < 4*n)
-        {
-            offsets.resize(4*n+padShapes*4);
-            colours.resize(4*n+padShapes*4);
-            freeGL();
-            initGL();
-        }
-
-        uint64_t i = 0;
-        for (auto & sid : ids)
-        {
-            const auto shape = shapes[sid];
-            const Transform & trans = shape->transform;
-            const glm::vec4 & col = shape->colour;
-
-            offsets[i*4] = trans.x;
-            offsets[i*4+1] = trans.y;
-            offsets[i*4+2] = trans.theta;
-            offsets[i*4+3] = trans.scaleX;
-            colours[i*4] = col.r;
-            colours[i*4+1] = col.g;
-            colours[i*4+2] = col.b;
-            colours[i*4+3] = col.a;
-
-            i += 1;
-        }
-
-        shader->use();
-        shader->setUniform<glm::mat4>("proj", projection);
-
-        glBindVertexArray(vao);
-
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    4*n*sizeof(float),
-                    &offsets[0]
-                );
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            
-            glBindBuffer(GL_ARRAY_BUFFER, a_colour);
-
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    4*n*sizeof(float),
+                    coloursDim*n*sizeof(float),
                     &colours[0]
                 );
 
@@ -151,7 +135,8 @@ namespace jGL::GL
     void glShapeRenderer::freeGL()
     {
         glDeleteBuffers(1, &a_position);
-        glDeleteBuffers(1, &a_offset);
+        glDeleteBuffers(1, &a_xytheta);
+        glDeleteBuffers(1, &a_scale);
         glDeleteBuffers(1, &a_colour);
         glDeleteVertexArrays(1, &vao);
     }
@@ -160,7 +145,8 @@ namespace jGL::GL
     {
         glGenVertexArrays(1, &vao);
         glGenBuffers(1, &a_position);
-        glGenBuffers(1, &a_offset);
+        glGenBuffers(1, &a_xytheta);
+        glGenBuffers(1, &a_scale);
         glGenBuffers(1, &a_colour);
 
         glBindVertexArray(vao);
@@ -188,27 +174,51 @@ namespace jGL::GL
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_offset);
+            glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
 
                 glBufferData
                 (
                     GL_ARRAY_BUFFER,
-                    sizeof(float)*offsets.size(),
-                    offsets.data(),
+                    sizeof(float)*xytheta.size(),
+                    xytheta.data(),
                     GL_DYNAMIC_DRAW
                 );
 
-                glEnableVertexAttribArray(1);
+                glEnableVertexAttribArray(xythetaAttribtue);
                 glVertexAttribPointer
                 (
-                    1,
-                    4,
+                    xythetaAttribtue,
+                    xythetaDim,
                     GL_FLOAT,
                     false,
-                    4*sizeof(float),
+                    xythetaDim*sizeof(float),
                     0
                 );
-                glVertexAttribDivisor(1, 1);
+                glVertexAttribDivisor(xythetaAttribtue, 1);
+            
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+            glBindBuffer(GL_ARRAY_BUFFER, a_scale);
+
+                glBufferData
+                (
+                    GL_ARRAY_BUFFER,
+                    sizeof(float)*scale.size(),
+                    scale.data(),
+                    GL_DYNAMIC_DRAW
+                );
+
+                glEnableVertexAttribArray(scaleAttribtue);
+                glVertexAttribPointer
+                (
+                    scaleAttribtue,
+                    scaleDim,
+                    GL_FLOAT,
+                    false,
+                    scaleDim*sizeof(float),
+                    0
+                );
+                glVertexAttribDivisor(scaleAttribtue, 1);
             
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -222,17 +232,17 @@ namespace jGL::GL
                     GL_DYNAMIC_DRAW
                 );
 
-                glEnableVertexAttribArray(2);
+                glEnableVertexAttribArray(coloursAttribtue);
                 glVertexAttribPointer
                 (
-                    2,
-                    4,
+                    coloursAttribtue,
+                    coloursDim,
                     GL_FLOAT,
                     false,
-                    4*sizeof(float),
+                    coloursDim*sizeof(float),
                     0
                 );
-                glVertexAttribDivisor(2, 1);
+                glVertexAttribDivisor(coloursAttribtue, 1);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 

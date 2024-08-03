@@ -7,18 +7,28 @@
 
 namespace jGL::GL
 {
+    /**
+     * @brief OpenGL implementation of ShapeRenderer.
+     * 
+     */
     class glShapeRenderer : public ShapeRenderer
     {
 
     public:
     
+        /**
+         * @brief Construct a new glShapeRenderer.
+         * 
+         * @param sizeHint hint at the number of shapes.
+         */
         glShapeRenderer(size_t sizeHint = 8)
         : ShapeRenderer(sizeHint)
         {
-            offsets = std::vector<float>(sizeHint*4+padShapes*4,0.0f);
-            colours = std::vector<float>(sizeHint*4+padShapes*4,0.0f);
+            xytheta = std::vector<float>(sizeHint*xythetaDim+padShapes*xythetaDim,0.0f);
+            scale = std::vector<float>(sizeHint*scaleDim+padShapes*scaleDim,0.0f);
+            colours = std::vector<float>(sizeHint*coloursDim+padShapes*coloursDim,0.0f);
             initGL();
-            defaultShader = std::make_shared<glShader>(vertexShader, fragmentShader);
+            defaultShader = std::make_shared<glShader>(shapeVertexShader, rectangleFragmentShader);
             defaultShader->use();
         }
 
@@ -27,15 +37,42 @@ namespace jGL::GL
             freeGL();
         }
 
+        /**
+         * @brief Draw with overriding render priority and shader.
+         * 
+         * @param shader An glShader to draw all the Sprites with.
+         * @param ids Render priorities for the Sprites.
+         */
         void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids);
+        
+        /**
+         * @brief Draw with overriding render priority.
+         * 
+         * @param ids Render priorities for the Sprites.
+         */
         void draw(std::multimap<RenderPriority, ShapeId> ids) { draw(defaultShader, ids); }
+        
+        /**
+         * @brief A vertex shader for any default shapes.
+         * 
+         */
+        static const char * shapeVertexShader;
 
-        void draw(std::shared_ptr<Shader> shader, std::vector<ShapeId> ids);
-        void draw(std::vector<ShapeId> ids) { draw(defaultShader, ids); }
+        /**
+         * @brief A fragment shader to draw rectangles.
+         * @remark Assume shapeVertexShader inputs
+         */
+        static const char * rectangleFragmentShader;
+
+        /**
+         * @brief A fragment shader to draw ellipses.
+         * @remark Assume shapeVertexShader inputs
+         */
+        static const char * ellipseFragmentShader;
 
     private:
 
-        GLuint vao, a_position, a_offset, a_colour;
+        GLuint vao, a_position, a_xytheta, a_scale, a_colour;
 
         float quad[6*4] = 
         {
@@ -48,8 +85,17 @@ namespace jGL::GL
             0.5f,  0.5f, 1.0f, 1.0f  // top right
         };
 
-        std::vector<float> offsets;         // offset x, y, theta, scale
-        std::vector<float> colours;         // r, g, b, a
+        std::vector<float> xytheta;
+        size_t xythetaDim = 3;
+        size_t xythetaAttribtue = 1;
+
+        std::vector<float> scale;
+        size_t scaleDim = 2;
+        size_t scaleAttribtue = 2;
+
+        std::vector<float> colours;
+        size_t coloursDim = 4;
+        size_t coloursAttribtue = 3;
 
         size_t padShapes = 8;
 
@@ -57,35 +103,6 @@ namespace jGL::GL
         void freeGL();
 
         std::shared_ptr<Shader> defaultShader;
-
-        const char * vertexShader = 
-            "#version " GLSL_VERSION "\n"
-            "precision lowp float; precision lowp int;\n"
-            "layout(location=0) in vec4 a_position;\n"
-            "layout(location=1) in vec4 a_offset;\n"
-            "layout(location=2) in vec4 a_colour;\n"
-            "uniform mat4 proj;\n"
-            "out vec2 texCoord;\n"
-            "out vec4 colour;\n"
-            "void main(){"
-                "vec2 pos = a_position.xy*a_offset.w;\n"
-                "float ct = cos(a_offset.z); float st = sin(a_offset.z);\n"
-                "mat2 rot = mat2(ct, -st, st, ct);\n"
-                "pos = rot*pos + a_offset.xy;\n"
-                "gl_Position = proj*vec4(pos,0.0,1.0);\n"
-                "texCoord = a_position.zw;\n"
-                "colour = a_colour;\n"
-            "}";
-
-        const char * fragmentShader = 
-            "#version " GLSL_VERSION "\n"
-            "precision lowp float; precision lowp int;\n"
-            "in vec2 texCoord;\n"
-            "in vec4 colour;\n"
-            "layout(location=0) out vec4 fragment;\n"
-            "void main(){\n" 
-                "fragment = colour;\n"
-            "}";
 
     };
 }
