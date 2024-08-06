@@ -26,7 +26,7 @@ namespace jGL::GL
             glDeleteTextures(1, &id);
         }
 
-        virtual void upload(unsigned char * data) {};
+        virtual void upload(std::vector<std::byte> * data) {};
 
         inline void bind() { glBindTexture(GL_TEXTURE_2D, id); }
 

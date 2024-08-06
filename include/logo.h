@@ -2,6 +2,8 @@
   logo.h (PNM).
 */
 
+#include <array>
+
 template<typename... Ts>
 std::array<std::byte, sizeof...(Ts)> make_bytes(Ts&&... args) noexcept {
     return{std::byte(std::forward<Ts>(args))...};
