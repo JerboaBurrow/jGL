@@ -275,17 +275,22 @@ namespace jGL
             }
         };
 
-        void setIcon(const std::vector<std::vector<unsigned char>> & icons)
+        void setIcon(const std::vector<std::vector<std::byte>> & icons)
         {
             glfwSetWindowIcon(glfwWindow, 0, NULL);
             logo.clear();
             for (auto icon : icons)
             {
                 GLFWimage image;
+                std::vector<unsigned char> chData(icon.size());
+                for (unsigned i = 0; i < chData.size(); i++)
+                {
+                    chData[i] = (unsigned char)(icon[i]);
+                }
                 image.pixels = stbi_load_from_memory
                 (
-                    icon.data(), 
-                    icon.size(), 
+                    chData.data(), 
+                    chData.size(), 
                     &image.width, 
                     &image.height, 
                     0, 

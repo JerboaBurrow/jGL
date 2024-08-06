@@ -5,6 +5,7 @@
 #include <jGL/Vulkan/Device/device.h>
 #include <jGL/Vulkan/Command/command.h>
 #include <jGL/Vulkan/buffer.h>
+#include <jGL/util.h>
 
 #include <glm/glm.hpp>
 
@@ -74,7 +75,7 @@ namespace jGL::Vulkan
             uint32_t height, 
             uint32_t channels, 
             VkFormat format, 
-            std::vector<unsigned char> pixels,
+            std::vector<std::byte> pixels,
             VkSampleCountFlagBits msaaSamples = VK_SAMPLE_COUNT_1_BIT
         );
 
@@ -96,7 +97,7 @@ namespace jGL::Vulkan
             uint32_t height, 
             uint32_t channels, 
             VkFormat format,
-            std::vector<unsigned char> pixels
+            std::vector<std::byte> pixels
         );
 
     protected:
@@ -130,7 +131,7 @@ namespace jGL::Vulkan
         void uploadImage
         (
             const Command & command,
-            std::vector<unsigned char> pixels,
+            std::vector<std::byte> pixels,
             VkFormat format,
             uint32_t width,
             uint32_t height,

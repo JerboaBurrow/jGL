@@ -36,7 +36,7 @@ int main(int argv, char ** argc)
 
     std::shared_ptr<jGL::Texture> jerboa = jGLInstance->createTexture
     (
-        std::vector<unsigned char>(LOGO32,LOGO32+sizeof(LOGO32)),
+        std::vector(LOGO32.begin(), LOGO32.end()),
         jGL::Texture::Type::RGBA
     );
 

@@ -88,7 +88,7 @@ namespace jGL::GL
                 }   
             }
 
-            std::shared_ptr<Texture> createTexture(std::vector<unsigned char> data, Texture::Type type)
+            std::shared_ptr<Texture> createTexture(std::vector<std::byte> data, Texture::Type type)
             { 
                 switch (type)
                 {

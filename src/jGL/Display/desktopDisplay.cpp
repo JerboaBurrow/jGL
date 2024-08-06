@@ -97,11 +97,11 @@ namespace jGL
         glfwSetMouseButtonCallback(glfwWindow, mouseButtonCallback);
         glfwSetScrollCallback(glfwWindow, mouseScrollCallback);
 
-        std::vector<std::vector<unsigned char>> logos =
+        std::vector<std::vector<std::byte>> logos =
         {
-            {std::vector<unsigned char>(LOGO32, LOGO32+sizeof(LOGO32))},
-            {std::vector<unsigned char>(LOGO64, LOGO64+sizeof(LOGO64))},
-            {std::vector<unsigned char>(LOGO128, LOGO128+sizeof(LOGO128))}
+            {std::vector(LOGO32.begin(), LOGO32.end())},
+            {std::vector(LOGO64.begin(), LOGO64.end())},
+            {std::vector(LOGO128.begin(), LOGO128.end())}
         };
         
         setIcon(logos);

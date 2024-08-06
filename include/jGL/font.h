@@ -37,7 +37,7 @@ namespace jGL
         std::map<unsigned char, glm::vec4> glyphOffset;
 
         std::shared_ptr<Texture> fontBitmap;
-        std::vector<unsigned char> bitmapPixels;
+        std::vector<std::byte> bitmapPixels;
         uint16_t bw, bh;
 
     };

@@ -50,7 +50,7 @@ namespace jGL::GL
 
     }
 
-    void glTexture2DRGB::upload(std::vector<unsigned char> pixels)
+    void glTexture2DRGB::upload(std::vector<std::byte> pixels)
     {
         bind();
 
@@ -114,7 +114,7 @@ namespace jGL::GL
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    void glTexture2DRGBA::upload(std::vector<unsigned char> pixels)
+    void glTexture2DRGBA::upload(std::vector<std::byte> pixels)
     {
         bind();
         glTexImage2D(
@@ -178,7 +178,7 @@ namespace jGL::GL
 
     }
 
-    void glTexture2DByte::upload(std::vector<unsigned char> pixels)
+    void glTexture2DByte::upload(std::vector<std::byte> pixels)
     {
         bind();
 
