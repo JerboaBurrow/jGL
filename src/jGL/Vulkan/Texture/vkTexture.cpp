@@ -33,14 +33,17 @@ namespace jGL::Vulkan
             this->channels = 4;
             format = VK_FORMAT_R8G8B8A8_SRGB;         
         }
+        std::byte * bytes = reinterpret_cast<std::byte*>(pixels);
 
         this->width = width;
         this->height = height;
+        int dim = width*height;
+        if (channels > 0){ dim *= channels; }
 
         uploadImage
         (
             command,
-            std::vector<unsigned char> {pixels, pixels+width*height*channels},
+            std::vector<std::byte>(bytes, bytes+dim),
             format,
             this->width,
             this->height,
@@ -64,7 +67,7 @@ namespace jGL::Vulkan
         uint32_t height, 
         uint32_t channels, 
         VkFormat format, 
-        std::vector<unsigned char> pixels,
+        std::vector<std::byte> pixels,
         VkSampleCountFlagBits msaaSamples
     )
     : device(device), msaaSamples(msaaSamples)
@@ -103,7 +106,7 @@ namespace jGL::Vulkan
         height, 
         channels, 
         format,
-        std::vector<unsigned char>(width*height*channels, 0),
+        std::vector<std::byte>(width*height*channels),
         msaaSamples
       )
     {}
@@ -299,7 +302,7 @@ namespace jGL::Vulkan
     void vkTexture::uploadImage
     (
         const Command & command,
-        std::vector<unsigned char> pixels,
+        std::vector<std::byte> pixels,
         VkFormat format,
         uint32_t width,
         uint32_t height,
@@ -373,7 +376,7 @@ namespace jGL::Vulkan
         uint32_t height, 
         uint32_t channels, 
         VkFormat format, 
-        std::vector<unsigned char> pixels
+        std::vector<std::byte> pixels
     )
     {
         if 

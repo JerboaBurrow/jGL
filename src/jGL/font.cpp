@@ -30,7 +30,7 @@ namespace jGL
         int chWidth = s;
         int chHeight = s;
 
-        bitmapPixels = std::vector<unsigned char>(chWidth*chHeight*128, 0);
+        bitmapPixels = std::vector<std::byte>(chWidth*chHeight*128);
 
         uint16_t cursorX = 0;
         uint16_t cursorY = 0;
@@ -70,7 +70,7 @@ namespace jGL
                     px = cursorX;
                     py += 1;
                 }
-                bitmapPixels[py*width+px+cursorX*chWidth] = chPixels[i];
+                bitmapPixels[py*width+px+cursorX*chWidth] = std::byte(chPixels[i]);
                 px++;
             }
 

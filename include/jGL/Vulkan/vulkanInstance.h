@@ -100,7 +100,7 @@ namespace jGL::Vulkan
                 )
             );   
         }
-        std::shared_ptr<Texture> createTexture(std::vector<unsigned char> data, Texture::Type type) 
+        std::shared_ptr<Texture> createTexture(std::vector<std::byte> data, Texture::Type type) 
         { 
             TODO("VulkanInstance::createTexture from bytes undefined");
             return std::static_pointer_cast<Texture>
