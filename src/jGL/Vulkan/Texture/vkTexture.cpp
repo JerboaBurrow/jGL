@@ -33,14 +33,17 @@ namespace jGL::Vulkan
             this->channels = 4;
             format = VK_FORMAT_R8G8B8A8_SRGB;         
         }
+        std::byte * bytes = reinterpret_cast<std::byte*>(pixels);
 
         this->width = width;
         this->height = height;
+        int dim = width*height;
+        if (channels > 0){ dim *= channels; }
 
         uploadImage
         (
             command,
-            ptrToByteVector<unsigned char>(pixels, width*height*channels),
+            std::vector<std::byte>(bytes, bytes+dim),
             format,
             this->width,
             this->height,

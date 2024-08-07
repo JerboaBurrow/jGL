@@ -55,30 +55,28 @@ namespace jGL::GL
             {
                 throw std::runtime_error("Failed to load texture: "+imageFilePath.generic_string());
             }
+            std::byte * bytes = reinterpret_cast<std::byte*>(pixels);
 
             size_t dim = width*height;
             if (channels > 0) { dim *= channels; }
-            std::vector<std::byte> vdata = ptrToByteVector<unsigned char>(pixels, dim);
+            std::vector<std::byte> vdata(bytes, bytes+dim);
             stbi_image_free(pixels);
             return vdata;
         }
 
         std::vector<std::byte> load_image(std::vector<std::byte> imageFile)
         {
-            std::vector<unsigned char> chData(imageFile.size());
-            for (unsigned i = 0; i < imageFile.size(); i++)
-            {
-                chData[i] = (unsigned char)(imageFile[i]);
-            }
-            unsigned char * pixels = stbi_load_from_memory(chData.data(), imageFile.size(), &width, &height, &channels, 4);
+            unsigned char * chData = reinterpret_cast<unsigned char*>(imageFile.data());
+            unsigned char * pixels = stbi_load_from_memory(chData, imageFile.size(), &width, &height, &channels, 4);
             if (!pixels)
             {
                 throw std::runtime_error("Failed to load texture from memory");
             }
+            std::byte * bytes = reinterpret_cast<std::byte*>(pixels);
 
             size_t dim = width*height;
             if (channels > 0) { dim *= channels; }
-            std::vector<std::byte> vdata = ptrToByteVector<unsigned char>(pixels, dim);
+            std::vector<std::byte> vdata(bytes, bytes+dim);
             stbi_image_free(pixels);
             return vdata;
         }

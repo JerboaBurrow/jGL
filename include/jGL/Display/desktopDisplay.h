@@ -282,15 +282,11 @@ namespace jGL
             for (auto icon : icons)
             {
                 GLFWimage image;
-                std::vector<unsigned char> chData(icon.size());
-                for (unsigned i = 0; i < chData.size(); i++)
-                {
-                    chData[i] = (unsigned char)(icon[i]);
-                }
+                unsigned char * chData = reinterpret_cast<unsigned char*>(icon.data());
                 image.pixels = stbi_load_from_memory
                 (
-                    chData.data(), 
-                    chData.size(), 
+                    chData, 
+                    icon.size(), 
                     &image.width, 
                     &image.height, 
                     0, 
