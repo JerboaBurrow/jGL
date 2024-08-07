@@ -346,132 +346,133 @@ $(function() {
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            }</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        };</div>
 <div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160; </div>
-<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a528985205c4f24be85e35a30a666c8f8">  278</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjGL_1_1DesktopDisplay.html#a528985205c4f24be85e35a30a666c8f8">setIcon</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;unsigned char&gt;&gt; &amp; icons)</div>
+<div class="line"><a name="l00278"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a029ebfac98248c7a751af1adb10cc23b">  278</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjGL_1_1DesktopDisplay.html#a029ebfac98248c7a751af1adb10cc23b">setIcon</a>(<span class="keyword">const</span> std::vector&lt;std::vector&lt;std::byte&gt;&gt; &amp; icons)</div>
 <div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        {</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            glfwSetWindowIcon(glfwWindow, 0, NULL);</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;            logo.clear();</div>
 <div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <span class="keywordflow">for</span> (<span class="keyword">auto</span> icon : icons)</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            {</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                GLFWimage image;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                image.pixels = stbi_load_from_memory</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                (</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                    icon.data(), </div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                    icon.size(), </div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                    &amp;image.width, </div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                    &amp;image.height, </div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                    0, </div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                    4</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                );</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                logo.push_back(image);</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            }</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160; </div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            glfwSetWindowIcon(glfwWindow,logo.size(),logo.data());</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;        }</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160; </div>
-<div class="line"><a name="l00300"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">  300</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">frameBufferSize</a>()<span class="keyword"> const </span></div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            glm::ivec2 s;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            {</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                glfwGetFramebufferSize(glfwWindow, &amp;s.x, &amp;s.y);</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            }</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160; </div>
-<div class="line"><a name="l00310"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">  310</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">windowSize</a>()<span class="keyword"> const </span></div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;            glm::ivec2 s;</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            {</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                glfwGetWindowSize(glfwWindow, &amp;s.x, &amp;s.y);</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;            }</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160; </div>
-<div class="line"><a name="l00320"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">  320</a></span>&#160;        glm::vec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">contentScale</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;            glm::vec2 s;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;                glfwGetWindowContentScale(glfwWindow, &amp;s.x, &amp;s.y);</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            }</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        }</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160; </div>
-<div class="line"><a name="l00330"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">  330</a></span>&#160;        glm::ivec4 <a class="code" href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">windowFrameSize</a>()<span class="keyword"> const </span></div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;            glm::ivec4 s;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            {</div>
-<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;                glfwGetWindowFrameSize(glfwWindow, &amp;s.x, &amp;s.y, &amp;s.z, &amp;s.w);</div>
-<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;            }</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        }</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160; </div>
-<div class="line"><a name="l00340"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">  340</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">windowPosition</a>()<span class="keyword"> const </span></div>
-<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;<span class="keyword">        </span>{</div>
-<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;            glm::ivec2 s;</div>
-<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            {</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;                glfwGetWindowPos(glfwWindow, &amp;s.x, &amp;s.y);</div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;            }</div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            <span class="keywordflow">return</span> s;</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        }</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00350"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">  350</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">setWindowPosition</a>(glm::ivec2 s) </div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;        {</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            {</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                glfwSetWindowPos(glfwWindow, s.x, s.y);</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;            }</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        }</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160; </div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160; </div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> * title;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        std::vector&lt;GLFWimage&gt; logo;</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160; </div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        GLFWwindow * glfwWindow;</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160; </div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        WindowData data;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160; </div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;        Config windowConfig;</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        <span class="keywordtype">void</span> swap(){ <span class="keywordflow">if</span> (glfwWindow != NULL) { glfwSwapBuffers(glfwWindow); } }</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160; </div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        <span class="keywordtype">void</span> handleEvents(){ <span class="keywordflow">if</span> (glfwWindow != NULL){ glfwPollEvents(); } }</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160; </div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    };</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;}</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160; </div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ANDROID */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DesktopDisplay_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> * chData = <span class="keyword">reinterpret_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*<span class="keyword">&gt;</span>(icon.data());</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                image.pixels = stbi_load_from_memory</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                (</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                    chData, </div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                    icon.size(), </div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                    &amp;image.width, </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;                    &amp;image.height, </div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;                    0, </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;                    4</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;                );</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                logo.push_back(image);</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            }</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160; </div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            glfwSetWindowIcon(glfwWindow,logo.size(),logo.data());</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;        }</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160; </div>
+<div class="line"><a name="l00301"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">  301</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">frameBufferSize</a>()<span class="keyword"> const </span></div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            glm::ivec2 s;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;            {</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                glfwGetFramebufferSize(glfwWindow, &amp;s.x, &amp;s.y);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160; </div>
+<div class="line"><a name="l00311"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">  311</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">windowSize</a>()<span class="keyword"> const </span></div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;            glm::ivec2 s;</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;            {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;                glfwGetWindowSize(glfwWindow, &amp;s.x, &amp;s.y);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;            }</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;            <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;        }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160; </div>
+<div class="line"><a name="l00321"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">  321</a></span>&#160;        glm::vec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">contentScale</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;            glm::vec2 s;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            {</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;                glfwGetWindowContentScale(glfwWindow, &amp;s.x, &amp;s.y);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            }</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;            <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        }</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
+<div class="line"><a name="l00331"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">  331</a></span>&#160;        glm::ivec4 <a class="code" href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">windowFrameSize</a>()<span class="keyword"> const </span></div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;            glm::ivec4 s;</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;            {</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;                glfwGetWindowFrameSize(glfwWindow, &amp;s.x, &amp;s.y, &amp;s.z, &amp;s.w);</div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;            }</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;            <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;        }</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160; </div>
+<div class="line"><a name="l00341"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">  341</a></span>&#160;        glm::ivec2 <a class="code" href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">windowPosition</a>()<span class="keyword"> const </span></div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;<span class="keyword">        </span>{</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;            glm::ivec2 s;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;            {</div>
+<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;                glfwGetWindowPos(glfwWindow, &amp;s.x, &amp;s.y);</div>
+<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;            }</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;            <span class="keywordflow">return</span> s;</div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;        }</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160; </div>
+<div class="line"><a name="l00351"></a><span class="lineno"><a class="line" href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">  351</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">setWindowPosition</a>(glm::ivec2 s) </div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;        {</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;            <span class="keywordflow">if</span> (glfwWindow != NULL)</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;            {</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                glfwSetWindowPos(glfwWindow, s.x, s.y);</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;            }</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        }</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160; </div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160; </div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> * title;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        std::vector&lt;GLFWimage&gt; logo;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160; </div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        GLFWwindow * glfwWindow;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;        WindowData data;</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160; </div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;        Config windowConfig;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160; </div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        <span class="keywordtype">void</span> swap(){ <span class="keywordflow">if</span> (glfwWindow != NULL) { glfwSwapBuffers(glfwWindow); } }</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordtype">void</span> handleEvents(){ <span class="keywordflow">if</span> (glfwWindow != NULL){ glfwPollEvents(); } }</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    };</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160; </div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ANDROID */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* DesktopDisplay_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html">jGL::DesktopDisplay</a></div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:39</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a029ebfac98248c7a751af1adb10cc23b"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a029ebfac98248c7a751af1adb10cc23b">jGL::DesktopDisplay::setIcon</a></div><div class="ttdeci">void setIcon(const std::vector&lt; std::vector&lt; std::byte &gt;&gt; &amp;icons)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:278</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a12a0dce0453a9bef78674db5e55738b7"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a12a0dce0453a9bef78674db5e55738b7">jGL::DesktopDisplay::setMousePosition</a></div><div class="ttdeci">void setMousePosition(double x, double y)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:189</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a399346922cc75845f02535b8bc0c8942"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">jGL::DesktopDisplay::windowFrameSize</a></div><div class="ttdeci">glm::ivec4 windowFrameSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:330</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a3bcac0db2ba4a165f17b13185f9792aa"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">jGL::DesktopDisplay::setWindowPosition</a></div><div class="ttdeci">void setWindowPosition(glm::ivec2 s)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:350</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a399346922cc75845f02535b8bc0c8942"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a399346922cc75845f02535b8bc0c8942">jGL::DesktopDisplay::windowFrameSize</a></div><div class="ttdeci">glm::ivec4 windowFrameSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:331</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a3bcac0db2ba4a165f17b13185f9792aa"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a3bcac0db2ba4a165f17b13185f9792aa">jGL::DesktopDisplay::setWindowPosition</a></div><div class="ttdeci">void setWindowPosition(glm::ivec2 s)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:351</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a46a9ed82dbfb87f60892caddb4eae5c9"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a46a9ed82dbfb87f60892caddb4eae5c9">jGL::DesktopDisplay::DesktopDisplay</a></div><div class="ttdeci">DesktopDisplay(glm::ivec2 res, const char *title, GLFWkeyfun keyCallback, GLFWmousebuttonfun mouseButtonCallback, GLFWscrollfun mouseScrollCallback, const Config conf)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.cpp:74</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a4876f18dca5a9da333ce59409c0b5398"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a4876f18dca5a9da333ce59409c0b5398">jGL::DesktopDisplay::loop</a></div><div class="ttdeci">void loop()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:199</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a4bc7d1a99b485616a2d06dc8e81e348e"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a4bc7d1a99b485616a2d06dc8e81e348e">jGL::DesktopDisplay::keyCallback</a></div><div class="ttdeci">void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a4bfcba4203c02563068d8b3d70bc7519"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a4bfcba4203c02563068d8b3d70bc7519">jGL::DesktopDisplay::setAsFocus</a></div><div class="ttdeci">void setAsFocus()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:176</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a5056fd8e64e7dc3c458d72f57366e1ac"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a5056fd8e64e7dc3c458d72f57366e1ac">jGL::DesktopDisplay::getEventTypes</a></div><div class="ttdeci">std::vector&lt; EventType &gt; getEventTypes(int code)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:233</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a528985205c4f24be85e35a30a666c8f8"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a528985205c4f24be85e35a30a666c8f8">jGL::DesktopDisplay::setIcon</a></div><div class="ttdeci">void setIcon(const std::vector&lt; std::vector&lt; unsigned char &gt;&gt; &amp;icons)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:278</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a54de0468bf84d7ef59cb7b566ae43692"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a54de0468bf84d7ef59cb7b566ae43692">jGL::DesktopDisplay::isOpen</a></div><div class="ttdeci">bool isOpen()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:112</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a5b917faaf02192df922452af24e6fce1"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a5b917faaf02192df922452af24e6fce1">jGL::DesktopDisplay::mousePosition</a></div><div class="ttdeci">void mousePosition(double &amp;x, double &amp;y)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:187</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a5d9c8a738207dd057bdcbd6b5deaf7e8"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a5d9c8a738207dd057bdcbd6b5deaf7e8">jGL::DesktopDisplay::~DesktopDisplay</a></div><div class="ttdeci">~DesktopDisplay()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:96</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a5f175e32c91b7b161aebffc7fad58abf"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">jGL::DesktopDisplay::windowSize</a></div><div class="ttdeci">glm::ivec2 windowSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:310</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a5f175e32c91b7b161aebffc7fad58abf"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a5f175e32c91b7b161aebffc7fad58abf">jGL::DesktopDisplay::windowSize</a></div><div class="ttdeci">glm::ivec2 windowSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:311</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a88b2662c4ff9db9f5e133d00679c7a0d"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a88b2662c4ff9db9f5e133d00679c7a0d">jGL::DesktopDisplay::getKeyLastState</a></div><div class="ttdeci">int getKeyLastState(int key)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:197</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_a8a21b31c37eb966efaee3c70141b1d28"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#a8a21b31c37eb966efaee3c70141b1d28">jGL::DesktopDisplay::keyHasEvent</a></div><div class="ttdeci">bool keyHasEvent(int key, EventType action)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:220</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_aa8011f4c7ba28b09d424d655b9a2dc74"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#aa8011f4c7ba28b09d424d655b9a2dc74">jGL::DesktopDisplay::getEvents</a></div><div class="ttdeci">std::vector&lt; Event &gt; getEvents(int code)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:208</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_abd1a9bc3fe32200af58625ebd53beac7"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#abd1a9bc3fe32200af58625ebd53beac7">jGL::DesktopDisplay::closing</a></div><div class="ttdeci">bool closing()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:113</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_abe3cb97a46809dfa77fa52549576674c"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#abe3cb97a46809dfa77fa52549576674c">jGL::DesktopDisplay::getWindow</a></div><div class="ttdeci">GLFWwindow * getWindow() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:110</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ac2b26e20538471a99515ecffb74e3e6f"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ac2b26e20538471a99515ecffb74e3e6f">jGL::DesktopDisplay::getEvent</a></div><div class="ttdeci">Event getEvent(int code)</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:250</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_acf8149f468c79511941fb053be8465d6"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">jGL::DesktopDisplay::contentScale</a></div><div class="ttdeci">glm::vec2 contentScale() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:320</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_acf8149f468c79511941fb053be8465d6"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#acf8149f468c79511941fb053be8465d6">jGL::DesktopDisplay::contentScale</a></div><div class="ttdeci">glm::vec2 contentScale() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:321</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ad4213651e1562801ad2f9274e8efff75"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ad4213651e1562801ad2f9274e8efff75">jGL::DesktopDisplay::open</a></div><div class="ttdeci">void open()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:115</div></div>
 <div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_addd6a365f492a7a8c701111c53a00026"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#addd6a365f492a7a8c701111c53a00026">jGL::DesktopDisplay::close</a></div><div class="ttdeci">void close()</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:174</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ae060fd04c16df48ff75a515a67024bac"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">jGL::DesktopDisplay::windowPosition</a></div><div class="ttdeci">glm::ivec2 windowPosition() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:340</div></div>
-<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ae329351c7682e5c134e2f23ed029e631"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">jGL::DesktopDisplay::frameBufferSize</a></div><div class="ttdeci">glm::ivec2 frameBufferSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:300</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ae060fd04c16df48ff75a515a67024bac"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ae060fd04c16df48ff75a515a67024bac">jGL::DesktopDisplay::windowPosition</a></div><div class="ttdeci">glm::ivec2 windowPosition() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:341</div></div>
+<div class="ttc" id="aclassjGL_1_1DesktopDisplay_html_ae329351c7682e5c134e2f23ed029e631"><div class="ttname"><a href="classjGL_1_1DesktopDisplay.html#ae329351c7682e5c134e2f23ed029e631">jGL::DesktopDisplay::frameBufferSize</a></div><div class="ttdeci">glm::ivec2 frameBufferSize() const</div><div class="ttdef"><b>Definition:</b> desktopDisplay.h:301</div></div>
 <div class="ttc" id="aclassjGL_1_1Display_html"><div class="ttname"><a href="classjGL_1_1Display.html">jGL::Display</a></div><div class="ttdef"><b>Definition:</b> display.h:12</div></div>
 <div class="ttc" id="aclassjGL_1_1Display_html_a07a49ff5aaed30f008d8ea534190ba23"><div class="ttname"><a href="classjGL_1_1Display.html#a07a49ff5aaed30f008d8ea534190ba23">jGL::Display::getResY</a></div><div class="ttdeci">unsigned getResY() const</div><div class="ttdef"><b>Definition:</b> display.h:26</div></div>
 <div class="ttc" id="aclassjGL_1_1Display_html_a59863fe628205a5644f2246ec28efde6"><div class="ttname"><a href="classjGL_1_1Display.html#a59863fe628205a5644f2246ec28efde6">jGL::Display::throttle</a></div><div class="ttdeci">virtual void throttle()</div><div class="ttdef"><b>Definition:</b> display.h:49</div></div>

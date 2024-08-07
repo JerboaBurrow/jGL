@@ -2,7 +2,7 @@ var searchData=
 [
   ['lastframe_269',['lastFrame',['../classjGL_1_1Display.html#a0a4d625121a984d3d47569acab71a385',1,'jGL::Display']]],
   ['lint_270',['lint',['../structjGL_1_1Shader.html#a93507a86392634a4fc8aa73e2ed9538c',1,'jGL::Shader']]],
-  ['load_5fimage_271',['load_image',['../classjGL_1_1GL_1_1glTexture.html#a95ca77061172ed8dc0dfbd493e9d265d',1,'jGL::GL::glTexture::load_image(std::vector&lt; unsigned char &gt; imageFile)'],['../classjGL_1_1GL_1_1glTexture.html#a2d1a1a315719dc6f67f416f7079dc742',1,'jGL::GL::glTexture::load_image(std::filesystem::path imageFilePath)']]],
+  ['load_5fimage_271',['load_image',['../classjGL_1_1GL_1_1glTexture.html#a5d69d56792d237ee140e2770cbacdedd',1,'jGL::GL::glTexture::load_image(std::vector&lt; std::byte &gt; imageFile)'],['../classjGL_1_1GL_1_1glTexture.html#a38a2dd1cf3be2486cedf574a0ea2e662',1,'jGL::GL::glTexture::load_image(std::filesystem::path imageFilePath)']]],
   ['location_272',['location',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab568520868475b395c9e9a020a0f8852',1,'jGL::Vulkan::VertexBufferObject']]],
   ['log_273',['Log',['../classjLog_1_1Log.html',1,'jLog::Log'],['../classjLog_1_1Log.html#ab04b94ecddf071664b8d10323181f6b7',1,'jLog::Log::Log()'],['../classjLog_1_1Log.html#a4f74ca180e0205001ecf159419295212',1,'jLog::Log::Log(const char *s)']]],
   ['logicaldevice_274',['LogicalDevice',['../classjGL_1_1Vulkan_1_1LogicalDevice.html',1,'jGL::Vulkan::LogicalDevice'],['../classjGL_1_1Vulkan_1_1LogicalDevice.html#a448d47b531e13a7bc659facd4de05304',1,'jGL::Vulkan::LogicalDevice::LogicalDevice()=default'],['../classjGL_1_1Vulkan_1_1LogicalDevice.html#af5bb96304be90890370c28f609d9befd',1,'jGL::Vulkan::LogicalDevice::LogicalDevice(const PhysicalDevice &amp;physicalDevice)']]],
