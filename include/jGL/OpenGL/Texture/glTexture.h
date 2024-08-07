@@ -3,7 +3,6 @@
 
 #include <jGL/OpenGL/gl.h>
 #include <jGL/texture.h>
-#include <jGL/util.h>
 
 #include <stdexcept>
 #include <filesystem>

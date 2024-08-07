@@ -5,7 +5,6 @@
 #include <jGL/Vulkan/Device/device.h>
 #include <jGL/Vulkan/Command/command.h>
 #include <jGL/Vulkan/buffer.h>
-#include <jGL/util.h>
 
 #include <glm/glm.hpp>
 
