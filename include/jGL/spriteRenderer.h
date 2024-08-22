@@ -118,12 +118,13 @@ namespace jGL
         {
             if (sprites.find(id) == sprites.end()){ return; }
 
-            for (auto & e : ids)
+            std::multimap<RenderPriority, SpriteId>::iterator iter;
+            for (iter = ids.begin(); iter != ids.end(); iter++)
             {
-                if (e.second == id)
+                if (iter->second == id)
                 {
-                    ids.erase(e.first);
-                    ids.insert(std::pair(newPriority, e.second));
+                    ids.erase(iter);
+                    ids.insert(std::pair(newPriority, id));
                     break;
                 }
             }
