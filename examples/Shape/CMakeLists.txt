@@ -16,6 +16,8 @@ endif()
 
 include_directories(.)
 
+add_link_options("-Wl,--no-as-needed,-lprofiler,--as-needed")
+
 add_executable(${OUTPUT_NAME} ${SRC})
 
 target_link_libraries(${OUTPUT_NAME} jGL)

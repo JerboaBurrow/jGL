@@ -11,14 +11,14 @@ int main(int argv, char ** argc)
     conf.COCOA_RETINA = true;
     #endif
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
-    display.setFrameLimit(30);
+    display.setFrameLimit(60);
 
     glewInit();
 
     glm::ivec2 res = display.frameBufferSize();
     resX = res.x;
     resY = res.y;
-    
+
     jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(res));
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
@@ -33,19 +33,22 @@ int main(int argv, char ** argc)
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
     jGLInstance->setMSAA(1);
 
-    std::shared_ptr<jGL::ShapeRenderer> circles = jGLInstance->createShapeRenderer
-    (
-        32
-    );
-
     std::vector<std::shared_ptr<jGL::Shape>> shapes;
     std::vector<jGL::Transform> trans;
 
     RNG rng;
+    uint64_t n = 1000000;
 
-    for (unsigned i = 0; i < 64; i++)
+    std::shared_ptr<jGL::ShapeRenderer> circles = jGLInstance->createShapeRenderer
+    (
+        n
+    );
+
+    shapes.reserve(n);
+    trans.reserve(n);
+    for (unsigned i = 0; i < n; i++)
     {
-        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f));
+        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.001f));
         shapes.push_back
         (
             std::make_shared<jGL::Shape>
@@ -70,6 +73,7 @@ int main(int argv, char ** argc)
 
     double delta = 0.0;
     double dt = 1.0/600.0;
+    jGL::ShapeRenderer::UpdateInfo uinfo;
 
     while (display.isOpen())
     {
@@ -79,19 +83,19 @@ int main(int argv, char ** argc)
 
             jGLInstance->clear();
 
-            for (unsigned i = 0; i <shapes.size(); i++)
-            {
-                auto tr = circles->getTransform(std::to_string(i));
-                trans[i] = jGL::Transform
-                (
-                    tr.x+dt*(rng.nextFloat()-0.5), 
-                    tr.y+dt*(rng.nextFloat()-0.5), 
-                    tr.theta, 
-                    tr.scaleX
-                );
-            }
+            // for (unsigned i = 0; i <shapes.size(); i++)
+            // {
+            //     auto tr = circles->getTransform(std::to_string(i));
+            //     trans[i] = jGL::Transform
+            //     (
+            //         tr.x+dt*(rng.nextFloat()-0.5),
+            //         tr.y+dt*(rng.nextFloat()-0.5),
+            //         tr.theta,
+            //         tr.scaleX
+            //     );
+            // }
 
-            circles->draw(shader);
+            circles->draw(shader, uinfo);
 
             delta = 0.0;
             for (int n = 0; n < 60; n++)
@@ -99,20 +103,20 @@ int main(int argv, char ** argc)
                 delta += deltas[n];
             }
             delta /= 60.0;
-            
+
             std::stringstream debugText;
 
             double mouseX, mouseY;
             display.mousePosition(mouseX,mouseY);
 
             debugText << "Delta: " << fixedLengthNumber(delta,6)
-                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4)
                     << ")\n"
-                    << "Render draw time: \n" 
+                    << "Render draw time: \n"
                     << "   " << fixedLengthNumber(rdt, 6) << "\n"
-                    << "Mouse (" << fixedLengthNumber(mouseX,4) 
-                    << "," 
-                    << fixedLengthNumber(mouseY,4) 
+                    << "Mouse (" << fixedLengthNumber(mouseX,4)
+                    << ","
+                    << fixedLengthNumber(mouseY,4)
                     << ")\n";
 
             jGLInstance->text(
@@ -138,7 +142,9 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
-            
+        uinfo.colour = false;
+        uinfo.scale = false;
+
     }
 
     jGLInstance->finish();
