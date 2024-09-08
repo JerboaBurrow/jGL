@@ -83,17 +83,14 @@ int main(int argv, char ** argc)
 
             jGLInstance->clear();
 
-            // for (unsigned i = 0; i <shapes.size(); i++)
-            // {
-            //     auto tr = circles->getTransform(std::to_string(i));
-            //     trans[i] = jGL::Transform
-            //     (
-            //         tr.x+dt*(rng.nextFloat()-0.5),
-            //         tr.y+dt*(rng.nextFloat()-0.5),
-            //         tr.theta,
-            //         tr.scaleX
-            //     );
-            // }
+            for (unsigned i = 0; i <shapes.size(); i++)
+            {
+                auto & tr = trans[i];
+                tr.x = tr.x+dt*(rng.nextFloat()-0.5);
+                tr.y = tr.y+dt*(rng.nextFloat()-0.5);
+                tr.theta = tr.theta;
+                tr.scaleX = tr.scaleX;
+            }
 
             circles->draw(shader, uinfo);
 
