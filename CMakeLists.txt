@@ -76,7 +76,6 @@ if (ANDROID)
         "src/font.cpp"
         "src/glyph.cpp"
         "src/shader.cpp"
-        "src/shapeRenderer.cpp"
         "src/spriteRenderer.cpp"
         "src/warning.cpp"
         "src/jGL/common.cpp"
@@ -102,16 +101,16 @@ endif()
 
 add_library(jGL STATIC ${jGL_SRC})
 
-target_include_directories(jGL PUBLIC 
-    include 
-    include/vendored 
-    ${OPENGL_INCLUDE_DIRS} 
-    ${Vulkan_INCLUDE_DIR} 
+target_include_directories(jGL PUBLIC
+    include
+    include/vendored
+    ${OPENGL_INCLUDE_DIRS}
+    ${Vulkan_INCLUDE_DIR}
     ${GLEW_INCLUDE}
     include/vendored/glew/include/GL
-    include/vendored/freetype/include 
+    include/vendored/freetype/include
     include/vendored/VulkanSDK/Include
-    include/vendored/VulkanSDK/Include/shaderc 
+    include/vendored/VulkanSDK/Include/shaderc
     include/vendored/VulkanSDK/Include/vulkan
     include/vendored/glfw/include
     include/jLog
@@ -126,7 +125,7 @@ elseif(OSX)
     add_compile_definitions(MACOS)
     target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/MacOS/Lib)
 elseif(ANDROID)
-    
+
 else()
     target_link_directories(jGL PUBLIC include/vendored/VulkanSDK/Linux/Lib)
 endif()
@@ -157,21 +156,20 @@ IF (TEST_SUITE)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wa,-mbig-obj")
     endif()
 
-    file(GLOB_RECURSE TEST_SRC 
+    file(GLOB_RECURSE TEST_SRC
         "tests/glTests/*.cpp"
         "src/jGL/OpenGL/*.cpp"
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"
-        "src/jGL/shapeRenderer.cpp"
-        "src/id.cpp"    
+        "src/id.cpp"
         "src/jGL/Display/*.cpp"
         "src/jGL/common.cpp"
     )
     include_directories(include "tests/")
 
     # GL Enabled
-    add_executable(glTests 
+    add_executable(glTests
         ${TEST_SRC}
         "src/jGL/shader.cpp"
         "src/id.cpp"
@@ -179,13 +177,13 @@ IF (TEST_SUITE)
         "src/jGL/glyph.cpp"
     )
 
-    target_include_directories(glTests PUBLIC 
-        include 
-        include/vendored 
-        ${OPENGL_INCLUDE_DIRS} 
+    target_include_directories(glTests PUBLIC
+        include
+        include/vendored
+        ${OPENGL_INCLUDE_DIRS}
         ${GLEW_INCLUDE}
         include/vendored/glew/include/GL
-        include/vendored/freetype/include 
+        include/vendored/freetype/include
         include/vendored/glfw/include
         include/vendored/VulkanSDK/Include
         include/jLog
@@ -200,7 +198,7 @@ IF (TEST_SUITE)
     else()
         target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
     endif()
-    
+
     include(CTest)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
     include(Catch)
@@ -210,7 +208,7 @@ IF (TEST_SUITE)
 
     add_compile_definitions(EXCEPT_ON_VALIDATION)
 
-    file(GLOB_RECURSE TEST_SRC 
+    file(GLOB_RECURSE TEST_SRC
         "tests/vulkanTests/*.cpp"
         "src/jGL/Vulkan/*.cpp"
         "src/jGL/Display/*.cpp"
@@ -222,18 +220,17 @@ IF (TEST_SUITE)
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
         "src/jGL/spriteRenderer.cpp"
-        "src/jGL/shapeRenderer.cpp"
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
     )
 
-    target_include_directories(vkTests PUBLIC 
-        include 
-        include/vendored 
-        ${Vulkan_INCLUDE_DIR} 
+    target_include_directories(vkTests PUBLIC
+        include
+        include/vendored
+        ${Vulkan_INCLUDE_DIR}
         tests
-        include/vendored/freetype/include 
+        include/vendored/freetype/include
         include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
@@ -247,11 +244,11 @@ IF (TEST_SUITE)
         add_compile_definitions(MACOS)
         target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/MacOS/Lib)
     elseif(ANDROID)
-        
+
     else()
         target_link_directories(vkTests PUBLIC include/vendored/VulkanSDK/Linux/Lib)
     endif()
-    
+
     if (WINDOWS)
         target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined "winmm")
     else()
@@ -264,5 +261,5 @@ IF (TEST_SUITE)
     set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/tests/cmake/)
     include(Catch)
     catch_discover_tests(vkTests)
-  
+
 ENDIF(TEST_SUITE)
