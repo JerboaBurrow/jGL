@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['queuefamilyindices_580',['QueueFamilyIndices',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html',1,'jGL::Vulkan']]]
+  ['queuefamilyindices_602',['QueueFamilyIndices',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html',1,'jGL::Vulkan']]]
 ];
