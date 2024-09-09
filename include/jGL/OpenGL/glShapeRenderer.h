@@ -9,16 +9,16 @@ namespace jGL::GL
 {
     /**
      * @brief OpenGL implementation of ShapeRenderer.
-     * 
+     *
      */
     class glShapeRenderer : public ShapeRenderer
     {
 
     public:
-    
+
         /**
          * @brief Construct a new glShapeRenderer.
-         * 
+         *
          * @param sizeHint hint at the number of shapes.
          */
         glShapeRenderer(size_t sizeHint = 8)
@@ -28,8 +28,8 @@ namespace jGL::GL
             scale = std::vector<float>(sizeHint*scaleDim+padShapes*scaleDim,0.0f);
             colours = std::vector<float>(sizeHint*coloursDim+padShapes*coloursDim,0.0f);
             initGL();
-            defaultShader = std::make_shared<glShader>(shapeVertexShader, rectangleFragmentShader);
-            defaultShader->use();
+            shader = std::make_shared<glShader>(shapeVertexShader, rectangleFragmentShader);
+            shader->use();
         }
 
         ~glShapeRenderer()
@@ -38,23 +38,8 @@ namespace jGL::GL
         }
 
         /**
-         * @brief Draw with overriding render priority and shader.
-         * 
-         * @param shader An glShader to draw all the Sprites with.
-         * @param ids Render priorities for the Sprites.
-         */
-        void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids);
-        
-        /**
-         * @brief Draw with overriding render priority.
-         * 
-         * @param ids Render priorities for the Sprites.
-         */
-        void draw(std::multimap<RenderPriority, ShapeId> ids) { draw(defaultShader, ids); }
-        
-        /**
          * @brief A vertex shader for any default shapes.
-         * 
+         *
          */
         static const char * shapeVertexShader;
 
@@ -72,15 +57,22 @@ namespace jGL::GL
 
     private:
 
+        void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+            UpdateInfo info = UpdateInfo()
+        );
+
         GLuint vao, a_position, a_xytheta, a_scale, a_colour;
 
-        float quad[6*4] = 
+        float quad[6*4] =
         {
             // positions  / texture coords
             0.5f,  0.5f, 1.0f, 1.0f,   // top right
             0.5f,  -0.5f, 1.0f, 0.0f,   // bottom right
             -0.5f,  -0.5f, 0.0f, 0.0f,   // bottom left
-            -0.5f,  0.5f, 0.0f, 1.0f,    // top left 
+            -0.5f,  0.5f, 0.0f, 1.0f,    // top left
             -0.5f,  -0.5f, 0.0f, 0.0f,   // bottom left
             0.5f,  0.5f, 1.0f, 1.0f  // top right
         };
@@ -101,8 +93,6 @@ namespace jGL::GL
 
         void initGL();
         void freeGL();
-
-        std::shared_ptr<Shader> defaultShader;
 
     };
 }

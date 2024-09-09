@@ -3,6 +3,7 @@
 
 #include <jGL/shape.h>
 #include <jGL/shader.h>
+#include <jGL/priorityStore.h>
 
 #include <unordered_map>
 #include <map>
@@ -11,12 +12,14 @@
 #include <vector>
 #include <algorithm>
 
+#include <chrono>
+
 namespace jGL
 {
 
-    /** 
+    /**
      * @brief User name for a Shape.
-     * @typedef SpriteId 
+     * @typedef SpriteId
      * */
     typedef std::string ShapeId;
 
@@ -24,99 +27,128 @@ namespace jGL
      * @brief Renders shapes with optional rendering priority.
      * @remark Currently Circle and Rectangle are defined as shaders.
      */
-    class ShapeRenderer
+    class ShapeRenderer : public PriorityStore<Shape>
     {
 
     public:
-    
+
+        /**
+         * @brief Control updated data for drawing.
+         *
+         */
+        struct UpdateInfo
+        {
+            UpdateInfo()
+            : xytheta(true), scale(true), colour(true)
+            {}
+
+            bool xytheta, scale, colour;
+        };
+
         /**
          * @brief Construct a new ShapeRenderer
-         * 
+         *
          * @param sizeHint Hint at the number of shapes
          */
         ShapeRenderer(size_t sizeHint = 8)
-        {
-            shapes.reserve(sizeHint); 
-        }
+        : PriorityStore(sizeHint), shader(nullptr)
+        {}
 
-        std::shared_ptr<Shape> getShape(ShapeId id);
+        /**
+         * @brief Construct a new ShapeRenderer
+         *
+         * @param shader The default shader to use
+         * @param sizeHint Hint at the number of shapes
+         */
+        ShapeRenderer(std::shared_ptr<Shader> shader, size_t sizeHint = 8)
+        : PriorityStore(sizeHint), shader(shader)
+        {}
+
+        std::shared_ptr<Shape> getShape(ShapeId id) { return this->operator[](id); }
 
         const Transform & getTransform(ShapeId id) { return getShape(id)->transform; }
         const glm::vec4 & getColour(ShapeId id) { return getShape(id)->colour; }
 
         /**
          * @brief Draw with overriding render priority and shader.
-         * 
+         *
          * @param shader A Shader to draw all the Sprites with.
          * @param ids Render priorities for the Sprites.
+         * @remark Only ShapeIds appearing in the ids argument will be rendered
+         * in this draw call.
+         * @remark Overriding priorities with many shapes performs poorly on cpu.
+         * Consider ShapeRenderer::updatePriority to cache priority.
          */
-        virtual void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids) = 0;
+        virtual void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::multimap<RenderPriority,ShapeId> & ids,
+            UpdateInfo info = UpdateInfo()
+        )
+        {
+            std::vector<std::pair<Info, std::shared_ptr<Shape>>> shapes = vectorise(ids);
+            draw(shader, shapes, info);
+        }
 
         /**
          * @brief Draw with overriding render priority.
-         * 
+         *
          * @param ids Render priorities for the Sprites.
+         * @remark Only ShapeIds appearing in the ids argument will be rendered
+         * in this draw call.
+         * @remark Overriding priorities with many shapes performs poorly on cpu.
+         * Consider ShapeRenderer::updatePriority to cache priorities.
          */
-        virtual void draw(std::multimap<RenderPriority, ShapeId> ids) = 0;
-        
-        /**
-         * @brief Draw with overriding shader.
-         * 
-         * @param shader An Shader to draw all the Sprites with.
-         */
-        virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
-
-        /**
-         * @brief Draw with default shader and priority.
-         * 
-         */
-        virtual void draw() { draw(ids); }
-        
-        virtual void add(std::shared_ptr<Shape> s, ShapeId id, RenderPriority priority = 0);
-        
-        virtual void remove(ShapeId id)
+        virtual void draw
+        (
+            std::multimap<RenderPriority, ShapeId> & ids,
+            UpdateInfo info = UpdateInfo()
+        )
         {
-            if (shapes.find(id) != shapes.end())
-            {
-                shapes.erase(id);
-            }
-
-            for (auto & e : ids)
-            {
-                if (e.second == id)
-                {
-                    ids.erase(e.first);
-                    break;
-                }
-            }
+            std::vector<std::pair<Info, std::shared_ptr<Shape>>> shapes = vectorise(ids);
+            draw(shader, shapes, info);
         }
 
-        virtual void clear() { ids.clear(); shapes.clear(); }
+        /**
+         * @brief Draw with overriding shader and cached priorities.
+         *
+         * @param shader A Shader to draw all the Sprites with.
+         */
+        virtual void draw
+        (
+            std::shared_ptr<Shader> shader,
+            UpdateInfo info = UpdateInfo()
+        )
+        {
+            draw(shader, cache, info);
+        }
 
-        bool hasId(const ShapeId id) const { return shapes.find(id) != shapes.end(); } 
+        /**
+         * @brief Draw with default shader and cached priorities.
+         *
+         */
+        virtual void draw
+        (
+            UpdateInfo info = UpdateInfo()
+        )
+        {
+            draw(shader, cache, info);
+        }
+
+        bool hasId(const ShapeId id) const { return idToElement.find(id) != idToElement.end(); }
 
         virtual void setProjection(glm::mat4 p) {projection = p;}
 
-        virtual void updatePriority(ShapeId id, RenderPriority newPriority)
-        {
-            if (shapes.find(id) == shapes.end()){ return; }
-
-            for (auto & e : ids)
-            {
-                if (e.second == id)
-                {
-                    ids.erase(e.first);
-                    ids.insert(std::pair(newPriority, e.second));
-                    break;
-                }
-            }
-        }
-
     protected:
 
-        std::unordered_map<ShapeId, std::shared_ptr<Shape>> shapes;
+        virtual void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+            UpdateInfo info = UpdateInfo()
+        ) = 0;
 
-        std::multimap<RenderPriority, ShapeId> ids;
+        std::shared_ptr<Shader> shader;
 
         glm::mat4 projection = glm::mat4(0.0f);
 

@@ -1,9 +1,9 @@
 #include <jGL/OpenGL/glShapeRenderer.h>
 
-namespace jGL::GL 
+namespace jGL::GL
 {
 
-    const char * glShapeRenderer::shapeVertexShader = 
+    const char * glShapeRenderer::shapeVertexShader =
         "#version " GLSL_VERSION "\n"
         "precision lowp float; precision lowp int;\n"
         "layout(location=0) in vec4 a_position;\n"
@@ -23,60 +23,71 @@ namespace jGL::GL
             "colour = a_colour;\n"
         "}";
 
-    const char * glShapeRenderer::rectangleFragmentShader = 
+    const char * glShapeRenderer::rectangleFragmentShader =
         "#version " GLSL_VERSION "\n"
         "precision lowp float; precision lowp int;\n"
         "in vec2 texCoord;\n"
         "in vec4 colour;\n"
         "layout(location=0) out vec4 fragment;\n"
-        "void main(){\n" 
+        "void main(){\n"
             "fragment = colour;\n"
         "}";
 
-    const char * glShapeRenderer::ellipseFragmentShader = 
+    const char * glShapeRenderer::ellipseFragmentShader =
         "#version " GLSL_VERSION "\n"
         "precision lowp float; precision lowp int;\n"
         "in vec2 texCoord;\n"
         "in vec4 colour;\n"
         "out vec4 fragment;\n"
-        "void main(void){\n" 
+        "void main(void){\n"
             "vec2 c = texCoord-vec2(0.5,0.5);\n"
             "if (dot(c,c) > 0.5*0.5) {discard;}\n"
             "fragment = colour;\n"
         "}";
 
-    void glShapeRenderer::draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids)
+    void glShapeRenderer::draw
+    (
+        std::shared_ptr<Shader> shader,
+        std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+        UpdateInfo info
+    )
     {
 
-        uint32_t n = ids.size();
+        uint32_t n = this->size();
 
-        if (xytheta.size() < 4*n)
+        if (xytheta.size() < xythetaDim*n)
         {
             xytheta.resize(xythetaDim*n+padShapes*xythetaDim);
-            scale.resize(2*n+padShapes*2);
+            scale.resize(scaleDim*n+padShapes*scaleDim);
             colours.resize(coloursDim*n+padShapes*coloursDim);
             freeGL();
             initGL();
+            info = UpdateInfo();
         }
 
         uint64_t i = 0;
-        for (auto & sid : ids)
+        for (auto & shape : shapes)
         {
-            const auto shape = shapes[sid.second];
-            const Transform & trans = shape->transform;
-            const glm::vec4 & col = shape->colour;
+            if (info.xytheta)
+            {
+                xytheta[i*xythetaDim] = shape.second->transform.x;
+                xytheta[i*xythetaDim+1] = shape.second->transform.y;
+                xytheta[i*xythetaDim+2] = shape.second->transform.theta;
+            }
 
-            xytheta[i*xythetaDim] = trans.x;
-            xytheta[i*xythetaDim+1] = trans.y;
-            xytheta[i*xythetaDim+2] = trans.theta;
+            if (info.scale)
+            {
+                scale[i*scaleDim] = shape.second->transform.scaleX;
+                scale[i*scaleDim+1] = shape.second->transform.scaleY;
+            }
 
-            scale[i*scaleDim] = trans.scaleX;
-            scale[i*scaleDim+1] = trans.scaleY;
-
-            colours[i*coloursDim] = col.r;
-            colours[i*coloursDim+1] = col.g;
-            colours[i*coloursDim+2] = col.b;
-            colours[i*coloursDim+3] = col.a;
+            if (info.colour)
+            {
+                colours[i*coloursDim] = shape.second->colour.r;
+                colours[i*coloursDim+1] = shape.second->colour.g;
+                colours[i*coloursDim+2] = shape.second->colour.b;
+                colours[i*coloursDim+3] = shape.second->colour.a;
+            }
 
             i += 1;
         }
@@ -86,37 +97,46 @@ namespace jGL::GL
 
         glBindVertexArray(vao);
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    xythetaDim*n*sizeof(float),
-                    &xytheta[0]
-                );
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            if (info.xytheta)
+            {
+                glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
+                    glBufferSubData
+                    (
+                        GL_ARRAY_BUFFER,
+                        0,
+                        xythetaDim*n*sizeof(float),
+                        &xytheta[0]
+                    );
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+            }
 
-            glBindBuffer(GL_ARRAY_BUFFER, a_scale);
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    scaleDim*n*sizeof(float),
-                    &scale[0]
-                );
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
-            
-            glBindBuffer(GL_ARRAY_BUFFER, a_colour);
+            if (info.scale)
+            {
+                glBindBuffer(GL_ARRAY_BUFFER, a_scale);
+                    glBufferSubData
+                    (
+                        GL_ARRAY_BUFFER,
+                        0,
+                        scaleDim*n*sizeof(float),
+                        &scale[0]
+                    );
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+            }
 
-                glBufferSubData
-                (
-                    GL_ARRAY_BUFFER,
-                    0,
-                    coloursDim*n*sizeof(float),
-                    &colours[0]
-                );
+            if (info.colour)
+            {
+                glBindBuffer(GL_ARRAY_BUFFER, a_colour);
 
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+                    glBufferSubData
+                    (
+                        GL_ARRAY_BUFFER,
+                        0,
+                        coloursDim*n*sizeof(float),
+                        &colours[0]
+                    );
+
+                glBindBuffer(GL_ARRAY_BUFFER, 0);
+            }
 
         glBindVertexArray(0);
 
@@ -125,7 +145,7 @@ namespace jGL::GL
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             glDisable(GL_DEPTH_TEST);
-        
+
             glDrawArraysInstanced(GL_TRIANGLES, 0, 6, n);
 
         glBindVertexArray(0);
@@ -170,8 +190,8 @@ namespace jGL::GL
                     0
                 );
                 glVertexAttribDivisor(0,0);
-    
-            
+
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_xytheta);
@@ -195,7 +215,7 @@ namespace jGL::GL
                     0
                 );
                 glVertexAttribDivisor(xythetaAttribtue, 1);
-            
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_scale);
@@ -219,7 +239,7 @@ namespace jGL::GL
                     0
                 );
                 glVertexAttribDivisor(scaleAttribtue, 1);
-            
+
             glBindBuffer(GL_ARRAY_BUFFER, 0);
 
             glBindBuffer(GL_ARRAY_BUFFER, a_colour);

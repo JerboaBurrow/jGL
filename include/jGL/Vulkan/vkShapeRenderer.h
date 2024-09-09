@@ -13,10 +13,13 @@ namespace jGL::Vulkan
         vkShapeRenderer(size_t sizeHint)
         : ShapeRenderer(sizeHint)
         {}
-        
-        void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, ShapeId> ids){TODO("jGL::Vulkan::vkShape::draw");}
-        void draw(std::multimap<RenderPriority, ShapeId> ids) {TODO("jGL::Vulkan::vkShape::draw");}
-        
+    protected:
+        void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+            UpdateInfo info = UpdateInfo()
+        ){}
     };
 }
 
