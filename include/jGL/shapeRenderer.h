@@ -52,10 +52,7 @@ namespace jGL
          */
         ShapeRenderer(size_t sizeHint = 8)
         : PriorityStore(sizeHint), shader(nullptr)
-        {
-            // shapes.reserve(sizeHint);
-            // shapes_vectorised.reserve(sizeHint);
-        }
+        {}
 
         /**
          * @brief Construct a new ShapeRenderer
@@ -65,10 +62,7 @@ namespace jGL
          */
         ShapeRenderer(std::shared_ptr<Shader> shader, size_t sizeHint = 8)
         : PriorityStore(sizeHint), shader(shader)
-        {
-            // shapes.reserve(sizeHint);
-            // shapes_vectorised.reserve(sizeHint);
-        }
+        {}
 
         std::shared_ptr<Shape> getShape(ShapeId id) { return this->operator[](id); }
 
