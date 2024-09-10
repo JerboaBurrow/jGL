@@ -8,28 +8,32 @@ namespace jGL
 {
     /**
      * @brief A drawable shape
-     * @remark Detailed geometry is assumed defined in the shader. Circle and Rectangle are provided in ShapeRenderer.  
+     * @remark Detailed geometry is assumed defined in the shader. Circle and Rectangle are provided in ShapeRenderer.
      */
     class Shape
     {
-    
+
     public:
 
-        Shape(const Transform & tra, glm::vec4 c)
+        Shape()
+        : transform(nullptr), colour(nullptr)
+        {}
+
+        Shape(const Transform * tra, const glm::vec4 * c)
         : transform(tra), colour(c)
         {}
 
-        const Transform & transform;
-        glm::vec4 colour;
+        const Transform * transform;
+        const glm::vec4 * colour;
 
         /**
          * @brief Get the WorldBoundingBox of the Shape.
-         * 
-         * @return WorldBoundingBox 
+         *
+         * @return WorldBoundingBox
          */
         WorldBoundingBox getWorldBoundingBox() const
         {
-            WorldBoundingBox wbb = 
+            WorldBoundingBox wbb =
             {
                 {
                     glm::vec2(-0.5, -0.5),
@@ -39,11 +43,11 @@ namespace jGL
                 }
             };
 
-            float ct = std::cos(transform.theta); float st = std::sin(transform.theta);
+            float ct = std::cos(transform->theta); float st = std::sin(transform->theta);
             glm::mat2 rot(ct, -st, st, ct);
-            glm::vec2 pos(transform.x, transform.y);
-            glm::vec2 scale(transform.scaleX, transform.scaleY);
-            
+            glm::vec2 pos(transform->x, transform->y);
+            glm::vec2 scale(transform->scaleX, transform->scaleY);
+
 
             for (uint8_t i = 0; i < wbb.vertices.size(); i++)
             {
@@ -55,9 +59,9 @@ namespace jGL
 
         /**
          * @brief Get the ScreenBoundingBox of the Shape.
-         * 
+         *
          * @param camera for projection to the screen.
-         * @return ScreenBoundingBox 
+         * @return ScreenBoundingBox
          */
         ScreenBoundingBox getScreenBoundingBox(const OrthoCam & camera)
         {

@@ -10,11 +10,11 @@
 
 /**
  * @brief A drawable graphic.
- * 
+ *
  * Observes a Transform (position, orientation, scale), and a Texture.
- * 
+ *
  * Rendered using the TextureRegion (pixel units) region of the Texture, at the alpha value.
- * 
+ *
  */
 
 namespace jGL
@@ -23,6 +23,8 @@ namespace jGL
     {
 
     public:
+
+        Sprite() = default;
 
         /**
          * @brief Construct a Sprite
@@ -33,69 +35,31 @@ namespace jGL
          * @param alpha Transparency modifier (alpha * texture alpha)
          */
         Sprite
-        ( 
-            const Transform & tra,
-            TextureRegion to,
-            const std::shared_ptr<Texture> tex,
-            float alpha = 1.0f
+        (
+            Transform * tra,
+            TextureRegion * to,
+            Texture * tex,
+            glm::vec4 * colour
         )
-        : transform(tra), texture(tex), alpha(std::clamp(alpha, 0.0f, 1.0f)), texOffset(toNormalised(to))
+        : transform(tra),
+          texOffset(to),
+          texture(tex),
+          colour(colour)
         {}
 
-        /**
-         * @brief Sets the sprite alpha modifier.
-         * 
-         * @param a alpha value, clamping is applied: std::clamp(a, 0.0f, 1.0f).
-         */
-        inline virtual void setAlpha(float a) { alpha = std::clamp(a, 0.0f, 1.0f); }
-
-        /**
-         * @brief Get the alpha modifer.
-         * 
-         * @return const float, which is in [0.0, 1.0].
-         */
-        const float getAlpha() const { return alpha; }
-
-        /**
-         * @brief Get the TextureRegion in pixel units.
-         * 
-         * @return TextureRegion
-         */
-        TextureRegion getTextureRegion() const
-        { 
-            return fromNormalised(texOffset);
-        }
-
-        /**
-         * @brief Get the NormalisedTextureRegion in normalised units.
-         *
-         * @return TextureRegion
-         */
-        NormalisedTextureRegion getNormalisedTextureRegion() const
-        {
-            return texOffset;
-        }
-
-        /**
-         * @brief Set the Texture Offset from a pixel region.
-         * 
-         * @remark Values outside of the textures pixel range will be clamped.
-         * @remark Lengths lx or ly < 0 will be set to maximum.
-         * 
-         */
-        void setTextureRegion(TextureRegion to) { texOffset = toNormalised(to); }
-
-        const Transform & transform;
-        const std::shared_ptr<Texture> texture;
+        Transform * transform;
+        TextureRegion * texOffset;
+        Texture * texture;
+        glm::vec4 * colour;
 
         /**
          * @brief Get the WorldBoundingBox of the Sprite.
-         * 
-         * @return WorldBoundingBox 
+         *
+         * @return WorldBoundingBox
          */
         WorldBoundingBox getWorldBoundingBox() const
         {
-            WorldBoundingBox wbb = 
+            WorldBoundingBox wbb =
             {
                 {
                     glm::vec2(-0.5, -0.5),
@@ -105,11 +69,11 @@ namespace jGL
                 }
             };
 
-            float ct = std::cos(transform.theta); float st = std::sin(transform.theta);
+            float ct = std::cos(transform->theta); float st = std::sin(transform->theta);
             glm::mat2 rot(ct, -st, st, ct);
-            glm::vec2 pos(transform.x, transform.y);
-            glm::vec2 scale(transform.scaleX, transform.scaleY);
-            
+            glm::vec2 pos(transform->x, transform->y);
+            glm::vec2 scale(transform->scaleX, transform->scaleY);
+
 
             for (uint8_t i = 0; i < wbb.vertices.size(); i++)
             {
@@ -121,9 +85,9 @@ namespace jGL
 
         /**
          * @brief Get the ScreenBoundingBox of the Sprite.
-         * 
+         *
          * @param camera for projection to the screen.
-         * @return ScreenBoundingBox 
+         * @return ScreenBoundingBox
          */
         ScreenBoundingBox getScreenBoundingBox(const OrthoCam & camera)
         {
@@ -139,11 +103,16 @@ namespace jGL
             return sbb;
         }
 
+        NormalisedTextureRegion getNormalisedTextureRegion() const
+        {
+            return toNormalised(*texOffset);
+        }
+
     protected:
 
-        NormalisedTextureRegion toNormalised(TextureRegion to)
+        NormalisedTextureRegion toNormalised(TextureRegion to) const
         {
-            glm::vec3 whc = texture->size(); 
+            glm::vec3 whc = texture->size();
             if (to.lx == 0){ to.lx = whc.x; }
             if (to.ly == 0){ to.ly = whc.y; }
             return NormalisedTextureRegion(
@@ -164,10 +133,6 @@ namespace jGL
                 uint16_t(to.ly * whc.y)
             );
         }
-
-        float alpha;
-        NormalisedTextureRegion texOffset;
-    
     };
 }
 
