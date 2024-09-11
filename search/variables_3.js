@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['device_1066',['device',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#acfebd81b59ad696bf0bd84a1fe4c05c7',1,'jGL::Vulkan::UniformBufferObject::device()'],['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab89bb3044fafc41b3701689d5aa3e2d0',1,'jGL::Vulkan::VertexBufferObject::device()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#a004ecd77faaaeffdaaa2bba46dd5a1ab',1,'jGL::Vulkan::vkTexture::device()']]],
-  ['deviceextensions_1067',['deviceExtensions',['../namespacejGL_1_1Vulkan.html#adb1d21653d3f0f5ba856b9e2e0beccb7',1,'jGL::Vulkan']]],
-  ['drawing_1068',['drawing',['../classjGL_1_1Particles.html#aa74ce15060df7e1d2d68e93ed5b292d9',1,'jGL::Particles']]]
+  ['ellipsefragmentshader_1053',['ellipseFragmentShader',['../classjGL_1_1GL_1_1glShapeRenderer.html#a8f18400184291cca4674665c26b0745d',1,'jGL::GL::glShapeRenderer']]],
+  ['enablevalidationlayers_1054',['enableValidationLayers',['../vkDebug_8h.html#aebf0191c8cb852209eefbb50d9cbf7ba',1,'vkDebug.h']]],
+  ['events_1055',['events',['../structjGL_1_1DesktopDisplay_1_1WindowData.html#aa1b351e972dd173e391d4dee3df8b063',1,'jGL::DesktopDisplay::WindowData']]]
 ];

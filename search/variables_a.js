@@ -1,9 +1,6 @@
 var searchData=
 [
-  ['max_5fbatch_5fbound_5ftextures_1092',['MAX_BATCH_BOUND_TEXTURES',['../classjGL_1_1SpriteRenderer.html#a1c727dcdfde3d5df533a336893efd93e',1,'jGL::SpriteRenderer']]],
-  ['microsperframe_1093',['microsPerFrame',['../classjGL_1_1Display.html#aadbe807d0fa0ba6cabe386d9833a40ab',1,'jGL::Display']]],
-  ['mousex_1094',['mouseX',['../structjGL_1_1Event.html#a934c269a6974d572b264cbe72e9064e1',1,'jGL::Event']]],
-  ['mousey_1095',['mouseY',['../structjGL_1_1Event.html#aab54f3fd8add7b2bd173d763f5824457',1,'jGL::Event']]],
-  ['msaasamples_1096',['msaaSamples',['../classjGL_1_1jGLInstance.html#af249a95d65bcfea2378c8ae10dcd6146',1,'jGL::jGLInstance::msaaSamples()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#acbec130b06f9f1e1be9ff578d0e3dde8',1,'jGL::Vulkan::vkTexture::msaaSamples()']]],
-  ['msg_1097',['msg',['../classjLog_1_1LogType.html#a41b90f078aacee28789d8962b2b2785f',1,'jLog::LogType']]]
+  ['name_1081',['name',['../structjGL_1_1AbstractjGLUniform.html#a27e4953ac6eb54fcda10e54f0bfa4022',1,'jGL::AbstractjGLUniform']]],
+  ['null_5fid_1082',['NULL_ID',['../namespacejGL.html#ab3f7e73305a18d52b2ab59a48ae82282',1,'jGL']]],
+  ['null_5fid_5fcode_1083',['NULL_ID_CODE',['../structjGL_1_1Id.html#a1b5d320f3bdd11235a8099dcede57d2e',1,'jGL::Id']]]
 ];

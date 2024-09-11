@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['fontbitmap_1072',['fontBitmap',['../classjGL_1_1Font.html#abb38eee6d65f85895cde1affbf72d14d',1,'jGL::Font']]],
-  ['format_1073',['format',['../classjGL_1_1Vulkan_1_1vkTexture.html#a452451301c76aab3c9129b0803b44c65',1,'jGL::Vulkan::vkTexture']]],
-  ['formats_1074',['formats',['../structjGL_1_1Vulkan_1_1SwapchainSupportDetails.html#a29cecca306587b7b9409d6efb9c3778c',1,'jGL::Vulkan::SwapchainSupportDetails']]],
-  ['fragment_1075',['fragment',['../structjGL_1_1Shader.html#a89ed1b4e93874119b7ace1606e0fba67',1,'jGL::Shader']]],
-  ['framespersecond_1076',['framesPerSecond',['../classjGL_1_1Display.html#a29f1839428316aaf4ddf043ff90b490a',1,'jGL::Display']]]
+  ['glyphoffset_1061',['glyphOffset',['../classjGL_1_1Font.html#ab7535e4dcddff18393471723d0cb1e59',1,'jGL::Font']]],
+  ['glyphs_1062',['glyphs',['../classjGL_1_1Font.html#ac1a9baea8b81f8c75d9a9661e0288519',1,'jGL::Font']]],
+  ['graphicsfamily_1063',['graphicsFamily',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html#ab77873565b0b4292c378d76ea697f5c0',1,'jGL::Vulkan::QueueFamilyIndices']]]
 ];

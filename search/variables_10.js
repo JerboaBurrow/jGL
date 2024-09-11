@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['uniform_5fdata_5fregex_1132',['UNIFORM_DATA_REGEX',['../namespacejGL.html#a55b702d81a81a476d320a5e389ac7c1a',1,'jGL']]],
-  ['uniform_5fdata_5fregex_3c_20float_20_3e_1133',['UNIFORM_DATA_REGEX&lt; float &gt;',['../namespacejGL.html#aca05f25e05c411eb734215156c74b6e9',1,'jGL']]],
-  ['uniform_5fdata_5fregex_3c_20int_20_3e_1134',['UNIFORM_DATA_REGEX&lt; int &gt;',['../namespacejGL.html#a2c402c82774abc26f5f5f1ab964da6d5',1,'jGL']]],
-  ['uniform_5fdata_5fregex_3c_20sampler2d_20_3e_1135',['UNIFORM_DATA_REGEX&lt; Sampler2D &gt;',['../namespacejGL.html#afe38e847f55098d6ffe5835be4d44ca0',1,'jGL']]],
-  ['uniforms_1136',['uniforms',['../structjGL_1_1Shader.html#a4614abba691a36d9a44e443372876fa4',1,'jGL::Shader']]],
-  ['unlimited_1137',['unlimited',['../classjGL_1_1Display.html#a4c8779aeb8e3c6498a9d5a151215df29',1,'jGL::Display']]],
-  ['uploaded_1138',['uploaded',['../classjGL_1_1Particles.html#ac4ebf1ecc159fa3aa29fd193f3e44fdb',1,'jGL::Particles']]]
+  ['validationlayers_1119',['validationLayers',['../vkDebug_8h.html#a01f70da5135a8b83a8503403cbb12b89',1,'vkDebug.h']]],
+  ['value_1120',['value',['../structjGL_1_1jGLUniform.html#a1e8cbaddfc7c8fe8121c41d77564b8ac',1,'jGL::jGLUniform']]],
+  ['verbosevalidationlayers_1121',['verboseValidationLayers',['../vkDebug_8h.html#a125047a176ad702cd33c41fbb2d53c37',1,'vkDebug.h']]],
+  ['vertex_1122',['vertex',['../structjGL_1_1Shader.html#ab73c9d74d8e1f9d4b5f6604da5a257e3',1,'jGL::Shader']]],
+  ['vertices_1123',['vertices',['../structjGL_1_1BoundingBox.html#a09af216077a734c6e0875136c227069d',1,'jGL::BoundingBox']]],
+  ['vulkan_1124',['VULKAN',['../structjGL_1_1DesktopDisplay_1_1Config.html#a0a780b5f741d9bb2ce856b0bda7dcd60',1,'jGL::DesktopDisplay::Config']]]
 ];

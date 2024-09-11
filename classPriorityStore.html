@@ -87,33 +87,35 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad295f11632ec0c352437d776886bdf18"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#ad295f11632ec0c352437d776886bdf18">PriorityStore</a> (uint64_t sizeHint=8)</td></tr>
 <tr class="memdesc:ad295f11632ec0c352437d776886bdf18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new Priority Store with a reserved size.  <a href="classPriorityStore.html#ad295f11632ec0c352437d776886bdf18">More...</a><br /></td></tr>
 <tr class="separator:ad295f11632ec0c352437d776886bdf18"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a368ca4928f8d473a78b83cab539c746f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a368ca4928f8d473a78b83cab539c746f">clear</a> ()</td></tr>
-<tr class="separator:a368ca4928f8d473a78b83cab539c746f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbf8bd934710dce9cac7001369e5310b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#afbf8bd934710dce9cac7001369e5310b">add</a> (std::shared_ptr&lt; T &gt; s, <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a> priority=0)</td></tr>
-<tr class="memdesc:afbf8bd934710dce9cac7001369e5310b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element.  <a href="classPriorityStore.html#afbf8bd934710dce9cac7001369e5310b">More...</a><br /></td></tr>
-<tr class="separator:afbf8bd934710dce9cac7001369e5310b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee5490bfe568cf95a66c208db2b257c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#aee5490bfe568cf95a66c208db2b257c6">remove</a> (<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id)</td></tr>
-<tr class="separator:aee5490bfe568cf95a66c208db2b257c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3b43f137c364d23fd80235ca57b8a0b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#ae3b43f137c364d23fd80235ca57b8a0b">clear</a> ()</td></tr>
+<tr class="separator:ae3b43f137c364d23fd80235ca57b8a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b80de20d6191aadf3bd1e78ce4e87c4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a5b80de20d6191aadf3bd1e78ce4e87c4">add</a> (T s, <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a> priority=0)</td></tr>
+<tr class="memdesc:a5b80de20d6191aadf3bd1e78ce4e87c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Insert an element.  <a href="classPriorityStore.html#a5b80de20d6191aadf3bd1e78ce4e87c4">More...</a><br /></td></tr>
+<tr class="separator:a5b80de20d6191aadf3bd1e78ce4e87c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad7f14dab95b8e828715a9339847f0d6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#aad7f14dab95b8e828715a9339847f0d6">remove</a> (<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id)</td></tr>
+<tr class="separator:aad7f14dab95b8e828715a9339847f0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a6333422f57ad65cbd03c1527681231"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a6a6333422f57ad65cbd03c1527681231">updatePriority</a> (<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a> newPriority)</td></tr>
 <tr class="separator:a6a6333422f57ad65cbd03c1527681231"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d8e00d653dd40070d3cf4b38fe5c272"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a4d8e00d653dd40070d3cf4b38fe5c272">vectorise</a> (std::multimap&lt; <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a>, <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> &gt; &amp;oids)</td></tr>
-<tr class="memdesc:a4d8e00d653dd40070d3cf4b38fe5c272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector from overriding priorities.  <a href="classPriorityStore.html#a4d8e00d653dd40070d3cf4b38fe5c272">More...</a><br /></td></tr>
-<tr class="separator:a4d8e00d653dd40070d3cf4b38fe5c272"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1951808be7dc0f26be345ebc79d120d2"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a1951808be7dc0f26be345ebc79d120d2">operator[]</a> (<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id)</td></tr>
-<tr class="separator:a1951808be7dc0f26be345ebc79d120d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae16ba041506e8a120ba542dc3f99ace7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt; T &gt; &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#ae16ba041506e8a120ba542dc3f99ace7">begin</a> () const</td></tr>
-<tr class="separator:ae16ba041506e8a120ba542dc3f99ace7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29b35f12fc20734c38a0b27087c382f4"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt; T &gt; &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a29b35f12fc20734c38a0b27087c382f4">end</a> () const</td></tr>
-<tr class="separator:a29b35f12fc20734c38a0b27087c382f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8100bebd2eb02d4df53778ad26429e1"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#aa8100bebd2eb02d4df53778ad26429e1">vectorise</a> (std::multimap&lt; <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a>, <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> &gt; &amp;oids)</td></tr>
+<tr class="memdesc:aa8100bebd2eb02d4df53778ad26429e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a vector from overriding priorities.  <a href="classPriorityStore.html#aa8100bebd2eb02d4df53778ad26429e1">More...</a><br /></td></tr>
+<tr class="separator:aa8100bebd2eb02d4df53778ad26429e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9887028d9b2fce24dee78cf93114166"><td class="memItemLeft" align="right" valign="top">T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#ac9887028d9b2fce24dee78cf93114166">operator[]</a> (<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id)</td></tr>
+<tr class="separator:ac9887028d9b2fce24dee78cf93114166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0a44f159b1a445ddfee29b28ce9aca"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a1e0a44f159b1a445ddfee29b28ce9aca">begin</a> () const</td></tr>
+<tr class="separator:a1e0a44f159b1a445ddfee29b28ce9aca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a538cf77bdc03aee21a0c08226e54f2a7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T &gt; &gt;::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a538cf77bdc03aee21a0c08226e54f2a7">end</a> () const</td></tr>
+<tr class="separator:a538cf77bdc03aee21a0c08226e54f2a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9002b0a4a5149d70df5cc3d8d7c3b15f"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a9002b0a4a5149d70df5cc3d8d7c3b15f">size</a> () const</td></tr>
 <tr class="separator:a9002b0a4a5149d70df5cc3d8d7c3b15f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a142c620f51cc8074c114922f511fd1d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a142c620f51cc8074c114922f511fd1d6">hasId</a> (const <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> id) const</td></tr>
+<tr class="separator:a142c620f51cc8074c114922f511fd1d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a10da549f6964f69e54371a7236aeb0e1"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>, std::pair&lt; std::shared_ptr&lt; T &gt;, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a10da549f6964f69e54371a7236aeb0e1">idToElement</a></td></tr>
-<tr class="separator:a10da549f6964f69e54371a7236aeb0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5438d7ea1b20c5a2d082f058e42a11b7"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt; T &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#a5438d7ea1b20c5a2d082f058e42a11b7">cache</a></td></tr>
-<tr class="separator:a5438d7ea1b20c5a2d082f058e42a11b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af72d8f3cc6b1ce6206633ce0ca023d61"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>, std::pair&lt; T, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#af72d8f3cc6b1ce6206633ce0ca023d61">idToElement</a></td></tr>
+<tr class="separator:af72d8f3cc6b1ce6206633ce0ca023d61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7fc53a09de8ed9c7857491093cf45f6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::pair&lt; <a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPriorityStore.html#ae7fc53a09de8ed9c7857491093cf45f6">cache</a></td></tr>
+<tr class="separator:ae7fc53a09de8ed9c7857491093cf45f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br />
@@ -167,8 +169,8 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afbf8bd934710dce9cac7001369e5310b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbf8bd934710dce9cac7001369e5310b">&#9670;&nbsp;</a></span>add()</h2>
+<a id="a5b80de20d6191aadf3bd1e78ce4e87c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b80de20d6191aadf3bd1e78ce4e87c4">&#9670;&nbsp;</a></span>add()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -179,9 +181,9 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::add </td>
+          <td class="memname">virtual void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::add </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; T &gt;&#160;</td>
+          <td class="paramtype">T&#160;</td>
           <td class="paramname"><em>s</em>, </td>
         </tr>
         <tr>
@@ -204,7 +206,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -222,8 +224,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="ae16ba041506e8a120ba542dc3f99ace7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae16ba041506e8a120ba542dc3f99ace7">&#9670;&nbsp;</a></span>begin()</h2>
+<a id="a1e0a44f159b1a445ddfee29b28ce9aca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0a44f159b1a445ddfee29b28ce9aca">&#9670;&nbsp;</a></span>begin()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -234,7 +236,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt;T&gt; &gt; &gt;::const_iterator <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::begin </td>
+          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T&gt; &gt;::const_iterator <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -249,8 +251,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a368ca4928f8d473a78b83cab539c746f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a368ca4928f8d473a78b83cab539c746f">&#9670;&nbsp;</a></span>clear()</h2>
+<a id="ae3b43f137c364d23fd80235ca57b8a0b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3b43f137c364d23fd80235ca57b8a0b">&#9670;&nbsp;</a></span>clear()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,7 +263,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::clear </td>
+          <td class="memname">virtual void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::clear </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -269,15 +271,15 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a29b35f12fc20734c38a0b27087c382f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a29b35f12fc20734c38a0b27087c382f4">&#9670;&nbsp;</a></span>end()</h2>
+<a id="a538cf77bdc03aee21a0c08226e54f2a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a538cf77bdc03aee21a0c08226e54f2a7">&#9670;&nbsp;</a></span>end()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,7 +290,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt;T&gt; &gt; &gt;::const_iterator <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::end </td>
+          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T&gt; &gt;::const_iterator <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::end </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -303,8 +305,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a1951808be7dc0f26be345ebc79d120d2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1951808be7dc0f26be345ebc79d120d2">&#9670;&nbsp;</a></span>operator[]()</h2>
+<a id="a142c620f51cc8074c114922f511fd1d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a142c620f51cc8074c114922f511fd1d6">&#9670;&nbsp;</a></span>hasId()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -315,7 +317,35 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;T&gt;&amp; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::operator[] </td>
+          <td class="memname">bool <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::hasId </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>&#160;</td>
+          <td class="paramname"><em>id</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac9887028d9b2fce24dee78cf93114166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9887028d9b2fce24dee78cf93114166">&#9670;&nbsp;</a></span>operator[]()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T&amp; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -331,8 +361,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="aee5490bfe568cf95a66c208db2b257c6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aee5490bfe568cf95a66c208db2b257c6">&#9670;&nbsp;</a></span>remove()</h2>
+<a id="aad7f14dab95b8e828715a9339847f0d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad7f14dab95b8e828715a9339847f0d6">&#9670;&nbsp;</a></span>remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -343,7 +373,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::remove </td>
+          <td class="memname">virtual void <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::remove </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -352,7 +382,7 @@ template&lt;class T &gt; </div>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -424,8 +454,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a4d8e00d653dd40070d3cf4b38fe5c272"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d8e00d653dd40070d3cf4b38fe5c272">&#9670;&nbsp;</a></span>vectorise()</h2>
+<a id="aa8100bebd2eb02d4df53778ad26429e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8100bebd2eb02d4df53778ad26429e1">&#9670;&nbsp;</a></span>vectorise()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -436,7 +466,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt;T&gt; &gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::vectorise </td>
+          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T&gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::vectorise </td>
           <td>(</td>
           <td class="paramtype">std::multimap&lt; <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a>, <a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>oids</em></td><td>)</td>
@@ -457,14 +487,14 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html" title="Combine an id and a priority.">Info</a>, std::shared_ptr&lt;T&gt;&gt;&gt; cached values. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>std::vector&lt;std::pair&lt;Info, T&gt;&gt; cached values. </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Overriding is expensive, but useful for drawing partially with modest element counts. </dd></dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a5438d7ea1b20c5a2d082f058e42a11b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5438d7ea1b20c5a2d082f058e42a11b7">&#9670;&nbsp;</a></span>cache</h2>
+<a id="ae7fc53a09de8ed9c7857491093cf45f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7fc53a09de8ed9c7857491093cf45f6">&#9670;&nbsp;</a></span>cache</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -475,7 +505,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, std::shared_ptr&lt;T&gt; &gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::cache</td>
+          <td class="memname">std::vector&lt;std::pair&lt;<a class="el" href="structPriorityStore_1_1Info.html">Info</a>, T&gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::cache</td>
         </tr>
       </table>
   </td>
@@ -487,8 +517,8 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a id="a10da549f6964f69e54371a7236aeb0e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10da549f6964f69e54371a7236aeb0e1">&#9670;&nbsp;</a></span>idToElement</h2>
+<a id="af72d8f3cc6b1ce6206633ce0ca023d61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af72d8f3cc6b1ce6206633ce0ca023d61">&#9670;&nbsp;</a></span>idToElement</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -499,7 +529,7 @@ template&lt;class T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_map&lt;<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>, std::pair&lt;std::shared_ptr&lt;T&gt;, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a>&gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::idToElement</td>
+          <td class="memname">std::unordered_map&lt;<a class="el" href="priorityStore_8h.html#a4cb8e99a15a8535217c823484f2756b4">ElementId</a>, std::pair&lt;T, <a class="el" href="priorityStore_8h.html#a315655b1bb5848c063491adffde62b15">Priority</a>&gt; &gt; <a class="el" href="classPriorityStore.html">PriorityStore</a>&lt; T &gt;::idToElement</td>
         </tr>
       </table>
   </td>

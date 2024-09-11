@@ -1,16 +1,12 @@
 var searchData=
 [
-  ['scale_1109',['scale',['../structjGL_1_1ShapeRenderer_1_1UpdateInfo.html#ad2f263e81e27e40a50631ae9ece1d7ce',1,'jGL::ShapeRenderer::UpdateInfo']]],
-  ['scalex_1110',['scaleX',['../structjGL_1_1Transform.html#ae0d1a647e59260d67b6015f3ddf8fc83',1,'jGL::Transform']]],
-  ['scaley_1111',['scaleY',['../structjGL_1_1Transform.html#a6e4fb07daa703fbbc456999395962958',1,'jGL::Transform']]],
-  ['scrolled_1112',['scrolled',['../structjGL_1_1DesktopDisplay_1_1WindowData.html#aca4f8f62bf1d95398b28e87ac9d23d1b',1,'jGL::DesktopDisplay::WindowData']]],
-  ['scrollx_1113',['scrollX',['../structjGL_1_1DesktopDisplay_1_1WindowData.html#abe6d50b341ea6873a8f7c241d33a77dc',1,'jGL::DesktopDisplay::WindowData']]],
-  ['scrolly_1114',['scrollY',['../structjGL_1_1DesktopDisplay_1_1WindowData.html#a19578b781311f744bd522c2303b4c9de',1,'jGL::DesktopDisplay::WindowData']]],
-  ['shader_1115',['shader',['../classjGL_1_1ShapeRenderer.html#a40a506775c19e85c284805edb7338117',1,'jGL::ShapeRenderer']]],
-  ['shapevertexshader_1116',['shapeVertexShader',['../classjGL_1_1GL_1_1glShapeRenderer.html#a1b5449c36b9570df296df39ce780d8d5',1,'jGL::GL::glShapeRenderer']]],
-  ['size_1117',['size',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#afa067d2dce4b3fc2ea5d7b1768ed7500',1,'jGL::Vulkan::UniformBufferObject']]],
-  ['sprites_1118',['sprites',['../classjGL_1_1SpriteRenderer.html#acbd7009e754bb4b962e3a693b29adb43',1,'jGL::SpriteRenderer']]],
-  ['spritetotexture_1119',['spriteToTexture',['../classjGL_1_1SpriteRenderer.html#a2c5a1005bb1bd80e737cf265cf28ce31',1,'jGL::SpriteRenderer']]],
-  ['stage_1120',['stage',['../classjGL_1_1Vulkan_1_1UniformBufferObject.html#a014857e50fa326c3ee391bff7bebd1ad',1,'jGL::Vulkan::UniformBufferObject']]],
-  ['state_1121',['state',['../structjGL_1_1TexturedParticle.html#a70656ea60652dd0846067f4069f32138',1,'jGL::TexturedParticle']]]
+  ['texcoord_1103',['texCoord',['../structjGL_1_1Particles_1_1UpdateInfo.html#a61efda04e29c552a2fcd4d021fdee389',1,'jGL::Particles::UpdateInfo::texCoord()'],['../structjGL_1_1TexturedParticle.html#ae137b4eb8924cc7a55b0f9f955f98739',1,'jGL::TexturedParticle::texCoord()']]],
+  ['texoffset_1104',['texOffset',['../classjGL_1_1Sprite.html#a48827576db1aafda35126833a44f0144',1,'jGL::Sprite']]],
+  ['texture_1105',['texture',['../classjGL_1_1Particles.html#a3989f34c7dbdd20e05ece9956e17f308',1,'jGL::Particles::texture()'],['../classjGL_1_1Sprite.html#ab04f3d89a5938ffe5f1f8e515072939e',1,'jGL::Sprite::texture()'],['../structjGL_1_1Sampler2D.html#accab262f5b0996b49032116e86165840',1,'jGL::Sampler2D::texture()']]],
+  ['textureunit_1106',['textureUnit',['../classjGL_1_1GL_1_1glTexture.html#a68f6625d4937e5b3495c54d37ac650b2',1,'jGL::GL::glTexture']]],
+  ['theta_1107',['theta',['../structjGL_1_1Transform.html#a82c42f683d2a20b8c535dac89c20254e',1,'jGL::Transform']]],
+  ['transform_1108',['transform',['../classjGL_1_1Shape.html#a01f8aeb5a5fed00db820aac1e1db960b',1,'jGL::Shape::transform()'],['../classjGL_1_1Sprite.html#aacc7dfddee29c5a0495b6e59c1a4d3c2',1,'jGL::Sprite::transform()']]],
+  ['tx_1109',['tx',['../structjGL_1_1TextureRegion.html#a60c95443853305e2e472d44f3619d2fd',1,'jGL::TextureRegion::tx()'],['../structjGL_1_1NormalisedTextureRegion.html#a600a031ccda39e9089222d07f78e56cc',1,'jGL::NormalisedTextureRegion::tx()']]],
+  ['ty_1110',['ty',['../structjGL_1_1TextureRegion.html#ab894e026a3da62f7ebc7a11091fade89',1,'jGL::TextureRegion::ty()'],['../structjGL_1_1NormalisedTextureRegion.html#a4740387c48fb7e120691de3c40646d4f',1,'jGL::NormalisedTextureRegion::ty()']]],
+  ['type_1111',['type',['../structjGL_1_1Event.html#a1adad2812f03f725ce66934c7fcb2398',1,'jGL::Event']]]
 ];

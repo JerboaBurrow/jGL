@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['x_1146',['x',['../structjGL_1_1Transform.html#ae3fe6975cf90f92854b600a96a12ea0c',1,'jGL::Transform']]],
-  ['xytheta_1147',['xytheta',['../structjGL_1_1ShapeRenderer_1_1UpdateInfo.html#a5615fe9f32399679208396ea2b231bf0',1,'jGL::ShapeRenderer::UpdateInfo']]]
+  ['y_1128',['y',['../structjGL_1_1Transform.html#aa5f7c387a587ffab6d794af18f95f77c',1,'jGL::Transform']]]
 ];

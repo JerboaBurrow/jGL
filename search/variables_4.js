@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['ellipsefragmentshader_1069',['ellipseFragmentShader',['../classjGL_1_1GL_1_1glShapeRenderer.html#a8f18400184291cca4674665c26b0745d',1,'jGL::GL::glShapeRenderer']]],
-  ['enablevalidationlayers_1070',['enableValidationLayers',['../vkDebug_8h.html#aebf0191c8cb852209eefbb50d9cbf7ba',1,'vkDebug.h']]],
-  ['events_1071',['events',['../structjGL_1_1DesktopDisplay_1_1WindowData.html#aa1b351e972dd173e391d4dee3df8b063',1,'jGL::DesktopDisplay::WindowData']]]
+  ['fontbitmap_1056',['fontBitmap',['../classjGL_1_1Font.html#abb38eee6d65f85895cde1affbf72d14d',1,'jGL::Font']]],
+  ['format_1057',['format',['../classjGL_1_1Vulkan_1_1vkTexture.html#a452451301c76aab3c9129b0803b44c65',1,'jGL::Vulkan::vkTexture']]],
+  ['formats_1058',['formats',['../structjGL_1_1Vulkan_1_1SwapchainSupportDetails.html#a29cecca306587b7b9409d6efb9c3778c',1,'jGL::Vulkan::SwapchainSupportDetails']]],
+  ['fragment_1059',['fragment',['../structjGL_1_1Shader.html#a89ed1b4e93874119b7ace1606e0fba67',1,'jGL::Shader']]],
+  ['framespersecond_1060',['framesPerSecond',['../classjGL_1_1Display.html#a29f1839428316aaf4ddf043ff90b490a',1,'jGL::Display']]]
 ];

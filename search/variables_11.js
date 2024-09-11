@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['validationlayers_1139',['validationLayers',['../vkDebug_8h.html#a01f70da5135a8b83a8503403cbb12b89',1,'vkDebug.h']]],
-  ['value_1140',['value',['../structjGL_1_1jGLUniform.html#a1e8cbaddfc7c8fe8121c41d77564b8ac',1,'jGL::jGLUniform']]],
-  ['verbosevalidationlayers_1141',['verboseValidationLayers',['../vkDebug_8h.html#a125047a176ad702cd33c41fbb2d53c37',1,'vkDebug.h']]],
-  ['vertex_1142',['vertex',['../structjGL_1_1Shader.html#ab73c9d74d8e1f9d4b5f6604da5a257e3',1,'jGL::Shader']]],
-  ['vertices_1143',['vertices',['../structjGL_1_1BoundingBox.html#a09af216077a734c6e0875136c227069d',1,'jGL::BoundingBox']]],
-  ['vulkan_1144',['VULKAN',['../structjGL_1_1DesktopDisplay_1_1Config.html#a0a780b5f741d9bb2ce856b0bda7dcd60',1,'jGL::DesktopDisplay::Config']]]
+  ['width_1125',['width',['../classjGL_1_1Font.html#a0e785a48b89f55a4d24939f7b69ee7ba',1,'jGL::Font::width()'],['../classjGL_1_1Texture.html#a2536ed399e1cfc1e1e4e8014224b7821',1,'jGL::Texture::width()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#a6db1f67c7b87e826d447578249008adf',1,'jGL::Vulkan::vkTexture::width()']]]
 ];

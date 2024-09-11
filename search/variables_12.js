@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['width_1145',['width',['../classjGL_1_1Font.html#a0e785a48b89f55a4d24939f7b69ee7ba',1,'jGL::Font::width()'],['../classjGL_1_1Texture.html#a2536ed399e1cfc1e1e4e8014224b7821',1,'jGL::Texture::width()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#a6db1f67c7b87e826d447578249008adf',1,'jGL::Vulkan::vkTexture::width()']]]
+  ['x_1126',['x',['../structjGL_1_1Transform.html#ae3fe6975cf90f92854b600a96a12ea0c',1,'jGL::Transform']]],
+  ['xytheta_1127',['xytheta',['../structjGL_1_1ShapeRenderer_1_1UpdateInfo.html#a5615fe9f32399679208396ea2b231bf0',1,'jGL::ShapeRenderer::UpdateInfo']]]
 ];

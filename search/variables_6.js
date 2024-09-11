@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['glyphoffset_1077',['glyphOffset',['../classjGL_1_1Font.html#ab7535e4dcddff18393471723d0cb1e59',1,'jGL::Font']]],
-  ['glyphs_1078',['glyphs',['../classjGL_1_1Font.html#ac1a9baea8b81f8c75d9a9661e0288519',1,'jGL::Font']]],
-  ['graphicsfamily_1079',['graphicsFamily',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html#ab77873565b0b4292c378d76ea697f5c0',1,'jGL::Vulkan::QueueFamilyIndices']]]
+  ['height_1064',['height',['../classjGL_1_1Texture.html#ac8bddbab5ccc7b6df2bb16f8b7be084f',1,'jGL::Texture::height()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#afab7bc4c61215f3f980492cbfd091050',1,'jGL::Vulkan::vkTexture::height()']]]
 ];

@@ -1,9 +1,5 @@
 var searchData=
 [
-  ['points_1101',['points',['../classjGL_1_1Particles.html#ae61ed56e8bad52a262de78a9ae774748',1,'jGL::Particles']]],
-  ['position_1102',['position',['../structjGL_1_1Particles_1_1UpdateInfo.html#aa8b8942597afc43564416f309ae1594e',1,'jGL::Particles::UpdateInfo']]],
-  ['presentfamily_1103',['presentFamily',['../structjGL_1_1Vulkan_1_1QueueFamilyIndices.html#a278531a3bf1f976c146fefca824f25bf',1,'jGL::Vulkan::QueueFamilyIndices']]],
-  ['presentmodes_1104',['presentModes',['../structjGL_1_1Vulkan_1_1SwapchainSupportDetails.html#a123de1873f641225645685738e466df6',1,'jGL::Vulkan::SwapchainSupportDetails']]],
-  ['priority_1105',['priority',['../structPriorityStore_1_1Info.html#a3a8402d676a68948a2d00388764a89fe',1,'PriorityStore::Info']]],
-  ['projection_1106',['projection',['../classjGL_1_1ShapeRenderer.html#a0c45dd7fe062c6b4bf9ec37211bc3971',1,'jGL::ShapeRenderer::projection()'],['../classjGL_1_1SpriteRenderer.html#a53bea362c67cf22c83d46926e3b1470d',1,'jGL::SpriteRenderer::projection()']]]
+  ['rectanglefragmentshader_1090',['rectangleFragmentShader',['../classjGL_1_1GL_1_1glShapeRenderer.html#a0529997c9e79db6de7f900ed0412610b',1,'jGL::GL::glShapeRenderer']]],
+  ['resolution_1091',['resolution',['../classjGL_1_1Display.html#ab2250fbdb0779c7e520d61a731c9222e',1,'jGL::Display::resolution()'],['../classjGL_1_1jGLInstance.html#aa7c856743362b06c5c98ef83b592d7ab',1,'jGL::jGLInstance::resolution()']]]
 ];

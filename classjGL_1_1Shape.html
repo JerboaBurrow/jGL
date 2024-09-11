@@ -91,8 +91,10 @@ Collaboration diagram for jGL::Shape:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2d1379d13f90fdd0b69e0c1f79378dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#ae2d1379d13f90fdd0b69e0c1f79378dd">Shape</a> (const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;tra, glm::vec4 c)</td></tr>
-<tr class="separator:ae2d1379d13f90fdd0b69e0c1f79378dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bc63398d3f4d6fa5287e5a5ac7fb16c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a5bc63398d3f4d6fa5287e5a5ac7fb16c">Shape</a> ()</td></tr>
+<tr class="separator:a5bc63398d3f4d6fa5287e5a5ac7fb16c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d58fa31ba848ab9db2362f67e234269"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a7d58fa31ba848ab9db2362f67e234269">Shape</a> (const <a class="el" href="structjGL_1_1Transform.html">Transform</a> *tra, const glm::vec4 *c)</td></tr>
+<tr class="separator:a7d58fa31ba848ab9db2362f67e234269"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e0f781fa3a06841c646af302d96e87c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classjGL_1_1WorldBoundingBox.html">WorldBoundingBox</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a0e0f781fa3a06841c646af302d96e87c">getWorldBoundingBox</a> () const</td></tr>
 <tr class="memdesc:a0e0f781fa3a06841c646af302d96e87c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="classjGL_1_1WorldBoundingBox.html" title="A world space bounding box.">WorldBoundingBox</a> of the <a class="el" href="classjGL_1_1Shape.html" title="A drawable shape.">Shape</a>.  <a href="classjGL_1_1Shape.html#a0e0f781fa3a06841c646af302d96e87c">More...</a><br /></td></tr>
 <tr class="separator:a0e0f781fa3a06841c646af302d96e87c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -102,18 +104,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a5cb36d25977e6111a907c14b08b1eee0"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a5cb36d25977e6111a907c14b08b1eee0">transform</a></td></tr>
-<tr class="separator:a5cb36d25977e6111a907c14b08b1eee0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c84984242ca0aecc639fab6b6ced88e"><td class="memItemLeft" align="right" valign="top">glm::vec4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a3c84984242ca0aecc639fab6b6ced88e">colour</a></td></tr>
-<tr class="separator:a3c84984242ca0aecc639fab6b6ced88e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01f8aeb5a5fed00db820aac1e1db960b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#a01f8aeb5a5fed00db820aac1e1db960b">transform</a></td></tr>
+<tr class="separator:a01f8aeb5a5fed00db820aac1e1db960b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaa05c2810972b46bfe92912c6ea99e6"><td class="memItemLeft" align="right" valign="top">const glm::vec4 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classjGL_1_1Shape.html#aeaa05c2810972b46bfe92912c6ea99e6">colour</a></td></tr>
+<tr class="separator:aeaa05c2810972b46bfe92912c6ea99e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A drawable shape. </p>
-<dl class="section remark"><dt>Remarks</dt><dd>Detailed geometry is assumed defined in the shader. Circle and Rectangle are provided in <a class="el" href="classjGL_1_1ShapeRenderer.html" title="Renders shapes with optional rendering priority.">ShapeRenderer</a>. <br  />
- </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>Detailed geometry is assumed defined in the shader. Circle and Rectangle are provided in <a class="el" href="classjGL_1_1ShapeRenderer.html" title="Renders shapes with optional rendering priority.">ShapeRenderer</a>. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae2d1379d13f90fdd0b69e0c1f79378dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2d1379d13f90fdd0b69e0c1f79378dd">&#9670;&nbsp;</a></span>Shape()</h2>
+<a id="a5bc63398d3f4d6fa5287e5a5ac7fb16c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bc63398d3f4d6fa5287e5a5ac7fb16c">&#9670;&nbsp;</a></span>Shape() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -124,13 +125,38 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">jGL::Shape::Shape </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d58fa31ba848ab9db2362f67e234269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d58fa31ba848ab9db2362f67e234269">&#9670;&nbsp;</a></span>Shape() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">jGL::Shape::Shape </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structjGL_1_1Transform.html">Transform</a> *&#160;</td>
           <td class="paramname"><em>tra</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">glm::vec4&#160;</td>
+          <td class="paramtype">const glm::vec4 *&#160;</td>
           <td class="paramname"><em>c</em>&#160;</td>
         </tr>
         <tr>
@@ -213,28 +239,28 @@ Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a3c84984242ca0aecc639fab6b6ced88e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3c84984242ca0aecc639fab6b6ced88e">&#9670;&nbsp;</a></span>colour</h2>
+<a id="aeaa05c2810972b46bfe92912c6ea99e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaa05c2810972b46bfe92912c6ea99e6">&#9670;&nbsp;</a></span>colour</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">glm::vec4 jGL::Shape::colour</td>
+          <td class="memname">const glm::vec4* jGL::Shape::colour</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a5cb36d25977e6111a907c14b08b1eee0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5cb36d25977e6111a907c14b08b1eee0">&#9670;&nbsp;</a></span>transform</h2>
+<a id="a01f8aeb5a5fed00db820aac1e1db960b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01f8aeb5a5fed00db820aac1e1db960b">&#9670;&nbsp;</a></span>transform</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const <a class="el" href="structjGL_1_1Transform.html">Transform</a>&amp; jGL::Shape::transform</td>
+          <td class="memname">const <a class="el" href="structjGL_1_1Transform.html">Transform</a>* jGL::Shape::transform</td>
         </tr>
       </table>
 </div><div class="memdoc">

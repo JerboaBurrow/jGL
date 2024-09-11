@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['id_1081',['id',['../structjGL_1_1Id.html#a74bff40f0e02540b203c3d7a08ae878f',1,'jGL::Id::id()'],['../classjGL_1_1GL_1_1glTexture.html#aade095f68a57d9a1ce8ac341e6cbbf1a',1,'jGL::GL::glTexture::id()'],['../structPriorityStore_1_1Info.html#a882316118fade8e323bfd74dc5dc64a7',1,'PriorityStore::Info::id()'],['../classjGL_1_1Texture.html#a6b3c0e6bbd32f30c4373a1e6c603a358',1,'jGL::Texture::id()']]],
-  ['ids_1082',['ids',['../classjGL_1_1SpriteRenderer.html#a84d231898567a26b352755d2165f1f0e',1,'jGL::SpriteRenderer']]],
-  ['idtoelement_1083',['idToElement',['../classPriorityStore.html#a10da549f6964f69e54371a7236aeb0e1',1,'PriorityStore']]],
-  ['image_1084',['image',['../classjGL_1_1Vulkan_1_1vkTexture.html#ad5476ab3b87642037bd2c50fd89e2150',1,'jGL::Vulkan::vkTexture']]],
-  ['imagememory_1085',['imageMemory',['../classjGL_1_1Vulkan_1_1vkTexture.html#add2f9623a16447a3e3b21ec43aed2299',1,'jGL::Vulkan::vkTexture']]],
-  ['imageview_1086',['imageView',['../classjGL_1_1Vulkan_1_1vkTexture.html#afa91f7714ab96da4025e75d59a948cce',1,'jGL::Vulkan::vkTexture']]],
-  ['inputrate_1087',['inputRate',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ad962e16f24de6e6bc2bafa114dab3de8',1,'jGL::Vulkan::VertexBufferObject']]]
+  ['lastframe_1071',['lastFrame',['../classjGL_1_1Display.html#a0a4d625121a984d3d47569acab71a385',1,'jGL::Display']]],
+  ['location_1072',['location',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab568520868475b395c9e9a020a0f8852',1,'jGL::Vulkan::VertexBufferObject']]],
+  ['lx_1073',['lx',['../structjGL_1_1TextureRegion.html#a929957e39251776074aedfd05a76d1c7',1,'jGL::TextureRegion::lx()'],['../structjGL_1_1NormalisedTextureRegion.html#a0125cec07557d98d6dbf618844a26b99',1,'jGL::NormalisedTextureRegion::lx()']]],
+  ['ly_1074',['ly',['../structjGL_1_1TextureRegion.html#a2246b0fdcaac67bc24743fe7272b8727',1,'jGL::TextureRegion::ly()'],['../structjGL_1_1NormalisedTextureRegion.html#acc0856a014b50c23147a604351dc8f55',1,'jGL::NormalisedTextureRegion::ly()']]]
 ];

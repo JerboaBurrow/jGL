@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['lastframe_1088',['lastFrame',['../classjGL_1_1Display.html#a0a4d625121a984d3d47569acab71a385',1,'jGL::Display']]],
-  ['location_1089',['location',['../classjGL_1_1Vulkan_1_1VertexBufferObject.html#ab568520868475b395c9e9a020a0f8852',1,'jGL::Vulkan::VertexBufferObject']]],
-  ['lx_1090',['lx',['../structjGL_1_1TextureRegion.html#a929957e39251776074aedfd05a76d1c7',1,'jGL::TextureRegion::lx()'],['../structjGL_1_1NormalisedTextureRegion.html#a0125cec07557d98d6dbf618844a26b99',1,'jGL::NormalisedTextureRegion::lx()']]],
-  ['ly_1091',['ly',['../structjGL_1_1TextureRegion.html#a2246b0fdcaac67bc24743fe7272b8727',1,'jGL::TextureRegion::ly()'],['../structjGL_1_1NormalisedTextureRegion.html#acc0856a014b50c23147a604351dc8f55',1,'jGL::NormalisedTextureRegion::ly()']]]
+  ['max_5fbatch_5fbound_5ftextures_1075',['MAX_BATCH_BOUND_TEXTURES',['../classjGL_1_1SpriteRenderer.html#a1c727dcdfde3d5df533a336893efd93e',1,'jGL::SpriteRenderer']]],
+  ['microsperframe_1076',['microsPerFrame',['../classjGL_1_1Display.html#aadbe807d0fa0ba6cabe386d9833a40ab',1,'jGL::Display']]],
+  ['mousex_1077',['mouseX',['../structjGL_1_1Event.html#a934c269a6974d572b264cbe72e9064e1',1,'jGL::Event']]],
+  ['mousey_1078',['mouseY',['../structjGL_1_1Event.html#aab54f3fd8add7b2bd173d763f5824457',1,'jGL::Event']]],
+  ['msaasamples_1079',['msaaSamples',['../classjGL_1_1jGLInstance.html#af249a95d65bcfea2378c8ae10dcd6146',1,'jGL::jGLInstance::msaaSamples()'],['../classjGL_1_1Vulkan_1_1vkTexture.html#acbec130b06f9f1e1be9ff578d0e3dde8',1,'jGL::Vulkan::vkTexture::msaaSamples()']]],
+  ['msg_1080',['msg',['../classjLog_1_1LogType.html#a41b90f078aacee28789d8962b2b2785f',1,'jLog::LogType']]]
 ];
