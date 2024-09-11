@@ -17,7 +17,7 @@ namespace jGL::Vulkan
         void draw
         (
             std::shared_ptr<Shader> shader,
-            std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+            std::vector<std::pair<Info, Shape>> & shapes,
             UpdateInfo info = UpdateInfo()
         ){}
     };

@@ -3,6 +3,7 @@
 
 #include <jGL/sprite.h>
 #include <jGL/shader.h>
+#include <jGL/priorityStore.h>
 
 #include <unordered_map>
 #include <string>
@@ -12,132 +13,100 @@
 
 namespace jGL
 {
-    /** 
+    /**
      * @brief User name for a Sprite.
-     * @typedef SpriteId 
+     * @typedef SpriteId
      * */
     typedef std::string SpriteId;
 
     /**
      * @brief Renders sprites in batches, with optional render priority.
-     * 
+     *
      * @remark Currently there are 4 texture slots loaded at once.
      * @remark Keeping to 4 textures is most efficient (1 draw call), atlas textures are useful for this.
-     * @remark RenderPriority of Sprites may lead to inefficient batching across textures. 
+     * @remark RenderPriority of Sprites may lead to inefficient batching across textures.
      * Try to keep similar RenderPriority within the same texture/ group of 4 textures.
      */
-    class SpriteRenderer
+    class SpriteRenderer : public PriorityStore<Sprite>
     {
 
     public:
 
         /**
          * @brief Largest number of concurrent textures bound for one batch.
-         * 
+         *
          */
         static const uint8_t MAX_BATCH_BOUND_TEXTURES = MAX_SPRITE_BATCH_BOUND_TEXTURES;
-    
+
         /**
          * @brief Construct a new SpriteRenderer.
-         * 
+         *
          * @param sizeHint Reserve some memory for this many Sprites.
          */
         SpriteRenderer(size_t sizeHint = 8)
-        {
-            sprites.reserve(sizeHint); 
-            textures.reserve(MAX_BATCH_BOUND_TEXTURES);
-        }
+        : PriorityStore(sizeHint)
+        {}
 
-        Sprite & getSprite(SpriteId id);
-
-        const Transform & getTransform(SpriteId id) { return getSprite(id).transform; }
-
-        /**
-         * @brief Get a Sprites TextureRegion
-         * @remark In pixel units, see TextureRegion::getTextureRegion()
-         * 
-         * @param id 
-         * @return const TextureRegion
-         */
-        const TextureRegion getTextureRegion(SpriteId id) { return getSprite(id).getTextureRegion(); }
+        Sprite & getSprite(SpriteId id){ return this->operator[](id); }
 
         /**
          * @brief Draw with overriding render priority and shader.
-         * 
+         *
          * @param shader An OpenGL Shader to draw all the Sprites with.
          * @param ids Render priorities for the Sprites.
+         * @remark Overriding priorities with many sprites performs poorly on cpu.
+         * Consider SpriteRenderer::updatePriority to cache priority.
          */
-        virtual void draw(std::shared_ptr<Shader> shader, std::multimap<RenderPriority, SpriteId> ids) = 0;
+        virtual void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::multimap<RenderPriority, SpriteId> ids
+        )
+        {
+            std::vector<std::pair<Info, Sprite>> sprites = vectorise(ids);
+            draw(shader, sprites);
+        }
 
         /**
          * @brief Draw with overriding render priority.
-         * 
+         *
          * @param ids Render priorities for the Sprites.
+         * @remark Overriding priorities with many sprites performs poorly on cpu.
+         * Consider SpritRenderer::updatePriority to cache priority.
          */
-        virtual void draw(std::multimap<RenderPriority, SpriteId> ids) = 0;
-        
+        virtual void draw(std::multimap<RenderPriority, SpriteId> ids)
+        {
+            std::vector<std::pair<Info, Sprite>> sprites = vectorise(ids);
+            draw(shader, sprites);
+        }
+
         /**
          * @brief Draw with overriding shader.
-         * 
-         * @param shader An Shader to draw all the Sprites with.
+         *
+         * @param shader A Shader to draw all the Sprites with.
          */
-        virtual void draw(std::shared_ptr<Shader> shader) { draw(shader, ids); }
+        virtual void draw(std::shared_ptr<Shader> shader)
+        {
+            draw(shader, cache);
+        }
 
         /**
          * @brief Draw with default shader and priority.
-         * 
+         *
          */
-        virtual void draw() { draw(ids); }
-
-        virtual void add(Sprite s, SpriteId id, RenderPriority priority = 0);
-
-        virtual void remove(SpriteId id)
-        {
-            if (sprites.find(id) != sprites.end())
-            {
-                sprites.erase(id);
-            }
-
-            for (auto & e : ids)
-            {
-                if (e.second == id)
-                {
-                    ids.erase(e.first);
-                    break;
-                }
-            }
-        }
-
-        bool hasId(const SpriteId id) const { return sprites.find(id) != sprites.end(); } 
-
-        virtual void clear() { ids.clear(); sprites.clear(); }
+        virtual void draw() { draw(shader, cache); }
 
         virtual void setProjection(glm::mat4 p) {projection = p;}
 
-        virtual void updatePriority(SpriteId id, RenderPriority newPriority)
-        {
-            if (sprites.find(id) == sprites.end()){ return; }
-
-            std::multimap<RenderPriority, SpriteId>::iterator iter;
-            for (iter = ids.begin(); iter != ids.end(); iter++)
-            {
-                if (iter->second == id)
-                {
-                    ids.erase(iter);
-                    ids.insert(std::pair(newPriority, id));
-                    break;
-                }
-            }
-        }
-
     protected:
 
-        std::vector<std::shared_ptr<Texture>> textures;
+        virtual void draw
+        (
+            std::shared_ptr<Shader> shader,
+            std::vector<std::pair<Info, Sprite>> & sprites
+        ) = 0;
 
-        std::unordered_map<SpriteId, Sprite> sprites;
-        std::unordered_map<SpriteId, size_t> spriteToTexture;
-
-        std::multimap<RenderPriority, SpriteId> ids;
+        std::shared_ptr<Shader> shader;
 
         glm::mat4 projection = glm::mat4(0.0f);
 

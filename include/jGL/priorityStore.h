@@ -61,7 +61,7 @@ public:
         cache.reserve(sizeHint);
     }
 
-    void clear()
+    virtual void clear()
     {
         idToElement.clear();
         cache.clear();
@@ -75,7 +75,7 @@ public:
      * @param priority its priority.
      * @remark Throws std::runtime_error if the id already exists.
      */
-    void add(std::shared_ptr<T> s, ElementId id, Priority priority = 0)
+    virtual void add(T s, ElementId id, Priority priority = 0)
     {
         if (idToElement.find(id) != idToElement.end())
         {
@@ -87,20 +87,20 @@ public:
         (
             cache.begin(),
             cache.end(),
-            std::pair(Info(id, priority), nullptr),
+            priority,
             []
             (
-                std::pair<Info, std::shared_ptr<T>> l,
-                std::pair<Info, std::shared_ptr<T>> r
+                Priority p,
+                std::pair<Info, T> r
             )
             {
-                return l.first.priority < r.first.priority;
+                return p < r.first.priority;
             }
         );
         cache.insert(pos, std::pair(Info(id, priority), s));
     }
 
-    void remove(ElementId id)
+    virtual void remove(ElementId id)
     {
         if (idToElement.find(id) == idToElement.end()) { return; }
 
@@ -110,7 +110,7 @@ public:
         (
             cache.begin(),
             cache.end(),
-            [id](std::pair<Info, std::shared_ptr<T>> v)
+            [id](std::pair<Info, T> v)
             {
                 return v.first.id == id;
             }
@@ -134,16 +134,16 @@ public:
      * @brief Return a vector from overriding priorities.
      *
      * @param oids overriding priorities.
-     * @return std::vector<std::pair<Info, std::shared_ptr<T>>> cached values.
+     * @return std::vector<std::pair<Info, T>> cached values.
      * @remark Overriding is expensive, but useful for drawing partially with
      * modest element counts.
      */
-    std::vector<std::pair<Info, std::shared_ptr<T>>> vectorise
+    std::vector<std::pair<Info, T>> vectorise
     (
         std::multimap<Priority, ElementId> & oids
     )
     {
-        std::vector<std::pair<Info, std::shared_ptr<T>>> s;
+        std::vector<std::pair<Info, T>> s;
         s.reserve(oids.size());
         for (const auto & id : oids)
         {
@@ -152,19 +152,21 @@ public:
         return s;
     }
 
-    std::shared_ptr<T> & operator [](ElementId id) { return idToElement[id].first; }
+    T & operator [](ElementId id) { return idToElement[id].first; }
 
-    typename std::vector<std::pair<Info, std::shared_ptr<T>>>::const_iterator begin() const { return cache.cbegin(); }
-    typename std::vector<std::pair<Info, std::shared_ptr<T>>>::const_iterator end() const { return cache.cend(); }
+    typename std::vector<std::pair<Info, T>>::const_iterator begin() const { return cache.cbegin(); }
+    typename std::vector<std::pair<Info, T>>::const_iterator end() const { return cache.cend(); }
 
     uint64_t size() const { return cache.size(); }
+
+    bool hasId(const ElementId id) const { return idToElement.find(id) != idToElement.end(); }
 
 protected:
 
     // fast lookup of ids
-    std::unordered_map<ElementId, std::pair<std::shared_ptr<T>, Priority>> idToElement;
+    std::unordered_map<ElementId, std::pair<T, Priority>> idToElement;
     // contiguous for efficient drawing/iteration
-    std::vector<std::pair<Info, std::shared_ptr<T>>> cache;
+    std::vector<std::pair<Info, T>> cache;
 };
 
 #endif /* PRIORITYSTORE_H */

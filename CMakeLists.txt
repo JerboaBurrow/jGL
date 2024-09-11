@@ -76,7 +76,6 @@ if (ANDROID)
         "src/font.cpp"
         "src/glyph.cpp"
         "src/shader.cpp"
-        "src/spriteRenderer.cpp"
         "src/warning.cpp"
         "src/jGL/common.cpp"
         "src/id.cpp"
@@ -161,7 +160,6 @@ IF (TEST_SUITE)
         "src/jGL/OpenGL/*.cpp"
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
-        "src/jGL/spriteRenderer.cpp"
         "src/id.cpp"
         "src/jGL/Display/*.cpp"
         "src/jGL/common.cpp"
@@ -219,7 +217,6 @@ IF (TEST_SUITE)
         ${TEST_SRC}
         "src/jGL/shader.cpp"
         "src/jGL/warning.cpp"
-        "src/jGL/spriteRenderer.cpp"
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"

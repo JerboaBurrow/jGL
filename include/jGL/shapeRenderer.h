@@ -64,10 +64,10 @@ namespace jGL
         : PriorityStore(sizeHint), shader(shader)
         {}
 
-        std::shared_ptr<Shape> getShape(ShapeId id) { return this->operator[](id); }
+        Shape & getShape(ShapeId id) { return this->operator[](id); }
 
-        const Transform & getTransform(ShapeId id) { return getShape(id)->transform; }
-        const glm::vec4 & getColour(ShapeId id) { return getShape(id)->colour; }
+        const Transform * getTransform(ShapeId id) { return getShape(id).transform; }
+        const glm::vec4 * getColour(ShapeId id) { return getShape(id).colour; }
 
         /**
          * @brief Draw with overriding render priority and shader.
@@ -86,7 +86,7 @@ namespace jGL
             UpdateInfo info = UpdateInfo()
         )
         {
-            std::vector<std::pair<Info, std::shared_ptr<Shape>>> shapes = vectorise(ids);
+            std::vector<std::pair<Info, Shape>> shapes = vectorise(ids);
             draw(shader, shapes, info);
         }
 
@@ -105,7 +105,7 @@ namespace jGL
             UpdateInfo info = UpdateInfo()
         )
         {
-            std::vector<std::pair<Info, std::shared_ptr<Shape>>> shapes = vectorise(ids);
+            std::vector<std::pair<Info, Shape>> shapes = vectorise(ids);
             draw(shader, shapes, info);
         }
 
@@ -144,7 +144,7 @@ namespace jGL
         virtual void draw
         (
             std::shared_ptr<Shader> shader,
-            std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+            std::vector<std::pair<Info, Shape>> & shapes,
             UpdateInfo info = UpdateInfo()
         ) = 0;
 

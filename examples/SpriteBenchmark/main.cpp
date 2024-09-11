@@ -1,4 +1,4 @@
-#include "main.h"
+#include <main.h>
 
 int main(int argv, char ** argc)
 {
@@ -6,20 +6,15 @@ int main(int argv, char ** argc)
     jGL::DesktopDisplay::Config conf;
 
     conf.VULKAN = false;
-
     #ifdef MACOS
     conf.COCOA_RETINA = true;
     #endif
-    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
-    display.setFrameLimit(60);
+
+    jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Sprite", conf);
 
     glewInit();
 
-    glm::ivec2 res = display.frameBufferSize();
-    resX = res.x;
-    resY = res.y;
-
-    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(res));
+    jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display.getRes()));
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
 
@@ -33,49 +28,53 @@ int main(int argv, char ** argc)
     jGLInstance->setTextProjection(glm::ortho(0.0,double(resX),0.0,double(resY)));
     jGLInstance->setMSAA(1);
 
-    std::vector<jGL::Shape> shapes;
-    std::vector<jGL::Transform> trans;
-    std::vector<glm::vec4> cols;
+    std::shared_ptr<jGL::Texture> jerboa = jGLInstance->createTexture
+    (
+        std::vector(LOGO32.begin(), LOGO32.end()),
+        jGL::Texture::Type::RGBA
+    );
 
-    RNG rng;
-    uint64_t n = 1000000;
+    int n = 500000;
 
-    std::shared_ptr<jGL::ShapeRenderer> circles = jGLInstance->createShapeRenderer
+    std::shared_ptr<jGL::SpriteRenderer> sprites = jGLInstance->createSpriteRenderer
     (
         n
     );
 
-    shapes.reserve(n);
-    trans.reserve(n);
-    cols.reserve(n);
-    for (unsigned i = 0; i < n; i++)
-    {
-        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.001f));
-        cols.push_back(glm::vec4(rng.nextFloat(), rng.nextFloat(), rng.nextFloat(), 1.0));
-        shapes.push_back
-        (
-            {
-                &trans[i],
-                &cols[i]
-            }
-        );
+    float scale = camera.screenToWorld(8.0f, 0.0f).x;
 
-        circles->add(shapes[i], std::to_string(i));
+    std::vector<jGL::TextureRegion> animationFrames
+    {
+        jGL::TextureRegion(0, 0, 16, 16),
+        jGL::TextureRegion(16, 0, 16, 16),
+        jGL::TextureRegion(0, 16, 16, 16),
+        jGL::TextureRegion(16, 16, 16, 16)
+    };
+
+    glm::vec4 colour(1.0);
+
+    std::vector<jGL::Transform> trans;
+    trans.reserve(n);
+    RNG rng;
+    for (int i = 0; i < n; i++)
+    {
+        trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, scale));
     }
 
-    circles->setProjection(camera.getVP());
+    for (int i = 0; i < n; i++)
+    {
+        sprites->add
+        (
+            {&trans[i], &animationFrames[i % animationFrames.size()], jerboa.get(), &colour},
+            std::to_string(i)
+        );
+    }
 
-    std::shared_ptr<jGL::Shader> shader = std::make_shared<jGL::GL::glShader>
-    (
-        jGL::GL::glShapeRenderer::shapeVertexShader,
-        jGL::GL::glShapeRenderer::ellipseFragmentShader
-    );
-
-    shader->use();
+    sprites->setProjection(camera.getVP());
 
     double delta = 0.0;
-    double dt = 1.0/600.0;
-    jGL::ShapeRenderer::UpdateInfo uinfo;
+
+    float dt = 1.0/600.0;
 
     while (display.isOpen())
     {
@@ -85,16 +84,15 @@ int main(int argv, char ** argc)
 
             jGLInstance->clear();
 
-            for (unsigned i = 0; i <shapes.size(); i++)
+            for (auto & tr : trans)
             {
-                auto & tr = trans[i];
                 tr.x = tr.x+dt*(rng.nextFloat()-0.5);
                 tr.y = tr.y+dt*(rng.nextFloat()-0.5);
                 tr.theta = tr.theta;
                 tr.scaleX = tr.scaleX;
             }
 
-            circles->draw(shader, uinfo);
+            sprites->draw();
 
             delta = 0.0;
             for (int n = 0; n < 60; n++)
@@ -120,9 +118,10 @@ int main(int argv, char ** argc)
 
             jGLInstance->text(
                 debugText.str(),
-                glm::vec2(64.0f, resY-64.0f),
+                glm::vec2(resX*0.5f, resY-64.0f),
                 0.5f,
-                glm::vec4(0.0f,0.0f,0.0f,1.0f)
+                glm::vec4(0.0f,0.0f,0.0f,1.0f),
+                glm::bvec2(true,true)
             );
 
             if (frameId == 30)
@@ -141,8 +140,6 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
-        uinfo.colour = false;
-        uinfo.scale = false;
 
     }
 

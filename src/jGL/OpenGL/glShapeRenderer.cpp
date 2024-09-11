@@ -48,7 +48,7 @@ namespace jGL::GL
     void glShapeRenderer::draw
     (
         std::shared_ptr<Shader> shader,
-        std::vector<std::pair<Info, std::shared_ptr<Shape>>> & shapes,
+        std::vector<std::pair<Info, Shape>> & shapes,
         UpdateInfo info
     )
     {
@@ -70,23 +70,23 @@ namespace jGL::GL
         {
             if (info.xytheta)
             {
-                xytheta[i*xythetaDim] = shape.second->transform.x;
-                xytheta[i*xythetaDim+1] = shape.second->transform.y;
-                xytheta[i*xythetaDim+2] = shape.second->transform.theta;
+                xytheta[i*xythetaDim] = shape.second.transform->x;
+                xytheta[i*xythetaDim+1] = shape.second.transform->y;
+                xytheta[i*xythetaDim+2] = shape.second.transform->theta;
             }
 
             if (info.scale)
             {
-                scale[i*scaleDim] = shape.second->transform.scaleX;
-                scale[i*scaleDim+1] = shape.second->transform.scaleY;
+                scale[i*scaleDim] = shape.second.transform->scaleX;
+                scale[i*scaleDim+1] = shape.second.transform->scaleY;
             }
 
             if (info.colour)
             {
-                colours[i*coloursDim] = shape.second->colour.r;
-                colours[i*coloursDim+1] = shape.second->colour.g;
-                colours[i*coloursDim+2] = shape.second->colour.b;
-                colours[i*coloursDim+3] = shape.second->colour.a;
+                colours[i*coloursDim] = shape.second.colour->r;
+                colours[i*coloursDim+1] = shape.second.colour->g;
+                colours[i*coloursDim+2] = shape.second.colour->b;
+                colours[i*coloursDim+3] = shape.second.colour->a;
             }
 
             i += 1;
