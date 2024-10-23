@@ -391,7 +391,7 @@ jobs:
           do
           mkdir $release
           mv libjGL-$release.a $release/
-          mv LICENSE $release/
+          cp LICENSE $release/
           zip -r $release.zip $release/*
           done
 
