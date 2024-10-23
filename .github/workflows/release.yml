@@ -368,24 +368,35 @@ jobs:
         with:
           name: linux-x86_64
 
-      # - name: get windows build
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: windows
+      - name: get windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: windows
 
-      # - name: get macos build
-      #   uses: actions/download-artifact@v4
-      #   with:
-      #     name: macos
+      - name: get macos build
+        uses: actions/download-artifact@v4
+        with:
+          name: macos
+
+      - name: get headers
+        uses: actions/download-artifact@v4
+        with:
+          name: headers-mingw
+          path: headers-mingw/
 
       - name: pack
         run: |
           ls
-          mkdir jGL
-          mv *.a jGL/
-          mv headers/* jGL/
-          mv LICENSE jGL/
-          zip -r jGL.zip jGL/*
+          for release in linux-x86_64 macos.a windows;
+          do
+          mkdir $release
+          mv libjGL-$release.a $release/
+          mv LICENSE $release/
+          zip -r $release.zip $release/*
+          done
+
+          zip -r headers.zip headers
+          zip -r headers-mingw.zip headers-mingw
 
 #     https://github.com/softprops/action-gh-release
       - name: release
@@ -395,4 +406,9 @@ jobs:
           prerelease: true
           name: "release-${{ github.ref_name }}"
           tag_name: ${{ github.ref }}
-          files: jGL.zip
+          files: |
+            linux.zip
+            windows.zip
+            macos.zip
+            headers.zip
+            headers-mingw.zip
