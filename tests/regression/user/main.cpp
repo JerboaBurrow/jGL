@@ -11,7 +11,7 @@ int main(int argv, char ** argc)
     jGL::DesktopDisplay display(glm::ivec2(resX, resY), "Shape", conf);
 
     glewInit();
-    
+
     jGLInstance = std::move(std::make_unique<jGL::GL::OpenGLInstance>(display.getRes()));
 
     jGL::OrthoCam camera(resX, resY, glm::vec2(0.0,0.0));
@@ -31,22 +31,28 @@ int main(int argv, char ** argc)
         32
     );
 
-    std::vector<std::shared_ptr<jGL::Shape>> shapes;
+    std::vector<jGL::Shape> shapes;
 
     RNG rng;
 
     std::vector<jGL::Transform> trans;
+    std::vector<glm::vec4> cols;
+
+    trans.reserve(64);
+    shapes.reserve(64);
+    cols.reserve(64);
 
     for (unsigned i = 0; i < 64; i++)
     {
         trans.push_back(jGL::Transform(rng.nextFloat(), rng.nextFloat(), 0.0, 0.1f));
+        cols.push_back(glm::vec4(rng.nextFloat(), rng.nextFloat(), rng.nextFloat(), 1.0));
+
         shapes.push_back
         (
-            std::make_shared<jGL::Shape>
-            (
-                trans[i],
-                glm::vec4(rng.nextFloat(), rng.nextFloat(), rng.nextFloat(), 1.0)
-            )
+            {
+                &trans[i],
+                &cols[i]
+            }
         );
 
         circles->add(shapes[i], std::to_string(i));
@@ -74,10 +80,10 @@ int main(int argv, char ** argc)
                 auto tr = circles->getTransform(std::to_string(i));
                 trans[i] = jGL::Transform
                 (
-                    tr.x+dt*(rng.nextFloat()-0.5), 
-                    tr.y+dt*(rng.nextFloat()-0.5), 
-                    tr.theta, 
-                    tr.scaleX
+                    tr->x+dt*(rng.nextFloat()-0.5),
+                    tr->y+dt*(rng.nextFloat()-0.5),
+                    tr->theta,
+                    tr->scaleX
                 );
             }
 
@@ -89,20 +95,20 @@ int main(int argv, char ** argc)
                 delta += deltas[n];
             }
             delta /= 60.0;
-            
+
             std::stringstream debugText;
 
             double mouseX, mouseY;
             display.mousePosition(mouseX,mouseY);
 
             debugText << "Delta: " << fixedLengthNumber(delta,6)
-                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4) 
+                    << " ( FPS: " << fixedLengthNumber(1.0/delta,4)
                     << ")\n"
-                    << "Render draw time: \n" 
+                    << "Render draw time: \n"
                     << "   " << fixedLengthNumber(rdt, 6) << "\n"
-                    << "Mouse (" << fixedLengthNumber(mouseX,4) 
-                    << "," 
-                    << fixedLengthNumber(mouseY,4) 
+                    << "Mouse (" << fixedLengthNumber(mouseX,4)
+                    << ","
+                    << fixedLengthNumber(mouseY,4)
                     << ")\n";
 
             jGLInstance->text(
@@ -128,7 +134,7 @@ int main(int argv, char ** argc)
 
         deltas[frameId] = duration_cast<duration<double>>(tock-tic).count();
         frameId = (frameId+1) % 60;
-            
+
     }
 
     jGLInstance->finish();
