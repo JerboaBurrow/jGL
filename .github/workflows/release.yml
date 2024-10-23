@@ -35,7 +35,7 @@ jobs:
           include/vendored/stduuid/gsl \
           include/vendored/stb_image.h;\
           do cp -r $inc headers; done
-        
+
         ls headers
 
     - name: pack headers mingw
@@ -67,7 +67,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-    
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y build-essential xorg-dev mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev libxinerama-dev libxcursor-dev xvfb x11-apps vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
 
@@ -101,7 +101,7 @@ jobs:
       with:
         name: linux-x86_64-examples
         path: linux-x86_64-examples
-    
+
   linuxXwindows:
     runs-on: ubuntu-22.04
 
@@ -109,7 +109,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-    
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y xorg-dev build-essential mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libxinerama-dev libxcursor-dev vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
 
@@ -121,7 +121,7 @@ jobs:
         cp build/libjGL.a windows/libjGL-windows.a
         cp LICENSE windows-examples/
         cp LICENSE windows/
-    
+
     - name: build artifact
       uses: actions/upload-artifact@v4
       with:
@@ -135,7 +135,7 @@ jobs:
         path: windows-examples
 
   macosNative:
-    runs-on: macos-12
+    runs-on: macos-13
 
     steps:
     - uses: actions/checkout@v4
@@ -177,7 +177,7 @@ jobs:
   linuxRun:
     needs: linuxNative
     runs-on: ubuntu-22.04
-    
+
     steps:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick
@@ -200,7 +200,7 @@ jobs:
           sleep 10
           xwd -root -silent | convert xwd:- png:screenshot.png
           sleep 5 && kill $PID
-          
+
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -210,7 +210,7 @@ jobs:
   # wineRun:
   #   needs: linuxXwindows
   #   runs-on: ubuntu-22.04
-    
+
   #   steps:
   #     - name: Install dependencies
   #       run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick wine32 wine64
@@ -233,7 +233,7 @@ jobs:
   #         sleep 10
   #         xwd -root -silent | convert xwd:- png:screenshot.png
   #         sleep 5 && kill $PID
-          
+
   #     - name: upload artifact
   #       uses: actions/upload-artifact@v4
   #       with:
@@ -245,7 +245,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    
+
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-    
+
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
@@ -310,10 +310,10 @@ jobs:
 
   test-release-macos:
     needs: [macosNative, headers]
-    runs-on: macos-12
+    runs-on: macos-13
 
     steps:
-    
+
       - uses: actions/checkout@v4
         with:
           submodules: 'true'
@@ -354,7 +354,7 @@ jobs:
     needs: [linuxNative, linuxXwindows, macosNative]
     if: github.ref_type == 'tag'
     runs-on: ubuntu-22.04
-    
+
     steps:
 
       - uses: actions/checkout@v4
