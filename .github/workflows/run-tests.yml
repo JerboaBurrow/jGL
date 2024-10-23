@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-        
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y build-essential xorg-dev mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev libxinerama-dev libxcursor-dev xvfb x11-apps vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools
 
@@ -46,7 +46,7 @@ jobs:
   wineRunTest:
     if: ${{ github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-22.04
-    
+
     strategy:
       matrix:
         example: [Particles, Sprite, Shape]
@@ -55,7 +55,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: 'true'
-        
+
     - name: Install dependencies
       run: sudo apt-get update && sudo apt-get install -y xorg-dev build-essential mesa-common-dev libx11-dev libxrandr-dev libgl1-mesa-dev libglu1-mesa-dev libfreetype6-dev libopenal-dev libsndfile1-dev libudev-dev g++-mingw-w64-x86-64-posix gcc-mingw-w64-x86-64-posix libxinerama-dev libxcursor-dev xvfb x11-apps vulkan-tools libvulkan-dev vulkan-validationlayers-dev spirv-tools wine64
     - name: linux-windows
