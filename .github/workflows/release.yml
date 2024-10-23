@@ -407,7 +407,7 @@ jobs:
           name: "release-${{ github.ref_name }}"
           tag_name: ${{ github.ref }}
           files: |
-            linux.zip
+            linux-x86_64.zip
             windows.zip
             macos.zip
             headers.zip
