@@ -387,7 +387,7 @@ jobs:
       - name: pack
         run: |
           ls
-          for release in linux-x86_64 macos.a windows;
+          for release in linux-x86_64 macos windows;
           do
           mkdir $release
           mv libjGL-$release.a $release/
