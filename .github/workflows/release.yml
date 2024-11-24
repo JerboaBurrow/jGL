@@ -232,7 +232,7 @@ jobs:
       - name: launch and screenshot
         run: |
           cd ${{ matrix.example }}
-          cp ../*.dll
+          cp ../*.dll .
           chmod +x ${{ matrix.example }}.exe
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 800x600x24 &
