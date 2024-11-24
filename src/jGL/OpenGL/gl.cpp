@@ -3,27 +3,6 @@
 
 namespace jGL::GL
 {
-
-    class GLRuntimeException: public std::exception 
-    {
-
-    public:
-
-        GLRuntimeException(std::string msg)
-        : msg(msg)
-        {}
-
-    private:
-
-        virtual const char * what() const throw()
-        {
-            return msg.c_str();
-        }
-
-        std::string msg;
-
-    };
-
     // print buffer status errors
     GLuint glBufferStatus(const std::string msg)
     {
@@ -79,50 +58,4 @@ namespace jGL::GL
         return e;
     }
 
-    // compile a gl shader given a program and source code as const char *
-    void compileShader(GLuint & shaderProgram, const char * vert, const char * frag)
-    {
-        GLuint vertexShader;
-        vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        glShaderSource(vertexShader,1,&vert,NULL);
-        glCompileShader(vertexShader);
-
-        // check it worked!
-        int  success;
-        const unsigned logSize = 512*4;
-        char infoLog[logSize];
-        glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
-
-        if(!success)
-        {
-            glGetShaderInfoLog(vertexShader, logSize, NULL, infoLog);
-            throw( GLRuntimeException( std::string("GLSL (VERTEX) ERROR: \n") + infoLog + "\n"+vert+"\n") );
-        }
-
-        GLuint fragmentShader;
-        fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader,1,&frag,NULL);
-        glCompileShader(fragmentShader);
-
-        glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
-
-        if(!success)
-        {
-            glGetShaderInfoLog(fragmentShader, logSize, NULL, infoLog);
-            throw( GLRuntimeException( std::string("GLSL (FRAGMENT) ERROR: \n") + infoLog +"\n"+frag+"\n") );
-        }
-
-        glAttachShader(shaderProgram,vertexShader);
-        glAttachShader(shaderProgram,fragmentShader);
-        glLinkProgram(shaderProgram);
-
-        // check it linked
-        glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
-        if(!success)
-        {
-            glGetProgramInfoLog(shaderProgram, logSize, NULL, infoLog);
-            throw( GLRuntimeException( std::string("GLSL (LINK) ERROR: \n") + infoLog + "\n"+vert+"\n"+frag+"\n") );
-        }
-        glGetProgramInfoLog(shaderProgram, logSize, NULL, infoLog);
-    }
 }
