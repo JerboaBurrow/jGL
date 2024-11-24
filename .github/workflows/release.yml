@@ -120,8 +120,6 @@ jobs:
         mkdir windows
         cp -r build/Examples windows-examples
         cp build/libjGL.a windows/libjGL-windows.a
-        cp build/*.dll windows/
-        cp build/*.dll windows-examples/
         cp LICENSE windows-examples/
         cp LICENSE windows/
 
