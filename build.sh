@@ -177,8 +177,10 @@ then
   done 
   echo -e "###############\n"
 
-  dll=()
-
+  dll=("libgcc_s_seh-1.dll"
+      "libstdc++-6.dll"
+      "libwinpthread-1.dll"
+  )
   for j in "${dll[@]}"
   do
     findAndCopyDLL $j || echo "Could not find $j"
