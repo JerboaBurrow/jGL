@@ -9,15 +9,15 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fno-trapping-math -fno-rounding-math -f
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -O3 -Wall")
         
 set(SRC
-    "main.cpp"
-	"rand.cpp"
+    "../main.cpp"
+	"../rand.cpp"
 )
 
 # launch as windows, not console app - so cmd does not open as well
 add_link_options(-mwindows)
 
 include_directories(include)
-include_directories(.)
+include_directories(../)
 
 find_package(Vulkan REQUIRED)
 find_package(OpenGL REQUIRED)
