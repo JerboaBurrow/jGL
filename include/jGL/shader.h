@@ -125,6 +125,9 @@ namespace jGL
 
         virtual void use() = 0;
 
+        std::string displayVertexSource() const { return formatWithLineNumbers(vertex); }
+        std::string displayFragmentSource() const { return formatWithLineNumbers(fragment); }
+
     protected:
 
         std::string vertex;
@@ -137,6 +140,28 @@ namespace jGL
         virtual void compile() = 0;
 
         bool parseUniforms();
+
+        std::string formatWithLineNumbers(std::string shader) const
+        {
+            if (shader.length() == 0) { return shader; }
+            std::string source = "1: ";
+            uint32_t line = 1;
+            auto iter = shader.begin();
+            while (iter != shader.end())
+            {
+                if (*iter == '\n' && iter+1 != shader.end())
+                {
+                    line += 1;
+                    source += "\n" + std::to_string(line)+": ";
+                }
+                else
+                {
+                    source += *iter;
+                }
+                iter++;
+            }
+            return source;
+        }
         
         template <class T>
         void detectUniformsAndCreate(std::string code)
