@@ -120,6 +120,8 @@ jobs:
         mkdir windows
         cp -r build/Examples windows-examples
         cp build/libjGL.a windows/libjGL-windows.a
+        cp build/*.dll windows/
+        cp build/*.dll windows-examples/
         cp LICENSE windows-examples/
         cp LICENSE windows/
 
@@ -177,6 +179,10 @@ jobs:
     needs: linux
     runs-on: ubuntu-22.04
 
+    strategy:
+      matrix:
+        example: [Particles, Sprite, Shape]
+
     steps:
       - name: install dependencies
         run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick
@@ -189,12 +195,12 @@ jobs:
       - name: launch and screenshot
         run: |
           ls
-          cd Particles
-          chmod +x Particles
+          cd ${{ matrix.example }}
+          chmod +x ${{ matrix.example }}
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 800x600x24 &
           sleep 5
-          MESA_GL_VERSION_OVERRIDE=3.3 ./Particles &
+          MESA_GL_VERSION_OVERRIDE=3.3 ./${{ matrix.example }} &
           export PID=$!
           sleep 10
           xwd -root -silent | convert xwd:- png:screenshot.png
@@ -203,16 +209,20 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot
-          path: Particles/screenshot.png
+          name: ${{ matrix.example }}.png
+          path: ${{ matrix.example }}/screenshot.png
 
   wineRun:
     needs: windows
     runs-on: ubuntu-22.04
 
+    strategy:
+      matrix:
+        example: [Particles, Sprite, Shape]
+
     steps:
       - name: install dependencies
-        run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick wine32 wine64
+        run: sudo apt-get update && sudo apt-get install -y xvfb x11-apps imagemagick wine64
 
       - name: get linux build
         uses: actions/download-artifact@v4
@@ -221,12 +231,13 @@ jobs:
 
       - name: launch and screenshot
         run: |
-          cd Particles
-          chmod +x Particles.exe
+          cd ${{ matrix.example }}
+          cp ../*.dll
+          chmod +x ${{ matrix.example }}.exe
           export DISPLAY=:99
           sudo Xvfb :99 -screen 0 800x600x24 &
           sleep 5
-          MESA_GL_VERSION_OVERRIDE=3.3 wine64 Particles.exe &
+          MESA_GL_VERSION_OVERRIDE=3.3 wine64 ${{ matrix.example }}.exe &
           export PID=$!
           sleep 10
           xwd -root -silent | convert xwd:- png:screenshot.png
@@ -235,8 +246,8 @@ jobs:
       - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: screenshot-wine
-          path: Particles/screenshot.png
+          name: ${{ matrix.example }}-wine.png
+          path: ${{ matrix.example }}/screenshot.png
 
   test-release:
     needs: [linux, headers]
