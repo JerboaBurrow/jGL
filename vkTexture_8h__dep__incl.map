@@ -1,0 +1,14 @@
+<map id="include/jGL/Vulkan/Texture/vkTexture.h" name="include/jGL/Vulkan/Texture/vkTexture.h">
+<area shape="rect" id="node1" title=" " alt="" coords="393,5,548,47"/>
+<area shape="rect" id="node2" href="$framebuffer_8h.html" title=" " alt="" coords="65,95,207,136"/>
+<area shape="rect" id="node3" href="$vulkanInstance_8h.html" title=" " alt="" coords="239,273,380,315"/>
+<area shape="rect" id="node6" href="$pipeline_8h.html" title=" " alt="" coords="400,95,541,136"/>
+<area shape="rect" id="node10" href="$vkFont_8h.html" title=" " alt="" coords="587,95,728,136"/>
+<area shape="rect" id="node12" href="$vkTexture_8cpp.html" title=" " alt="" coords="752,95,917,136"/>
+<area shape="rect" id="node5" href="$framebuffer_8cpp.html" title=" " alt="" coords="26,191,246,218"/>
+<area shape="rect" id="node4" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="188,363,431,389"/>
+<area shape="rect" id="node7" href="$vkTextRenderer_8h.html" title=" " alt="" coords="593,184,764,225"/>
+<area shape="rect" id="node9" href="$pipeline_8cpp.html" title=" " alt="" coords="373,191,569,218"/>
+<area shape="rect" id="node8" href="$vkTextRenderer_8cpp.html" title=" " alt="" coords="601,273,756,315"/>
+<area shape="rect" id="node11" href="$vkFont_8cpp.html" title=" " alt="" coords="788,184,932,225"/>
+</map>

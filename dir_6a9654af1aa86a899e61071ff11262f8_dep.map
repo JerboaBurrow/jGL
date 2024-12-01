@@ -1,0 +1,17 @@
+<map id="src/jGL/Vulkan" name="src/jGL/Vulkan">
+<area shape="rect" id="node2" href="dir_d1c3d23c540dd5b600bec5567e505bce.html" title="Command" alt="" coords="545,63,634,111"/>
+<area shape="rect" id="node8" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="284,159,356,207"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000025_000000.html" title="2" alt="" coords="370,176,380,191"/>
+<area shape="rect" id="node3" href="dir_c7233bc5c88fc6fb4498ce6a581f4387.html" title="Device" alt="" coords="448,63,520,111"/>
+<area shape="rect" id="edge6-headlabel" href="dir_000026_000000.html" title="3" alt="" coords="371,164,381,178"/>
+<area shape="rect" id="node4" href="dir_211d660e9c3f3117a536d127b5332bc9.html" title="RenderPass" alt="" coords="326,63,423,111"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000027_000000.html" title="1" alt="" coords="345,140,354,154"/>
+<area shape="rect" id="node5" href="dir_eecea1c6464bf86127065aaac39d010e.html" title="Shader" alt="" coords="229,63,301,111"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000028_000000.html" title="1" alt="" coords="300,131,309,146"/>
+<area shape="rect" id="node6" href="dir_e6aa469f33f8742b63e0c2110590eca6.html" title="Text" alt="" coords="133,63,205,111"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000029_000000.html" title="2" alt="" coords="266,145,275,159"/>
+<area shape="rect" id="node7" href="dir_43cf6f2590287abbf05d7a7c68aa2d9d.html" title="Texture" alt="" coords="37,63,109,111"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000030_000000.html" title="1" alt="" coords="263,160,272,174"/>
+<area shape="rect" id="clust2" href="dir_6a9654af1aa86a899e61071ff11262f8.html" alt="" coords="27,52,741,121"/>
+<area shape="rect" id="clust1" href="dir_c69405af40c8a22ca1b58e44053a9627.html" title="jGL" alt="" coords="16,16,752,132"/>
+</map>

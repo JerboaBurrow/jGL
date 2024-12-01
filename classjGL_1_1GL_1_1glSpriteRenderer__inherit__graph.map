@@ -1,0 +1,5 @@
+<map id="jGL::GL::glSpriteRenderer" name="jGL::GL::glSpriteRenderer">
+<area shape="rect" id="node1" title="Opengl implementation of SpriteRenderer." alt="" coords="5,155,191,181"/>
+<area shape="rect" id="node2" href="$classjGL_1_1SpriteRenderer.html" title="Renders sprites in batches, with optional render priority." alt="" coords="24,80,172,107"/>
+<area shape="rect" id="node3" href="$classPriorityStore.html" title=" " alt="" coords="13,5,183,32"/>
+</map>

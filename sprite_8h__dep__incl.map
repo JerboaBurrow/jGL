@@ -1,0 +1,12 @@
+<map id="include/jGL/sprite.h" name="include/jGL/sprite.h">
+<area shape="rect" id="node1" title=" " alt="" coords="346,5,493,32"/>
+<area shape="rect" id="node2" href="$spriteRenderer_8h.html" title=" " alt="" coords="317,80,522,107"/>
+<area shape="rect" id="node3" href="$jGL_8h.html" title=" " alt="" coords="354,162,485,189"/>
+<area shape="rect" id="node8" href="$glSpriteRenderer_8h.html" title=" " alt="" coords="181,155,330,196"/>
+<area shape="rect" id="node10" href="$vkSpriteRenderer_8h.html" title=" " alt="" coords="509,155,660,196"/>
+<area shape="rect" id="node4" href="$openGLInstance_8h.html" title=" " alt="" coords="289,244,438,285"/>
+<area shape="rect" id="node6" href="$vulkanInstance_8h.html" title=" " alt="" coords="514,244,655,285"/>
+<area shape="rect" id="node5" href="$openGLInstance_8cpp.html" title=" " alt="" coords="210,333,466,360"/>
+<area shape="rect" id="node7" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="490,333,733,360"/>
+<area shape="rect" id="node9" href="$glSpriteRenderer_8cpp.html" title=" " alt="" coords="5,251,265,278"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$structjGL_1_1Shader.html" title="Generic shader program with vertex and fragment shader." alt="" coords="5,31,101,57"/>
+<area shape="rect" id="node2" href="$structjGL_1_1GL_1_1glShader.html" title="An OpenGL implementation of Shader." alt="" coords="164,5,297,32"/>
+<area shape="rect" id="node3" href="$classjGL_1_1Vulkan_1_1vkShader.html" title=" " alt="" coords="149,56,312,83"/>
+</map>

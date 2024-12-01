@@ -1,0 +1,6 @@
+<map id="jGL::ShapeRenderer" name="jGL::ShapeRenderer">
+<area shape="rect" id="node1" title="Renders shapes with optional rendering priority." alt="" coords="137,80,287,107"/>
+<area shape="rect" id="node3" href="$classjGL_1_1GL_1_1glShapeRenderer.html" title="OpenGL implementation of ShapeRenderer." alt="" coords="5,155,192,181"/>
+<area shape="rect" id="node4" href="$classjGL_1_1Vulkan_1_1vkShapeRenderer.html" title=" " alt="" coords="217,155,434,181"/>
+<area shape="rect" id="node2" href="$classPriorityStore.html" title=" " alt="" coords="125,5,299,32"/>
+</map>

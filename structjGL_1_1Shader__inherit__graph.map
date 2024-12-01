@@ -1,0 +1,5 @@
+<map id="jGL::Shader" name="jGL::Shader">
+<area shape="rect" id="node1" title="Generic shader program with vertex and fragment shader." alt="" coords="109,5,205,32"/>
+<area shape="rect" id="node2" href="$structjGL_1_1GL_1_1glShader.html" title="An OpenGL implementation of Shader." alt="" coords="5,80,139,107"/>
+<area shape="rect" id="node3" href="$classjGL_1_1Vulkan_1_1vkShader.html" title=" " alt="" coords="163,80,325,107"/>
+</map>

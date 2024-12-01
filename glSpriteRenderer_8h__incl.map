@@ -1,0 +1,41 @@
+<map id="include/jGL/OpenGL/glSpriteRenderer.h" name="include/jGL/OpenGL/glSpriteRenderer.h">
+<area shape="rect" id="node1" title=" " alt="" coords="794,5,943,47"/>
+<area shape="rect" id="node2" href="$glShader_8h.html" title=" " alt="" coords="607,95,826,121"/>
+<area shape="rect" id="node3" href="$gl_8h.html" title=" " alt="" coords="805,244,932,271"/>
+<area shape="rect" id="node24" href="$spriteRenderer_8h.html" title=" " alt="" coords="1223,95,1378,121"/>
+<area shape="rect" id="node9" href="$shader_8h.html" title=" " alt="" coords="553,169,656,196"/>
+<area shape="rect" id="node4" title=" " alt="" coords="823,319,909,345"/>
+<area shape="rect" id="node5" title=" " alt="" coords="1630,319,1734,345"/>
+<area shape="rect" id="node6" title=" " alt="" coords="1388,319,1605,345"/>
+<area shape="rect" id="node7" title=" " alt="" coords="933,319,1020,345"/>
+<area shape="rect" id="node8" title=" " alt="" coords="738,319,797,345"/>
+<area shape="rect" id="node10" href="$uniform_8h.html" title=" " alt="" coords="619,244,729,271"/>
+<area shape="rect" id="node12" title=" " alt="" coords="203,244,359,271"/>
+<area shape="rect" id="node13" title=" " alt="" coords="383,244,442,271"/>
+<area shape="rect" id="node14" title=" " alt="" coords="1008,244,1132,271"/>
+<area shape="rect" id="node15" title=" " alt="" coords="539,319,619,345"/>
+<area shape="rect" id="node16" title=" " alt="" coords="5,319,79,345"/>
+<area shape="rect" id="node17" title=" " alt="" coords="1157,244,1234,271"/>
+<area shape="rect" id="node18" href="$jLog_8h.html" title=" " alt="" coords="87,244,179,271"/>
+<area shape="rect" id="node23" title=" " alt="" coords="467,244,543,271"/>
+<area shape="rect" id="node11" title=" " alt="" coords="644,319,707,345"/>
+<area shape="rect" id="node19" title=" " alt="" coords="186,319,261,345"/>
+<area shape="rect" id="node20" title=" " alt="" coords="1301,319,1364,345"/>
+<area shape="rect" id="node21" title=" " alt="" coords="285,319,335,345"/>
+<area shape="rect" id="node22" title=" " alt="" coords="103,319,162,345"/>
+<area shape="rect" id="node25" href="$sprite_8h.html" title=" " alt="" coords="1585,169,1681,196"/>
+<area shape="rect" id="node36" title=" " alt="" coords="1495,244,1581,271"/>
+<area shape="rect" id="node37" href="$priorityStore_8h.html" title=" " alt="" coords="1231,169,1371,196"/>
+<area shape="rect" id="node38" title=" " alt="" coords="1400,244,1471,271"/>
+<area shape="rect" id="node26" href="$texture_8h.html" title=" " alt="" coords="1946,244,2053,271"/>
+<area shape="rect" id="node33" href="$primitive_8h.html" title=" " alt="" coords="1752,244,1871,271"/>
+<area shape="rect" id="node35" href="$orthoCam_8h.html" title=" " alt="" coords="1605,244,1727,271"/>
+<area shape="rect" id="node27" href="$id_8h.html" title=" " alt="" coords="1983,319,2029,345"/>
+<area shape="rect" id="node31" href="$common_8h.html" title=" " alt="" coords="2053,319,2169,345"/>
+<area shape="rect" id="node32" title=" " alt="" coords="1856,319,1959,345"/>
+<area shape="rect" id="node28" title=" " alt="" coords="1881,393,1944,420"/>
+<area shape="rect" id="node29" title=" " alt="" coords="1968,393,2044,420"/>
+<area shape="rect" id="node30" title=" " alt="" coords="2069,393,2133,420"/>
+<area shape="rect" id="node34" title=" " alt="" coords="1775,319,1831,345"/>
+<area shape="rect" id="node39" title=" " alt="" coords="1258,244,1325,271"/>
+</map>
