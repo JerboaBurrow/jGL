@@ -149,7 +149,8 @@ jobs:
       run: |
           wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
           unzip vulkan-sdk.zip
-          sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/vulkan --accept-licenses --default-answer --confirm-command install
+          binary=`find ./* -path *MacOS/InstallVulkan*`
+          sudo ${binary} --root ~/vulkan --accept-licenses --default-answer --confirm-command install
           ls ~/vulkan
           cd ~/vulkan/
           python install_vulkan.py
@@ -340,12 +341,13 @@ jobs:
 
       - name: install dependencies
         run: |
-          wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
-          unzip vulkan-sdk.zip
-          sudo ./InstallVulkan.app/Contents/macOS/InstallVulkan --root ~/vulkan --accept-licenses --default-answer --confirm-command install
-          ls ~/vulkan
-          cd ~/vulkan/
-          python install_vulkan.py
+            wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
+            unzip vulkan-sdk.zip
+            binary=`find ./* -path *MacOS/InstallVulkan*`
+            sudo ${binary} --root ~/vulkan --accept-licenses --default-answer --confirm-command install
+            ls ~/vulkan
+            cd ~/vulkan/
+            python install_vulkan.py
 
       - name: macos lib test
         run: |
