@@ -252,6 +252,25 @@ namespace jGL
             }
         }
 
+        bool keyHasAnyEvents(int key, std::vector<EventType> actions)
+        {
+            if (data.events.find(key) == data.events.cend())
+            {
+                return false;
+            }
+            else
+            {
+                auto ts = getEventTypes(key);
+                for (const auto & action : actions)
+                {
+                    if (std::find(ts.cbegin(), ts.cend(), action) != ts.cend())
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
         std::vector<EventType> getEventTypes(int code)
         {
             std::vector<EventType> e;
