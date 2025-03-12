@@ -1,8 +1,10 @@
 <map id="include/jGL/OpenGL/Text" name="include/jGL/OpenGL/Text">
-<area shape="rect" id="node1" href="dir_277bbe3aa2f35493c20aab73318c33af.html" title="Texture" alt="" coords="27,148,99,196"/>
-<area shape="rect" id="node2" href="dir_fbaf60cf07e00972b5ab7c7df46036ec.html" title="Shader" alt="" coords="123,148,195,196"/>
-<area shape="rect" id="node3" href="dir_e63711efcc19ecf36093c136faae8564.html" title="Text" alt="" coords="75,52,147,100"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000005_000006.html" title="1" alt="" coords="86,128,95,143"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000005_000004.html" title="1" alt="" coords="141,121,151,135"/>
-<area shape="rect" id="clust1" href="dir_5ab0cf8d5223a605321ad472e034833b.html" title="OpenGL" alt="" coords="16,16,205,207"/>
+<area shape="rect" id="node1" href="dir_277bbe3aa2f35493c20aab73318c33af.html" title="Texture" alt="" coords="27,125,98,151"/>
+<area shape="rect" id="node2" href="dir_fbaf60cf07e00972b5ab7c7df46036ec.html" title="Shader" alt="" coords="123,125,189,151"/>
+<area shape="rect" id="node3" href="dir_e63711efcc19ecf36093c136faae8564.html" title="Text" alt="" coords="85,52,134,77"/>
+<area shape="poly" id="edge1" href="dir_000021_000025.html" alt="" coords="104,79,80,115,76,112,99,76"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000021_000025.html" title="1" alt="" coords="83,107,92,122"/>
+<area shape="poly" id="edge2" href="dir_000021_000016.html" alt="" coords="119,76,143,112,139,115,115,79"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000021_000016.html" title="1" alt="" coords="141,98,150,113"/>
+<area shape="rect" id="clust1" href="dir_5ab0cf8d5223a605321ad472e034833b.html" title="OpenGL" alt="" coords="16,16,200,161"/>
 </map>

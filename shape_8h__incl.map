@@ -1,9 +1,16 @@
 <map id="include/jGL/shape.h" name="include/jGL/shape.h">
-<area shape="rect" id="node1" title=" " alt="" coords="123,5,272,32"/>
-<area shape="rect" id="node2" href="$primitive_8h.html" title=" " alt="" coords="66,80,185,107"/>
-<area shape="rect" id="node6" href="$orthoCam_8h.html" title=" " alt="" coords="209,80,332,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="189,155,293,181"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,155,61,181"/>
-<area shape="rect" id="node5" title=" " alt="" coords="85,155,165,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="318,155,535,181"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="123,5,272,31"/>
+<area shape="rect" id="Node000002" href="$primitive_8h.html" title=" " alt="" coords="66,79,185,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,33,149,71,145,67,184,29"/>
+<area shape="rect" id="Node000006" href="$orthoCam_8h.html" title=" " alt="" coords="209,79,332,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="211,29,251,67,247,71,208,33"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="189,152,293,177"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="145,102,212,142,209,147,143,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,152,61,177"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="112,106,61,146,57,141,109,102"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="85,152,165,177"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="128,104,128,138,123,138,123,104"/>
+<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="268,105,254,140,249,138,263,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="318,152,535,177"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="297,102,390,144,388,149,295,106"/>
 </map>

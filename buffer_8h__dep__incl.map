@@ -1,18 +1,39 @@
 <map id="include/jGL/Vulkan/buffer.h" name="include/jGL/Vulkan/buffer.h">
-<area shape="rect" id="node1" title=" " alt="" coords="465,5,606,47"/>
-<area shape="rect" id="node2" href="$uniformBuffer_8h.html" title=" " alt="" coords="160,95,336,136"/>
-<area shape="rect" id="node9" href="$vertexBuffer_8h.html" title=" " alt="" coords="360,95,527,136"/>
-<area shape="rect" id="node10" href="$vkTexture_8h.html" title=" " alt="" coords="552,95,706,136"/>
-<area shape="rect" id="node16" href="$buffer_8cpp.html" title=" " alt="" coords="730,102,912,129"/>
-<area shape="rect" id="node3" href="$pipeline_8h.html" title=" " alt="" coords="222,184,364,225"/>
-<area shape="rect" id="node4" href="$vkTextRenderer_8h.html" title=" " alt="" coords="253,273,424,315"/>
-<area shape="rect" id="node5" href="$vulkanInstance_8h.html" title=" " alt="" coords="498,363,640,404"/>
-<area shape="rect" id="node8" href="$pipeline_8cpp.html" title=" " alt="" coords="32,281,228,307"/>
-<area shape="rect" id="node7" href="$vkTextRenderer_8cpp.html" title=" " alt="" coords="261,363,416,404"/>
-<area shape="rect" id="node6" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="448,452,690,479"/>
-<area shape="rect" id="node11" href="$framebuffer_8h.html" title=" " alt="" coords="666,184,808,225"/>
-<area shape="rect" id="node13" href="$vkFont_8h.html" title=" " alt="" coords="449,184,590,225"/>
-<area shape="rect" id="node15" href="$vkTexture_8cpp.html" title=" " alt="" coords="832,184,997,225"/>
-<area shape="rect" id="node12" href="$framebuffer_8cpp.html" title=" " alt="" coords="718,281,938,307"/>
-<area shape="rect" id="node14" href="$vkFont_8cpp.html" title=" " alt="" coords="448,273,592,315"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="465,5,606,45"/>
+<area shape="rect" id="Node000002" href="$uniformBuffer_8h.html" title=" " alt="" coords="160,93,336,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="460,52,311,96,310,91,458,47"/>
+<area shape="rect" id="Node000009" href="$vertexBuffer_8h.html" title=" " alt="" coords="360,93,527,133"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="507,57,466,95,462,91,504,53"/>
+<area shape="rect" id="Node000010" href="$vkTexture_8h.html" title=" " alt="" coords="552,93,706,133"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="568,53,610,91,607,95,565,57"/>
+<area shape="rect" id="Node000016" href="$buffer_8cpp.html" title=" " alt="" coords="730,101,912,126"/>
+<area shape="poly" id="edge21_Node000001_Node000016" title=" " alt="" coords="612,47,784,98,782,103,610,52"/>
+<area shape="rect" id="Node000003" href="$pipeline_8h.html" title=" " alt="" coords="222,181,364,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="266,144,285,180,281,182,262,147"/>
+<area shape="rect" id="Node000004" href="$vkTextRenderer_8h.html" title=" " alt="" coords="253,269,424,309"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="312,232,331,268,326,270,307,235"/>
+<area shape="rect" id="Node000005" href="$vulkanInstance_8h.html" title=" " alt="" coords="498,357,640,397"/>
+<area shape="poly" id="edge7_Node000003_Node000005" title=" " alt="" coords="209,211,129,221,55,240,29,253,13,268,9,286,22,308,35,319,52,328,97,341,152,349,212,352,334,352,428,355,499,364,498,369,427,360,334,357,212,357,151,354,96,347,50,333,32,323,18,311,4,287,8,266,25,249,53,235,128,216,208,205"/>
+<area shape="rect" id="Node000008" href="$pipeline_8cpp.html" title=" " alt="" coords="32,277,228,302"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="247,230,153,279,151,274,244,225"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="402,312,519,355,518,360,401,317"/>
+<area shape="rect" id="Node000007" href="$vkTextRenderer_8cpp.html" title=" " alt="" coords="261,357,416,397"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="341,323,341,357,336,357,336,323"/>
+<area shape="rect" id="Node000006" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="448,445,690,471"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="572,411,572,445,566,445,566,411"/>
+<area shape="poly" id="edge10_Node000009_Node000003" title=" " alt="" coords="400,142,327,184,325,179,398,138"/>
+<area shape="poly" id="edge18_Node000010_Node000003" title=" " alt="" coords="543,139,364,185,363,179,542,134"/>
+<area shape="poly" id="edge19_Node000010_Node000005" title=" " alt="" coords="631,147,624,222,617,267,606,310,584,358,579,356,601,308,612,266,619,222,626,147"/>
+<area shape="rect" id="Node000011" href="$vkFont_8h.html" title=" " alt="" coords="449,181,590,221"/>
+<area shape="poly" id="edge12_Node000010_Node000011" title=" " alt="" coords="596,144,545,183,542,179,592,140"/>
+<area shape="rect" id="Node000013" href="$framebuffer_8h.html" title=" " alt="" coords="666,181,808,221"/>
+<area shape="poly" id="edge15_Node000010_Node000013" title=" " alt="" coords="665,140,715,179,711,183,662,144"/>
+<area shape="rect" id="Node000015" href="$vkTexture_8cpp.html" title=" " alt="" coords="832,181,997,221"/>
+<area shape="poly" id="edge20_Node000010_Node000015" title=" " alt="" coords="706,135,853,179,851,184,704,140"/>
+<area shape="poly" id="edge13_Node000011_Node000004" title=" " alt="" coords="469,230,379,272,377,267,467,225"/>
+<area shape="rect" id="Node000012" href="$vkFont_8cpp.html" title=" " alt="" coords="448,269,592,309"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="522,235,522,269,517,269,517,235"/>
+<area shape="poly" id="edge16_Node000013_Node000005" title=" " alt="" coords="716,234,650,311,595,359,592,355,646,307,712,231"/>
+<area shape="rect" id="Node000014" href="$framebuffer_8cpp.html" title=" " alt="" coords="718,277,938,302"/>
+<area shape="poly" id="edge17_Node000013_Node000014" title=" " alt="" coords="769,229,817,274,813,278,765,233"/>
 </map>

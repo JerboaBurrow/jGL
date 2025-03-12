@@ -1,4 +1,5 @@
 <map id="jGL::Texture" name="jGL::Texture">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,104,121"/>
-<area shape="rect" id="node2" href="$structjGL_1_1Id.html" title=" " alt="" coords="23,5,86,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,93,104,119"/>
+<area shape="rect" id="Node000002" href="$structjGL_1_1Id.html" title=" " alt="" coords="23,5,86,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="57,45,57,93,52,93,52,45"/>
 </map>

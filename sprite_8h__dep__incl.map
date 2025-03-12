@@ -1,12 +1,23 @@
 <map id="include/jGL/sprite.h" name="include/jGL/sprite.h">
-<area shape="rect" id="node1" title=" " alt="" coords="346,5,493,32"/>
-<area shape="rect" id="node2" href="$spriteRenderer_8h.html" title=" " alt="" coords="317,80,522,107"/>
-<area shape="rect" id="node3" href="$jGL_8h.html" title=" " alt="" coords="354,162,485,189"/>
-<area shape="rect" id="node8" href="$glSpriteRenderer_8h.html" title=" " alt="" coords="181,155,330,196"/>
-<area shape="rect" id="node10" href="$vkSpriteRenderer_8h.html" title=" " alt="" coords="509,155,660,196"/>
-<area shape="rect" id="node4" href="$openGLInstance_8h.html" title=" " alt="" coords="289,244,438,285"/>
-<area shape="rect" id="node6" href="$vulkanInstance_8h.html" title=" " alt="" coords="514,244,655,285"/>
-<area shape="rect" id="node5" href="$openGLInstance_8cpp.html" title=" " alt="" coords="210,333,466,360"/>
-<area shape="rect" id="node7" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="490,333,733,360"/>
-<area shape="rect" id="node9" href="$glSpriteRenderer_8cpp.html" title=" " alt="" coords="5,251,265,278"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="346,5,493,31"/>
+<area shape="rect" id="Node000002" href="$spriteRenderer_8h.html" title=" " alt="" coords="317,79,522,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="422,44,422,79,417,79,417,44"/>
+<area shape="rect" id="Node000003" href="$glSpriteRenderer_8h.html" title=" " alt="" coords="181,152,330,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="384,112,296,154,294,149,382,107"/>
+<area shape="rect" id="Node000007" href="$vkSpriteRenderer_8h.html" title=" " alt="" coords="509,152,660,192"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="457,107,546,149,543,154,454,112"/>
+<area shape="rect" id="Node000010" href="$jGL_8h.html" title=" " alt="" coords="354,159,485,185"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="422,118,422,159,417,159,417,118"/>
+<area shape="rect" id="Node000004" href="$openGLInstance_8h.html" title=" " alt="" coords="289,240,438,280"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="292,199,341,238,338,242,288,203"/>
+<area shape="rect" id="Node000006" href="$glSpriteRenderer_8cpp.html" title=" " alt="" coords="5,247,265,273"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="219,202,153,249,150,245,216,198"/>
+<area shape="rect" id="Node000005" href="$openGLInstance_8cpp.html" title=" " alt="" coords="210,328,466,353"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="355,294,344,328,339,327,350,292"/>
+<area shape="rect" id="Node000008" href="$vulkanInstance_8h.html" title=" " alt="" coords="514,240,655,280"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="587,206,587,240,582,240,582,206"/>
+<area shape="rect" id="Node000009" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="490,328,733,353"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="598,292,610,327,605,329,593,294"/>
+<area shape="poly" id="edge10_Node000010_Node000004" title=" " alt="" coords="407,198,378,241,374,238,402,195"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="455,189,549,237,547,242,453,194"/>
 </map>

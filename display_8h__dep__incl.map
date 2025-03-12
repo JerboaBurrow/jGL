@@ -1,10 +1,17 @@
 <map id="include/jGL/Display/display.h" name="include/jGL/Display/display.h">
-<area shape="rect" id="node1" title=" " alt="" coords="303,5,449,47"/>
-<area shape="rect" id="node2" href="$desktopDisplay_8h.html" title=" " alt="" coords="303,95,449,136"/>
-<area shape="rect" id="node3" href="$jGL_8h.html" title=" " alt="" coords="204,184,335,211"/>
-<area shape="rect" id="node8" href="$desktopDisplay_8cpp.html" title=" " alt="" coords="359,184,609,211"/>
-<area shape="rect" id="node4" href="$openGLInstance_8h.html" title=" " alt="" coords="111,259,260,300"/>
-<area shape="rect" id="node6" href="$vulkanInstance_8h.html" title=" " alt="" coords="309,259,451,300"/>
-<area shape="rect" id="node5" href="$openGLInstance_8cpp.html" title=" " alt="" coords="5,348,261,375"/>
-<area shape="rect" id="node7" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="285,348,528,375"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="303,5,449,45"/>
+<area shape="rect" id="Node000002" href="$desktopDisplay_8h.html" title=" " alt="" coords="303,93,449,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="379,59,379,93,373,93,373,59"/>
+<area shape="rect" id="Node000003" href="$jGL_8h.html" title=" " alt="" coords="204,181,335,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="341,144,287,183,284,179,338,139"/>
+<area shape="rect" id="Node000008" href="$desktopDisplay_8cpp.html" title=" " alt="" coords="359,181,609,207"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="415,139,469,179,466,183,412,144"/>
+<area shape="rect" id="Node000004" href="$openGLInstance_8h.html" title=" " alt="" coords="111,255,260,295"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="249,218,207,256,204,253,245,214"/>
+<area shape="rect" id="Node000006" href="$vulkanInstance_8h.html" title=" " alt="" coords="309,255,451,295"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="298,212,355,252,352,257,295,217"/>
+<area shape="rect" id="Node000005" href="$openGLInstance_8cpp.html" title=" " alt="" coords="5,343,261,368"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="168,307,143,344,139,341,163,305"/>
+<area shape="rect" id="Node000007" href="$vulkanInstance_8cpp.html" title=" " alt="" coords="285,343,528,368"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="393,307,405,341,400,343,388,308"/>
 </map>

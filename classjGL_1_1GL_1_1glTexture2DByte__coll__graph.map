@@ -1,6 +1,9 @@
 <map id="jGL::GL::glTexture2DByte" name="jGL::GL::glTexture2DByte">
-<area shape="rect" id="node1" title=" " alt="" coords="5,247,189,273"/>
-<area shape="rect" id="node2" href="$classjGL_1_1GL_1_1glTexture.html" title=" " alt="" coords="29,171,165,197"/>
-<area shape="rect" id="node3" href="$classjGL_1_1Texture.html" title=" " alt="" coords="48,95,147,121"/>
-<area shape="rect" id="node4" href="$structjGL_1_1Id.html" title=" " alt="" coords="66,5,129,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,243,189,268"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1GL_1_1glTexture.html" title=" " alt="" coords="29,168,165,193"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,208,100,242,95,242,95,208"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1Texture.html" title=" " alt="" coords="48,93,147,119"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,133,100,168,95,168,95,133"/>
+<area shape="rect" id="Node000004" href="$structjGL_1_1Id.html" title=" " alt="" coords="66,5,129,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="100,45,100,93,95,93,95,45"/>
 </map>

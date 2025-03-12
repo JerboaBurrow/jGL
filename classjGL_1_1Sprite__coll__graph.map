@@ -1,8 +1,14 @@
 <map id="jGL::Sprite" name="jGL::Sprite">
-<area shape="rect" id="node1" title=" " alt="" coords="155,184,245,211"/>
-<area shape="rect" id="node2" href="$classjGL_1_1Texture.html" title=" " alt="" coords="5,95,104,121"/>
-<area shape="rect" id="node3" href="$structjGL_1_1Id.html" title=" " alt="" coords="23,5,86,32"/>
-<area shape="rect" id="node4" href="$structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels." alt="" coords="128,95,272,121"/>
-<area shape="rect" id="node5" href="$structjGL_1_1Primitive.html" title=" " alt="" coords="222,5,333,32"/>
-<area shape="rect" id="node6" href="$structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="297,95,413,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="173,181,263,207"/>
+<area shape="rect" id="Node000002" href="$structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="5,93,121,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,124,145,155,193,179,191,184,142,160,91,129"/>
+<area shape="rect" id="Node000003" href="$structjGL_1_1Primitive.html" title=" " alt="" coords="87,5,197,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,43,76,95,72,91,120,39"/>
+<area shape="rect" id="Node000004" href="$structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels." alt="" coords="146,93,290,119"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="163,39,209,91,205,95,159,43"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="221,133,221,181,215,181,215,133"/>
+<area shape="rect" id="Node000005" href="$classjGL_1_1Texture.html" title=" " alt="" coords="314,93,413,119"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="337,129,290,160,244,184,241,179,287,155,334,125"/>
+<area shape="rect" id="Node000006" href="$structjGL_1_1Id.html" title=" " alt="" coords="332,5,395,31"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="366,45,366,93,361,93,361,45"/>
 </map>

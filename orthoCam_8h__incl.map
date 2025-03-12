@@ -1,5 +1,7 @@
 <map id="include/jGL/orthoCam.h" name="include/jGL/orthoCam.h">
-<area shape="rect" id="node1" title=" " alt="" coords="62,5,237,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,109,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="134,80,351,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="62,5,237,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,109,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,33,85,72,81,68,133,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="134,79,351,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,29,218,68,215,72,163,33"/>
 </map>

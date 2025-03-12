@@ -1,5 +1,7 @@
 <map id="include/jGL/Vulkan/surface.h" name="include/jGL/Vulkan/surface.h">
-<area shape="rect" id="node1" title=" " alt="" coords="51,5,193,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,95,116,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="140,95,227,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="51,5,193,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,116,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,47,80,84,76,81,105,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="140,93,227,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,44,168,81,164,84,135,47"/>
 </map>

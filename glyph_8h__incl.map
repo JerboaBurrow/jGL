@@ -1,12 +1,21 @@
 <map id="include/jGL/glyph.h" name="include/jGL/glyph.h">
-<area shape="rect" id="node1" title=" " alt="" coords="467,5,613,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,88,107"/>
-<area shape="rect" id="node3" href="$defaultFont_8h.html" title=" " alt="" coords="112,80,245,107"/>
-<area shape="rect" id="node4" title=" " alt="" coords="269,80,373,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="398,80,485,107"/>
-<area shape="rect" id="node6" title=" " alt="" coords="509,80,571,107"/>
-<area shape="rect" id="node7" title=" " alt="" coords="596,80,655,107"/>
-<area shape="rect" id="node8" title=" " alt="" coords="679,80,756,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="780,80,860,107"/>
-<area shape="rect" id="node10" title=" " alt="" coords="884,80,940,107"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="467,5,613,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,88,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="467,30,304,51,102,81,102,76,303,45,466,25"/>
+<area shape="rect" id="Node000003" href="$defaultFont_8h.html" title=" " alt="" coords="112,79,245,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="482,33,251,79,250,73,481,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="269,79,373,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="506,33,371,77,369,72,504,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="398,79,485,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="526,33,470,73,467,68,523,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="509,79,571,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="543,31,543,65,537,65,537,31"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="596,79,655,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="555,29,603,68,599,72,552,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="679,79,756,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="569,28,677,71,675,76,568,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="780,79,860,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="586,28,767,74,766,79,584,33"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="884,79,940,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="614,28,731,47,871,76,870,81,730,53,613,33"/>
 </map>

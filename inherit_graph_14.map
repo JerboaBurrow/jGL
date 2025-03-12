@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classjGL_1_1OrthoCam.html" title="An orthographic camera for 2D." alt="" coords="5,5,123,32"/>
+<area shape="rect" id="Node000000" href="$classjGL_1_1Particles.html" title=" " alt="" coords="5,31,112,56"/>
+<area shape="rect" id="Node000001" href="$classjGL_1_1GL_1_1glParticles.html" title=" " alt="" coords="175,5,318,31"/>
+<area shape="poly" id="edge8_Node000000_Node000001" title=" " alt="" coords="125,32,175,25,176,30,126,37"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1Vulkan_1_1vkParticles.html" title=" " alt="" coords="160,55,333,80"/>
+<area shape="poly" id="edge9_Node000000_Node000002" title=" " alt="" coords="126,49,160,54,160,59,125,54"/>
 </map>

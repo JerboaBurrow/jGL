@@ -1,5 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classjGL_1_1Font.html" title=" " alt="" coords="5,31,84,57"/>
-<area shape="rect" id="node2" href="$classjGL_1_1GL_1_1glFont.html" title=" " alt="" coords="147,5,263,32"/>
-<area shape="rect" id="node3" href="$classjGL_1_1Vulkan_1_1vkFont.html" title=" " alt="" coords="132,56,279,83"/>
+<area shape="rect" id="Node000000" href="$classjGL_1_1Font.html" title=" " alt="" coords="5,31,84,56"/>
+<area shape="rect" id="Node000001" href="$classjGL_1_1GL_1_1glFont.html" title=" " alt="" coords="147,5,263,31"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="97,32,147,25,147,30,98,38"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1Vulkan_1_1vkFont.html" title=" " alt="" coords="132,55,279,80"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="98,49,132,54,131,59,97,54"/>
 </map>

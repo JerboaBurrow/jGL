@@ -1,6 +1,9 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classPriorityStore.html" title=" " alt="" coords="5,31,179,57"/>
-<area shape="rect" id="node2" href="$classjGL_1_1ShapeRenderer.html" title="Renders shapes with optional rendering priority." alt="" coords="227,31,377,57"/>
-<area shape="rect" id="node3" href="$classjGL_1_1GL_1_1glShapeRenderer.html" title="OpenGL implementation of ShapeRenderer." alt="" coords="441,5,627,32"/>
-<area shape="rect" id="node4" href="$classjGL_1_1Vulkan_1_1vkShapeRenderer.html" title=" " alt="" coords="425,56,643,83"/>
+<area shape="rect" id="Node000000" href="$classPriorityStore.html" title=" " alt="" coords="5,31,176,56"/>
+<area shape="rect" id="Node000001" href="$classjGL_1_1SpriteRenderer.html" title="Renders sprites in batches, with optional render priority." alt="" coords="224,31,372,56"/>
+<area shape="poly" id="edge31_Node000000_Node000001" title=" " alt="" coords="190,41,224,41,224,46,190,46"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1GL_1_1glSpriteRenderer.html" title="Opengl implementation of SpriteRenderer." alt="" coords="435,5,620,31"/>
+<area shape="poly" id="edge32_Node000001_Node000002" title=" " alt="" coords="386,31,434,26,435,31,386,36"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1Vulkan_1_1vkSpriteRenderer.html" title=" " alt="" coords="420,55,635,80"/>
+<area shape="poly" id="edge33_Node000001_Node000003" title=" " alt="" coords="386,50,420,53,419,59,385,55"/>
 </map>

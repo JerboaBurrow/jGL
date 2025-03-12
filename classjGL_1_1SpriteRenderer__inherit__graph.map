@@ -1,6 +1,9 @@
 <map id="jGL::SpriteRenderer" name="jGL::SpriteRenderer">
-<area shape="rect" id="node1" title="Renders sprites in batches, with optional render priority." alt="" coords="136,80,284,107"/>
-<area shape="rect" id="node3" href="$classjGL_1_1GL_1_1glSpriteRenderer.html" title="Opengl implementation of SpriteRenderer." alt="" coords="5,155,191,181"/>
-<area shape="rect" id="node4" href="$classjGL_1_1Vulkan_1_1vkSpriteRenderer.html" title=" " alt="" coords="215,155,429,181"/>
-<area shape="rect" id="node2" href="$classPriorityStore.html" title=" " alt="" coords="125,5,295,32"/>
+<area shape="rect" id="Node000001" title="Renders sprites in batches, with optional render priority." alt="" coords="136,79,284,104"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1GL_1_1glSpriteRenderer.html" title="Opengl implementation of SpriteRenderer." alt="" coords="5,152,191,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="182,114,118,154,115,150,179,109"/>
+<area shape="rect" id="Node000004" href="$classjGL_1_1Vulkan_1_1vkSpriteRenderer.html" title=" " alt="" coords="215,152,429,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="241,109,305,150,302,154,238,114"/>
+<area shape="rect" id="Node000002" href="$classPriorityStore.html" title=" " alt="" coords="125,5,295,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,44,213,79,207,79,207,44"/>
 </map>

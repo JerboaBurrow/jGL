@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structjGL_1_1Particles_1_1UpdateInfo.html" title=" " alt="" coords="5,5,192,32"/>
+<area shape="rect" id="Node000000" href="$structjGL_1_1Primitive.html" title=" " alt="" coords="5,80,116,105"/>
+<area shape="rect" id="Node000001" href="$structjGL_1_1NormalisedTextureRegion.html" title="Rectangular region of a texture, normalised by the textures dimensions." alt="" coords="164,5,383,31"/>
+<area shape="poly" id="edge10_Node000000_Node000001" title=" " alt="" coords="95,71,163,40,202,28,203,33,165,44,97,76"/>
+<area shape="rect" id="Node000002" href="$structjGL_1_1TextureRegion.html" title="Rectangular region of a texture in pixels." alt="" coords="201,55,345,80"/>
+<area shape="poly" id="edge11_Node000000_Node000002" title=" " alt="" coords="130,82,201,73,201,79,130,87"/>
+<area shape="rect" id="Node000003" href="$structjGL_1_1TexturedParticle.html" title="Particle with a texture, with a position, orientation, and scale, colour, and texture region." alt="" coords="196,104,351,129"/>
+<area shape="poly" id="edge12_Node000000_Node000003" title=" " alt="" coords="130,98,196,105,196,111,129,103"/>
+<area shape="rect" id="Node000004" href="$structjGL_1_1Transform.html" title="Position, rotation, and scale." alt="" coords="215,153,331,179"/>
+<area shape="poly" id="edge13_Node000000_Node000004" title=" " alt="" coords="99,109,165,138,216,152,215,158,163,143,97,114"/>
 </map>

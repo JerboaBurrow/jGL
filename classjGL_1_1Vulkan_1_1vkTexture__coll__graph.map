@@ -1,6 +1,9 @@
 <map id="jGL::Vulkan::vkTexture" name="jGL::Vulkan::vkTexture">
-<area shape="rect" id="node1" title=" " alt="" coords="81,184,247,211"/>
-<area shape="rect" id="node2" href="$classjGL_1_1Texture.html" title=" " alt="" coords="5,95,104,121"/>
-<area shape="rect" id="node3" href="$structjGL_1_1Id.html" title=" " alt="" coords="23,5,86,32"/>
-<area shape="rect" id="node4" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="128,95,275,121"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="81,181,247,207"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1Texture.html" title=" " alt="" coords="5,93,104,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="82,125,151,179,147,183,79,129"/>
+<area shape="rect" id="Node000003" href="$structjGL_1_1Id.html" title=" " alt="" coords="23,5,86,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="57,45,57,93,52,93,52,45"/>
+<area shape="rect" id="Node000004" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="128,93,275,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="193,132,172,182,167,180,188,130"/>
 </map>

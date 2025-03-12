@@ -1,5 +1,7 @@
 <map id="jGL::Vulkan::VertexBuffer&lt; glm::vec4 &gt;" name="jGL::Vulkan::VertexBuffer&lt; glm::vec4 &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,185,188,227"/>
-<area shape="rect" id="node2" href="$classjGL_1_1Vulkan_1_1VertexBufferObject.html" title=" " alt="" coords="5,95,188,136"/>
-<area shape="rect" id="node3" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="23,5,170,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,188,223"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1Vulkan_1_1VertexBufferObject.html" title=" " alt="" coords="5,93,188,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,147,99,183,94,183,94,147"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="23,5,170,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="99,44,99,93,94,93,94,44"/>
 </map>

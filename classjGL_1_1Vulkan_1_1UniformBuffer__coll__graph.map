@@ -1,5 +1,7 @@
 <map id="jGL::Vulkan::UniformBuffer&lt; T &gt;" name="jGL::Vulkan::UniformBuffer&lt; T &gt;">
-<area shape="rect" id="node1" title=" " alt="" coords="5,185,237,212"/>
-<area shape="rect" id="node2" href="$classjGL_1_1Vulkan_1_1UniformBufferObject.html" title=" " alt="" coords="24,95,219,136"/>
-<area shape="rect" id="node3" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="48,5,195,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,237,208"/>
+<area shape="rect" id="Node000002" href="$classjGL_1_1Vulkan_1_1UniformBufferObject.html" title=" " alt="" coords="24,93,219,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,147,124,182,119,182,119,147"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1Vulkan_1_1Device.html" title=" " alt="" coords="48,5,195,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,44,124,93,119,93,119,44"/>
 </map>

@@ -1,12 +1,17 @@
 <map id="include/jGL/OpenGL" name="include/jGL/OpenGL">
-<area shape="rect" id="node2" href="dir_fbaf60cf07e00972b5ab7c7df46036ec.html" title="Shader" alt="" coords="37,255,109,303"/>
-<area shape="rect" id="edge5-headlabel" href="dir_000003_000004.html" title="4" alt="" coords="71,228,80,243"/>
-<area shape="rect" id="node3" href="dir_e63711efcc19ecf36093c136faae8564.html" title="Text" alt="" coords="85,159,157,207"/>
-<area shape="rect" id="edge4-headlabel" href="dir_000003_000005.html" title="1" alt="" coords="125,133,134,148"/>
-<area shape="rect" id="node4" href="dir_277bbe3aa2f35493c20aab73318c33af.html" title="Texture" alt="" coords="133,255,205,303"/>
-<area shape="rect" id="edge3-headlabel" href="dir_000003_000006.html" title="2" alt="" coords="179,230,188,245"/>
-<area shape="rect" id="edge2-headlabel" href="dir_000005_000004.html" title="1" alt="" coords="96,235,106,250"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000005_000006.html" title="1" alt="" coords="152,227,161,242"/>
-<area shape="rect" id="clust2" href="dir_5ab0cf8d5223a605321ad472e034833b.html" alt="" coords="27,52,216,313"/>
-<area shape="rect" id="clust1" href="dir_5df56a33b939808d803f32b57e80a093.html" title="jGL" alt="" coords="16,16,227,324"/>
+<area shape="rect" id="node2" href="dir_fbaf60cf07e00972b5ab7c7df46036ec.html" title="Shader" alt="" coords="37,209,104,235"/>
+<area shape="poly" id="edge3" href="dir_000012_000016.html" alt="" coords="111,90,96,111,84,137,77,167,74,196,68,195,71,166,79,135,92,108,106,87"/>
+<area shape="rect" id="edge3-headlabel" href="dir_000012_000016.html" title="4" alt="" coords="75,184,84,198"/>
+<area shape="rect" id="node3" href="dir_e63711efcc19ecf36093c136faae8564.html" title="Text" alt="" coords="93,136,142,161"/>
+<area shape="poly" id="edge2" href="dir_000012_000021.html" alt="" coords="120,88,120,122,115,122,115,88"/>
+<area shape="rect" id="edge2-headlabel" href="dir_000012_000021.html" title="1" alt="" coords="121,110,130,125"/>
+<area shape="rect" id="node4" href="dir_277bbe3aa2f35493c20aab73318c33af.html" title="Texture" alt="" coords="129,209,199,235"/>
+<area shape="poly" id="edge1" href="dir_000012_000025.html" alt="" coords="129,87,144,108,157,135,164,166,167,195,162,196,159,167,152,137,139,111,125,90"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000012_000025.html" title="2" alt="" coords="168,183,177,198"/>
+<area shape="poly" id="edge5" href="dir_000021_000016.html" alt="" coords="112,163,88,199,84,196,107,160"/>
+<area shape="rect" id="edge5-headlabel" href="dir_000021_000016.html" title="1" alt="" coords="91,191,100,206"/>
+<area shape="poly" id="edge4" href="dir_000021_000025.html" alt="" coords="127,160,151,196,147,199,123,163"/>
+<area shape="rect" id="edge4-headlabel" href="dir_000021_000025.html" title="1" alt="" coords="149,182,158,197"/>
+<area shape="rect" id="clust2" href="dir_5ab0cf8d5223a605321ad472e034833b.html" alt="" coords="27,52,211,245"/>
+<area shape="rect" id="clust1" href="dir_5df56a33b939808d803f32b57e80a093.html" title="jGL" alt="" coords="16,16,221,256"/>
 </map>

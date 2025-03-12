@@ -1,6 +1,9 @@
 <map id="jGL::ShapeRenderer" name="jGL::ShapeRenderer">
-<area shape="rect" id="node1" title="Renders shapes with optional rendering priority." alt="" coords="137,80,287,107"/>
-<area shape="rect" id="node3" href="$classjGL_1_1GL_1_1glShapeRenderer.html" title="OpenGL implementation of ShapeRenderer." alt="" coords="5,155,192,181"/>
-<area shape="rect" id="node4" href="$classjGL_1_1Vulkan_1_1vkShapeRenderer.html" title=" " alt="" coords="217,155,434,181"/>
-<area shape="rect" id="node2" href="$classPriorityStore.html" title=" " alt="" coords="125,5,299,32"/>
+<area shape="rect" id="Node000001" title="Renders shapes with optional rendering priority." alt="" coords="137,79,287,104"/>
+<area shape="rect" id="Node000003" href="$classjGL_1_1GL_1_1glShapeRenderer.html" title="OpenGL implementation of ShapeRenderer." alt="" coords="5,152,192,177"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="183,114,119,154,116,150,180,109"/>
+<area shape="rect" id="Node000004" href="$classjGL_1_1Vulkan_1_1vkShapeRenderer.html" title=" " alt="" coords="217,152,434,177"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="244,109,308,150,305,154,241,114"/>
+<area shape="rect" id="Node000002" href="$classPriorityStore.html" title=" " alt="" coords="125,5,299,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,44,215,79,209,79,209,44"/>
 </map>
