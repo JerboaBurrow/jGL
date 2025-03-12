@@ -43,7 +43,7 @@ namespace jGL
         }
 
         parseAction(window, key, action);
-        
+
     }
 
     void defaultMouseButtonCallback
@@ -103,7 +103,7 @@ namespace jGL
             {std::vector(LOGO64.begin(), LOGO64.end())},
             {std::vector(LOGO128.begin(), LOGO128.end())}
         };
-        
+
         setIcon(logos);
 
         data.clear();
@@ -121,9 +121,9 @@ namespace jGL
     (
         res,
         title,
-        defaultKeyEventCallback, 
-        defaultMouseButtonCallback, 
-        defaultScrollCallback, 
+        defaultKeyEventCallback,
+        defaultMouseButtonCallback,
+        defaultScrollCallback,
         conf
     )
     {}
