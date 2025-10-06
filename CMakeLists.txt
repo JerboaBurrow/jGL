@@ -80,10 +80,46 @@ if (ANDROID)
         "src/jGL/common.cpp"
         "src/id.cpp"
     )
+elseif(WINDOWS)
+    file(GLOB_RECURSE jGL_SRC
+        "src/jGL/*.cpp"
+        "src/*.cpp"
+        "include/vendored/imgui/imgui.cpp"    
+        "include/vendored/imgui/imgui_demo.cpp"
+        "include/vendored/imgui/imgui_draw.cpp"
+        "include/vendored/imgui/imgui_impl_glfw.cpp"
+        "include/vendored/imgui/imgui_impl_opengl3.cpp"
+        "include/vendored/imgui/imgui_widgets.cpp"
+        "include/vendored/imgui/imgui_tables.cpp"
+        "include/vendored/imgui/imgui_stdlib.cpp"
+        "include/vendored/imgui/imgui_impl_win32.cpp"
+    )
+elseif(OSX)
+    file(GLOB_RECURSE jGL_SRC
+        "src/jGL/*.cpp"
+        "src/*.cpp"
+        "include/vendored/imgui/imgui.cpp"    
+        "include/vendored/imgui/imgui_demo.cpp"
+        "include/vendored/imgui/imgui_draw.cpp"
+        "include/vendored/imgui/imgui_impl_glfw.cpp"
+        "include/vendored/imgui/imgui_impl_opengl3.cpp"
+        "include/vendored/imgui/imgui_widgets.cpp"
+        "include/vendored/imgui/imgui_tables.cpp"
+        "include/vendored/imgui/imgui_stdlib.cpp"
+        "include/vendored/imgui/imgui_impl_osx.mm"
+    )
 else()
     file(GLOB_RECURSE jGL_SRC
         "src/jGL/*.cpp"
         "src/*.cpp"
+        "include/vendored/imgui/imgui.cpp"    
+        "include/vendored/imgui/imgui_demo.cpp"
+        "include/vendored/imgui/imgui_draw.cpp"
+        "include/vendored/imgui/imgui_impl_glfw.cpp"
+        "include/vendored/imgui/imgui_impl_opengl3.cpp"
+        "include/vendored/imgui/imgui_widgets.cpp"
+        "include/vendored/imgui/imgui_tables.cpp"
+        "include/vendored/imgui/imgui_stdlib.cpp"
     )
 endif()
 
@@ -114,6 +150,7 @@ target_include_directories(jGL PUBLIC
     include/vendored/glfw/include
     include/jLog
     include/jThread
+    include/vendored/imgui
 )
 
 if (WINDOWS)
