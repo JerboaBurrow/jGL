@@ -182,7 +182,7 @@ jobs:
 
     strategy:
       matrix:
-        example: [Particles, Sprite, Shape]
+        example: [Particles, Sprite, Shape, Imgui]
 
     steps:
       - name: install dependencies
@@ -219,7 +219,7 @@ jobs:
 
     strategy:
       matrix:
-        example: [Particles, Sprite, Shape]
+        example: [Particles, Sprite, Shape, Imgui]
 
     steps:
       - name: install dependencies
