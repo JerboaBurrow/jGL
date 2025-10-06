@@ -62,7 +62,7 @@ jobs:
         path: headers-mingw
 
   linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v4
@@ -149,7 +149,7 @@ jobs:
       run: |
           wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
           unzip vulkan-sdk.zip
-          binary=`find ./* -path *MacOS/InstallVulkan*`
+          binary=`ls *vulkansdk-macOS-*.app/Contents/MacOS/*`
           sudo ${binary} --root ~/vulkan --accept-licenses --default-answer --confirm-command install
           ls ~/vulkan
           cd ~/vulkan/
@@ -341,13 +341,13 @@ jobs:
 
       - name: install dependencies
         run: |
-            wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
-            unzip vulkan-sdk.zip
-            binary=`find ./* -path *MacOS/InstallVulkan*`
-            sudo ${binary} --root ~/vulkan --accept-licenses --default-answer --confirm-command install
-            ls ~/vulkan
-            cd ~/vulkan/
-            python install_vulkan.py
+          wget https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.zip -O vulkan-sdk.zip
+          unzip vulkan-sdk.zip
+          binary=`ls *vulkansdk-macOS-*.app/Contents/MacOS/*`
+          sudo ${binary} --root ~/vulkan --accept-licenses --default-answer --confirm-command install
+          ls ~/vulkan
+          cd ~/vulkan/
+          python install_vulkan.py
 
       - name: macos lib test
         run: |
