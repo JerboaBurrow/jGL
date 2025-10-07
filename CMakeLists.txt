@@ -85,7 +85,24 @@ else()
         "src/jGL/*.cpp"
         "src/*.cpp"
     )
+    set(imgui_SRC
+        "include/vendored/imgui/imgui.cpp"
+        "include/vendored/imgui/imgui_draw.cpp"
+        "include/vendored/imgui/imgui_impl_glfw.cpp"
+        "include/vendored/imgui/imgui_impl_opengl3.cpp"
+        "include/vendored/imgui/imgui_widgets.cpp"
+        "include/vendored/imgui/imgui_tables.cpp"
+        "include/vendored/imgui/imgui_stdlib.cpp"
+    )
 endif()
+
+if (WINDOWS)
+    set(imgui_SRC ${imgui_SRC} "include/vendored/imgui/imgui_impl_win32.cpp")
+elseif(OSX)
+    set(imgui_SRC ${imgui_SRC} "include/vendored/imgui/imgui_impl_osx.mm")
+endif()
+
+set(jGL_SRC ${jGL_SRC} ${imgui_SRC})
 
 if (VALIDATION)
     add_compile_definitions(VALIDATION)
@@ -114,6 +131,7 @@ target_include_directories(jGL PUBLIC
     include/vendored/glfw/include
     include/jLog
     include/jThread
+    include/vendored/imgui
 )
 
 if (WINDOWS)
@@ -173,6 +191,7 @@ IF (TEST_SUITE)
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
+        ${imgui_SRC}
     )
 
     target_include_directories(glTests PUBLIC
@@ -186,13 +205,14 @@ IF (TEST_SUITE)
         include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
+        include/vendored/imgui
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
     target_compile_definitions(glTests PUBLIC MAX_SPRITE_BATCH_BOUND_TEXTURES=4)
 
     if (WINDOWS)
-        target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw "winmm")
+        target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw "winmm" "dwmapi")
     else()
         target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
     endif()
@@ -220,6 +240,7 @@ IF (TEST_SUITE)
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
+        ${imgui_SRC}
     )
 
     target_include_directories(vkTests PUBLIC
@@ -231,6 +252,7 @@ IF (TEST_SUITE)
         include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
+        include/vendored/imgui
     )
 
     if (WINDOWS)
@@ -247,7 +269,7 @@ IF (TEST_SUITE)
     endif()
 
     if (WINDOWS)
-        target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined "winmm")
+        target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined "winmm" "dwmapi")
     else()
         target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
     endif()
