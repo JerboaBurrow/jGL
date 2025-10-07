@@ -32,7 +32,7 @@ target_link_libraries(
 	${OPENGL_LIBRARIES} 
     ${Vulkan_LIBRARIES}
 	"winmm"
-	"wmapi"
+	"dwmapi"
 )
 
 target_include_directories(

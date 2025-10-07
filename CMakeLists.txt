@@ -269,7 +269,7 @@ IF (TEST_SUITE)
     endif()
 
     if (WINDOWS)
-        target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined "winmm" "wmapi")
+        target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined "winmm" "dwmapi")
     else()
         target_link_libraries(vkTests stduuid freetype glm ${Vulkan_LIBRARIES} glfw shaderc_combined)
     endif()
