@@ -34,7 +34,8 @@ jobs:
           include/vendored/glm/glm \
           include/vendored/stduuid/include/uuid.h \
           include/vendored/stduuid/gsl \
-          include/vendored/stb_image.h;\
+          include/vendored/stb_image.h \
+          include/vendored/imgui;\
           do cp -r $inc headers; done
 
         ls headers

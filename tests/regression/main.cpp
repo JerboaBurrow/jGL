@@ -67,6 +67,8 @@ int main(int argv, char ** argc)
     double delta = 0.0;
     double dt = 1.0/600.0;
 
+    display.initImgui();
+
     while (display.isOpen())
     {
         tic = high_resolution_clock::now();
@@ -127,6 +129,25 @@ int main(int argv, char ** argc)
             }
 
         jGLInstance->endFrame();
+
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+        static int counter = 0;
+
+        ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+
+        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+
+        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+            counter++;
+        ImGui::SameLine();
+        ImGui::Text("counter = %d", counter);
+
+        ImGui::End();
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
 
         display.loop();
 
