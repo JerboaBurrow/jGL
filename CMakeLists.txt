@@ -212,7 +212,7 @@ IF (TEST_SUITE)
     target_compile_definitions(glTests PUBLIC MAX_SPRITE_BATCH_BOUND_TEXTURES=4)
 
     if (WINDOWS)
-        target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw "winmm" "wmapi")
+        target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw "winmm" "dwmapi")
     else()
         target_link_libraries(glTests stduuid glew freetype glm ${GLEW_LIBRARIES} ${OPENGL_LIBRARIES} glfw)
     endif()
