@@ -80,40 +80,13 @@ if (ANDROID)
         "src/jGL/common.cpp"
         "src/id.cpp"
     )
-elseif(WINDOWS)
-    file(GLOB_RECURSE jGL_SRC
-        "src/jGL/*.cpp"
-        "src/*.cpp"
-        "include/vendored/imgui/imgui.cpp"    
-        "include/vendored/imgui/imgui_demo.cpp"
-        "include/vendored/imgui/imgui_draw.cpp"
-        "include/vendored/imgui/imgui_impl_glfw.cpp"
-        "include/vendored/imgui/imgui_impl_opengl3.cpp"
-        "include/vendored/imgui/imgui_widgets.cpp"
-        "include/vendored/imgui/imgui_tables.cpp"
-        "include/vendored/imgui/imgui_stdlib.cpp"
-        "include/vendored/imgui/imgui_impl_win32.cpp"
-    )
-elseif(OSX)
-    file(GLOB_RECURSE jGL_SRC
-        "src/jGL/*.cpp"
-        "src/*.cpp"
-        "include/vendored/imgui/imgui.cpp"    
-        "include/vendored/imgui/imgui_demo.cpp"
-        "include/vendored/imgui/imgui_draw.cpp"
-        "include/vendored/imgui/imgui_impl_glfw.cpp"
-        "include/vendored/imgui/imgui_impl_opengl3.cpp"
-        "include/vendored/imgui/imgui_widgets.cpp"
-        "include/vendored/imgui/imgui_tables.cpp"
-        "include/vendored/imgui/imgui_stdlib.cpp"
-        "include/vendored/imgui/imgui_impl_osx.mm"
-    )
 else()
     file(GLOB_RECURSE jGL_SRC
         "src/jGL/*.cpp"
         "src/*.cpp"
-        "include/vendored/imgui/imgui.cpp"    
-        "include/vendored/imgui/imgui_demo.cpp"
+    )
+    set(imgui_SRC
+        "include/vendored/imgui/imgui.cpp"
         "include/vendored/imgui/imgui_draw.cpp"
         "include/vendored/imgui/imgui_impl_glfw.cpp"
         "include/vendored/imgui/imgui_impl_opengl3.cpp"
@@ -122,6 +95,14 @@ else()
         "include/vendored/imgui/imgui_stdlib.cpp"
     )
 endif()
+
+if (WINDOWS)
+    set(imgui_SRC ${imgui_SRC} "include/vendored/imgui/imgui_impl_win32.cpp")
+elseif(OSX)
+    set(imgui_SRC ${imgui_SRC} "include/vendored/imgui/imgui_impl_osx.mm")
+endif()
+
+set(jGL_SRC ${jGL_SRC} ${imgui_SRC})
 
 if (VALIDATION)
     add_compile_definitions(VALIDATION)
@@ -210,6 +191,7 @@ IF (TEST_SUITE)
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
+        ${imgui_SRC}
     )
 
     target_include_directories(glTests PUBLIC
@@ -223,6 +205,7 @@ IF (TEST_SUITE)
         include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
+        include/vendored/imgui
     )
 
     target_compile_definitions(glTests PUBLIC GLSL_VERSION="330")
@@ -257,6 +240,7 @@ IF (TEST_SUITE)
         "src/id.cpp"
         "src/jGL/font.cpp"
         "src/jGL/glyph.cpp"
+        ${imgui_SRC}
     )
 
     target_include_directories(vkTests PUBLIC
@@ -268,6 +252,7 @@ IF (TEST_SUITE)
         include/vendored/VulkanSDK/Include
         include/jLog
         include/jThread
+        include/vendored/imgui
     )
 
     if (WINDOWS)
