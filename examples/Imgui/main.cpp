@@ -142,11 +142,11 @@ int main(int argv, char ** argc)
         ImGui::NewFrame();
         static int counter = 0;
 
-        ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
+        ImGui::Begin("Hello, world!");
 
-        ImGui::Text("This is some useful text.");               // Display some text (you can use a format strings too)
+        ImGui::Text("This is some useful text.");
 
-        if (ImGui::Button("Button"))                            // Buttons return true when clicked (most widgets return true when edited/activated)
+        if (ImGui::Button("Button"))
             counter++;
         ImGui::SameLine();
         ImGui::Text("counter = %d", counter);

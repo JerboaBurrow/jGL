@@ -410,22 +410,17 @@ namespace jGL
         
         void initImgui()
         {
-            // Setup Dear ImGui context
             IMGUI_CHECKVERSION();
             ImGui::CreateContext();
             ImGuiIO& io = ImGui::GetIO(); (void)io;
-            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+            io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
-            // Setup Dear ImGui style
             ImGui::StyleColorsDark();
-            //ImGui::StyleColorsLight();
 
-            // Setup scaling
             ImGuiStyle& style = ImGui::GetStyle();
-            style.ScaleAllSizes(main_scale);        // Bake a fixed style scale. (until we have a solution for dynamic style scaling, changing this requires resetting Style + calling this again)
-            style.FontScaleDpi = main_scale;        // Set initial font scale. (using io.ConfigDpiScaleFonts=true makes this unnecessary. We leave both here for documentation purpose)
+            style.ScaleAllSizes(main_scale);
+            style.FontScaleDpi = main_scale;
 
-            // Setup Platform/Renderer backends
             ImGui_ImplGlfw_InitForOpenGL(glfwWindow, true);
             ImGui_ImplOpenGL3_Init("#version " GLSL_VERSION "");
         }
