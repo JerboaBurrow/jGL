@@ -4,8 +4,8 @@
 namespace jGL::GL
 {
 
-  TextRenderer::TextRenderer(glm::vec2 res)
-  : shader(vert, frag), res(res)
+  TextRenderer::TextRenderer()
+  : shader(vert, frag)
   {
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
